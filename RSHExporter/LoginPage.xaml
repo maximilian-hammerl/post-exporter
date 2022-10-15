@@ -1,0 +1,133 @@
+﻿<Page x:Class="RSHExporter.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
+      mc:Ignorable="d"
+      Title="LoginPage"
+      ShowsNavigationUI="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="1" Margin="0 0 3 3" CornerRadius="5 0 0 0"
+                Style="{StaticResource BorderStyle}" />
+
+        <Border Grid.Row="0" Grid.Column="2" Margin="3 0 3 3" CornerRadius="0 0 0 0"
+                Style="{StaticResource BorderStyle}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button Click="HelpButton_OnClick" Width="110"
+                        Style="{StaticResource IconButtonStyle}">
+
+                    <Grid Width="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Question"
+                               Height="15" Width="15" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Help</TextBlock>
+                    </Grid>
+                </Button>
+
+                <Button Click="FeedbackButton_OnClick" Width="110"
+                        Style="{StaticResource IconButtonStyle}">
+
+                    <Grid Width="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Comment"
+                               Height="15" Width="15" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Feedback</TextBlock>
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="LoginContent" Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
+                Style="{StaticResource BorderStyle}">
+
+            <Button Click="LoginButton_OnClick" IsDefault="True" HorizontalAlignment="Right" Width="110"
+                    Style="{StaticResource IconButtonStyle}">
+
+                <Grid Width="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRightToBracket"
+                           Height="15" Width="15" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Login</TextBlock>
+                </Grid>
+            </Button>
+
+        </Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
+                Style="{StaticResource BorderStyle}">
+            <Image Source="logo.ico" Height="200" Width="200" />
+        </Border>
+
+        <Border x:Name="UsernamePasswordContent" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0"
+                CornerRadius="0 0 0 0" Style="{StaticResource BorderStyle}">
+            <StackPanel Style="{StaticResource StackPanelStyle}">
+                <TextBlock Text="Login with your Rollenspielhimmel username and password to get started:"
+                           Style="{StaticResource LabelTextBlock}" Width="300" HorizontalAlignment="Center" />
+
+                <TextBox x:Name="Username" Margin="6" FontSize="14" Width="300" HorizontalAlignment="Center" />
+                <PasswordBox x:Name="Password" Margin="6" FontSize="14" Width="300" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0" CornerRadius="0 0 5 5"
+                Style="{StaticResource BorderStyle}">
+            <TextBlock Margin="3" TextWrapping="Wrap" HorizontalAlignment="Right">
+                Made with Love by Maxi,
+                <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
+                           RequestNavigate="Hyperlink_OnRequestNavigate">
+                    Illusion
+                </Hyperlink>
+                and
+                <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Lapislazuli.html"
+                           RequestNavigate="Hyperlink_OnRequestNavigate">
+                    Lapislazuli
+                </Hyperlink>
+            </TextBlock>
+        </Border>
+    </Grid>
+</Page>
