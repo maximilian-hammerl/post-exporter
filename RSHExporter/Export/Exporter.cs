@@ -370,12 +370,12 @@ public static class Exporter
         else
         {
             imagesDirectoryPath = directoryPath;
-            imagesDirectory = "-";
+            imagesDirectory = ".";
         }
 
         fileName.Append('.').Append(ExportConfiguration.FileFormat.FileExtension());
 
-        return (directoryPath, imagesDirectoryPath, imagesDirectory, fileName.Insert(0, directoryPath).ToString());
+        return (directoryPath, imagesDirectoryPath, imagesDirectory, Path.Join(directoryPath, fileName.ToString()));
     }
 
     private static void SanitizeFileName(StringBuilder stringBuilder)
