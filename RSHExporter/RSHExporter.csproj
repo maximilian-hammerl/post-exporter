@@ -5,6 +5,7 @@
         <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <VersionPrefix>1.0.1.0</VersionPrefix>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,7 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="logo.ico"/>
         <Resource Include="logo.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>

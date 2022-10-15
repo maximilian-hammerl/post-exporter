@@ -12,7 +12,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="35" />
+            <RowDefinition Height="55" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -117,18 +117,32 @@
 
         <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0" CornerRadius="0 0 5 5"
                 Style="{StaticResource BorderStyle}">
-            <TextBlock Margin="3" TextWrapping="Wrap" HorizontalAlignment="Right">
-                Made with Love by Maxi,
-                <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
-                           RequestNavigate="Hyperlink_OnRequestNavigate">
-                    Illusion
-                </Hyperlink>
-                and
-                <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Lapislazuli.html"
-                           RequestNavigate="Hyperlink_OnRequestNavigate">
-                    Lapislazuli
-                </Hyperlink>
-            </TextBlock>
+            
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock x:Name="VersionTextBlock" Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    Made with Love by Maxi,
+                    <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
+                               RequestNavigate="Hyperlink_OnRequestNavigate">
+                        Illusion
+                    </Hyperlink>
+                    and
+                    <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Lapislazuli.html"
+                               RequestNavigate="Hyperlink_OnRequestNavigate">
+                        Lapislazuli
+                    </Hyperlink>
+                </TextBlock>
+            </Grid>
         </Border>
     </Grid>
 </Page>

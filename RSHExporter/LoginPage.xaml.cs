@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -12,6 +13,9 @@ public partial class LoginPage : Page
     public LoginPage()
     {
         InitializeComponent();
+
+        var version = Assembly.GetExecutingAssembly().GetName().Version;
+        VersionTextBlock.Text = $"Version {version}";
     }
 
     private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
