@@ -22,7 +22,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Border  x:Name="GoBackContent" Grid.Row="0" Grid.Column="0" Margin="0 0 3 3" CornerRadius="5 0 0 0"
+        <Border x:Name="GoBackContent" Grid.Row="0" Grid.Column="0" Margin="0 0 3 3" CornerRadius="5 0 0 0"
                 Style="{StaticResource BorderStyle}">
 
             <Button Click="BackButton_OnClick" IsCancel="True" HorizontalAlignment="Left" Width="110"
@@ -223,11 +223,12 @@
                         <CheckBox x:Name="IncludePageNumberCheckBox" Content="Include the page number?"
                                   IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
-                        
-                        <CheckBox x:Name="DownloadToOwnFolderCheckBox" Content="Download the threads of every group to its own folder?"
+
+                        <CheckBox x:Name="DownloadToOwnFolderCheckBox"
+                                  Content="Download the threads of every group to its own folder?"
                                   IsThreeState="False"
-                                  Style="{StaticResource TertiaryCheckBoxStyle}" />
-                        
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
+
                         <CheckBox x:Name="IncludeImagesCheckBox" Content="Include the images of the posts?"
                                   IsThreeState="False" Checked="IncludeImagesCheckBox_OnChecked"
                                   Unchecked="IncludeImagesCheckBox_OnUnchecked"
@@ -237,8 +238,9 @@
                                   IsThreeState="False" Checked="DownloadImagesCheckBox_OnChecked"
                                   Unchecked="DownloadImagesCheckBox_OnUnchecked"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
-                        
-                        <CheckBox x:Name="DownloadImagesToOwnFolderCheckBox" Content="Download the images of every port to its own folder?"
+
+                        <CheckBox x:Name="DownloadImagesToOwnFolderCheckBox"
+                                  Content="Download the images of every port to its own folder?"
                                   IsThreeState="False"
                                   Style="{StaticResource TertiaryCheckBoxStyle}" />
 
@@ -254,13 +256,11 @@
         <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 3 0" CornerRadius="0 0 0 5"
                 Style="{StaticResource BorderStyle}" />
 
-        <Border x:Name="StartExportContent" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="3 0 0 0" CornerRadius="0 0 5 0"
-                Style="{StaticResource BorderStyle}">
-            <StackPanel Style="{StaticResource StackPanelStyle}">
-
-                <Button Click="ExportButton_OnClick" IsDefault="True" Width="170"
+        <Border x:Name="StartExportContent" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="3 0 0 0"
+                CornerRadius="0 0 5 0" Style="{StaticResource BorderStyle}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="170">
+                <Button x:Name="ExportButton" Visibility="Visible" Click="ExportButton_OnClick" IsDefault="True"
                         Style="{StaticResource IconButtonStyle}">
-
                     <Grid Width="160">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
@@ -278,6 +278,8 @@
                     </Grid>
                 </Button>
 
+                <Image x:Name="LoadingSpinner" Visibility="Collapsed" fa:FontAwesome.Icon="Solid_Spinner"
+                       Style="{StaticResource LoadingImageStyle}" />
             </StackPanel>
         </Border>
     </Grid>

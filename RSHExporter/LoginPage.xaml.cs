@@ -16,9 +16,12 @@ public partial class LoginPage : Page
 
     private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
     {
+        ToggleLoginButtonLoading(true);
+
         var username = Username.Text;
         if (string.IsNullOrEmpty(username))
         {
+            ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning("Please enter your username first!");
             return;
         }
@@ -26,6 +29,7 @@ public partial class LoginPage : Page
         var password = Password.Password;
         if (string.IsNullOrEmpty(password))
         {
+            ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning("Please enter your password first!");
             return;
         }
@@ -33,17 +37,26 @@ public partial class LoginPage : Page
         var groups = await Scraper.LoginAndGetGroups(username, password);
         if (groups == null)
         {
+            ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning("You could not be logged in! Please check your username and password.");
             return;
         }
 
         if (groups.Count == 0)
         {
+            ToggleLoginButtonLoading(false);
             DialogUtil.ShowError("No groups could be loaded! Either you have no groups or something went wrong.");
             return;
         }
 
+        ToggleLoginButtonLoading(false);
         NavigationService.Navigate(new SelectPage(groups));
+    }
+
+    private void ToggleLoginButtonLoading(bool isLoading)
+    {
+        LoginButton.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
+        LoadingSpinner.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)

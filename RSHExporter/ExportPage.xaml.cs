@@ -163,6 +163,8 @@ public partial class ExportPage : Page
             return;
         }
 
+        ToggleExportButtonLoading(true);
+
         SaveCurrentConfiguration();
 
         var tasks = new List<Task>();
@@ -174,8 +176,16 @@ public partial class ExportPage : Page
 
         await Task.WhenAll(tasks);
 
+        ToggleExportButtonLoading(false);
+
         DialogUtil.ShowInformation($"{tasks.Count} files were successfully exported!");
         Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
+    }
+
+    private void ToggleExportButtonLoading(bool isLoading)
+    {
+        ExportButton.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
+        LoadingSpinner.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void SaveCurrentConfiguration()

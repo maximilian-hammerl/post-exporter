@@ -75,27 +75,28 @@
 
         <Border x:Name="LoginContent" Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
                 Style="{StaticResource BorderStyle}">
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Width="110">
+                <Button x:Name="LoginButton" Visibility="Visible" Click="LoginButton_OnClick" IsDefault="True"
+                        Style="{StaticResource IconButtonStyle}">
+                    <Grid Width="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-            <Button Click="LoginButton_OnClick" IsDefault="True" HorizontalAlignment="Right" Width="110"
-                    Style="{StaticResource IconButtonStyle}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
 
-                <Grid Width="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRightToBracket"
+                               Height="15" Width="15" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Login</TextBlock>
+                    </Grid>
+                </Button>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="4*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRightToBracket"
-                           Height="15" Width="15" />
-
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Login</TextBlock>
-                </Grid>
-            </Button>
-
+                <Image x:Name="LoadingSpinner" Visibility="Collapsed" fa:FontAwesome.Icon="Solid_Spinner"
+                       Style="{StaticResource LoadingImageStyle}" />
+            </StackPanel>
         </Border>
 
         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
