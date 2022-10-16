@@ -20,7 +20,7 @@ public static class ExportConfiguration
         }
     }
 
-    public static List<FileFormat> FileFormats { get; set; } = new(3);
+    public static List<FileFormat> FileFormats { get; set; } = new(3) { FileFormat.Html };
     public static bool IncludeGroup { get; set; } = false;
     public static bool IncludeGroupAuthor { get; set; } = false;
     public static bool IncludeGroupPostedAt { get; set; } = false;
