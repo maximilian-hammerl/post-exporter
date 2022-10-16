@@ -144,7 +144,7 @@
         <value>Export Folder</value>
     </data>
     <data name="ExportChosenFolder" xml:space="preserve">
-        <value>Chosen Export Folder:</value>
+        <value>Export Folder:</value>
     </data>
     <data name="ExportFilesExported" xml:space="preserve">
         <value>{0} files were successfully exported!</value>
@@ -159,7 +159,7 @@
         <value>Include the name of the group at the top?</value>
     </data>
     <data name="OptionIncludeGroupAuthor" xml:space="preserve">
-        <value>Also include the author of the group?</value>
+        <value>Also include the owner of the group?</value>
     </data>
     <data name="OptionIncludeGroupPostedAt" xml:space="preserve">
         <value>Also include when the group was created?</value>
@@ -192,7 +192,7 @@
         <value>Include the page number?</value>
     </data>
     <data name="OptionDownloadToOwnFolder" xml:space="preserve">
-        <value>Download the threads of every group to its own folder?</value>
+        <value>Download all threads of a group to their own folder?</value>
     </data>
     <data name="OptionDownloadImagesToOwnFolder" xml:space="preserve">
         <value>Download the images of every post to its own folder?</value>
@@ -214,5 +214,17 @@
     </data>
     <data name="FileFormatDocx" xml:space="preserve">
         <value>Word File (.docx)</value>
+    </data>
+    <data name="ExportMissingFileFormat" xml:space="preserve">
+        <value>Please choose at least one export file format!</value>
+    </data>
+    <data name="ExportFileExported" xml:space="preserve">
+        <value>One file was successfully exported!</value>
+    </data>
+    <data name="LoginTitle" xml:space="preserve">
+        <value>Rollenspielhimmel Exporter</value>
+    </data>
+    <data name="LoginSubtitle" xml:space="preserve">
+        <value>Quickly and easily export and backup your Rollenspielhimmel groups, threads and posts!</value>
     </data>
 </root>

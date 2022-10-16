@@ -78,7 +78,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chosen Export Folder:.
+        ///   Looks up a localized string similar to Export Folder:.
         /// </summary>
         public static string ExportChosenFolder {
             get {
@@ -92,6 +92,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportExport {
             get {
                 return ResourceManager.GetString("ExportExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One file was successfully exported!.
+        /// </summary>
+        public static string ExportFileExported {
+            get {
+                return ResourceManager.GetString("ExportFileExported", resourceCulture);
             }
         }
         
@@ -128,6 +137,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportFormat {
             get {
                 return ResourceManager.GetString("ExportFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose at least one export file format!.
+        /// </summary>
+        public static string ExportMissingFileFormat {
+            get {
+                return ResourceManager.GetString("ExportMissingFileFormat", resourceCulture);
             }
         }
         
@@ -339,6 +357,24 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quickly and easily export and backup your Rollenspielhimmel groups, threads and posts!.
+        /// </summary>
+        public static string LoginSubtitle {
+            get {
+                return ResourceManager.GetString("LoginSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rollenspielhimmel Exporter.
+        /// </summary>
+        public static string LoginTitle {
+            get {
+                return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your Username:.
         /// </summary>
         public static string LoginUsername {
@@ -384,7 +420,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download the threads of every group to its own folder?.
+        ///   Looks up a localized string similar to Download all threads of a group to their own folder?.
         /// </summary>
         public static string OptionDownloadToOwnFolder {
             get {
@@ -402,7 +438,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also include the author of the group?.
+        ///   Looks up a localized string similar to Also include the owner of the group?.
         /// </summary>
         public static string OptionIncludeGroupAuthor {
             get {
