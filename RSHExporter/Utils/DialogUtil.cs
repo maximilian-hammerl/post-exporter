@@ -22,7 +22,7 @@ public static class DialogUtil
     private static bool ShowHelpAndHighlight(Action<Brush> updateBackgroundAction, string text, int currentStep,
         int numberSteps)
     {
-        updateBackgroundAction(Brushes.Yellow);
+        updateBackgroundAction(Brushes.LightBlue);
         var continueWithHelp = ShowHelp(text, currentStep, numberSteps);
         updateBackgroundAction(Brushes.White);
 
