@@ -107,9 +107,9 @@ public partial class LoginPage : Page
     {
         DialogUtil.ShowHelpAndHighlight(
             (brush => UsernamePasswordContent.Background = brush,
-                "First enter the username and password you use on Rollenspielhimmel here."),
+                RSHExporter.Resources.Localization.Resources.HelpLoginStep1),
             (brush => LoginContent.Background = brush,
-                "Then click here to login and continue with selecting your groups and threads.")
+                RSHExporter.Resources.Localization.Resources.HelpLoginStep2)
         );
     }
 

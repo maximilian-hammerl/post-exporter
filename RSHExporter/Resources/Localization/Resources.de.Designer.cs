@@ -348,6 +348,132 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Überprüfe zunächst, ob du alle Gruppen und Beiträge ausgewählt hast, die du exportieren möchtest..
+        /// </summary>
+        public static string HelpExportStep1 {
+            get {
+                return ResourceManager.GetString("HelpExportStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du kannst jederzeit zurückgehen, um Gruppen und Themen auszuwählen. Alle deine Änderungen werden automatisch gespeichert..
+        /// </summary>
+        public static string HelpExportStep2 {
+            get {
+                return ResourceManager.GetString("HelpExportStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginne den Exportvorgang, indem du den Ordner auswählst, in dem die Dateien gespeichert werden sollen. Dateien werden überschrieben, wenn sie bereits existieren..
+        /// </summary>
+        public static string HelpExportStep3 {
+            get {
+                return ResourceManager.GetString("HelpExportStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wähle dann das Format für die exportierten Dateien..
+        /// </summary>
+        public static string HelpExportStep4 {
+            get {
+                return ResourceManager.GetString("HelpExportStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lege fest, wie die Gruppen und Beiträge exportiert werden sollen..
+        /// </summary>
+        public static string HelpExportStep5 {
+            get {
+                return ResourceManager.GetString("HelpExportStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Abschließend kannst du den Export hier starten. (Der Export kann eine Weile dauern, besonders bei einer langsamen Internetverbindung.) Du kannst den Export jederzeit abbrechen, indem du auf die Ladeanimation klickst..
+        /// </summary>
+        public static string HelpExportStep6 {
+            get {
+                return ResourceManager.GetString("HelpExportStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gib zuerst den Benutzernamen und das Passwort ein, die du bei Rollenspielhimmel verwendest, um dich einzuloggen..
+        /// </summary>
+        public static string HelpLoginStep1 {
+            get {
+                return ResourceManager.GetString("HelpLoginStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klicke dann hier, um dich einzuloggen und mit dem Auswählen deiner Gruppen und Beiträge fortzufahren..
+        /// </summary>
+        public static string HelpLoginStep2 {
+            get {
+                return ResourceManager.GetString("HelpLoginStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beginne damit, die Gruppen auszuwählen. Wenn du auf eine Gruppe klickst, werden alle Beiträge dieser Gruppe geladen..
+        /// </summary>
+        public static string HelpSelectStep1 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wähle dann für jede Gruppe die Beiträge aus, die du exportieren möchtest..
+        /// </summary>
+        public static string HelpSelectStep2 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du kannst hier alle Gruppen an- und abwählen....
+        /// </summary>
+        public static string HelpSelectStep3 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ...und alle Beiträge hier..
+        /// </summary>
+        public static string HelpSelectStep4 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du kannst eine Gruppe oder einen Beitrag im Browser öffnen, indem du auf das kleine Symbol rechts neben dem Namen der Gruppe oder des Beitrags klickst..
+        /// </summary>
+        public static string HelpSelectStep5 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn du alle Gruppen und Beiträge ausgewählt hast, fahre mit dem Export fort, indem du hier klickst. (Du kannst auch wieder zurückgehen, ohne dass deine Änderungen verloren gehen.).
+        /// </summary>
+        public static string HelpSelectStep6 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Schritt {0} von {1}.
         /// </summary>
         public static string HelpStep {

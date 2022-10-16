@@ -185,21 +185,21 @@ public partial class SelectPage : Page
     {
         DialogUtil.ShowHelpAndHighlight(
             (brush => GroupsContent.Background = brush,
-                "Start by selecting groups. Clicking on the name of the group will load all threads of it."),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep1),
             (brush => ThreadsContent.Background = brush,
-                "For every group select the threads you want to export next."),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep2),
             (brush => GroupButtonsContent.Background = brush,
-                "You can select und unselect all groups here..."),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep3),
             (brush => ThreadButtonsContent.Background = brush,
-                "...and all threads here."),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep4),
             (brush =>
                 {
                     GroupsContent.Background = brush;
                     ThreadsContent.Background = brush;
                 },
-                "You can open a group or thread in the browser by clicking on the small icon to the right of the group or thread name."),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep5),
             (brush => ToExportContent.Background = brush,
-                "If you have selected all groups and threads, continue to export by clicking here. (You can also go back without losing any of your changes.)")
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep6)
         );
     }
 

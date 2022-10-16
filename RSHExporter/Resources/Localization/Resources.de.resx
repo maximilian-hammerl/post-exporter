@@ -275,4 +275,46 @@
     <data name="Question" xml:space="preserve">
         <value>Frage</value>
     </data>
+    <data name="HelpLoginStep1" xml:space="preserve">
+        <value>Gib zuerst den Benutzernamen und das Passwort ein, die du bei Rollenspielhimmel verwendest, um dich einzuloggen.</value>
+    </data>
+    <data name="HelpLoginStep2" xml:space="preserve">
+        <value>Klicke dann hier, um dich einzuloggen und mit dem Auswählen deiner Gruppen und Beiträge fortzufahren.</value>
+    </data>
+    <data name="HelpSelectStep1" xml:space="preserve">
+        <value>Beginne damit, die Gruppen auszuwählen. Wenn du auf eine Gruppe klickst, werden alle Beiträge dieser Gruppe geladen.</value>
+    </data>
+    <data name="HelpSelectStep2" xml:space="preserve">
+        <value>Wähle dann für jede Gruppe die Beiträge aus, die du exportieren möchtest.</value>
+    </data>
+    <data name="HelpSelectStep3" xml:space="preserve">
+        <value>Du kannst hier alle Gruppen an- und abwählen...</value>
+    </data>
+    <data name="HelpSelectStep4" xml:space="preserve">
+        <value>...und alle Beiträge hier.</value>
+    </data>
+    <data name="HelpSelectStep5" xml:space="preserve">
+        <value>Du kannst eine Gruppe oder einen Beitrag im Browser öffnen, indem du auf das kleine Symbol rechts neben dem Namen der Gruppe oder des Beitrags klickst.</value>
+    </data>
+    <data name="HelpSelectStep6" xml:space="preserve">
+        <value>Wenn du alle Gruppen und Beiträge ausgewählt hast, fahre mit dem Export fort, indem du hier klickst. (Du kannst auch wieder zurückgehen, ohne dass deine Änderungen verloren gehen.)</value>
+    </data>
+    <data name="HelpExportStep1" xml:space="preserve">
+        <value>Überprüfe zunächst, ob du alle Gruppen und Beiträge ausgewählt hast, die du exportieren möchtest.</value>
+    </data>
+    <data name="HelpExportStep2" xml:space="preserve">
+        <value>Du kannst jederzeit zurückgehen, um Gruppen und Themen auszuwählen. Alle deine Änderungen werden automatisch gespeichert.</value>
+    </data>
+    <data name="HelpExportStep3" xml:space="preserve">
+        <value>Beginne den Exportvorgang, indem du den Ordner auswählst, in dem die Dateien gespeichert werden sollen. Dateien werden überschrieben, wenn sie bereits existieren.</value>
+    </data>
+    <data name="HelpExportStep4" xml:space="preserve">
+        <value>Wähle dann das Format für die exportierten Dateien.</value>
+    </data>
+    <data name="HelpExportStep5" xml:space="preserve">
+        <value>Lege fest, wie die Gruppen und Beiträge exportiert werden sollen.</value>
+    </data>
+    <data name="HelpExportStep6" xml:space="preserve">
+        <value>Abschließend kannst du den Export hier starten. (Der Export kann eine Weile dauern, besonders bei einer langsamen Internetverbindung.) Du kannst den Export jederzeit abbrechen, indem du auf die Ladeanimation klickst.</value>
+    </data>
 </root>

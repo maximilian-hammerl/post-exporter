@@ -348,6 +348,132 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First check whether you have selected all groups and threads you want to export..
+        /// </summary>
+        public static string HelpExportStep1 {
+            get {
+                return ResourceManager.GetString("HelpExportStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can always go back to selecting groups and threads. All of your changes are automatically saved..
+        /// </summary>
+        public static string HelpExportStep2 {
+            get {
+                return ResourceManager.GetString("HelpExportStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start the export process by choosing the folder the files should be saved in. Files will be overwritten, if they already exist..
+        /// </summary>
+        public static string HelpExportStep3 {
+            get {
+                return ResourceManager.GetString("HelpExportStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Then choose the format of the exported files..
+        /// </summary>
+        public static string HelpExportStep4 {
+            get {
+                return ResourceManager.GetString("HelpExportStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure how you want the groups and threads to be exported..
+        /// </summary>
+        public static string HelpExportStep5 {
+            get {
+                return ResourceManager.GetString("HelpExportStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation..
+        /// </summary>
+        public static string HelpExportStep6 {
+            get {
+                return ResourceManager.GetString("HelpExportStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First enter the username and password you use on Rollenspielhimmel to log in..
+        /// </summary>
+        public static string HelpLoginStep1 {
+            get {
+                return ResourceManager.GetString("HelpLoginStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Then click here to log in and continue with selecting your groups and threads..
+        /// </summary>
+        public static string HelpLoginStep2 {
+            get {
+                return ResourceManager.GetString("HelpLoginStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start by selecting the groups. Clicking on a group will load all threads of it..
+        /// </summary>
+        public static string HelpSelectStep1 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Then, for each group, select the posts you want to export..
+        /// </summary>
+        public static string HelpSelectStep2 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can select und unselect all groups here....
+        /// </summary>
+        public static string HelpSelectStep3 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ...and all threads here..
+        /// </summary>
+        public static string HelpSelectStep4 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can open a group or thread in the browser by clicking on the small icon to the right of the group or thread name..
+        /// </summary>
+        public static string HelpSelectStep5 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have selected all groups and threads, continue to export by clicking here. (You can also go back again without losing any of your changes.).
+        /// </summary>
+        public static string HelpSelectStep6 {
+            get {
+                return ResourceManager.GetString("HelpSelectStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Step {0} of {1}.
         /// </summary>
         public static string HelpStep {

@@ -364,17 +364,17 @@ public partial class ExportPage : Page
     {
         DialogUtil.ShowHelpAndHighlight(
             (brush => SelectedContent.Background = brush,
-                "First check whether you have selected all groups and threads you want to export."),
+                RSHExporter.Resources.Localization.Resources.HelpExportStep1),
             (brush => GoBackContent.Background = brush,
-                "You can always go back to selecting groups and threads. All of your changes are automatically saved."),
+                RSHExporter.Resources.Localization.Resources.HelpExportStep2),
             (brush => ExportFolderContent.Background = brush,
-                "Start the export process by choosing the folder the files should be saved in. Files will be overwritten, if they already exist."),
+                RSHExporter.Resources.Localization.Resources.HelpExportStep3),
             (brush => ExportFormatContent.Background = brush,
-                "Then choose the format of the exported files."),
+                RSHExporter.Resources.Localization.Resources.HelpExportStep4),
             (brush => ExportOptionsContent.Background = brush,
-                "Configure how you want the groups and threads to be exported."),
+                RSHExporter.Resources.Localization.Resources.HelpExportStep5),
             (brush => StartExportContent.Background = brush,
-                "Finally start the export here. (Exporting can take a while, especially with a slow internet connection.)")
+                RSHExporter.Resources.Localization.Resources.HelpExportStep6)
         );
     }
 
