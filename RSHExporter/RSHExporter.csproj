@@ -41,6 +41,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Remove="Resources\logo.png"/>
+        <SplashScreen Include="Resources\logo.png"/>
+        <None Remove="Resources\logo.ico"/>
         <Resource Include="Resources\logo.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
