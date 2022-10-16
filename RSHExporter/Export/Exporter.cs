@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 using RSHExporter.Scrape;
+using Thread = RSHExporter.Scrape.Thread;
 
 namespace RSHExporter.Export;
 
@@ -17,7 +19,7 @@ public static class Exporter
         "label", "mark", "q", "s", "samp", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr"
     };
 
-    public static async Task Export(List<Post> posts)
+    public static async Task Export(List<Post> posts, CancellationToken cancellationToken)
     {
         var thread = posts[0].Thread;
         var group = thread.Group;
@@ -35,6 +37,8 @@ public static class Exporter
 
                 for (int i = 0; i < posts.Count; ++i)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
+
                     var post = posts[i];
 
                     var imageTags = post.Node.SelectNodes(".//img");
@@ -97,6 +101,8 @@ public static class Exporter
 
         foreach (var fileFormat in ExportConfiguration.FileFormats)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+
             var filePathWithExtension = $"{filePathWithoutExtension}.{fileFormat.FileExtension()}";
 
             switch (fileFormat)
@@ -143,6 +149,8 @@ public static class Exporter
 
                     for (var i = 0; i < posts.Count; ++i)
                     {
+                        cancellationToken.ThrowIfCancellationRequested();
+
                         var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
                         var post = posts[postNumber];
 
@@ -201,6 +209,8 @@ public static class Exporter
 
                     for (var i = 0; i < posts.Count; ++i)
                     {
+                        cancellationToken.ThrowIfCancellationRequested();
+
                         var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
                         var post = posts[postNumber];
 

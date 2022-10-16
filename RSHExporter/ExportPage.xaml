@@ -296,8 +296,13 @@
                     </Grid>
                 </Button>
 
-                <Image x:Name="LoadingSpinner" Visibility="Collapsed" fa:FontAwesome.Icon="Solid_Spinner"
-                       Style="{StaticResource LoadingImageStyle}" />
+                <TextBlock x:Name="LoadingSpinner" Visibility="Collapsed" Height="25" Width="25"
+                           ToolTip="{x:Static l:Resources.CancelExport}">
+                    <Hyperlink TextDecorations="{x:Null}" NavigateUri="https://rollenspielhimmel.de"
+                               RequestNavigate="CancelExport_OnRequestNavigate">
+                        <Image fa:FontAwesome.Icon="Solid_Spinner" Style="{StaticResource LoadingImageStyle}" />
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </Border>
     </Grid>

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,12 +17,14 @@ using Ookii.Dialogs.Wpf;
 using RSHExporter.Export;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
+using Thread = RSHExporter.Scrape.Thread;
 
 namespace RSHExporter;
 
 public partial class ExportPage : Page
 {
     private readonly List<Thread> _threads;
+    private CancellationTokenSource _cancellationTokenSource = new();
 
     public ExportPage(List<Thread> threads)
     {
@@ -168,7 +171,7 @@ public partial class ExportPage : Page
         {
             ToggleExportButtonLoading(false);
 
-            ExportFolderContent.Background = Brushes.Yellow;
+            ExportFolderContent.Background = Brushes.LightBlue;
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFolder);
             ExportFolderContent.Background = Brushes.White;
             return;
@@ -180,29 +183,38 @@ public partial class ExportPage : Page
         {
             ToggleExportButtonLoading(false);
 
-            ExportFormatContent.Background = Brushes.Yellow;
+            ExportFormatContent.Background = Brushes.LightBlue;
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFileFormat);
             ExportFormatContent.Background = Brushes.White;
             return;
         }
 
+        _cancellationTokenSource = new CancellationTokenSource();
+
         var tasks = new List<Task>();
 
         foreach (var thread in _threads)
         {
-            tasks.Add(PrepareAndExport(thread));
+            tasks.Add(PrepareAndExport(thread, _cancellationTokenSource.Token));
         }
 
         await Task.WhenAll(tasks);
 
         ToggleExportButtonLoading(false);
 
-        var numberFilesExported = tasks.Count * ExportConfiguration.FileFormats.Count;
+        if (_cancellationTokenSource.IsCancellationRequested)
+        {
+            DialogUtil.ShowInformation(RSHExporter.Resources.Localization.Resources.ExportExportCancelled);
+        }
+        else
+        {
+            var numberFilesExported = tasks.Count * ExportConfiguration.FileFormats.Count;
 
-        DialogUtil.ShowInformation(numberFilesExported == 1
-            ? RSHExporter.Resources.Localization.Resources.ExportFileExported
-            : string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported, numberFilesExported)
-        );
+            DialogUtil.ShowInformation(numberFilesExported == 1
+                ? RSHExporter.Resources.Localization.Resources.ExportFileExported
+                : string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported, numberFilesExported)
+            );
+        }
 
         Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
     }
@@ -242,10 +254,17 @@ public partial class ExportPage : Page
             select selectableFileFormat.FileFormat).ToList();
     }
 
-    private static async Task PrepareAndExport(Thread thread)
+    private static async Task PrepareAndExport(Thread thread, CancellationToken cancellationToken)
     {
-        var posts = await Scraper.GetPosts(thread);
-        await Exporter.Export(posts);
+        try
+        {
+            var posts = await Scraper.GetPosts(thread, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            await Exporter.Export(posts, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+        }
     }
 
     private void IncludeGroupCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -365,6 +384,16 @@ public partial class ExportPage : Page
         if (ExportConfiguration.DirectoryPath != null)
         {
             Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
+        }
+
+        e.Handled = true;
+    }
+
+    private void CancelExport_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        if (DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportCancelExport))
+        {
+            _cancellationTokenSource.Cancel();
         }
 
         e.Handled = true;

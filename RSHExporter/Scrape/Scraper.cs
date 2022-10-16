@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
@@ -74,16 +75,16 @@ public static class Scraper
         return (true, fileNameWithExtension);
     }
 
-    public static async Task<List<Post>> GetPosts(Thread thread)
+    public static async Task<List<Post>> GetPosts(Thread thread, CancellationToken cancellationToken)
     {
-        return await GetPosts(thread, thread.Url);
+        return await GetPosts(thread, thread.Url, cancellationToken);
     }
 
-    private static async Task<List<Post>> GetPosts(Thread thread, string threadUrl)
+    private static async Task<List<Post>> GetPosts(Thread thread, string threadUrl, CancellationToken cancellationToken)
     {
-        var threadResponse = await GetOrCreateHttpClient().GetAsync(threadUrl);
+        var threadResponse = await GetOrCreateHttpClient().GetAsync(threadUrl, cancellationToken);
         threadResponse.EnsureSuccessStatusCode();
-        var threadContent = await threadResponse.Content.ReadAsStringAsync();
+        var threadContent = await threadResponse.Content.ReadAsStringAsync(cancellationToken);
 
         var doc = new HtmlDocument();
         doc.LoadHtml(threadContent);
@@ -113,7 +114,8 @@ public static class Scraper
 
         var nextPostsPath = nextPostsButton.Attributes["href"].Value;
         nextPostsPath = nextPostsPath.Replace("amp;", "");
-        posts.AddRange(await GetPosts(thread, $"https://rollenspielhimmel.de/forum/{nextPostsPath}"));
+        posts.AddRange(await GetPosts(thread, $"https://rollenspielhimmel.de/forum/{nextPostsPath}",
+            cancellationToken));
 
         return posts;
     }
