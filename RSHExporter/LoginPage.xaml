@@ -192,13 +192,22 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock x:Name="VersionTextBlock" Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap"
                            HorizontalAlignment="Left" VerticalAlignment="Bottom" />
 
-                <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom">
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap"
+                           HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <Hyperlink NavigateUri="https://github.com/maximilian-hammerl/rsh-exporter"
+                               RequestNavigate="Hyperlink_OnRequestNavigate">
+                        GitHub Repository
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="1" TextWrapping="Wrap"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock Text="{x:Static l:Resources.LoginLove}" />
                     Maxi,
                     <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
