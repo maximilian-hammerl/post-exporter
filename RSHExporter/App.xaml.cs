@@ -41,6 +41,7 @@ public partial class App : Application
         {
             o.Dsn = "https://57c119ee365d4707b7f99e2b36c8782d@o1430708.ingest.sentry.io/6781778";
             o.TracesSampleRate = 1.0;
+            o.IsGlobalModeEnabled = true;
         });
     }
 }

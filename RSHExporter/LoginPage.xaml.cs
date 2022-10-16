@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
+using Sentry;
 
 namespace RSHExporter;
 
@@ -64,6 +65,14 @@ public partial class LoginPage : Page
             DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.LoginNoGroups);
             return;
         }
+
+        SentrySdk.ConfigureScope(scope =>
+        {
+            scope.User = new User
+            {
+                Username = username,
+            };
+        });
 
         ToggleLoginButtonLoading(false);
         NavigationService.Navigate(new SelectPage(groups));
