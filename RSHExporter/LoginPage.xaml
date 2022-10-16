@@ -11,8 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
 
@@ -28,13 +27,15 @@
                 Style="{StaticResource BorderStyle}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                <Button x:Name="ToEnglishButton" Click="ToEnglishButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                <Button x:Name="ToEnglishButton" Click="ToEnglishButton_OnClick" Width="60"
+                        Style="{StaticResource IconButtonStyle}">
                     <Border Style="{StaticResource ImageBorderStyle}">
                         <Image Source="/Resources/Images/flag-united-kingdom.png" Height="20" />
                     </Border>
                 </Button>
 
-                <Button x:Name="ToGermanButton" Click="ToGermanButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                <Button x:Name="ToGermanButton" Click="ToGermanButton_OnClick" Width="60"
+                        Style="{StaticResource IconButtonStyle}">
                     <Border Style="{StaticResource ImageBorderStyle}">
                         <Image Source="/Resources/Images/flag-german.png" Height="20" />
                     </Border>
@@ -119,30 +120,40 @@
 
         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
-            <Image Source="/Resources/logo.ico" Height="200" Width="200" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="400" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel x:Name="UsernamePasswordContent" Grid.Row="1" Grid.Column="0" Style="{StaticResource StackPanelStyle}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="400">
+                    <TextBlock Text="{x:Static l:Resources.LoginTitle}" Style="{StaticResource TitleTextBlock}" FontSize="24"
+                               Margin="3" />
+
+                    <TextBlock Text="{x:Static l:Resources.LoginSubtitle}" Style="{StaticResource TextTextBlock}"
+                               HorizontalAlignment="Center" MaxWidth="300"/>
+                    
+                    <TextBlock Text="{x:Static l:Resources.LoginExplanation}" Style="{StaticResource LabelTextBlock}"
+                               HorizontalAlignment="Center" Margin="3 96 3 3"/>
+
+                    <TextBlock Text="{x:Static l:Resources.LoginUsername}" Style="{StaticResource TextTextBlock}"
+                               Margin="9 24 3 3"/>
+                    <TextBox x:Name="Username" Margin="3" Padding="3" FontSize="14"/>
+
+                    <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
+                               Margin="9 24 3 3"/>
+                    <PasswordBox x:Name="Password" Margin="3" Padding="3" FontSize="14"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <Border x:Name="UsernamePasswordContent" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0"
-                CornerRadius="0 0 0 0" Style="{StaticResource BorderStyle}">
-            <StackPanel Style="{StaticResource StackPanelStyle}">
-
-                <TextBlock Text="{x:Static l:Resources.LoginExplanation}" Style="{StaticResource LabelTextBlock}"
-                           Width="300" HorizontalAlignment="Center" />
-
-                <TextBlock Text="{x:Static l:Resources.LoginUsername}" Style="{StaticResource TextTextBlock}"
-                           Margin="3 18 3 3" Width="300" HorizontalAlignment="Center" />
-                <TextBox x:Name="Username" Margin="3" Padding="3" FontSize="14" Width="300"
-                         HorizontalAlignment="Center" />
-
-                <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
-                           Margin="3 18 3 3" Width="300" HorizontalAlignment="Center" />
-                <PasswordBox x:Name="Password" Margin="3" Padding="3" FontSize="14" Width="300"
-                             HorizontalAlignment="Center" />
-
-            </StackPanel>
-        </Border>
-
-        <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0" CornerRadius="0 0 5 5"
+        <Border Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0" CornerRadius="0 0 5 5"
                 Style="{StaticResource BorderStyle}">
 
             <Grid>
