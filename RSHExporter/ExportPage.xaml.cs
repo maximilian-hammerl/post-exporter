@@ -40,6 +40,12 @@ public partial class ExportPage : Page
 
         foreach (var fileFormat in Enum.GetValues<FileFormat>())
         {
+            // FIXME
+            if (fileFormat == FileFormat.Docx)
+            {
+                continue;
+            }
+
             var displayName = fileFormat.DisplayName();
             FileFormats.Items.Add(displayName);
 
