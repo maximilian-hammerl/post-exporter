@@ -123,7 +123,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="500" />
+                    <RowDefinition Height="550" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
@@ -133,7 +133,7 @@
 
                 <StackPanel x:Name="UsernamePasswordContent" Grid.Row="1" Grid.Column="0"
                             Style="{StaticResource StackPanelStyle}"
-                            HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="400">
+                            HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="420">
                     <TextBlock Text="{x:Static l:Resources.LoginTitle}" Style="{StaticResource TitleTextBlock}"
                                FontSize="24"
                                Margin="3" />
@@ -142,10 +142,10 @@
                                HorizontalAlignment="Center" MaxWidth="290" />
 
                     <TextBlock Text="{x:Static l:Resources.LoginExplanation}" Style="{StaticResource LabelTextBlock}"
-                               HorizontalAlignment="Center" Margin="3 96 3 3" />
+                               HorizontalAlignment="Center" Margin="3 72 3 3" />
 
                     <TextBlock Text="{x:Static l:Resources.LoginUsername}" Style="{StaticResource TextTextBlock}"
-                               Margin="9 24 3 3" />
+                               Margin="9 18 3 3" />
                     <TextBox x:Name="Username" Margin="3" Padding="3" FontSize="14" />
 
                     <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
@@ -153,15 +153,28 @@
                     <PasswordBox x:Name="Password" Margin="3" Padding="3" FontSize="14" />
 
                     <CheckBox x:Name="LicenseCheckBox" VerticalAlignment="Center" Margin="3 18 3 3" FontSize="14"
-                              IsThreeState="False">
+                              IsThreeState="False" Checked="LicenseCheckBox_OnChecked"
+                              Unchecked="LicenseCheckBox_OnUnchecked">
                         <TextBlock Text="{x:Static l:Resources.LoginAcceptLicense}"
                                    TextWrapping="Wrap" />
                     </CheckBox>
-
                     <TextBlock Margin="3" FontSize="14">
                         <Hyperlink NavigateUri="https://rollenspielhimmel.de"
                                    RequestNavigate="License_OnRequestNavigate">
                             <TextBlock Text="{x:Static l:Resources.LoginOpenLicense}" />
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <CheckBox x:Name="CollectDataCheckBox" VerticalAlignment="Center" Margin="3 18 3 3" FontSize="14"
+                              IsThreeState="False" Checked="CollectDataCheckBox_OnChecked"
+                              Unchecked="CollectDataCheckBox_OnUnchecked">
+                        <TextBlock Text="{x:Static l:Resources.LoginAcceptSentry}"
+                                   TextWrapping="Wrap" />
+                    </CheckBox>
+                    <TextBlock Margin="3" FontSize="14">
+                        <Hyperlink NavigateUri="https://sentry.io/about/"
+                                   RequestNavigate="Hyperlink_OnRequestNavigate">
+                            <TextBlock Text="{x:Static l:Resources.LoginOpenSentry}" />
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>

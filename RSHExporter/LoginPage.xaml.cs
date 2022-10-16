@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
-using Sentry;
 
 namespace RSHExporter;
 
@@ -14,6 +13,9 @@ public partial class LoginPage : Page
     public LoginPage()
     {
         InitializeComponent();
+
+        LicenseCheckBox.IsChecked = LicenseAccepted;
+        CollectDataCheckBox.IsChecked = CollectDataAccepted;
 
         var version = Assembly.GetExecutingAssembly().GetName().Version;
         if (version != null)
@@ -34,6 +36,9 @@ public partial class LoginPage : Page
         Username.Focus();
     }
 
+    public static bool CollectDataAccepted { get; private set; } = false;
+    private static bool LicenseAccepted { get; set; } = false;
+
     private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)
     {
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de");
@@ -50,7 +55,7 @@ public partial class LoginPage : Page
     {
         ToggleLoginButtonLoading(true);
 
-        if (!LicenseCheckBox.IsChecked.HasValue || !LicenseCheckBox.IsChecked.Value)
+        if (!LicenseAccepted)
         {
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingLicense);
@@ -87,14 +92,6 @@ public partial class LoginPage : Page
             DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.LoginNoGroups);
             return;
         }
-
-        SentrySdk.ConfigureScope(scope =>
-        {
-            scope.User = new User
-            {
-                Username = username,
-            };
-        });
 
         ToggleLoginButtonLoading(false);
         NavigationService.Navigate(new SelectPage(groups));
@@ -137,5 +134,25 @@ public partial class LoginPage : Page
     {
         new LicenseDialog().ShowDialog();
         e.Handled = true;
+    }
+
+    private void LicenseCheckBox_OnChecked(object sender, RoutedEventArgs e)
+    {
+        LicenseAccepted = true;
+    }
+
+    private void LicenseCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        LicenseAccepted = false;
+    }
+
+    private void CollectDataCheckBox_OnChecked(object sender, RoutedEventArgs e)
+    {
+        CollectDataAccepted = true;
+    }
+
+    private void CollectDataCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        CollectDataAccepted = false;
     }
 }

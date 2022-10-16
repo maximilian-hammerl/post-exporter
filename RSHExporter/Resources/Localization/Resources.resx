@@ -207,13 +207,13 @@
         <value>Reverse the order of the posts (newest to oldest instead of oldest to newest)?</value>
     </data>
     <data name="FileFormatTxt" xml:space="preserve">
-        <value>Text File (.txt)</value>
+        <value>Text File (.txt) - Contains text only, no images and no formatting</value>
     </data>
     <data name="FileFormatHtml" xml:space="preserve">
-        <value>HTML File (.html)</value>
+        <value>HTML File (.html) - Contains formatted text and (if selected) images</value>
     </data>
     <data name="FileFormatDocx" xml:space="preserve">
-        <value>Word File (.docx)</value>
+        <value>Word File (.docx) - Contains formatted text and (if selected) images</value>
     </data>
     <data name="ExportMissingFileFormat" xml:space="preserve">
         <value>Please choose at least one export file format!</value>
@@ -240,12 +240,39 @@
         <value>Ok</value>
     </data>
     <data name="LoginAcceptLicense" xml:space="preserve">
-        <value>I have read and accept the applicable notices and licencse terms</value>
+        <value>I have read and accept the applicable notices and license terms</value>
     </data>
     <data name="LoginOpenLicense" xml:space="preserve">
         <value>(Click here to open the applicable notices and license terms)</value>
     </data>
     <data name="LoginMissingLicense" xml:space="preserve">
-        <value>You have to accept the applicable notices and licencse terms before you can login</value>
+        <value>You have to accept the applicable notices and license terms before you can login</value>
+    </data>
+    <data name="LoginOpenSentry" xml:space="preserve">
+        <value>(Click here to learn more out Sentry)</value>
+    </data>
+    <data name="LoginAcceptSentry" xml:space="preserve">
+        <value>I allow anonymous data to be collected for application monitoring and error tracking using Sentry</value>
+    </data>
+    <data name="ErrorNoSentry" xml:space="preserve">
+        <value>Sentry is used to send your feedback. Unfortunately, because you have not agreed to the use of Sentry, your feedback cannot be collected.</value>
+    </data>
+    <data name="ErrorGenericNoSentry" xml:space="preserve">
+        <value>An error has occurred! Unfortunately, because you have not agreed to the use of Sentry, the error cannot be collected.</value>
+    </data>
+    <data name="HelpStep" xml:space="preserve">
+        <value>Step {0} of {1}</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Error</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>Warning</value>
+    </data>
+    <data name="Information" xml:space="preserve">
+        <value>Information</value>
+    </data>
+    <data name="Question" xml:space="preserve">
+        <value>Question</value>
     </data>
 </root>

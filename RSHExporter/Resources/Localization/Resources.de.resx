@@ -207,13 +207,13 @@
         <value>Auch angeben, wann der Beitrag erstellt wurde?</value>
     </data>
     <data name="FileFormatDocx" xml:space="preserve">
-        <value>Word-Datei (.docx)</value>
+        <value>Word-Datei (.docx) - Enthält formatierten Text und (wenn ausgewählt) Bilder</value>
     </data>
     <data name="FileFormatHtml" xml:space="preserve">
-        <value>HTML-Datei (.html)</value>
+        <value>HTML-Datei (.html) - Enthält formatierten Text und (wenn ausgewählt) Bilder</value>
     </data>
     <data name="FileFormatTxt" xml:space="preserve">
-        <value>Text-Datei (.txt)</value>
+        <value>Text-Datei (.txt) - Enthält nur Text, keine Formatierung und keine Bilder</value>
     </data>
     <data name="ExportMissingFileFormat" xml:space="preserve">
         <value>Bitte wähle mindestens ein Export-Dateiformat aus!</value>
@@ -247,5 +247,32 @@
     </data>
     <data name="LoginMissingLicense" xml:space="preserve">
         <value>Bevor du dich einloggen kannst, musst du die geltenden Hinweise und Lizenzbedingungen akzeptieren</value>
+    </data>
+    <data name="LoginAcceptSentry" xml:space="preserve">
+        <value>Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden</value>
+    </data>
+    <data name="LoginOpenSentry" xml:space="preserve">
+        <value>(Klicke hier, um mehr über Sentry zu erfahren)</value>
+    </data>
+    <data name="ErrorNoSentry" xml:space="preserve">
+        <value>Sentry wird verwendet, um dein Feedback zu senden. Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden.</value>
+    </data>
+    <data name="ErrorGenericNoSentry" xml:space="preserve">
+        <value>Ein Fehler ist aufgetreten! Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden.</value>
+    </data>
+    <data name="HelpStep" xml:space="preserve">
+        <value>Schritt {0} von {1}</value>
+    </data>
+    <data name="Error" xml:space="preserve">
+        <value>Fehler</value>
+    </data>
+    <data name="Warning" xml:space="preserve">
+        <value>Warnung</value>
+    </data>
+    <data name="Information" xml:space="preserve">
+        <value>Information</value>
+    </data>
+    <data name="Question" xml:space="preserve">
+        <value>Frage</value>
     </data>
 </root>

@@ -87,6 +87,33 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fehler.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ein Fehler ist aufgetreten! Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden..
+        /// </summary>
+        public static string ErrorGenericNoSentry {
+            get {
+                return ResourceManager.GetString("ErrorGenericNoSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sentry wird verwendet, um dein Feedback zu senden. Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden..
+        /// </summary>
+        public static string ErrorNoSentry {
+            get {
+                return ResourceManager.GetString("ErrorNoSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Willst du den Export abbrechen?.
         /// </summary>
         public static string ExportCancelExport {
@@ -285,7 +312,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Word-Datei (.docx).
+        ///   Looks up a localized string similar to Word-Datei (.docx) - Enthält formatierten Text und (wenn ausgewählt) Bilder.
         /// </summary>
         public static string FileFormatDocx {
             get {
@@ -294,7 +321,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HTML-Datei (.html).
+        ///   Looks up a localized string similar to HTML-Datei (.html) - Enthält formatierten Text und (wenn ausgewählt) Bilder.
         /// </summary>
         public static string FileFormatHtml {
             get {
@@ -303,7 +330,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text-Datei (.txt).
+        ///   Looks up a localized string similar to Text-Datei (.txt) - Enthält nur Text, keine Formatierung und keine Bilder.
         /// </summary>
         public static string FileFormatTxt {
             get {
@@ -317,6 +344,24 @@ namespace RSHExporter.Resources.Localization {
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schritt {0} von {1}.
+        /// </summary>
+        public static string HelpStep {
+            get {
+                return ResourceManager.GetString("HelpStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
@@ -335,6 +380,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginAcceptLicense {
             get {
                 return ResourceManager.GetString("LoginAcceptLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden.
+        /// </summary>
+        public static string LoginAcceptSentry {
+            get {
+                return ResourceManager.GetString("LoginAcceptSentry", resourceCulture);
             }
         }
         
@@ -398,6 +452,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginOpenLicense {
             get {
                 return ResourceManager.GetString("LoginOpenLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Klicke hier, um mehr über Sentry zu erfahren).
+        /// </summary>
+        public static string LoginOpenSentry {
+            get {
+                return ResourceManager.GetString("LoginOpenSentry", resourceCulture);
             }
         }
         
@@ -618,6 +681,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frage.
+        /// </summary>
+        public static string Question {
+            get {
+                return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wähle zuerst eine Gruppe aus..
         /// </summary>
         public static string SelectGroupFirst {
@@ -731,6 +803,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ToExport {
             get {
                 return ResourceManager.GetString("ToExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warnung.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }
