@@ -78,6 +78,24 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Klicken, um den Export abzubrechen.
+        /// </summary>
+        public static string CancelExport {
+            get {
+                return ResourceManager.GetString("CancelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Willst du den Export abbrechen?.
+        /// </summary>
+        public static string ExportCancelExport {
+            get {
+                return ResourceManager.GetString("ExportCancelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export-Ordner:.
         /// </summary>
         public static string ExportChosenFolder {
@@ -92,6 +110,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportExport {
             get {
                 return ResourceManager.GetString("ExportExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Export wurde abgebrochen. Manche Dateien wurden möglichbereits bereits exportiert..
+        /// </summary>
+        public static string ExportExportCancelled {
+            get {
+                return ResourceManager.GetString("ExportExportCancelled", resourceCulture);
             }
         }
         
@@ -411,7 +438,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Bilder jeder Antwort in einen eigenen Ordner herunterladen?.
+        ///   Looks up a localized string similar to Für jede Antwort die Bilder in einen eigenen Ordner herunterladen?.
         /// </summary>
         public static string OptionDownloadImagesToOwnFolder {
             get {
@@ -420,7 +447,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle Beiträge einer Gruppe in ihren eigenen Ordner herunterladen?.
+        ///   Looks up a localized string similar to Für jede Gruppe die Beiträge in ein eigenen Ordner herunterladen?.
         /// </summary>
         public static string OptionDownloadToOwnFolder {
             get {

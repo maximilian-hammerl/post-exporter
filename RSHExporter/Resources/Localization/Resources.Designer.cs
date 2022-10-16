@@ -78,6 +78,24 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to cancel export.
+        /// </summary>
+        public static string CancelExport {
+            get {
+                return ResourceManager.GetString("CancelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to cancel the export?.
+        /// </summary>
+        public static string ExportCancelExport {
+            get {
+                return ResourceManager.GetString("ExportCancelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export Folder:.
         /// </summary>
         public static string ExportChosenFolder {
@@ -92,6 +110,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportExport {
             get {
                 return ResourceManager.GetString("ExportExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The export was cancelled. Some files may have already been exported..
+        /// </summary>
+        public static string ExportExportCancelled {
+            get {
+                return ResourceManager.GetString("ExportExportCancelled", resourceCulture);
             }
         }
         
@@ -411,7 +438,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download the images of every post to its own folder?.
+        ///   Looks up a localized string similar to Download the images for each post into a separate folder?.
         /// </summary>
         public static string OptionDownloadImagesToOwnFolder {
             get {
@@ -420,7 +447,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Download all threads of a group to their own folder?.
+        ///   Looks up a localized string similar to Download the threads for each group into a separate folder?.
         /// </summary>
         public static string OptionDownloadToOwnFolder {
             get {

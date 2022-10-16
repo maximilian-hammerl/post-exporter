@@ -192,10 +192,10 @@
         <value>Include the page number?</value>
     </data>
     <data name="OptionDownloadToOwnFolder" xml:space="preserve">
-        <value>Download all threads of a group to their own folder?</value>
+        <value>Download the threads for each group into a separate folder?</value>
     </data>
     <data name="OptionDownloadImagesToOwnFolder" xml:space="preserve">
-        <value>Download the images of every post to its own folder?</value>
+        <value>Download the images for each post into a separate folder?</value>
     </data>
     <data name="OptionIncludeImages" xml:space="preserve">
         <value>Export the images of the posts?</value>
@@ -226,5 +226,14 @@
     </data>
     <data name="LoginSubtitle" xml:space="preserve">
         <value>Quickly and easily export and backup your Rollenspielhimmel groups, threads and posts!</value>
+    </data>
+    <data name="CancelExport" xml:space="preserve">
+        <value>Click to cancel export</value>
+    </data>
+    <data name="ExportCancelExport" xml:space="preserve">
+        <value>Do you want to cancel the export?</value>
+    </data>
+    <data name="ExportExportCancelled" xml:space="preserve">
+        <value>The export was cancelled. Some files may have already been exported.</value>
     </data>
 </root>

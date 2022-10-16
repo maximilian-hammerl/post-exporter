@@ -159,7 +159,7 @@
         <value>Die Reihenfolge der Beiträge umkehren (von der neuesten zur ältesten statt von der ältesten zur neuesten)?</value>
     </data>
     <data name="OptionDownloadImagesToOwnFolder" xml:space="preserve">
-        <value>Die Bilder jeder Antwort in einen eigenen Ordner herunterladen?</value>
+        <value>Für jede Antwort die Bilder in einen eigenen Ordner herunterladen?</value>
     </data>
     <data name="OptionDownloadImages" xml:space="preserve">
         <value>Die Bilder der Antworten herunterladen?</value>
@@ -168,7 +168,7 @@
         <value>Die Bilder der Antworten exportieren?</value>
     </data>
     <data name="OptionDownloadToOwnFolder" xml:space="preserve">
-        <value>Alle Beiträge einer Gruppe in ihren eigenen Ordner herunterladen?</value>
+        <value>Für jede Gruppe die Beiträge in ein eigenen Ordner herunterladen?</value>
     </data>
     <data name="OptionIncludePageNumber" xml:space="preserve">
         <value>Die Seitenzahl angeben?</value>
@@ -226,5 +226,14 @@
     </data>
     <data name="LoginSubtitle" xml:space="preserve">
         <value>Exportiere und sichere deine Rollenspielhimmel Gruppen, Beiträge und Antworten schnell und einfach!</value>
+    </data>
+    <data name="CancelExport" xml:space="preserve">
+        <value>Klicken, um den Export abzubrechen</value>
+    </data>
+    <data name="ExportCancelExport" xml:space="preserve">
+        <value>Willst du den Export abbrechen?</value>
+    </data>
+    <data name="ExportExportCancelled" xml:space="preserve">
+        <value>Der Export wurde abgebrochen. Manche Dateien wurden möglichbereits bereits exportiert.</value>
     </data>
 </root>
