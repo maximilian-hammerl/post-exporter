@@ -22,8 +22,16 @@ public partial class LoginPage : Page
         }
 
         var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
-        ToGermanButton.IsEnabled = currentCulture != "de" && !currentCulture.StartsWith("de-");
-        ToEnglishButton.IsEnabled = currentCulture != "en" && !currentCulture.StartsWith("en-");
+        if (currentCulture == "de" || currentCulture.StartsWith("de-"))
+        {
+            ToGermanButton.IsEnabled = false;
+        }
+        else if (currentCulture == "en" || currentCulture.StartsWith("en-"))
+        {
+            ToEnglishButton.IsEnabled = false;
+        }
+
+        Username.Focus();
     }
 
     private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)
