@@ -14,9 +14,6 @@ public partial class LoginPage : Page
     {
         InitializeComponent();
 
-        Username.Text = "IllusionsSecond";
-        Password.Password = "23.06.1998";
-
         var version = Assembly.GetExecutingAssembly().GetName().Version;
         VersionTextBlock.Text = $"Version {version}";
     }
