@@ -139,6 +139,8 @@
 
                                     <CheckBox Grid.Column="0" IsChecked="{Binding Path=IsSelected}"
                                               IsThreeState="False" IsEnabled="{Binding Path=IsEnabled}"
+                                              Tag="{Binding Path=Group.Title}" Checked="GroupCheckBox_OnChecked"
+                                              HorizontalAlignment="Center"
                                               Style="{StaticResource ListCheckBoxStyle}" />
 
                                     <Button Grid.Column="1" Content="{Binding Path=Group.Title}"
@@ -179,19 +181,19 @@
                             <DataTemplate>
                                 <Grid Margin="4">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="35" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="35" />
                                     </Grid.ColumnDefinitions>
 
                                     <CheckBox Grid.Column="0" IsChecked="{Binding Path=IsSelected}"
-                                              IsThreeState="False" IsEnabled="True"
-                                              Style="{StaticResource ListCheckBoxStyle}" />
+                                              IsThreeState="False" IsEnabled="True" HorizontalAlignment="Stretch"
+                                              HorizontalContentAlignment="Center"
+                                              Style="{StaticResource ListCheckBoxStyle}">
+                                        <TextBlock Text="{Binding Path=Thread.Title}"
+                                                   Style="{StaticResource ListTextBlockStyle}" />
+                                    </CheckBox>
 
-                                    <TextBlock Grid.Column="1" Text="{Binding Path=Thread.Title}"
-                                               Style="{StaticResource ListTextBlockStyle}" />
-
-                                    <Button Grid.Column="2" Tag="{Binding Path=Thread.Url}" Click="UrlButton_OnClick"
+                                    <Button Grid.Column="1" Tag="{Binding Path=Thread.Url}" Click="UrlButton_OnClick"
                                             ToolTip="{Binding Path=Thread.Url}"
                                             Height="25" Width="25" Style="{StaticResource ListButtonStyle}">
                                         <Image fa:FontAwesome.Icon="Solid_ArrowUpRightFromSquare"

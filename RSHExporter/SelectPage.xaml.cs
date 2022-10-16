@@ -46,9 +46,26 @@ public partial class SelectPage : Page
             throw new ArgumentException(sender.ToString());
         }
 
-        var title = button.Content.ToString() ?? "";
-        var selectableGroup = _selectableGroupByTitles[title];
+        var selectableGroup = _selectableGroupByTitles[button.Content.ToString() ?? ""];
+        await SelectGroup(selectableGroup);
+    }
 
+    private async void GroupCheckBox_OnChecked(object sender, RoutedEventArgs e)
+    {
+        if (sender is not CheckBox checkBox)
+        {
+            throw new ArgumentException(sender.ToString());
+        }
+
+        var selectableGroup = _selectableGroupByTitles[checkBox.Tag.ToString() ?? ""];
+        if (!selectableGroup.IsActive)
+        {
+            await SelectGroup(selectableGroup);
+        }
+    }
+
+    private async Task SelectGroup(SelectableGroup selectableGroup)
+    {
         var selectableThreads = await selectableGroup.GetOrLoadSelectableThreads();
 
         if (selectableThreads.Count == 0)
@@ -70,7 +87,8 @@ public partial class SelectPage : Page
         selectableGroup.IsSelected = true;
         selectableGroup.IsActive = true;
 
-        ThreadLabel.Text = string.Format(RSHExporter.Resources.Localization.Resources.SelectThreadsOf, title);
+        ThreadLabel.Text = string.Format(RSHExporter.Resources.Localization.Resources.SelectThreadsOf,
+            selectableGroup.Group.Title);
 
         SelectableThreads.Clear();
 
