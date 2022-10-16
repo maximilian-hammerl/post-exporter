@@ -175,12 +175,16 @@
                     Maxi,
                     <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
                                RequestNavigate="Hyperlink_OnRequestNavigate">
-                        Illusion
+                        Illusion,
                     </Hyperlink>
-                    &amp;
                     <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Lapislazuli.html"
                                RequestNavigate="Hyperlink_OnRequestNavigate">
                         Lapislazuli
+                    </Hyperlink>
+                    &amp;
+                    <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Mystic.html"
+                               RequestNavigate="Hyperlink_OnRequestNavigate">
+                        Mystic
                     </Hyperlink>
                 </TextBlock>
             </Grid>
