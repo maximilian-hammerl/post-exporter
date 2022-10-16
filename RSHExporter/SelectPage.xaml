@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
+      xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
       mc:Ignorable="d"
       Title="SelectPage"
       ShowsNavigationUI="False">
@@ -40,8 +41,8 @@
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRightFromBracket"
                            Height="15" Width="15" />
-
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Logout</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Logout}"
+                               HorizontalAlignment="Center" />
                 </Grid>
             </Button>
 
@@ -66,8 +67,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Question"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Help</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Help}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -86,8 +87,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Comment"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Feedback</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Feedback}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -112,8 +113,8 @@
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRight"
                            Height="15" Width="15" />
-
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">To Export</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.ToExport}"
+                               HorizontalAlignment="Center" />
                 </Grid>
             </Button>
 
@@ -124,7 +125,7 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="1. Your Groups:" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.SelectGroups}" Style="{StaticResource TitleTextBlock}" />
 
                     <ItemsControl x:Name="GroupItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>
@@ -169,7 +170,8 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock x:Name="ThreadLabel" Text="2. Your Threads:" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock x:Name="ThreadLabel" Text="{x:Static l:Resources.SelectThreads}"
+                               Style="{StaticResource TitleTextBlock}" />
 
                     <ItemsControl x:Name="ThreadItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>
@@ -205,10 +207,10 @@
                 CornerRadius="0 0 0 5" Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
 
-                <Button Click="SelectAllGroups_OnClick" Width="170"
+                <Button Click="SelectAllGroups_OnClick" Width="200"
                         Style="{StaticResource IconButtonStyle}">
 
-                    <Grid Width="160">
+                    <Grid Width="190">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -221,14 +223,15 @@
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Plus"
                                Height="15" Width="15" />
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Select All Groups</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectSelectGroups}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
-                <Button Click="UnselectAllGroups_OnClick" Width="170"
+                <Button Click="UnselectAllGroups_OnClick" Width="200"
                         Style="{StaticResource IconButtonStyle}">
 
-                    <Grid Width="160">
+                    <Grid Width="190">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -241,7 +244,8 @@
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Minus"
                                Height="15" Width="15" />
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Unselect All Groups</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectUnselectGroups}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -252,10 +256,10 @@
                 CornerRadius="0 0 5 0" Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
 
-                <Button Click="SelectAllThreadsButton_OnClick" Width="170"
+                <Button Click="SelectAllThreadsButton_OnClick" Width="200"
                         Style="{StaticResource IconButtonStyle}">
 
-                    <Grid Width="160">
+                    <Grid Width="190">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -268,14 +272,15 @@
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Plus"
                                Height="15" Width="15" />
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Select All Threads</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectSelectThreads}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
-                <Button Click="UnselectAllThreads_OnClick" Width="170"
+                <Button Click="UnselectAllThreads_OnClick" Width="200"
                         Style="{StaticResource IconButtonStyle}">
 
-                    <Grid Width="160">
+                    <Grid Width="190">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
@@ -288,7 +293,8 @@
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Minus"
                                Height="15" Width="15" />
 
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Unselect All Threads</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectUnselectThreads}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 

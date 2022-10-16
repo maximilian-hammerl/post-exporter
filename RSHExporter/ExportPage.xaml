@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
+      xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
       mc:Ignorable="d"
       Title="ExportPage"
       ShowsNavigationUI="False">
@@ -40,8 +41,8 @@
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowLeft"
                            Height="15" Width="15" />
-
-                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Back</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Back}"
+                               HorizontalAlignment="Center" />
                 </Grid>
             </Button>
 
@@ -66,8 +67,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Question"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Help</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Help}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -86,8 +87,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Comment"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Feedback</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Feedback}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -102,7 +103,7 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="3. Selected Groups and Threads:" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.ExportSelected}" Style="{StaticResource TitleTextBlock}" />
 
                     <ItemsControl x:Name="SelectedThreadItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>
@@ -131,11 +132,16 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="4. Export:" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.ExportExport}" Style="{StaticResource TitleTextBlock}" />
 
                     <StackPanel x:Name="ExportFolderContent">
-                        <TextBlock x:Name="ChosenExportDirectoryLabel" Text="Chosen Export Folder: /"
-                                   Style="{StaticResource TextTextBlock}" />
+                        <TextBlock Style="{StaticResource TextTextBlock}">
+                            <TextBlock Text="{x:Static l:Resources.ExportChosenFolder}"
+                                       Margin="0" Style="{StaticResource LabelTextBlock}" />
+                            <Hyperlink x:Name="ExportDirectoryHyperlink" RequestNavigate="DirectoryPath_OnRequestNavigate">
+                                <TextBlock x:Name="ExportDirectoryTextBlock" />
+                            </Hyperlink>
+                        </TextBlock>
 
                         <Button Click="ChooseExportDirectoryButton_OnClick" Width="170"
                                 Style="{StaticResource IconButtonStyle}">
@@ -152,8 +158,8 @@
 
                                 <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_FolderOpen"
                                        Height="15" Width="15" />
-
-                                <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Export Folder</TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.ExportFolder}"
+                                           HorizontalAlignment="Center" />
                             </Grid>
                         </Button>
                     </StackPanel>
@@ -161,14 +167,14 @@
                     <Separator Style="{StaticResource SeparatorStyle}" />
 
                     <StackPanel x:Name="ExportFormatContent">
-                        <TextBlock Text="Export File Format:" Style="{StaticResource LabelTextBlock}" />
+                        <TextBlock Text="{x:Static l:Resources.ExportFormat}" Style="{StaticResource LabelTextBlock}" />
                         <ListBox x:Name="FileFormats" SelectionMode="Single" Style="{StaticResource ListBoxStyle}" />
                     </StackPanel>
 
                     <Separator Style="{StaticResource SeparatorStyle}" />
 
                     <StackPanel x:Name="ExportOptionsContent">
-                        <TextBlock Text="Export Options:" Style="{StaticResource LabelTextBlock}" />
+                        <TextBlock Text="{x:Static l:Resources.ExportOptions}" Style="{StaticResource LabelTextBlock}" />
 
                         <CheckBox x:Name="IncludeGroupCheckBox" Content="Include the name of the group at the top?"
                                   IsThreeState="False" Checked="IncludeGroupCheckBox_OnChecked"
@@ -273,8 +279,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Download"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Start Export</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.StartExport}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 

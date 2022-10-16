@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
+      xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
       mc:Ignorable="d"
       Title="LoginPage"
       ShowsNavigationUI="False">
@@ -24,7 +25,23 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Row="0" Grid.Column="1" Margin="0 0 3 3" CornerRadius="5 0 0 0"
-                Style="{StaticResource BorderStyle}" />
+                Style="{StaticResource BorderStyle}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button Click="ToEnglishButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                    <Border Style="{StaticResource ImageBorderStyle}">
+                        <Image Source="/Resources/Images/flag-united-kingdom.png" Height="20" />
+                    </Border>
+                </Button>
+
+                <Button Click="ToGermanButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                    <Border Style="{StaticResource ImageBorderStyle}">
+                        <Image Source="/Resources/Images/flag-german.png" Height="20" />
+                    </Border>
+                </Button>
+
+            </StackPanel>
+        </Border>
 
         <Border Grid.Row="0" Grid.Column="2" Margin="3 0 3 3" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
@@ -45,8 +62,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Question"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Help</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Help}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -65,8 +82,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Comment"
                                Height="15" Width="15" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Feedback</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Feedback}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -90,7 +107,8 @@
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowRightToBracket"
                                Height="15" Width="15" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">Login</TextBlock>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Login}"
+                                   HorizontalAlignment="Center" />
                     </Grid>
                 </Button>
 
@@ -101,23 +119,32 @@
 
         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
-            <Image Source="logo.ico" Height="200" Width="200" />
+            <Image Source="/Resources/logo.ico" Height="200" Width="200" />
         </Border>
 
         <Border x:Name="UsernamePasswordContent" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0"
                 CornerRadius="0 0 0 0" Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
-                <TextBlock Text="Login with your Rollenspielhimmel username and password to get started:"
-                           Style="{StaticResource LabelTextBlock}" Width="300" HorizontalAlignment="Center" />
 
-                <TextBox x:Name="Username" Margin="6" FontSize="14" Width="300" HorizontalAlignment="Center" />
-                <PasswordBox x:Name="Password" Margin="6" FontSize="14" Width="300" HorizontalAlignment="Center" />
+                <TextBlock Text="{x:Static l:Resources.LoginExplanation}" Style="{StaticResource LabelTextBlock}"
+                           Width="300" HorizontalAlignment="Center" />
+
+                <TextBlock Text="{x:Static l:Resources.LoginUsername}" Style="{StaticResource TextTextBlock}"
+                           Margin="3 18 3 3" Width="300" HorizontalAlignment="Center" />
+                <TextBox x:Name="Username" Margin="3" Padding="3" FontSize="14" Width="300"
+                         HorizontalAlignment="Center" />
+
+                <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
+                           Margin="3 18 3 3" Width="300" HorizontalAlignment="Center" />
+                <PasswordBox x:Name="Password" Margin="3" Padding="3" FontSize="14" Width="300"
+                             HorizontalAlignment="Center" />
+
             </StackPanel>
         </Border>
 
         <Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 0" CornerRadius="0 0 5 5"
                 Style="{StaticResource BorderStyle}">
-            
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -127,16 +154,19 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock x:Name="VersionTextBlock" Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                
-                <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                    Made with Love by Maxi,
+
+                <TextBlock x:Name="VersionTextBlock" Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap"
+                           HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap" HorizontalAlignment="Right"
+                           VerticalAlignment="Bottom">
+                    <TextBlock Text="{x:Static l:Resources.LoginLove}" />
+                    Maxi,
                     <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Illusion.html"
                                RequestNavigate="Hyperlink_OnRequestNavigate">
                         Illusion
                     </Hyperlink>
-                    and
+                    &amp;
                     <Hyperlink NavigateUri="https://rollenspielhimmel.de/profile/Lapislazuli.html"
                                RequestNavigate="Hyperlink_OnRequestNavigate">
                         Lapislazuli

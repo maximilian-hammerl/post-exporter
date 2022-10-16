@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using JetBrains.Annotations;
 using Ookii.Dialogs.Wpf;
 using RSHExporter.Export;
@@ -133,10 +134,14 @@ public partial class ExportPage : Page
 
             var path = browserDialog.SelectedPath;
 
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
+
             if (Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length > 0)
             {
-                if (!DialogUtil.ShowQuestion(
-                        "This folder already contains files. Files will be overwritten, if they have the same name. Are you sure that you want to use this folder?"))
+                if (!DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportFolderContainsFiles))
                 {
                     continue;
                 }
@@ -150,7 +155,8 @@ public partial class ExportPage : Page
 
     private void UpdateDirectoryPath(string? path)
     {
-        ChosenExportDirectoryLabel.Text = $"Chosen Export Folder: {path ?? "/"}";
+        ExportDirectoryHyperlink.IsEnabled = path != null;
+        ExportDirectoryTextBlock.Text = path ?? "/";
     }
 
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
@@ -158,7 +164,7 @@ public partial class ExportPage : Page
         if (string.IsNullOrWhiteSpace(ExportConfiguration.DirectoryPath))
         {
             ExportFolderContent.Background = Brushes.Yellow;
-            DialogUtil.ShowWarning("Please choose an export folder first!");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFolder);
             ExportFolderContent.Background = Brushes.White;
             return;
         }
@@ -178,7 +184,8 @@ public partial class ExportPage : Page
 
         ToggleExportButtonLoading(false);
 
-        DialogUtil.ShowInformation($"{tasks.Count} files were successfully exported!");
+        DialogUtil.ShowInformation(string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported,
+            tasks.Count));
         Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
     }
 
@@ -326,5 +333,15 @@ public partial class ExportPage : Page
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
         FeedbackUtil.HandleFeedback("ExportPage");
+    }
+
+    private void DirectoryPath_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        if (ExportConfiguration.DirectoryPath != null)
+        {
+            Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
+        }
+
+        e.Handled = true;
     }
 }

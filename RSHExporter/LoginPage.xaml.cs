@@ -14,8 +14,23 @@ public partial class LoginPage : Page
     {
         InitializeComponent();
 
+        Username.Text = "IllusionsSecond";
+        Password.Password = "23.06.1998";
+
         var version = Assembly.GetExecutingAssembly().GetName().Version;
         VersionTextBlock.Text = $"Version {version}";
+    }
+
+    private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de");
+        NavigationService.Navigate(new LoginPage());
+    }
+
+    private void ToEnglishButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+        NavigationService.Navigate(new LoginPage());
     }
 
     private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
@@ -26,7 +41,7 @@ public partial class LoginPage : Page
         if (string.IsNullOrEmpty(username))
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning("Please enter your username first!");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingUsername);
             return;
         }
 
@@ -34,7 +49,7 @@ public partial class LoginPage : Page
         if (string.IsNullOrEmpty(password))
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning("Please enter your password first!");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingPassword);
             return;
         }
 
@@ -42,14 +57,14 @@ public partial class LoginPage : Page
         if (groups == null)
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning("You could not be logged in! Please check your username and password.");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginWrongUsernamePassword);
             return;
         }
 
         if (groups.Count == 0)
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowError("No groups could be loaded! Either you have no groups or something went wrong.");
+            DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.LoginNoGroups);
             return;
         }
 

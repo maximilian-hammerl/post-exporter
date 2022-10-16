@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root"
+                xmlns="">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="Help" xml:space="preserve">
+        <value>Hilfe</value>
+    </data>
+    <data name="Feedback" xml:space="preserve">
+        <value>Feedback</value>
+    </data>
+    <data name="Send" xml:space="preserve">
+        <value>Senden</value>
+    </data>
+    <data name="Cancel" xml:space="preserve">
+        <value>Abbrechen</value>
+    </data>
+    <data name="LoginMissingUsername" xml:space="preserve">
+        <value>Bitte gib zuerst deinen Benutzernamen ein!</value>
+    </data>
+    <data name="LoginMissingPassword" xml:space="preserve">
+        <value>Bitte gib zuerst dein Passwort ein!</value>
+    </data>
+    <data name="LoginWrongUsernamePassword" xml:space="preserve">
+        <value>Du konntest nicht eingeloggt werden! Bitte überprüfe deinen Benutzernamen und dein Passwort.</value>
+    </data>
+    <data name="LoginNoGroups" xml:space="preserve">
+        <value>Es konnten keine Gruppen geladen werden! Entweder hast du keine Gruppen oder es ist etwas schief gelaufen.</value>
+    </data>
+    <data name="FeedbackTitleDefault" xml:space="preserve">
+        <value>Danke für dein Feedback!</value>
+    </data>
+    <data name="FeedbackTitleError" xml:space="preserve">
+        <value>Ein Fehler ist aufgetreten!</value>
+    </data>
+    <data name="FeedbackDetailsDefault" xml:space="preserve">
+        <value>Dein Feedback wird an Maxi gesendet! Du kannst z.B. auch Links zu Bildern einfügen.</value>
+    </data>
+    <data name="FeedbackDetailsError" xml:space="preserve">
+        <value>Etwas ist unerwartet schief gelaufen! Der Fehler wurde mit der ID {0} registriert.</value>
+    </data>
+    <data name="FeedbackResponseDefault" xml:space="preserve">
+        <value>Bitte gib dein Feedback hier ein:</value>
+    </data>
+    <data name="FeedbackResponseError" xml:space="preserve">
+        <value>Wenn möglich, gib hier bitte mehr Details darüber an, was du getan hast, bevor der Fehler aufgetreten ist:</value>
+    </data>
+    <data name="FeedbackEmailDefault" xml:space="preserve">
+        <value>Wenn du möglicherweise kontaktiert werden möchtest, gib hier deine E-Mail-Adresse ein:</value>
+    </data>
+    <data name="FeedbackEmailError" xml:space="preserve">
+        <value>Wenn du per E-Mail benachrichtigt werden möchtest, wenn der Fehler behoben ist, gib deine E-Mail-Adresse hier ein:</value>
+    </data>
+    <data name="LoginUsername" xml:space="preserve">
+        <value>Dein Benutzername:</value>
+    </data>
+    <data name="LoginPassword" xml:space="preserve">
+        <value>Dein Passwort:</value>
+    </data>
+    <data name="LoginExplanation" xml:space="preserve">
+        <value>Melde dich mit deinem Rollenspielhimmel Benutzernamen und Passwort an um loszulegen!</value>
+    </data>
+    <data name="LoginLove" xml:space="preserve">
+        <value>Mit ♡ von</value>
+    </data>
+    <data name="Login" xml:space="preserve">
+        <value>Anmelden</value>
+    </data>
+    <data name="Logout" xml:space="preserve">
+        <value>Abmelden</value>
+    </data>
+    <data name="ToExport" xml:space="preserve">
+        <value>Zum Export</value>
+    </data>
+    <data name="SelectGroups" xml:space="preserve">
+        <value>1. Deine Gruppen:</value>
+    </data>
+    <data name="SelectThreads" xml:space="preserve">
+        <value>2. Deine Beiträge:</value>
+    </data>
+    <data name="SelectThreadsOf" xml:space="preserve">
+        <value>2. Deine Beiträge von {0}:</value>
+    </data>
+    <data name="SelectNoThreadsFor" xml:space="preserve">
+        <value>Es konnten keine Beiträge für Gruppe {0} geladen werden!</value>
+    </data>
+    <data name="SelectNothingSelected" xml:space="preserve">
+        <value>Du musst mindestens eine Gruppe und einen Beitrag auswählen!</value>
+    </data>
+    <data name="SelectGroupFirst" xml:space="preserve">
+        <value>Wähle zuerst eine Gruppe aus.</value>
+    </data>
+    <data name="SelectSelectGroups" xml:space="preserve">
+        <value>Alle Gruppen auswählen</value>
+    </data>
+    <data name="SelectUnselectGroups" xml:space="preserve">
+        <value>Alle Gruppen abwählen</value>
+    </data>
+    <data name="SelectSelectThreads" xml:space="preserve">
+        <value>Alle Beiträge auswählen</value>
+    </data>
+    <data name="SelectUnselectThreads" xml:space="preserve">
+        <value>Alle Beiträge abwählen</value>
+    </data>
+    <data name="Back" xml:space="preserve">
+        <value>Zurück</value>
+    </data>
+    <data name="ExportSelected" xml:space="preserve">
+        <value>3. Ausgewählte Gruppen und Beiträge:</value>
+    </data>
+    <data name="ExportExport" xml:space="preserve">
+        <value>4. Export:</value>
+    </data>
+    <data name="StartExport" xml:space="preserve">
+        <value>Export starten</value>
+    </data>
+    <data name="ExportFormat" xml:space="preserve">
+        <value>Export-Dateiformat:</value>
+    </data>
+    <data name="ExportOptions" xml:space="preserve">
+        <value>Export-Optionen:</value>
+    </data>
+    <data name="ExportFolder" xml:space="preserve">
+        <value>Export-Ordner</value>
+    </data>
+    <data name="ExportChosenFolder" xml:space="preserve">
+        <value>Gewählter Export-Ordner:</value>
+    </data>
+    <data name="ExportFilesExported" xml:space="preserve">
+        <value>{0} Dateien wurden erfolgreich exportiert!</value>
+    </data>
+    <data name="ExportMissingFolder" xml:space="preserve">
+        <value>Bitte wähle zuerst einen Export-Ordner aus!</value>
+    </data>
+    <data name="ExportFolderContainsFiles" xml:space="preserve">
+        <value>Dieser Ordner enthält bereits Dateien. Dateien werden überschrieben, wenn sie denselben Namen haben. Bist du sicher, dass du diesen Ordner verwenden möchtest?</value>
+    </data>
+</root>

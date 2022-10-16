@@ -23,12 +23,46 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="logo.ico">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Resource>
         <None Update="appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\Localization\Resources.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Resources\Localization\Resources.de.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.de.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources\Localization\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Resources\Localization\Resources.de.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.de.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="Resources\logo.ico">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <None Remove="Resources\Images\flag-german.png"/>
+        <Resource Include="Resources\Images\flag-german.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+        <None Remove="Resources\Images\flag-united-kingdom.png"/>
+        <Resource Include="Resources\Images\flag-united-kingdom.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
 </Project>

@@ -55,7 +55,8 @@ public partial class SelectPage : Page
         {
             selectableGroup.IsSelected = false;
             selectableGroup.IsEnabled = false;
-            DialogUtil.ShowWarning($"No threads could be loaded for group {selectableGroup.Group}!");
+            DialogUtil.ShowWarning(string.Format(RSHExporter.Resources.Localization.Resources.SelectNoThreadsFor,
+                selectableGroup.Group));
             return;
         }
 
@@ -68,7 +69,8 @@ public partial class SelectPage : Page
 
         selectableGroup.IsSelected = true;
         selectableGroup.IsActive = true;
-        ThreadLabel.Text = $"2. Your Threads of {title}:";
+
+        ThreadLabel.Text = string.Format(RSHExporter.Resources.Localization.Resources.SelectThreadsOf, title);
 
         SelectableThreads.Clear();
 
@@ -107,7 +109,7 @@ public partial class SelectPage : Page
 
         if (threads.Count == 0)
         {
-            DialogUtil.ShowWarning("You have not selected any groups or threads!");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.SelectNothingSelected);
             return;
         }
 
@@ -151,7 +153,7 @@ public partial class SelectPage : Page
     {
         if (_currentSelectableGroup == null)
         {
-            DialogUtil.ShowWarning("Select a group first.");
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.SelectGroupFirst);
             return;
         }
 

@@ -17,30 +17,29 @@ public partial class FeedbackDialog : Window
 
         TitleTextBlock.Text = feedbackType switch
         {
-            FeedbackType.Default => "Thanks for your feedback!",
-            FeedbackType.Error => "An error has occurred!",
+            FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackTitleDefault,
+            FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackTitleError,
             _ => throw new NotSupportedException(feedbackType.ToString())
         };
 
         DetailsTextBlock.Text = feedbackType switch
         {
-            FeedbackType.Default => $"Your feedback will be sent to Maxi You can also, e.g., include links to images.",
-            FeedbackType.Error => $"Something went wrong unexpectedly! The error has been reported with the ID {id}.",
+            FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackDetailsDefault,
+            FeedbackType.Error => string.Format(RSHExporter.Resources.Localization.Resources.FeedbackDetailsError, id),
             _ => throw new NotSupportedException(feedbackType.ToString())
         };
 
         ResponseTextBlock.Text = feedbackType switch
         {
-            FeedbackType.Default => "Please enter your feedback here:",
-            FeedbackType.Error => "If possible, please enter more details what you did before the error occured here:",
+            FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackResponseDefault,
+            FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackResponseError,
             _ => throw new NotSupportedException(feedbackType.ToString())
         };
 
         EmailTextBlock.Text = feedbackType switch
         {
-            FeedbackType.Default => "If you want to possibly be contacted, enter your email address here:",
-            FeedbackType.Error =>
-                "If you want to be notified by email when the error is fixed, enter your email address here:",
+            FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackEmailDefault,
+            FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackEmailError,
             _ => throw new NotSupportedException(feedbackType.ToString())
         };
 
