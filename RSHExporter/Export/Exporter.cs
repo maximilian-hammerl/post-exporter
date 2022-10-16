@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using HtmlAgilityPack;
 using RSHExporter.Scrape;
 
@@ -53,7 +54,7 @@ public static class Exporter
 
                         if (!string.IsNullOrEmpty(altName))
                         {
-                            fileNameBuilder.Append('-').Append(altName);
+                            fileNameBuilder.Append('-').Append(HttpUtility.HtmlDecode(altName));
                             SanitizeFileName(fileNameBuilder);
                         }
 
@@ -156,17 +157,17 @@ public static class Exporter
                 await using var htmlFile = new StreamWriter(filePath);
 
                 await htmlFile.WriteLineAsync("<html>");
-                await htmlFile.WriteLineAsync($"<head><title>{thread.Title}</title></head>");
+                await htmlFile.WriteLineAsync($"<head><title>{HttpUtility.HtmlEncode(thread.Title)}</title></head>");
                 await htmlFile.WriteLineAsync("<body>");
 
                 if (ExportConfiguration.IncludeGroup)
                 {
-                    await htmlFile.WriteLineAsync($"<h3>{group.Title}</h3>");
+                    await htmlFile.WriteLineAsync($"<h3>{HttpUtility.HtmlEncode(group.Title)}</h3>");
 
                     if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
                             ExportConfiguration.IncludeGroupPostedAt, out var header))
                     {
-                        await htmlFile.WriteLineAsync($"<p>{header}</p>");
+                        await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
                     }
 
                     if (ExportConfiguration.IncludeGroupUrl)
@@ -177,12 +178,12 @@ public static class Exporter
 
                 if (ExportConfiguration.IncludeThread)
                 {
-                    await htmlFile.WriteLineAsync($"<h2>{thread.Title}</h2>");
+                    await htmlFile.WriteLineAsync($"<h2>{HttpUtility.HtmlEncode(thread.Title)}</h2>");
 
                     if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
                             ExportConfiguration.IncludeThreadPostedAt, out var header))
                     {
-                        await htmlFile.WriteLineAsync($"<p>{header}</p>");
+                        await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
                     }
 
                     if (ExportConfiguration.IncludeThreadUrl)
@@ -199,7 +200,7 @@ public static class Exporter
 
                     if (CreateHeaderLine(post, i + 1, posts.Count, out var header))
                     {
-                        await htmlFile.WriteLineAsync($"<p><strong>{header}</strong></p>");
+                        await htmlFile.WriteLineAsync($"<p><strong>{HttpUtility.HtmlEncode(header)}</strong></p>");
                     }
 
                     await htmlFile.WriteLineAsync($"{post.Node.InnerHtml}");
@@ -240,7 +241,7 @@ public static class Exporter
 
                 var text = string.IsNullOrEmpty(altName)
                     ? $"[Image at {source}]"
-                    : $"[{CapitalizeFirstChar(altName)} at {source}]";
+                    : $"[{CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} at {source}]";
 
                 await txtFile.WriteLineAsync(text);
             }
@@ -249,7 +250,7 @@ public static class Exporter
                 var text = node.InnerText;
                 if (!string.IsNullOrWhiteSpace(text))
                 {
-                    await txtFile.WriteLineAsync(text);
+                    await txtFile.WriteLineAsync(HttpUtility.HtmlDecode(text));
                 }
             }
         }

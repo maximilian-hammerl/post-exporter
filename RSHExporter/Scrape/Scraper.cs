@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using HtmlAgilityPack;
 using Sentry;
 
@@ -94,7 +95,8 @@ public static class Scraper
 
         foreach (var postRow in postRows)
         {
-            var head = postRow.SelectSingleNode("./span[@class='forum_postbody_small']").InnerText.Trim();
+            var head = HttpUtility.HtmlDecode(postRow.SelectSingleNode("./span[@class='forum_postbody_small']")
+                .InnerText.Trim());
             var (author, postedAt) = GetUserAndDateTime(head);
 
             var bodyPTag = postRow.SelectSingleNode("./p[1]");
@@ -138,10 +140,10 @@ public static class Scraper
         foreach (var threadRow in threadRows)
         {
             var titleATag = threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='sticky']/a");
-            var title = titleATag.InnerText;
+            var title = HttpUtility.HtmlDecode(titleATag.InnerText);
             var path = titleATag.Attributes["href"].Value;
 
-            var details = threadRow.SelectSingleNode("./td[1]/span[@class='small']").InnerText;
+            var details = HttpUtility.HtmlDecode(threadRow.SelectSingleNode("./td[1]/span[@class='small']").InnerText);
             var (author, postedAt) = GetUserAndDateTime(details);
 
             threads.Add(new Thread(author, postedAt, title, $"https://rollenspielhimmel.de/forum/{path}", group));
@@ -190,14 +192,15 @@ public static class Scraper
             var groupTbodyTag = groupRow.SelectSingleNode(".//table[@class='profileTable']/tbody");
 
             var titleATag = groupTbodyTag.SelectSingleNode("./tr[1]/td[2]/a");
-            var title = titleATag.InnerText;
+            var title = HttpUtility.HtmlDecode(titleATag.InnerText);
             var path = titleATag.Attributes["href"].Value;
 
             var founderATag = groupTbodyTag.SelectSingleNode("./tr[3]/td[2]/a");
-            var founder = founderATag.InnerText;
+            var founder = HttpUtility.HtmlDecode(founderATag.InnerText);
 
             var foundedAtTdTag = groupTbodyTag.SelectSingleNode("./tr[4]/td[2]");
-            var foundedAt = DateTime.ParseExact(foundedAtTdTag.InnerText, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            var foundedAt = DateTime.ParseExact(HttpUtility.HtmlDecode(foundedAtTdTag.InnerText), "dd.MM.yyyy",
+                CultureInfo.InvariantCulture);
 
             groups.Add(new Group(founder, foundedAt, title, $"https://rollenspielhimmel.de{path}"));
         }
