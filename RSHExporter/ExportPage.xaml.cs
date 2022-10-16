@@ -23,6 +23,7 @@ namespace RSHExporter;
 
 public partial class ExportPage : Page
 {
+    private static readonly List<FileFormat> DisabledFileFormats = new() { FileFormat.Docx };
     private readonly List<Thread> _threads;
     private CancellationTokenSource _cancellationTokenSource = new();
 
@@ -44,8 +45,11 @@ public partial class ExportPage : Page
         foreach (var fileFormat in Enum.GetValues<FileFormat>())
         {
             // FIXME
-            SelectableFileFormats.Add(
-                new SelectableFileFormat(fileFormat, ExportConfiguration.FileFormats.Contains(fileFormat)));
+            SelectableFileFormats.Add(new SelectableFileFormat(
+                fileFormat,
+                ExportConfiguration.FileFormats.Contains(fileFormat),
+                !DisabledFileFormats.Contains(fileFormat)
+            ));
         }
 
         FileFormats.DataContext = SelectableFileFormats;
@@ -403,15 +407,17 @@ public partial class ExportPage : Page
     {
         private FileFormat _fileFormat;
         private string _icon;
+        private bool _isEnabled;
         private bool _isSelected;
         private string _label;
 
-        public SelectableFileFormat(FileFormat fileFormat, bool isSelected = false)
+        public SelectableFileFormat(FileFormat fileFormat, bool isSelected, bool isEnabled)
         {
             _fileFormat = fileFormat;
             _label = fileFormat.DisplayName();
             _icon = fileFormat.FontAwesomeIcon();
             _isSelected = isSelected;
+            _isEnabled = isEnabled;
         }
 
         [UsedImplicitly]
@@ -440,6 +446,13 @@ public partial class ExportPage : Page
         {
             get => _isSelected;
             set => SetField(ref _isSelected, value);
+        }
+
+        [UsedImplicitly]
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetField(ref _isEnabled, value);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
