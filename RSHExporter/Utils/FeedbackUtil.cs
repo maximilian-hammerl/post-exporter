@@ -24,7 +24,7 @@ public static class FeedbackUtil
         if (feedback != null && !string.IsNullOrWhiteSpace(feedback.Value.Response))
         {
             var sentryId =
-                SentrySdk.CaptureMessage($"New feedback from {source} at {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                SentrySdk.CaptureMessage($"New feedback from {source}");
             SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response);
         }
     }

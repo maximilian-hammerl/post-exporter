@@ -138,7 +138,8 @@
                         <TextBlock Style="{StaticResource TextTextBlock}">
                             <TextBlock Text="{x:Static l:Resources.ExportChosenFolder}"
                                        Margin="0" Style="{StaticResource LabelTextBlock}" />
-                            <Hyperlink x:Name="ExportDirectoryHyperlink" RequestNavigate="DirectoryPath_OnRequestNavigate">
+                            <Hyperlink x:Name="ExportDirectoryHyperlink" NavigateUri="https://rollenspielhimmel.de"
+                                       RequestNavigate="DirectoryPath_OnRequestNavigate">
                                 <TextBlock x:Name="ExportDirectoryTextBlock" />
                             </Hyperlink>
                         </TextBlock>

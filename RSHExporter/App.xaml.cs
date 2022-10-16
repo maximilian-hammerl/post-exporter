@@ -1,8 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Extensions.Configuration;
 using RSHExporter.Utils;
 using Sentry;
 
@@ -17,23 +15,10 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false);
-
-        var configuration = builder.Build();
-        var sentrySection = configuration.GetRequiredSection("Sentry");
-        var dns = sentrySection["DNS"];
-
-        if (dns == null)
-        {
-            throw new ArgumentNullException(dns);
-        }
-
-        SetupExceptionHandling(dns);
+        SetupExceptionHandling();
     }
 
-    private void SetupExceptionHandling(string dns)
+    private void SetupExceptionHandling()
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
@@ -54,7 +39,7 @@ public partial class App : Application
 
         SentrySdk.Init(o =>
         {
-            o.Dsn = dns;
+            o.Dsn = "https://57c119ee365d4707b7f99e2b36c8782d@o1430708.ingest.sentry.io/6781778";
             o.TracesSampleRate = 1.0;
         });
     }
