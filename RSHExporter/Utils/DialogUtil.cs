@@ -31,15 +31,17 @@ public static class DialogUtil
 
     private static bool ShowHelp(string text, int currentStep, int numberSteps)
     {
+        var caption = string.Format(Resources.Localization.Resources.HelpStep, currentStep, numberSteps);
+
         // Last step
         if (currentStep == numberSteps)
         {
-            MessageBox.Show(text, $"Step {currentStep} of {numberSteps}", MessageBoxButton.OK,
+            MessageBox.Show(text, caption, MessageBoxButton.OK,
                 MessageBoxImage.Information);
             return true;
         }
 
-        var result = MessageBox.Show(text, $"Step {currentStep} of {numberSteps}", MessageBoxButton.OKCancel,
+        var result = MessageBox.Show(text, caption, MessageBoxButton.OKCancel,
             MessageBoxImage.Information);
         return result == MessageBoxResult.OK;
     }
@@ -63,24 +65,28 @@ public static class DialogUtil
         return feedbackDialog.DialogResult is true ? (feedbackDialog.Response, feedbackDialog.Email) : null;
     }
 
-    public static bool ShowQuestion(string text, string caption = "Information")
+    public static bool ShowQuestion(string text, string? caption = null)
     {
+        caption ??= Resources.Localization.Resources.Question;
         return MessageBox.Show(text, caption, MessageBoxButton.YesNo, MessageBoxImage.Information) ==
                MessageBoxResult.Yes;
     }
 
-    public static void ShowInformation(string text, string caption = "Information")
+    public static void ShowInformation(string text, string? caption = null)
     {
+        caption ??= Resources.Localization.Resources.Information;
         MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
-    public static void ShowWarning(string text, string caption = "Warning")
+    public static void ShowWarning(string text, string? caption = null)
     {
+        caption ??= Resources.Localization.Resources.Warning;
         MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 
-    public static void ShowError(string text, string caption = "Error")
+    public static void ShowError(string text, string? caption = null)
     {
+        caption ??= Resources.Localization.Resources.Error;
         MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }
