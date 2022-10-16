@@ -155,4 +155,64 @@
     <data name="ExportFolderContainsFiles" xml:space="preserve">
         <value>Dieser Ordner enthält bereits Dateien. Dateien werden überschrieben, wenn sie denselben Namen haben. Bist du sicher, dass du diesen Ordner verwenden möchtest?</value>
     </data>
+    <data name="OptionReserveOrder" xml:space="preserve">
+        <value>Die Reihenfolge der Beiträge umkehren (von der neuesten zur ältesten statt von der ältesten zur neuesten)?</value>
+    </data>
+    <data name="OptionDownloadImagesToOwnFolder" xml:space="preserve">
+        <value>Die Bilder jeder Antwort in einen eigenen Ordner herunterladen?</value>
+    </data>
+    <data name="OptionDownloadImages" xml:space="preserve">
+        <value>Die Bilder der Antworten herunterladen?</value>
+    </data>
+    <data name="OptionIncludeImages" xml:space="preserve">
+        <value>Die Bilder der Antworten exportieren?</value>
+    </data>
+    <data name="OptionDownloadToOwnFolder" xml:space="preserve">
+        <value>Die Beiträge jeder Gruppe in einen eigenen Ordner herunterladen?</value>
+    </data>
+    <data name="OptionIncludePageNumber" xml:space="preserve">
+        <value>Die Seitenzahl angeben?</value>
+    </data>
+    <data name="OptionIncludePostNumber" xml:space="preserve">
+        <value>Die Nummber der Antwort angeben?</value>
+    </data>
+    <data name="OptionIncludePostAuthor" xml:space="preserve">
+        <value>Den Autor der Antworten angeben?</value>
+    </data>
+    <data name="OptionIncludePostPostedAt" xml:space="preserve">
+        <value>Angeben, wann die Antwort gepostet wurde?</value>
+    </data>
+    <data name="OptionIncludeGroup" xml:space="preserve">
+        <value>Den Namen der Gruppe am Anfang angeben?</value>
+    </data>
+    <data name="OptionIncludeThread" xml:space="preserve">
+        <value>Den Namen des Beitrags am Anfang angeben?</value>
+    </data>
+    <data name="OptionIncludeGroupAuthor" xml:space="preserve">
+        <value>Auch den Autor der Gruppe angeben?</value>
+    </data>
+    <data name="OptionIncludeThreadAuthor" xml:space="preserve">
+        <value>Auch den Autor des Beitrags angeben?</value>
+    </data>
+    <data name="OptionIncludeGroupPostedAt" xml:space="preserve">
+        <value>Auch angeben, wann die Gruppe erstellt wurde?</value>
+    </data>
+    <data name="OptionIncludeGroupUrl" xml:space="preserve">
+        <value>Auch die URL der Gruppe angeben?</value>
+    </data>
+    <data name="OptionIncludeThreadUrl" xml:space="preserve">
+        <value>Auch die URL des Beitrags angeben?</value>
+    </data>
+    <data name="OptionIncludeThreadPostedAt" xml:space="preserve">
+        <value>Auch angeben, wann der Beitrag erstellt wurde?</value>
+    </data>
+    <data name="FileFormatDocx" xml:space="preserve">
+        <value>Word-Datei (.docx)</value>
+    </data>
+    <data name="FileFormatHtml" xml:space="preserve">
+        <value>HTML-Datei (.html)</value>
+    </data>
+    <data name="FileFormatTxt" xml:space="preserve">
+        <value>Text-Datei (.txt)</value>
+    </data>
 </root>

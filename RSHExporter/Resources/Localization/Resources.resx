@@ -155,4 +155,64 @@
     <data name="ExportFolderContainsFiles" xml:space="preserve">
         <value>This folder already contains files. Files will be overwritten, if they have the same name. Are you sure that you want to use this folder?</value>
     </data>
+    <data name="OptionIncludeGroup" xml:space="preserve">
+        <value>Include the name of the group at the top?</value>
+    </data>
+    <data name="OptionIncludeGroupAuthor" xml:space="preserve">
+        <value>Also include the author of the group?</value>
+    </data>
+    <data name="OptionIncludeGroupPostedAt" xml:space="preserve">
+        <value>Also include when the group was created?</value>
+    </data>
+    <data name="OptionIncludeGroupUrl" xml:space="preserve">
+        <value>Also include the URL to the group?</value>
+    </data>
+    <data name="OptionIncludeThread" xml:space="preserve">
+        <value>Include the name of the thread at the top?</value>
+    </data>
+    <data name="OptionIncludeThreadAuthor" xml:space="preserve">
+        <value>Also include the author of the thread?</value>
+    </data>
+    <data name="OptionIncludeThreadPostedAt" xml:space="preserve">
+        <value>Also include when the thread was created?</value>
+    </data>
+    <data name="OptionIncludeThreadUrl" xml:space="preserve">
+        <value>Also include the URL to the thread?</value>
+    </data>
+    <data name="OptionIncludePostAuthor" xml:space="preserve">
+        <value>Include the author of the posts?</value>
+    </data>
+    <data name="OptionIncludePostPostedAt" xml:space="preserve">
+        <value>Include when the post was posted?</value>
+    </data>
+    <data name="OptionIncludePostNumber" xml:space="preserve">
+        <value>Include the post number?</value>
+    </data>
+    <data name="OptionIncludePageNumber" xml:space="preserve">
+        <value>Include the page number?</value>
+    </data>
+    <data name="OptionDownloadToOwnFolder" xml:space="preserve">
+        <value>Download the threads of every group to its own folder?</value>
+    </data>
+    <data name="OptionDownloadImagesToOwnFolder" xml:space="preserve">
+        <value>Download the images of every post to its own folder?</value>
+    </data>
+    <data name="OptionIncludeImages" xml:space="preserve">
+        <value>Export the images of the posts?</value>
+    </data>
+    <data name="OptionDownloadImages" xml:space="preserve">
+        <value>Download the images of the posts?</value>
+    </data>
+    <data name="OptionReserveOrder" xml:space="preserve">
+        <value>Reverse the order of the posts (newest to oldest instead of oldest to newest)?</value>
+    </data>
+    <data name="FileFormatTxt" xml:space="preserve">
+        <value>Text File (.txt)</value>
+    </data>
+    <data name="FileFormatHtml" xml:space="preserve">
+        <value>HTML File (.html)</value>
+    </data>
+    <data name="FileFormatDocx" xml:space="preserve">
+        <value>Word File (.docx)</value>
+    </data>
 </root>

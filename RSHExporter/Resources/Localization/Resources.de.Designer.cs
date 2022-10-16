@@ -240,6 +240,33 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Word-Datei (.docx).
+        /// </summary>
+        public static string FileFormatDocx {
+            get {
+                return ResourceManager.GetString("FileFormatDocx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTML-Datei (.html).
+        /// </summary>
+        public static string FileFormatHtml {
+            get {
+                return ResourceManager.GetString("FileFormatHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text-Datei (.txt).
+        /// </summary>
+        public static string FileFormatTxt {
+            get {
+                return ResourceManager.GetString("FileFormatTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hilfe.
         /// </summary>
         public static string Help {
@@ -335,6 +362,159 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Bilder der Antworten herunterladen?.
+        /// </summary>
+        public static string OptionDownloadImages {
+            get {
+                return ResourceManager.GetString("OptionDownloadImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Bilder jeder Antwort in einen eigenen Ordner herunterladen?.
+        /// </summary>
+        public static string OptionDownloadImagesToOwnFolder {
+            get {
+                return ResourceManager.GetString("OptionDownloadImagesToOwnFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Beiträge jeder Gruppe in einen eigenen Ordner herunterladen?.
+        /// </summary>
+        public static string OptionDownloadToOwnFolder {
+            get {
+                return ResourceManager.GetString("OptionDownloadToOwnFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Den Namen der Gruppe am Anfang angeben?.
+        /// </summary>
+        public static string OptionIncludeGroup {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch den Autor der Gruppe angeben?.
+        /// </summary>
+        public static string OptionIncludeGroupAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch angeben, wann die Gruppe erstellt wurde?.
+        /// </summary>
+        public static string OptionIncludeGroupPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch die URL der Gruppe angeben?.
+        /// </summary>
+        public static string OptionIncludeGroupUrl {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Bilder der Antworten exportieren?.
+        /// </summary>
+        public static string OptionIncludeImages {
+            get {
+                return ResourceManager.GetString("OptionIncludeImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Seitenzahl angeben?.
+        /// </summary>
+        public static string OptionIncludePageNumber {
+            get {
+                return ResourceManager.GetString("OptionIncludePageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Den Autor der Antworten angeben?.
+        /// </summary>
+        public static string OptionIncludePostAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludePostAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Nummber der Antwort angeben?.
+        /// </summary>
+        public static string OptionIncludePostNumber {
+            get {
+                return ResourceManager.GetString("OptionIncludePostNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angeben, wann die Antwort gepostet wurde?.
+        /// </summary>
+        public static string OptionIncludePostPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludePostPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Den Namen des Beitrags am Anfang angeben?.
+        /// </summary>
+        public static string OptionIncludeThread {
+            get {
+                return ResourceManager.GetString("OptionIncludeThread", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch den Autor des Beitrags angeben?.
+        /// </summary>
+        public static string OptionIncludeThreadAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch angeben, wann der Beitrag erstellt wurde?.
+        /// </summary>
+        public static string OptionIncludeThreadPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auch die URL des Beitrags angeben?.
+        /// </summary>
+        public static string OptionIncludeThreadUrl {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Reihenfolge der Beiträge umkehren (von der neuesten zur ältesten statt von der ältesten zur neuesten)?.
+        /// </summary>
+        public static string OptionReserveOrder {
+            get {
+                return ResourceManager.GetString("OptionReserveOrder", resourceCulture);
             }
         }
         

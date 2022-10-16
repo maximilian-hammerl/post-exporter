@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Rollenspielhimmel Exporter"
         Icon="/Resources/logo.ico"
-        Height="950"
+        Height="1000"
         Width="1500">
     <DockPanel Background="#183153">
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="9" />

@@ -95,7 +95,7 @@ public static class Exporter
 
         switch (ExportConfiguration.FileFormat)
         {
-            case FileFormat.Text:
+            case FileFormat.Txt:
             {
                 await using var txtFile = new StreamWriter(filePath);
 
@@ -212,7 +212,7 @@ public static class Exporter
                 break;
             }
 
-            case FileFormat.Word:
+            case FileFormat.Docx:
             {
                 // TODO
                 // using var document = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document);

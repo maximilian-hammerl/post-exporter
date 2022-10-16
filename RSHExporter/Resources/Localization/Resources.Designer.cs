@@ -240,6 +240,33 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Word File (.docx).
+        /// </summary>
+        public static string FileFormatDocx {
+            get {
+                return ResourceManager.GetString("FileFormatDocx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTML File (.html).
+        /// </summary>
+        public static string FileFormatHtml {
+            get {
+                return ResourceManager.GetString("FileFormatHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text File (.txt).
+        /// </summary>
+        public static string FileFormatTxt {
+            get {
+                return ResourceManager.GetString("FileFormatTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help {
@@ -335,6 +362,159 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the images of the posts?.
+        /// </summary>
+        public static string OptionDownloadImages {
+            get {
+                return ResourceManager.GetString("OptionDownloadImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the images of every post to its own folder?.
+        /// </summary>
+        public static string OptionDownloadImagesToOwnFolder {
+            get {
+                return ResourceManager.GetString("OptionDownloadImagesToOwnFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download the threads of every group to its own folder?.
+        /// </summary>
+        public static string OptionDownloadToOwnFolder {
+            get {
+                return ResourceManager.GetString("OptionDownloadToOwnFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include the name of the group at the top?.
+        /// </summary>
+        public static string OptionIncludeGroup {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include the author of the group?.
+        /// </summary>
+        public static string OptionIncludeGroupAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include when the group was created?.
+        /// </summary>
+        public static string OptionIncludeGroupPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include the URL to the group?.
+        /// </summary>
+        public static string OptionIncludeGroupUrl {
+            get {
+                return ResourceManager.GetString("OptionIncludeGroupUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export the images of the posts?.
+        /// </summary>
+        public static string OptionIncludeImages {
+            get {
+                return ResourceManager.GetString("OptionIncludeImages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include the page number?.
+        /// </summary>
+        public static string OptionIncludePageNumber {
+            get {
+                return ResourceManager.GetString("OptionIncludePageNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include the author of the posts?.
+        /// </summary>
+        public static string OptionIncludePostAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludePostAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include the post number?.
+        /// </summary>
+        public static string OptionIncludePostNumber {
+            get {
+                return ResourceManager.GetString("OptionIncludePostNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include when the post was posted?.
+        /// </summary>
+        public static string OptionIncludePostPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludePostPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include the name of the thread at the top?.
+        /// </summary>
+        public static string OptionIncludeThread {
+            get {
+                return ResourceManager.GetString("OptionIncludeThread", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include the author of the thread?.
+        /// </summary>
+        public static string OptionIncludeThreadAuthor {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include when the thread was created?.
+        /// </summary>
+        public static string OptionIncludeThreadPostedAt {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Also include the URL to the thread?.
+        /// </summary>
+        public static string OptionIncludeThreadUrl {
+            get {
+                return ResourceManager.GetString("OptionIncludeThreadUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse the order of the posts (newest to oldest instead of oldest to newest)?.
+        /// </summary>
+        public static string OptionReserveOrder {
+            get {
+                return ResourceManager.GetString("OptionReserveOrder", resourceCulture);
             }
         }
         

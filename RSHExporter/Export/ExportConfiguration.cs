@@ -19,7 +19,7 @@ public static class ExportConfiguration
         }
     }
 
-    public static FileFormat FileFormat { get; set; } = FileFormat.Text;
+    public static FileFormat FileFormat { get; set; } = FileFormat.Txt;
     public static bool IncludeGroup { get; set; } = false;
     public static bool IncludeGroupAuthor { get; set; } = false;
     public static bool IncludeGroupPostedAt { get; set; } = false;

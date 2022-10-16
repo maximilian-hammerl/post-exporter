@@ -4,9 +4,9 @@ namespace RSHExporter.Export;
 
 public enum FileFormat
 {
-    Text,
+    Txt,
     Html,
-    Word
+    Docx
 }
 
 public static class FileFormatExtensions
@@ -15,9 +15,9 @@ public static class FileFormatExtensions
     {
         return fileFormat switch
         {
-            FileFormat.Text => "txt",
+            FileFormat.Txt => "txt",
             FileFormat.Html => "html",
-            FileFormat.Word => "docx",
+            FileFormat.Docx => "docx",
             _ => throw new NotSupportedException(fileFormat.ToString())
         };
     }
@@ -26,9 +26,9 @@ public static class FileFormatExtensions
     {
         return fileFormat switch
         {
-            FileFormat.Text => "Text File (.txt)",
-            FileFormat.Html => "HTML File (.html)",
-            FileFormat.Word => "Word File (.docx)",
+            FileFormat.Txt => Resources.Localization.Resources.FileFormatTxt,
+            FileFormat.Html => Resources.Localization.Resources.FileFormatHtml,
+            FileFormat.Docx => Resources.Localization.Resources.FileFormatDocx,
             _ => throw new NotSupportedException(fileFormat.ToString())
         };
     }

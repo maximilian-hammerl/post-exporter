@@ -16,7 +16,14 @@ public partial class LoginPage : Page
         InitializeComponent();
 
         var version = Assembly.GetExecutingAssembly().GetName().Version;
-        VersionTextBlock.Text = $"Version {version}";
+        if (version != null)
+        {
+            VersionTextBlock.Text = $"Version {version.Major}.{version.Minor}";
+        }
+
+        var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+        ToGermanButton.IsEnabled = currentCulture != "de" && !currentCulture.StartsWith("de-");
+        ToEnglishButton.IsEnabled = currentCulture != "en" && !currentCulture.StartsWith("en-");
     }
 
     private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)

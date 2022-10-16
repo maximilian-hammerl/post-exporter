@@ -177,83 +177,79 @@
                     <StackPanel x:Name="ExportOptionsContent">
                         <TextBlock Text="{x:Static l:Resources.ExportOptions}" Style="{StaticResource LabelTextBlock}" />
 
-                        <CheckBox x:Name="IncludeGroupCheckBox" Content="Include the name of the group at the top?"
-                                  IsThreeState="False" Checked="IncludeGroupCheckBox_OnChecked"
-                                  Unchecked="IncludeGroupCheckBox_OnUnchecked"
+                        <CheckBox x:Name="IncludeGroupCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeGroup}" IsThreeState="False"
+                                  Checked="IncludeGroupCheckBox_OnChecked" Unchecked="IncludeGroupCheckBox_OnUnchecked"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeGroupAuthorCheckBox" Content="Also include the author of the group?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludeGroupAuthorCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeGroupAuthor}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludeGroupPostedAtCheckBox"
-                                  Content="Also include when the group was created?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionIncludeGroupPostedAt}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeGroupUrlCheckBox" Content="Also include the URL to the group?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludeGroupUrlCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeGroupUrl}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeThreadCheckBox" Content="Include the name of the thread at the top?"
-                                  IsThreeState="False" Checked="IncludeThreadCheckBox_OnChecked"
+                        <CheckBox x:Name="IncludeThreadCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeThread}" IsThreeState="False"
+                                  Checked="IncludeThreadCheckBox_OnChecked"
                                   Unchecked="IncludeThreadCheckBox_OnUnchecked"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeThreadAuthorCheckBox" Content="Also include the author of the thread?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludeThreadAuthorCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeThreadAuthor}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludeThreadPostedAtCheckBox"
-                                  Content="Also include when the thread was created?"
-                                  IsThreeState="False"
-                                  Style="{StaticResource SecondaryCheckBoxStyle}" />
+                                  Content="{x:Static l:Resources.OptionIncludeThreadPostedAt}"
+                                  IsThreeState="False" Style="{StaticResource SecondaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeThreadUrlCheckBox" Content="Also include the URL to the thread?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludeThreadUrlCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeThreadUrl}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludePostAuthorCheckBox"
-                                  Content="Include the author of the posts?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionIncludePostAuthor}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludePostPostedAtCheckBox"
-                                  Content="Include when the post was posted?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionIncludePostPostedAt}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludePostNumberCheckBox" Content="Include the post number?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludePostNumberCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludePostNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludePageNumberCheckBox" Content="Include the page number?"
-                                  IsThreeState="False"
+                        <CheckBox x:Name="IncludePageNumberCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludePageNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="DownloadToOwnFolderCheckBox"
-                                  Content="Download the threads of every group to its own folder?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionDownloadToOwnFolder}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludeImagesCheckBox" Content="Include the images of the posts?"
-                                  IsThreeState="False" Checked="IncludeImagesCheckBox_OnChecked"
+                        <CheckBox x:Name="IncludeImagesCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludeImages}" IsThreeState="False"
+                                  Checked="IncludeImagesCheckBox_OnChecked"
                                   Unchecked="IncludeImagesCheckBox_OnUnchecked"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="DownloadImagesCheckBox" Content="Download the images of the posts?"
-                                  IsThreeState="False" Checked="DownloadImagesCheckBox_OnChecked"
+                        <CheckBox x:Name="DownloadImagesCheckBox"
+                                  Content="{x:Static l:Resources.OptionDownloadImages}" IsThreeState="False"
+                                  Checked="DownloadImagesCheckBox_OnChecked"
                                   Unchecked="DownloadImagesCheckBox_OnUnchecked"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="DownloadImagesToOwnFolderCheckBox"
-                                  Content="Download the images of every port to its own folder?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionDownloadImagesToOwnFolder}" IsThreeState="False"
                                   Style="{StaticResource TertiaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="ReserveOrderCheckBox"
-                                  Content="Reverse the order of the posts (newest to oldest instead of oldest to newest)?"
-                                  IsThreeState="False"
+                                  Content="{x:Static l:Resources.OptionReserveOrder}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
                     </StackPanel>
                 </StackPanel>

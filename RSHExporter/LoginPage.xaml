@@ -28,13 +28,13 @@
                 Style="{StaticResource BorderStyle}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                <Button Click="ToEnglishButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                <Button x:Name="ToEnglishButton" Click="ToEnglishButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
                     <Border Style="{StaticResource ImageBorderStyle}">
                         <Image Source="/Resources/Images/flag-united-kingdom.png" Height="20" />
                     </Border>
                 </Button>
 
-                <Button Click="ToGermanButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
+                <Button x:Name="ToGermanButton" Click="ToGermanButton_OnClick" Width="60" Style="{StaticResource IconButtonStyle}">
                     <Border Style="{StaticResource ImageBorderStyle}">
                         <Image Source="/Resources/Images/flag-german.png" Height="20" />
                     </Border>
