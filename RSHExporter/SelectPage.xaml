@@ -153,6 +153,7 @@
                                     </Border>
 
                                     <Button Grid.Column="2" Tag="{Binding Path=Group.Url}" Click="UrlButton_OnClick"
+                                            ToolTip="{Binding Path=Group.Url}"
                                             Height="25" Width="25" Style="{StaticResource ListButtonStyle}">
                                         <Image fa:FontAwesome.Icon="Solid_ArrowUpRightFromSquare"
                                                Height="15" Width="15" />
@@ -191,6 +192,7 @@
                                                Style="{StaticResource ListTextBlockStyle}" />
 
                                     <Button Grid.Column="2" Tag="{Binding Path=Thread.Url}" Click="UrlButton_OnClick"
+                                            ToolTip="{Binding Path=Thread.Url}"
                                             Height="25" Width="25" Style="{StaticResource ListButtonStyle}">
                                         <Image fa:FontAwesome.Icon="Solid_ArrowUpRightFromSquare"
                                                Height="15" Width="15" />
