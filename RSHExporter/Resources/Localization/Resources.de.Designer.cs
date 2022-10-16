@@ -330,6 +330,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ich habe die geltenden Hinweise und Lizenzbedingungen gelesen und akzeptiere sie.
+        /// </summary>
+        public static string LoginAcceptLicense {
+            get {
+                return ResourceManager.GetString("LoginAcceptLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Melde dich mit deinem Rollenspielhimmel Benutzernamen und Passwort an um loszulegen!.
         /// </summary>
         public static string LoginExplanation {
@@ -344,6 +353,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginLove {
             get {
                 return ResourceManager.GetString("LoginLove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bevor du dich einloggen kannst, musst du die geltenden Hinweise und Lizenzbedingungen akzeptieren.
+        /// </summary>
+        public static string LoginMissingLicense {
+            get {
+                return ResourceManager.GetString("LoginMissingLicense", resourceCulture);
             }
         }
         
@@ -371,6 +389,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginNoGroups {
             get {
                 return ResourceManager.GetString("LoginNoGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Klicke hier, um die geltenden Hinweise und Lizenzbedingungen zu öffnen).
+        /// </summary>
+        public static string LoginOpenLicense {
+            get {
+                return ResourceManager.GetString("LoginOpenLicense", resourceCulture);
             }
         }
         
@@ -425,6 +452,15 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         

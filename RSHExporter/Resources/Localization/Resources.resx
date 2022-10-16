@@ -236,4 +236,16 @@
     <data name="ExportExportCancelled" xml:space="preserve">
         <value>The export was cancelled. Some files may have already been exported.</value>
     </data>
+    <data name="Ok" xml:space="preserve">
+        <value>Ok</value>
+    </data>
+    <data name="LoginAcceptLicense" xml:space="preserve">
+        <value>I have read and accept the applicable notices and licencse terms</value>
+    </data>
+    <data name="LoginOpenLicense" xml:space="preserve">
+        <value>(Click here to open the applicable notices and license terms)</value>
+    </data>
+    <data name="LoginMissingLicense" xml:space="preserve">
+        <value>You have to accept the applicable notices and licencse terms before you can login</value>
+    </data>
 </root>

@@ -330,6 +330,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I have read and accept the applicable notices and licencse terms.
+        /// </summary>
+        public static string LoginAcceptLicense {
+            get {
+                return ResourceManager.GetString("LoginAcceptLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login with your Rollenspielhimmel username and password to get started!.
         /// </summary>
         public static string LoginExplanation {
@@ -344,6 +353,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginLove {
             get {
                 return ResourceManager.GetString("LoginLove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have to accept the applicable notices and licencse terms before you can login.
+        /// </summary>
+        public static string LoginMissingLicense {
+            get {
+                return ResourceManager.GetString("LoginMissingLicense", resourceCulture);
             }
         }
         
@@ -371,6 +389,15 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginNoGroups {
             get {
                 return ResourceManager.GetString("LoginNoGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Click here to open the applicable notices and license terms).
+        /// </summary>
+        public static string LoginOpenLicense {
+            get {
+                return ResourceManager.GetString("LoginOpenLicense", resourceCulture);
             }
         }
         
@@ -425,6 +452,15 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
             }
         }
         

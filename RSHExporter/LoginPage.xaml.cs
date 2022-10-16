@@ -50,6 +50,13 @@ public partial class LoginPage : Page
     {
         ToggleLoginButtonLoading(true);
 
+        if (!LicenseCheckBox.IsChecked.HasValue || !LicenseCheckBox.IsChecked.Value)
+        {
+            ToggleLoginButtonLoading(false);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingLicense);
+            return;
+        }
+
         var username = Username.Text;
         if (string.IsNullOrEmpty(username))
         {
@@ -123,6 +130,12 @@ public partial class LoginPage : Page
         };
         process.Start();
 
+        e.Handled = true;
+    }
+
+    private void License_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        new LicenseDialog().ShowDialog();
         e.Handled = true;
     }
 }
