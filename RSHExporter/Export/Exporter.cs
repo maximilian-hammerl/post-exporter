@@ -22,7 +22,8 @@ public static class Exporter
         var thread = posts[0].Thread;
         var group = thread.Group;
 
-        var (directoryPath, imagesDirectoryPath, imagesDirectory, filePath) = CreatePaths(group, thread);
+        var (directoryPath, imagesDirectoryPath, imagesDirectory, filePathWithoutExtension) =
+            CreatePaths(group, thread);
 
         Directory.CreateDirectory(directoryPath);
 
@@ -94,139 +95,147 @@ public static class Exporter
             }
         }
 
-        switch (ExportConfiguration.FileFormat)
+        foreach (var fileFormat in ExportConfiguration.FileFormats)
         {
-            case FileFormat.Txt:
+            var filePathWithExtension = $"{filePathWithoutExtension}.{fileFormat.FileExtension()}";
+
+            switch (fileFormat)
             {
-                await using var txtFile = new StreamWriter(filePath);
-
-                if (ExportConfiguration.IncludeGroup)
+                case FileFormat.Txt:
                 {
-                    await txtFile.WriteLineAsync(group.Title);
+                    await using var txtFile = new StreamWriter(filePathWithExtension);
 
-                    if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                            ExportConfiguration.IncludeGroupPostedAt, out var header))
+                    if (ExportConfiguration.IncludeGroup)
                     {
-                        await txtFile.WriteLineAsync(header);
+                        await txtFile.WriteLineAsync(group.Title);
+
+                        if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
+                                ExportConfiguration.IncludeGroupPostedAt, out var header))
+                        {
+                            await txtFile.WriteLineAsync(header);
+                        }
+
+                        if (ExportConfiguration.IncludeGroupUrl)
+                        {
+                            await txtFile.WriteLineAsync($"URL: {group.Url}");
+                        }
+
+                        await txtFile.WriteLineAsync();
                     }
 
-                    if (ExportConfiguration.IncludeGroupUrl)
+                    if (ExportConfiguration.IncludeThread)
                     {
-                        await txtFile.WriteLineAsync($"URL: {group.Url}");
+                        await txtFile.WriteLineAsync(thread.Title);
+
+                        if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
+                                ExportConfiguration.IncludeThreadPostedAt, out var header))
+                        {
+                            await txtFile.WriteLineAsync(header);
+                        }
+
+                        if (ExportConfiguration.IncludeThreadUrl)
+                        {
+                            await txtFile.WriteLineAsync($"URL: {thread.Url}");
+                        }
+
+                        await txtFile.WriteLineAsync();
                     }
 
-                    await txtFile.WriteLineAsync();
+                    for (var i = 0; i < posts.Count; ++i)
+                    {
+                        var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
+                        var post = posts[postNumber];
+
+                        if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+                        {
+                            await txtFile.WriteLineAsync(header);
+                        }
+
+                        await WriteLines(txtFile, post.Node);
+                        await txtFile.WriteLineAsync();
+                    }
+
+                    break;
                 }
 
-                if (ExportConfiguration.IncludeThread)
+                case FileFormat.Html:
                 {
-                    await txtFile.WriteLineAsync(thread.Title);
+                    await using var htmlFile = new StreamWriter(filePathWithExtension);
 
-                    if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                            ExportConfiguration.IncludeThreadPostedAt, out var header))
+                    await htmlFile.WriteLineAsync("<html>");
+                    await htmlFile.WriteLineAsync(
+                        $"<head><title>{HttpUtility.HtmlEncode(thread.Title)}</title></head>");
+                    await htmlFile.WriteLineAsync("<body>");
+
+                    if (ExportConfiguration.IncludeGroup)
                     {
-                        await txtFile.WriteLineAsync(header);
+                        await htmlFile.WriteLineAsync($"<h3>{HttpUtility.HtmlEncode(group.Title)}</h3>");
+
+                        if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
+                                ExportConfiguration.IncludeGroupPostedAt, out var header))
+                        {
+                            await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
+                        }
+
+                        if (ExportConfiguration.IncludeGroupUrl)
+                        {
+                            await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{group.Url}\">{group.Url}</a></p>");
+                        }
                     }
 
-                    if (ExportConfiguration.IncludeThreadUrl)
+                    if (ExportConfiguration.IncludeThread)
                     {
-                        await txtFile.WriteLineAsync($"URL: {thread.Url}");
+                        await htmlFile.WriteLineAsync($"<h2>{HttpUtility.HtmlEncode(thread.Title)}</h2>");
+
+                        if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
+                                ExportConfiguration.IncludeThreadPostedAt, out var header))
+                        {
+                            await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
+                        }
+
+                        if (ExportConfiguration.IncludeThreadUrl)
+                        {
+                            await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{thread.Url}\">{thread.Url}</a></p>");
+                        }
                     }
 
-                    await txtFile.WriteLineAsync();
+                    for (var i = 0; i < posts.Count; ++i)
+                    {
+                        var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
+                        var post = posts[postNumber];
+
+                        await htmlFile.WriteLineAsync("<div>");
+
+                        if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+                        {
+                            await htmlFile.WriteLineAsync($"<p><strong>{HttpUtility.HtmlEncode(header)}</strong></p>");
+                        }
+
+                        await htmlFile.WriteLineAsync($"{post.Node.InnerHtml}");
+                        await htmlFile.WriteLineAsync("</div><br/>");
+                    }
+
+                    await htmlFile.WriteLineAsync("</body>");
+                    await htmlFile.WriteLineAsync("</html>");
+
+                    break;
                 }
 
-                for (var i = 0; i < posts.Count; ++i)
+                case FileFormat.Docx:
                 {
-                    var post = posts[ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i];
+                    // TODO
+                    // using var document = WordprocessingDocument.Create(filePathWithExtension, WordprocessingDocumentType.Document);
+                    // var mainPart = document.AddMainDocumentPart();
+                    // mainPart.Document.Save();
 
-                    if (CreateHeaderLine(post, i + 1, posts.Count, out var header))
-                    {
-                        await txtFile.WriteLineAsync(header);
-                    }
+                    // await File.WriteAllBytesAsync(filePathWithExtension, generatedDocument.ToArray());
 
-                    await WriteLines(txtFile, post.Node);
-                    await txtFile.WriteLineAsync();
+                    break;
                 }
 
-                break;
+                default:
+                    throw new NotSupportedException(fileFormat.ToString());
             }
-
-            case FileFormat.Html:
-            {
-                await using var htmlFile = new StreamWriter(filePath);
-
-                await htmlFile.WriteLineAsync("<html>");
-                await htmlFile.WriteLineAsync($"<head><title>{HttpUtility.HtmlEncode(thread.Title)}</title></head>");
-                await htmlFile.WriteLineAsync("<body>");
-
-                if (ExportConfiguration.IncludeGroup)
-                {
-                    await htmlFile.WriteLineAsync($"<h3>{HttpUtility.HtmlEncode(group.Title)}</h3>");
-
-                    if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                            ExportConfiguration.IncludeGroupPostedAt, out var header))
-                    {
-                        await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
-                    }
-
-                    if (ExportConfiguration.IncludeGroupUrl)
-                    {
-                        await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{group.Url}\">{group.Url}</a></p>");
-                    }
-                }
-
-                if (ExportConfiguration.IncludeThread)
-                {
-                    await htmlFile.WriteLineAsync($"<h2>{HttpUtility.HtmlEncode(thread.Title)}</h2>");
-
-                    if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                            ExportConfiguration.IncludeThreadPostedAt, out var header))
-                    {
-                        await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
-                    }
-
-                    if (ExportConfiguration.IncludeThreadUrl)
-                    {
-                        await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{thread.Url}\">{thread.Url}</a></p>");
-                    }
-                }
-
-                for (var i = 0; i < posts.Count; ++i)
-                {
-                    var post = posts[ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i];
-
-                    await htmlFile.WriteLineAsync("<div>");
-
-                    if (CreateHeaderLine(post, i + 1, posts.Count, out var header))
-                    {
-                        await htmlFile.WriteLineAsync($"<p><strong>{HttpUtility.HtmlEncode(header)}</strong></p>");
-                    }
-
-                    await htmlFile.WriteLineAsync($"{post.Node.InnerHtml}");
-                    await htmlFile.WriteLineAsync("</div><br/>");
-                }
-
-                await htmlFile.WriteLineAsync("</body>");
-                await htmlFile.WriteLineAsync("</html>");
-
-                break;
-            }
-
-            case FileFormat.Docx:
-            {
-                // TODO
-                // using var document = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document);
-                // var mainPart = document.AddMainDocumentPart();
-                // mainPart.Document.Save();
-
-                // await File.WriteAllBytesAsync(filePath, generatedDocument.ToArray());
-
-                break;
-            }
-
-            default:
-                throw new NotSupportedException(ExportConfiguration.FileFormat.ToString());
         }
     }
 
@@ -373,8 +382,6 @@ public static class Exporter
             imagesDirectoryPath = directoryPath;
             imagesDirectory = ".";
         }
-
-        fileName.Append('.').Append(ExportConfiguration.FileFormat.FileExtension());
 
         return (directoryPath, imagesDirectoryPath, imagesDirectory, Path.Join(directoryPath, fileName.ToString()));
     }

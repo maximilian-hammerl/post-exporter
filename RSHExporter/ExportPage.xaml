@@ -169,7 +169,22 @@
 
                     <StackPanel x:Name="ExportFormatContent">
                         <TextBlock Text="{x:Static l:Resources.ExportFormat}" Style="{StaticResource LabelTextBlock}" />
-                        <ListBox x:Name="FileFormats" SelectionMode="Single" Style="{StaticResource ListBoxStyle}" />
+
+                        <ItemsControl x:Name="FileFormats" ItemsSource="{Binding}" Margin="3 3 3 12">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
+                                              IsEnabled="True" VerticalAlignment="Center"
+                                              Style="{StaticResource PrimaryCheckBoxStyle}">
+                                        <WrapPanel>
+                                            <Image fa:FontAwesome.Icon="{Binding Path=Icon}" Height="15" Width="15"
+                                                   Margin="3  0" />
+                                            <TextBlock Text="{Binding Path=Label}" />
+                                        </WrapPanel>
+                                    </CheckBox>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
 
                     <Separator Style="{StaticResource SeparatorStyle}" />

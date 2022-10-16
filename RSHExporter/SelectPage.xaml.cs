@@ -287,7 +287,6 @@ public partial class SelectPage : Page
     public sealed class SelectableThread : INotifyPropertyChanged
     {
         private bool _isSelected;
-
         private Thread _thread;
 
         public SelectableThread(Thread thread)

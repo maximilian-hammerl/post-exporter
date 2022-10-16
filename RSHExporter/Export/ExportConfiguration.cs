@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RSHExporter.Export;
 
@@ -19,7 +20,7 @@ public static class ExportConfiguration
         }
     }
 
-    public static FileFormat FileFormat { get; set; } = FileFormat.Txt;
+    public static List<FileFormat> FileFormats { get; set; } = new(3);
     public static bool IncludeGroup { get; set; } = false;
     public static bool IncludeGroupAuthor { get; set; } = false;
     public static bool IncludeGroupPostedAt { get; set; } = false;

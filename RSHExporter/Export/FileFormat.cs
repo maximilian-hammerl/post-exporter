@@ -32,4 +32,15 @@ public static class FileFormatExtensions
             _ => throw new NotSupportedException(fileFormat.ToString())
         };
     }
+
+    public static string FontAwesomeIcon(this FileFormat fileFormat)
+    {
+        return fileFormat switch
+        {
+            FileFormat.Txt => "Solid_FileLines",
+            FileFormat.Html => "Solid_FileCode",
+            FileFormat.Docx => "Solid_FileWord",
+            _ => throw new NotSupportedException(fileFormat.ToString())
+        };
+    }
 }

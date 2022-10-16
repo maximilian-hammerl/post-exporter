@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,8 +21,6 @@ namespace RSHExporter;
 
 public partial class ExportPage : Page
 {
-    private readonly Dictionary<string, FileFormat> _fileFormatByNames;
-
     private readonly List<Thread> _threads;
 
     public ExportPage(List<Thread> threads)
@@ -36,24 +37,17 @@ public partial class ExportPage : Page
 
         _threads = threads;
 
-        _fileFormatByNames = new Dictionary<string, FileFormat>();
-
+        SelectableFileFormats = new ObservableCollection<SelectableFileFormat>();
         foreach (var fileFormat in Enum.GetValues<FileFormat>())
         {
             // FIXME
-            if (fileFormat == FileFormat.Docx)
-            {
-                continue;
-            }
-
-            var displayName = fileFormat.DisplayName();
-            FileFormats.Items.Add(displayName);
-
-            _fileFormatByNames[displayName] = fileFormat;
+            SelectableFileFormats.Add(
+                new SelectableFileFormat(fileFormat, ExportConfiguration.FileFormats.Contains(fileFormat)));
         }
 
+        FileFormats.DataContext = SelectableFileFormats;
+
         UpdateDirectoryPath(ExportConfiguration.DirectoryPath);
-        FileFormats.SelectedItem = ExportConfiguration.FileFormat.DisplayName();
 
         if (ExportConfiguration.IncludeGroup)
         {
@@ -119,6 +113,7 @@ public partial class ExportPage : Page
     }
 
     [UsedImplicitly] public ObservableCollection<Thread> SelectedThreads { get; set; }
+    [UsedImplicitly] public ObservableCollection<SelectableFileFormat> SelectableFileFormats { get; set; }
 
     private void BackButton_OnClick(object sender, RoutedEventArgs e)
     {
@@ -167,17 +162,29 @@ public partial class ExportPage : Page
 
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
+        ToggleExportButtonLoading(true);
+
         if (string.IsNullOrWhiteSpace(ExportConfiguration.DirectoryPath))
         {
+            ToggleExportButtonLoading(false);
+
             ExportFolderContent.Background = Brushes.Yellow;
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFolder);
             ExportFolderContent.Background = Brushes.White;
             return;
         }
 
-        ToggleExportButtonLoading(true);
-
         SaveCurrentConfiguration();
+
+        if (ExportConfiguration.FileFormats.Count == 0)
+        {
+            ToggleExportButtonLoading(false);
+
+            ExportFormatContent.Background = Brushes.Yellow;
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFileFormat);
+            ExportFormatContent.Background = Brushes.White;
+            return;
+        }
 
         var tasks = new List<Task>();
 
@@ -190,8 +197,13 @@ public partial class ExportPage : Page
 
         ToggleExportButtonLoading(false);
 
-        DialogUtil.ShowInformation(string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported,
-            tasks.Count));
+        var numberFilesExported = tasks.Count * ExportConfiguration.FileFormats.Count;
+
+        DialogUtil.ShowInformation(numberFilesExported == 1
+            ? RSHExporter.Resources.Localization.Resources.ExportFileExported
+            : string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported, numberFilesExported)
+        );
+
         Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
     }
 
@@ -203,7 +215,7 @@ public partial class ExportPage : Page
 
     private void SaveCurrentConfiguration()
     {
-        ExportConfiguration.FileFormat = _fileFormatByNames[FileFormats.SelectedItem.ToString() ?? ""];
+        ExportConfiguration.FileFormats = GetSelectedFileFormats();
         ExportConfiguration.IncludeGroup = IncludeGroupCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeGroupAuthor = IncludeGroupAuthorCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeGroupPostedAt = IncludeGroupPostedAtCheckBox.IsChecked.GetValueOrDefault();
@@ -221,6 +233,13 @@ public partial class ExportPage : Page
         ExportConfiguration.DownloadImages = DownloadImagesCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.DownloadImagesToOwnFolder = DownloadImagesToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.ReserveOrder = ReserveOrderCheckBox.IsChecked.GetValueOrDefault();
+    }
+
+    private List<FileFormat> GetSelectedFileFormats()
+    {
+        return (from selectableFileFormat in SelectableFileFormats
+            where selectableFileFormat.IsSelected
+            select selectableFileFormat.FileFormat).ToList();
     }
 
     private static async Task PrepareAndExport(Thread thread)
@@ -349,5 +368,67 @@ public partial class ExportPage : Page
         }
 
         e.Handled = true;
+    }
+
+    public sealed class SelectableFileFormat : INotifyPropertyChanged
+    {
+        private FileFormat _fileFormat;
+        private string _icon;
+        private bool _isSelected;
+        private string _label;
+
+        public SelectableFileFormat(FileFormat fileFormat, bool isSelected = false)
+        {
+            _fileFormat = fileFormat;
+            _label = fileFormat.DisplayName();
+            _icon = fileFormat.FontAwesomeIcon();
+            _isSelected = isSelected;
+        }
+
+        [UsedImplicitly]
+        public FileFormat FileFormat
+        {
+            get => _fileFormat;
+            set => SetField(ref _fileFormat, value);
+        }
+
+        [UsedImplicitly]
+        public string Label
+        {
+            get => _label;
+            set => SetField(ref _label, value);
+        }
+
+        [UsedImplicitly]
+        public string Icon
+        {
+            get => _icon;
+            set => SetField(ref _icon, value);
+        }
+
+        [UsedImplicitly]
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetField(ref _isSelected, value);
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+            {
+                return;
+            }
+
+            field = value;
+            OnPropertyChanged(propertyName);
+        }
     }
 }
