@@ -317,4 +317,7 @@
     <data name="HelpExportStep6" xml:space="preserve">
         <value>Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation.</value>
     </data>
+    <data name="MessageHello" xml:space="preserve">
+        <value>Thanks for using the RSH Exporter! Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version! I am always happy to receive your feedback. Therefore, please consider allowing Sentry to track possible errors with the program. This makes it way easier for me to fix bugs.</value>
+    </data>
 </root>

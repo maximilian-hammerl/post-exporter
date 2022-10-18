@@ -41,18 +41,18 @@ public static class Exporter
 
                     var post = posts[i];
 
-                    var imageTags = post.Node.SelectNodes(".//img");
-                    if (imageTags == null)
+                    var imageNodes = new List<HtmlNode>();
+                    foreach (var textNode in post.TextNodes)
                     {
-                        continue;
+                        imageNodes.AddRange(textNode.SelectNodes(".//img"));
                     }
 
-                    for (int j = 0; j < imageTags.Count; ++j)
+                    for (var j = 0; j < imageNodes.Count; ++j)
                     {
-                        var imageTag = imageTags[j];
+                        var imageNode = imageNodes[j];
 
-                        var source = imageTag.Attributes["src"].Value;
-                        var altName = imageTag.Attributes["alt"].Value;
+                        var source = imageNode.Attributes["src"].Value;
+                        var altName = imageNode.Attributes["alt"].Value;
 
                         var fileNameBuilder = new StringBuilder();
                         fileNameBuilder.Append($"{i:D3}-{j:D3}");
@@ -76,7 +76,7 @@ public static class Exporter
 
                         if (success)
                         {
-                            imageTag.Attributes["src"].Value = Path.Combine(imagesDirectory, fileNameWithExtension);
+                            imageNode.Attributes["src"].Value = Path.Combine(imagesDirectory, fileNameWithExtension);
                         }
                     }
                 }
@@ -86,15 +86,15 @@ public static class Exporter
         {
             foreach (var post in posts)
             {
-                var imageTags = post.Node.SelectNodes(".//img");
-                if (imageTags == null)
+                var imageNodes = new List<HtmlNode>();
+                foreach (var textNode in post.TextNodes)
                 {
-                    continue;
+                    imageNodes.AddRange(textNode.SelectNodes(".//img"));
                 }
 
-                foreach (var imageTag in imageTags)
+                foreach (var imageNode in imageNodes)
                 {
-                    imageTag.Remove();
+                    imageNode.Remove();
                 }
             }
         }
@@ -159,7 +159,7 @@ public static class Exporter
                             await txtFile.WriteLineAsync(header);
                         }
 
-                        await WriteLines(txtFile, post.Node);
+                        await WriteLines(txtFile, post.TextNodes);
                         await txtFile.WriteLineAsync();
                     }
 
@@ -221,7 +221,11 @@ public static class Exporter
                             await htmlFile.WriteLineAsync($"<p><strong>{HttpUtility.HtmlEncode(header)}</strong></p>");
                         }
 
-                        await htmlFile.WriteLineAsync($"{post.Node.InnerHtml}");
+                        foreach (var textNode in post.TextNodes)
+                        {
+                            await htmlFile.WriteLineAsync($"{textNode.OuterHtml}");
+                        }
+
                         await htmlFile.WriteLineAsync("</div><br/>");
                     }
 
@@ -246,6 +250,14 @@ public static class Exporter
                 default:
                     throw new NotSupportedException(fileFormat.ToString());
             }
+        }
+    }
+
+    private static async Task WriteLines(StreamWriter txtFile, IEnumerable<HtmlNode> nodes)
+    {
+        foreach (var child in nodes)
+        {
+            await WriteLines(txtFile, child);
         }
     }
 
@@ -275,10 +287,7 @@ public static class Exporter
         }
         else
         {
-            foreach (var child in node.ChildNodes)
-            {
-                await WriteLines(txtFile, child);
-            }
+            await WriteLines(txtFile, node.ChildNodes);
         }
     }
 

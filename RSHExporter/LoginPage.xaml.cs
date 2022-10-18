@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -34,10 +35,21 @@ public partial class LoginPage : Page
         }
 
         Username.Focus();
+
+        Task.Run(async () =>
+        {
+            if (!HelloMessageSeen)
+            {
+                HelloMessageSeen = true;
+                await Task.Delay(2000);
+                DialogUtil.ShowInformation(RSHExporter.Resources.Localization.Resources.MessageHello, "Hi!");
+            }
+        });
     }
 
     public static bool CollectDataAccepted { get; private set; } = false;
     private static bool LicenseAccepted { get; set; } = false;
+    private static bool HelloMessageSeen { get; set; } = false;
 
     private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)
     {

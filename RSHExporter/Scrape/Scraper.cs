@@ -90,7 +90,10 @@ public static class Scraper
         threadResponse.EnsureSuccessStatusCode();
         var threadContent = await threadResponse.Content.ReadAsStringAsync(cancellationToken);
 
-        var doc = new HtmlDocument();
+        var doc = new HtmlDocument
+        {
+            OptionEmptyCollection = true
+        };
         doc.LoadHtml(threadContent);
 
         var postRows =
@@ -100,13 +103,76 @@ public static class Scraper
 
         foreach (var postRow in postRows)
         {
-            var head = HttpUtility.HtmlDecode(postRow.SelectSingleNode("./span[@class='forum_postbody_small']")
-                .InnerText.Trim());
+            var foundHeading = false;
+            HtmlNode? infoNode = null;
+            var textNodes = new List<HtmlNode>();
+            var foundSignature = false;
+
+            foreach (var childNode in postRow.ChildNodes)
+            {
+                if (!foundHeading)
+                {
+                    switch (childNode.Name)
+                    {
+                        case "#text":
+                            continue;
+                        case "h2":
+                            foundHeading = true;
+                            break;
+                        default:
+                            throw new NotSupportedException(
+                                $"Heading node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}!");
+                    }
+                }
+                else if (infoNode == null)
+                {
+                    switch (childNode.Name)
+                    {
+                        case "#text":
+                            continue;
+                        case "span" when childNode.HasClass("forum_postbody_small"):
+                            infoNode = childNode;
+                            break;
+                        default:
+                            throw new NotSupportedException(
+                                $"Info node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}!");
+                    }
+                }
+                else if (childNode.HasClass("signature"))
+                {
+                    foundSignature = true;
+                    break;
+                }
+                else
+                {
+                    textNodes.Add(childNode);
+                }
+            }
+
+            if (!foundHeading)
+            {
+                throw new NotSupportedException("Row without heading node!");
+            }
+
+            if (infoNode == null)
+            {
+                throw new NotSupportedException("Row without info node!");
+            }
+
+            if (textNodes.Count == 0)
+            {
+                throw new NotSupportedException("Row without text nodes!");
+            }
+
+            if (!foundSignature)
+            {
+                throw new NotSupportedException("Row without signature node!");
+            }
+
+            var head = HttpUtility.HtmlDecode(infoNode.InnerText.Trim());
             var (author, postedAt) = GetUserAndDateTime(head);
 
-            var bodyPTag = postRow.SelectSingleNode("./p[1]");
-
-            posts.Add(new Post(author, postedAt, bodyPTag, thread));
+            posts.Add(new Post(author, postedAt, textNodes, thread));
         }
 
         var nextPostsButton = doc.DocumentNode.SelectSingleNode("//div[@class='pagesBar']/a[position() = (last()-1)]");
@@ -132,15 +198,13 @@ public static class Scraper
         threadsResponse.EnsureSuccessStatusCode();
         var threadsContent = await threadsResponse.Content.ReadAsStringAsync();
 
-        var doc = new HtmlDocument();
+        var doc = new HtmlDocument
+        {
+            OptionEmptyCollection = true
+        };
         doc.LoadHtml(threadsContent);
 
         var threadRows = doc.DocumentNode.SelectNodes("//table[@class='sortable tableForums']/tbody/tr");
-
-        if (threadRows == null)
-        {
-            return new List<Thread>();
-        }
 
         var threads = new List<Thread>();
         foreach (var threadRow in threadRows)
@@ -164,7 +228,10 @@ public static class Scraper
         groupResponse.EnsureSuccessStatusCode();
         var groupContent = await groupResponse.Content.ReadAsStringAsync();
 
-        var doc = new HtmlDocument();
+        var doc = new HtmlDocument
+        {
+            OptionEmptyCollection = true
+        };
         doc.LoadHtml(groupContent);
 
         return doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']").Attributes["href"].Value;
@@ -182,7 +249,10 @@ public static class Scraper
         groupsResponse.EnsureSuccessStatusCode();
         var groupsContent = await groupsResponse.Content.ReadAsStringAsync();
 
-        var doc = new HtmlDocument();
+        var doc = new HtmlDocument
+        {
+            OptionEmptyCollection = true
+        };
         doc.LoadHtml(groupsContent);
 
         var groupRows =

@@ -645,6 +645,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thanks for using the RSH Exporter! Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version! I am always happy to receive your feedback. Therefore, please consider allowing Sentry to track possible errors with the program. This makes it way easier for me to fix bugs..
+        /// </summary>
+        public static string MessageHello {
+            get {
+                return ResourceManager.GetString("MessageHello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string Ok {
