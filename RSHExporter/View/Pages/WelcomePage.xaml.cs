@@ -20,12 +20,12 @@ public partial class WelcomePage : Page
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        DialogUtil.ShowInformation("To-Do");
     }
 
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        FeedbackUtil.HandleFeedback("FeedbackPage");
     }
 
     private void ContinueButton_OnClick(object sender, RoutedEventArgs e)

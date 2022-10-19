@@ -568,7 +568,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I allow anonymous data to be collected for application monitoring and error tracking using Sentry.
+        ///   Looks up a localized string similar to I allow anonymous data to be collected for application monitoring and error tracking using Sentry..
         /// </summary>
         public static string LoginAcceptSentry {
             get {
@@ -640,7 +640,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (Click here to learn more out Sentry).
+        ///   Looks up a localized string similar to Click here to learn more out Sentry.
         /// </summary>
         public static string LoginOpenSentry {
             get {
@@ -1002,7 +1002,9 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version!
         ///
-        ///I am always happy to receive your feedback. Therefore, please consider allowing Sentry to track possible errors with the program. This makes it way easier for me to fix bugs..
+        ///If you need help, most pages have a &quot;Help&quot; button at the top which explains the current page in detail. There is also a &quot;Feedback&quot; button for your ideas, suggestions and general feedback which I am always happy to receive.
+        ///
+        ///To simplify finding and fixing possible bugs, this program uses Sentry, a  [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WelcomeText {
             get {

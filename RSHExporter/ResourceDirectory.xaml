@@ -21,7 +21,7 @@
     <Style x:Key="Title1TextBlock" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="24" />
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Margin" Value="12 24 12 12" />
+        <Setter Property="Margin" Value="12 72 12 12" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="Wrap" />
     </Style>

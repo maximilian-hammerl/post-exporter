@@ -249,10 +249,10 @@
         <value>Bevor du dich einloggen kannst, musst du die geltenden Hinweise und Lizenzbedingungen akzeptieren</value>
     </data>
     <data name="LoginAcceptSentry" xml:space="preserve">
-        <value>Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden</value>
+        <value>Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden.</value>
     </data>
     <data name="LoginOpenSentry" xml:space="preserve">
-        <value>(Klicke hier, um mehr über Sentry zu erfahren)</value>
+        <value>Klicke hier, um mehr über Sentry zu erfahren</value>
     </data>
     <data name="ErrorNoSentry" xml:space="preserve">
         <value>Sentry wird verwendet, um dein Feedback zu senden. Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden.</value>
@@ -348,6 +348,8 @@ DIE SOFTWARE WIRD OHNE MÄNGELGEWÄHR UND OHNE JEGLICHE AUSDRÜCKLICHE ODER STIL
     <data name="WelcomeText" xml:space="preserve">
         <value>Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest!
 
-Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben.</value>
+Wenn du Hilfe benötigst, findest du auf den meisten Seiten oben einen "Hilfe"-Button, der die aktuelle Seite im Detail erklärt. Es gibt auch einen "Feedback"-Button für deine Ideen, Vorschläge und allgemeines Feedback, über das ich mich immer freue.
+
+Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Programm Sentry, eine Software zum Monitoring und Fehlerverfolgung. Es wäre daher super, wenn du Sentry erlaubst, Fehler zu verfolgen!</value>
     </data>
 </root>
