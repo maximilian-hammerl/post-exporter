@@ -348,7 +348,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Word File (.docx) - Contains formatted text and (if selected) images.
+        ///   Looks up a localized string similar to Word File (.docx) - Contains text and (if selected) images.
         /// </summary>
         public static string FileFormatDocx {
             get {

@@ -207,7 +207,7 @@
         <value>Auch angeben, wann der Beitrag erstellt wurde?</value>
     </data>
     <data name="FileFormatDocx" xml:space="preserve">
-        <value>Word-Datei (.docx) - Enthält formatierten Text und (wenn ausgewählt) Bilder</value>
+        <value>Word-Datei (.docx) - Enthält Text und (wenn ausgewählt) Bilder</value>
     </data>
     <data name="FileFormatHtml" xml:space="preserve">
         <value>HTML-Datei (.html) - Enthält formatierten Text und (wenn ausgewählt) Bilder</value>

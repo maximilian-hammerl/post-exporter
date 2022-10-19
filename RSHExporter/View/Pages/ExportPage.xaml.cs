@@ -157,6 +157,8 @@ public partial class ExportPage : Page
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
         ToggleExportButtonLoading(true);
+        LoadingProgressBar.Value = 0;
+        LoadingProgressBar.Maximum = _threads.Count;
 
         if (string.IsNullOrWhiteSpace(ExportConfiguration.DirectoryPath))
         {
@@ -209,7 +211,8 @@ public partial class ExportPage : Page
     private void ToggleExportButtonLoading(bool isLoading)
     {
         ExportButton.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
-        LoadingSpinner.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
+        LoadingProgressBar.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
+        LoadingButton.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void SaveCurrentConfiguration()
@@ -241,13 +244,14 @@ public partial class ExportPage : Page
             select selectableFileFormat.FileFormat).ToList();
     }
 
-    private static async Task PrepareAndExport(Thread thread, CancellationToken cancellationToken)
+    private async Task PrepareAndExport(Thread thread, CancellationToken cancellationToken)
     {
         try
         {
             var posts = await Scraper.GetPosts(thread, cancellationToken);
             cancellationToken.ThrowIfCancellationRequested();
             await Exporter.Export(posts, cancellationToken);
+            LoadingProgressBar.Value++;
         }
         catch (OperationCanceledException)
         {
@@ -355,14 +359,12 @@ public partial class ExportPage : Page
         e.Handled = true;
     }
 
-    private void CancelExport_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+    private void LoadingButton_OnClick(object sender, RoutedEventArgs e)
     {
         if (DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportCancelExport))
         {
             _cancellationTokenSource.Cancel();
         }
-
-        e.Handled = true;
     }
 
     public sealed class SelectableFileFormat : INotifyPropertyChanged

@@ -344,14 +344,19 @@ public static class Exporter
 
             foreach (var textNode in post.TextNodes)
             {
-                foreach (var imageNode in textNode.SelectNodes(".//img"))
+                if (ExportConfiguration.DownloadImages)
                 {
-                    imageNode.Attributes["src"].Value = fileFormat switch
+                    foreach (var imageNode in textNode.SelectNodes(".//img"))
                     {
-                        FileFormat.Html => imageNode.Attributes["srcHtml"].Value,
-                        FileFormat.Docx => imageNode.Attributes["srcDocx"].Value,
-                        _ => throw new NotSupportedException(fileFormat.ToString())
-                    };
+                        if (fileFormat == FileFormat.Html && imageNode.Attributes.Contains("srcHtml"))
+                        {
+                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
+                        }
+                        else if (fileFormat == FileFormat.Docx && imageNode.Attributes.Contains("srcDocx"))
+                        {
+                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
+                        }
+                    }
                 }
 
                 stringBuilder.Append(textNode.OuterHtml);

@@ -13,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="70" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -278,6 +278,7 @@
         <Border x:Name="StartExportContent" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="3 0 0 0"
                 CornerRadius="0 0 5 0" Style="{StaticResource BorderStyle}">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="170">
+
                 <Button x:Name="ExportButton" Visibility="Visible" Click="ExportButton_OnClick" IsDefault="True"
                         Style="{StaticResource IconButtonStyle}">
                     <Grid Width="160">
@@ -297,13 +298,27 @@
                     </Grid>
                 </Button>
 
-                <TextBlock x:Name="LoadingSpinner" Visibility="Collapsed" Height="25" Width="25"
-                           ToolTip="{x:Static l:Resources.CancelExport}">
-                    <Hyperlink TextDecorations="{x:Null}" NavigateUri="https://rollenspielhimmel.de"
-                               RequestNavigate="CancelExport_OnRequestNavigate">
-                        <Image fa:FontAwesome.Icon="Solid_Spinner" Style="{StaticResource LoadingImageStyle}" />
-                    </Hyperlink>
-                </TextBlock>
+                <ProgressBar x:Name="LoadingProgressBar" Visibility="Collapsed" Minimum="0" Height="15" Margin="3 3 3 6" />
+
+                <Button x:Name="LoadingButton" Visibility="Collapsed" Click="LoadingButton_OnClick"
+                        Style="{StaticResource IconButtonStyle}">
+                    <Grid Width="160">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="4*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Spinner" Height="15" Width="15"
+                               Style="{StaticResource LoadingImageStyle}" />
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Cancel}"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Button>
             </StackPanel>
         </Border>
     </Grid>

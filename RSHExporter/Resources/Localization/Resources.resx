@@ -213,7 +213,7 @@
         <value>HTML File (.html) - Contains formatted text and (if selected) images</value>
     </data>
     <data name="FileFormatDocx" xml:space="preserve">
-        <value>Word File (.docx) - Contains formatted text and (if selected) images</value>
+        <value>Word File (.docx) - Contains text and (if selected) images</value>
     </data>
     <data name="ExportMissingFileFormat" xml:space="preserve">
         <value>Please choose at least one export file format!</value>
