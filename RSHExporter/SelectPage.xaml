@@ -125,7 +125,7 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="{x:Static l:Resources.SelectGroups}" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.SelectGroups}" Style="{StaticResource Title2TextBlock}" />
 
                     <ItemsControl x:Name="GroupItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>
@@ -174,7 +174,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
                     <TextBlock x:Name="ThreadLabel" Text="{x:Static l:Resources.SelectThreads}"
-                               Style="{StaticResource TitleTextBlock}" />
+                               Style="{StaticResource Title2TextBlock}" />
 
                     <ItemsControl x:Name="ThreadItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>

@@ -55,7 +55,7 @@ public static class Scraper
         }
         catch (UriFormatException)
         {
-            if (LoginPage.CollectDataAccepted)
+            if (WelcomePage.CollectDataAccepted)
             {
                 SentrySdk.CaptureMessage($"Could not determine format of URI \"{uriString}\"!");
             }

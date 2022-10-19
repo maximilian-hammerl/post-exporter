@@ -5,9 +5,9 @@ namespace RSHExporter.Utils;
 
 public static class FeedbackUtil
 {
-    public static void HandleException(Exception exception)
+    public static void HandleFeedbackForException(Exception exception)
     {
-        if (LoginPage.CollectDataAccepted)
+        if (WelcomePage.CollectDataAccepted)
         {
             var sentryId = SentrySdk.CaptureException(exception);
 
@@ -26,7 +26,7 @@ public static class FeedbackUtil
 
     public static void HandleFeedback(string source)
     {
-        if (LoginPage.CollectDataAccepted)
+        if (WelcomePage.CollectDataAccepted)
         {
             var feedback = DialogUtil.ShowFeedbackDialog();
 

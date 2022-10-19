@@ -317,10 +317,37 @@
     <data name="HelpExportStep6" xml:space="preserve">
         <value>Abschließend kannst du den Export hier starten. (Der Export kann eine Weile dauern, besonders bei einer langsamen Internetverbindung.) Du kannst den Export jederzeit abbrechen, indem du auf die Ladeanimation klickst.</value>
     </data>
-    <data name="MessageHello" xml:space="preserve">
-        <value>Danke, dass du den RSH Exporter benutzt! Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest! Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben.</value>
-    </data>
     <data name="ExportOtherOptions" xml:space="preserve">
         <value>Weitere Export-Optionen:</value>
+    </data>
+    <data name="LicenseTitle" xml:space="preserve">
+        <value>Geltende Hinweise und Lizenzbedingungen</value>
+    </data>
+    <data name="LicenseText" xml:space="preserve">
+        <value>MIT-Lizenz
+Copyright (c) 2022 Maximilian Hammerl
+
+Jedem, der eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die „Software“) erhält, wird hiermit kostenlos die Erlaubnis erteilt, ohne Einschränkung mit der Software zu handeln, einschließlich und ohne Einschränkung der Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software, und Personen, denen die Software zur Verfügung gestellt wird, dies unter den folgenden Bedingungen zu gestatten:
+
+Der obige Urheberrechtshinweis und dieser Genehmigungshinweis müssen in allen Kopien oder wesentlichen Teilen der Software enthalten sein.
+
+DIE SOFTWARE WIRD OHNE MÄNGELGEWÄHR UND OHNE JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GEWÄHRLEISTUNG, EINSCHLIEẞLICH, ABER NICHT BESCHRÄNKT AUF DIE GEWÄHRLEISTUNG DER MARKTGÄNGIGKEIT, DER EIGNUNG FÜR EINEN BESTIMMTEN ZWECK UND DER NICHTVERLETZUNG VON RECHTEN DRITTER, ZUR VERFÜGUNG GESTELLT. DIE AUTOREN ODER URHEBERRECHTSINHABER SIND IN KEINEM FALL HAFTBAR FÜR ANSPRÜCHE, SCHÄDEN ODER ANDERE VERPFLICHTUNGEN, OB IN EINER VERTRAGS- ODER HAFTUNGSKLAGE, EINER UNERLAUBTEN HANDLUNG ODER ANDERWEITIG, DIE SICH AUS ODER IN VERBINDUNG MIT DER SOFTWARE ODER DER NUTZUNG ODER ANDEREN GESCHÄFTEN MIT DER SOFTWARE ERGEBEN.</value>
+    </data>
+    <data name="Decline" xml:space="preserve">
+        <value>Ablehnen</value>
+    </data>
+    <data name="Accept" xml:space="preserve">
+        <value>Akzeptieren</value>
+    </data>
+    <data name="Continue" xml:space="preserve">
+        <value>Weiter</value>
+    </data>
+    <data name="WelcomeTitle" xml:space="preserve">
+        <value>Danke, dass du den RSH Exporter benutzt</value>
+    </data>
+    <data name="WelcomeText" xml:space="preserve">
+        <value>Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest!
+
+Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben.</value>
     </data>
 </root>

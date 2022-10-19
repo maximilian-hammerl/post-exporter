@@ -103,7 +103,7 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="{x:Static l:Resources.ExportSelected}" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.ExportSelected}" Style="{StaticResource Title2TextBlock}" />
 
                     <ItemsControl x:Name="SelectedThreadItems" ItemsSource="{Binding}" Margin="3 3 3 12">
                         <ItemsControl.ItemTemplate>
@@ -132,7 +132,7 @@
                 Style="{StaticResource BorderStyle}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel Style="{StaticResource StackPanelStyle}">
-                    <TextBlock Text="{x:Static l:Resources.ExportExport}" Style="{StaticResource TitleTextBlock}" />
+                    <TextBlock Text="{x:Static l:Resources.ExportExport}" Style="{StaticResource Title2TextBlock}" />
 
                     <StackPanel x:Name="ExportFolderContent">
                         <TextBlock Style="{StaticResource TextTextBlock}">

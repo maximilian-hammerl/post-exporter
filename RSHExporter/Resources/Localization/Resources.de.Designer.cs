@@ -60,6 +60,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Akzeptieren.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zurück.
         /// </summary>
         public static string Back {
@@ -83,6 +92,24 @@ namespace RSHExporter.Resources.Localization {
         public static string CancelExport {
             get {
                 return ResourceManager.GetString("CancelExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weiter.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ablehnen.
+        /// </summary>
+        public static string Decline {
+            get {
+                return ResourceManager.GetString("Decline", resourceCulture);
             }
         }
         
@@ -501,6 +528,27 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MIT-Lizenz
+        ///Copyright (c) 2022 Maximilian Hammerl
+        ///
+        ///Jedem, der eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die „Software“) erhält, wird hiermit kostenlos die Erlaubnis erteilt, ohne Einschränkung mit der Software zu handeln, einschließlich und ohne Einschränkung der Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software, und Personen, denen die Software zur Verfügung gestellt wird, dies unte [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string LicenseText {
+            get {
+                return ResourceManager.GetString("LicenseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geltende Hinweise und Lizenzbedingungen.
+        /// </summary>
+        public static string LicenseTitle {
+            get {
+                return ResourceManager.GetString("LicenseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Anmelden.
         /// </summary>
         public static string Login {
@@ -650,15 +698,6 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Danke, dass du den RSH Exporter benutzt! Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest! Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben..
-        /// </summary>
-        public static string MessageHello {
-            get {
-                return ResourceManager.GetString("MessageHello", resourceCulture);
             }
         }
         
@@ -956,6 +995,26 @@ namespace RSHExporter.Resources.Localization {
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest!
+        ///
+        ///Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben..
+        /// </summary>
+        public static string WelcomeText {
+            get {
+                return ResourceManager.GetString("WelcomeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danke, dass du den RSH Exporter benutzt.
+        /// </summary>
+        public static string WelcomeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeTitle", resourceCulture);
             }
         }
     }

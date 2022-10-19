@@ -22,18 +22,18 @@ public partial class App : Application
     {
         AppDomain.CurrentDomain.UnhandledException += (_, e) =>
         {
-            FeedbackUtil.HandleException((Exception)e.ExceptionObject);
+            FeedbackUtil.HandleFeedbackForException((Exception)e.ExceptionObject);
         };
 
         DispatcherUnhandledException += (_, e) =>
         {
-            FeedbackUtil.HandleException(e.Exception);
+            FeedbackUtil.HandleFeedbackForException(e.Exception);
             e.Handled = true;
         };
 
         TaskScheduler.UnobservedTaskException += (_, e) =>
         {
-            FeedbackUtil.HandleException(e.Exception);
+            FeedbackUtil.HandleFeedbackForException(e.Exception);
             e.SetObserved();
         };
 

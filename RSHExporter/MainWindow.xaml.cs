@@ -11,7 +11,7 @@ namespace RSHExporter
         {
             InitializeComponent();
 
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new LicensePage());
         }
     }
 }
