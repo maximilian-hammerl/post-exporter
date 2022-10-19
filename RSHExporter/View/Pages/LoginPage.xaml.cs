@@ -4,7 +4,7 @@ using System.Windows.Navigation;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
 
-namespace RSHExporter;
+namespace RSHExporter.View.Pages;
 
 public partial class LoginPage : Page
 {

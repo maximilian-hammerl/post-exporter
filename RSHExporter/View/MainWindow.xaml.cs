@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using RSHExporter.View.Pages;
 
-namespace RSHExporter
+namespace RSHExporter.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

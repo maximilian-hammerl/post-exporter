@@ -1,4 +1,4 @@
-﻿<Page x:Class="RSHExporter.ExportPage"
+﻿<Page x:Class="RSHExporter.View.Pages.ExportPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -173,8 +173,7 @@
                         <ItemsControl x:Name="FileFormats" ItemsSource="{Binding}" Margin="3 3 3 3">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsEnabled="{Binding Path=IsEnabled}"
-                                              IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
+                                    <CheckBox IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
                                               VerticalAlignment="Center" Style="{StaticResource PrimaryCheckBoxStyle}">
                                         <WrapPanel>
                                             <Image fa:FontAwesome.Icon="{Binding Path=Icon}" Height="15" Width="15"
@@ -190,7 +189,8 @@
                     <Separator Style="{StaticResource SeparatorStyle}" />
 
                     <StackPanel x:Name="ExportOptionsContent">
-                        <TextBlock Text="{x:Static l:Resources.ExportTextOptions}" Style="{StaticResource LabelTextBlock}" />
+                        <TextBlock Text="{x:Static l:Resources.ExportTextOptions}"
+                                   Style="{StaticResource LabelTextBlock}" />
 
                         <CheckBox x:Name="IncludeGroupCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeGroup}" IsThreeState="False"
@@ -246,9 +246,10 @@
                         <CheckBox x:Name="IncludeImagesCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeImages}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
-                        
-                        <TextBlock Text="{x:Static l:Resources.ExportOtherOptions}" Style="{StaticResource LabelTextBlock}" />
-                        
+
+                        <TextBlock Text="{x:Static l:Resources.ExportOtherOptions}"
+                                   Style="{StaticResource LabelTextBlock}" />
+
                         <CheckBox x:Name="DownloadToOwnFolderCheckBox"
                                   Content="{x:Static l:Resources.OptionDownloadToOwnFolder}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />

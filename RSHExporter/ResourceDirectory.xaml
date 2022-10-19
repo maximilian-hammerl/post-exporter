@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:RSHExporter.Controls">
+                    xmlns:c="clr-namespace:RSHExporter.Controls">
     <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="White" />
         <Setter Property="BorderBrush" Value="White" />
@@ -138,5 +138,5 @@
     </Style>
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-    <controls:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
+    <c:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter" />
 </ResourceDictionary>

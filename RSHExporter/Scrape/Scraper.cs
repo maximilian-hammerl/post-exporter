@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
+using RSHExporter.View.Pages;
 using Sentry;
 
 namespace RSHExporter.Scrape;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace RSHExporter;
+namespace RSHExporter.View;
 
 public partial class FeedbackDialog : Window
 {

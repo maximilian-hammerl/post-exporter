@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Utils;
 
-namespace RSHExporter;
+namespace RSHExporter.View.Pages;
 
 public partial class WelcomePage : Page
 {
