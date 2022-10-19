@@ -5,7 +5,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
 using HtmlAgilityPack;
+using HtmlToOpenXml;
 using RSHExporter.Scrape;
 using Thread = RSHExporter.Scrape.Thread;
 
@@ -76,7 +79,10 @@ public static class Exporter
 
                         if (success)
                         {
-                            imageNode.Attributes["src"].Value = Path.Combine(imagesDirectory, fileNameWithExtension);
+                            imageNode.SetAttributeValue("srcHtml",
+                                Path.Combine(imagesDirectory, fileNameWithExtension));
+                            imageNode.SetAttributeValue("srcDocx",
+                                Path.Combine(imagesDirectoryPath, fileNameWithExtension));
                         }
                     }
                 }
@@ -109,140 +115,34 @@ public static class Exporter
             {
                 case FileFormat.Txt:
                 {
-                    await using var txtFile = new StreamWriter(filePathWithExtension);
+                    var stringBuilder = CreateText(group, thread, posts, cancellationToken);
 
-                    if (ExportConfiguration.IncludeGroup)
-                    {
-                        await txtFile.WriteLineAsync(group.Title);
-
-                        if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                                ExportConfiguration.IncludeGroupPostedAt, out var header))
-                        {
-                            await txtFile.WriteLineAsync(header);
-                        }
-
-                        if (ExportConfiguration.IncludeGroupUrl)
-                        {
-                            await txtFile.WriteLineAsync($"URL: {group.Url}");
-                        }
-
-                        await txtFile.WriteLineAsync();
-                    }
-
-                    if (ExportConfiguration.IncludeThread)
-                    {
-                        await txtFile.WriteLineAsync(thread.Title);
-
-                        if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                                ExportConfiguration.IncludeThreadPostedAt, out var header))
-                        {
-                            await txtFile.WriteLineAsync(header);
-                        }
-
-                        if (ExportConfiguration.IncludeThreadUrl)
-                        {
-                            await txtFile.WriteLineAsync($"URL: {thread.Url}");
-                        }
-
-                        await txtFile.WriteLineAsync();
-                    }
-
-                    for (var i = 0; i < posts.Count; ++i)
-                    {
-                        cancellationToken.ThrowIfCancellationRequested();
-
-                        var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
-                        var post = posts[postNumber];
-
-                        if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
-                        {
-                            await txtFile.WriteLineAsync(header);
-                        }
-
-                        await WriteLines(txtFile, post.TextNodes);
-                        await txtFile.WriteLineAsync();
-                    }
+                    await using var file = new StreamWriter(filePathWithExtension);
+                    await file.WriteAsync(stringBuilder, cancellationToken);
 
                     break;
                 }
 
                 case FileFormat.Html:
                 {
-                    await using var htmlFile = new StreamWriter(filePathWithExtension);
+                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, cancellationToken);
 
-                    await htmlFile.WriteLineAsync("<html>");
-                    await htmlFile.WriteLineAsync(
-                        $"<head><title>{HttpUtility.HtmlEncode(thread.Title)}</title></head>");
-                    await htmlFile.WriteLineAsync("<body>");
-
-                    if (ExportConfiguration.IncludeGroup)
-                    {
-                        await htmlFile.WriteLineAsync($"<h3>{HttpUtility.HtmlEncode(group.Title)}</h3>");
-
-                        if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                                ExportConfiguration.IncludeGroupPostedAt, out var header))
-                        {
-                            await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
-                        }
-
-                        if (ExportConfiguration.IncludeGroupUrl)
-                        {
-                            await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{group.Url}\">{group.Url}</a></p>");
-                        }
-                    }
-
-                    if (ExportConfiguration.IncludeThread)
-                    {
-                        await htmlFile.WriteLineAsync($"<h2>{HttpUtility.HtmlEncode(thread.Title)}</h2>");
-
-                        if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                                ExportConfiguration.IncludeThreadPostedAt, out var header))
-                        {
-                            await htmlFile.WriteLineAsync($"<p>{HttpUtility.HtmlEncode(header)}</p>");
-                        }
-
-                        if (ExportConfiguration.IncludeThreadUrl)
-                        {
-                            await htmlFile.WriteLineAsync($"<p>URL: <a href=\"{thread.Url}\">{thread.Url}</a></p>");
-                        }
-                    }
-
-                    for (var i = 0; i < posts.Count; ++i)
-                    {
-                        cancellationToken.ThrowIfCancellationRequested();
-
-                        var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
-                        var post = posts[postNumber];
-
-                        await htmlFile.WriteLineAsync("<div>");
-
-                        if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
-                        {
-                            await htmlFile.WriteLineAsync($"<p><strong>{HttpUtility.HtmlEncode(header)}</strong></p>");
-                        }
-
-                        foreach (var textNode in post.TextNodes)
-                        {
-                            await htmlFile.WriteLineAsync($"{textNode.OuterHtml}");
-                        }
-
-                        await htmlFile.WriteLineAsync("</div><br/>");
-                    }
-
-                    await htmlFile.WriteLineAsync("</body>");
-                    await htmlFile.WriteLineAsync("</html>");
+                    await using var file = new StreamWriter(filePathWithExtension);
+                    await file.WriteAsync(stringBuilder, cancellationToken);
 
                     break;
                 }
 
                 case FileFormat.Docx:
                 {
-                    // TODO
-                    // using var document = WordprocessingDocument.Create(filePathWithExtension, WordprocessingDocumentType.Document);
-                    // var mainPart = document.AddMainDocumentPart();
-                    // mainPart.Document.Save();
+                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, cancellationToken);
 
-                    // await File.WriteAllBytesAsync(filePathWithExtension, generatedDocument.ToArray());
+                    using var wordDocument =
+                        WordprocessingDocument.Create(filePathWithExtension, WordprocessingDocumentType.Document);
+                    var mainPart = wordDocument.AddMainDocumentPart();
+
+                    var converter = new HtmlConverter(mainPart);
+                    converter.ParseHtml(stringBuilder.ToString());
 
                     break;
                 }
@@ -253,15 +153,75 @@ public static class Exporter
         }
     }
 
-    private static async Task WriteLines(StreamWriter txtFile, IEnumerable<HtmlNode> nodes)
+    private static StringBuilder CreateText(Group group, Thread thread, List<Post> posts,
+        CancellationToken cancellationToken)
+    {
+        var stringBuilder = new StringBuilder();
+
+        if (ExportConfiguration.IncludeGroup)
+        {
+            stringBuilder.AppendLine(group.Title);
+
+            if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
+                    ExportConfiguration.IncludeGroupPostedAt, out var header))
+            {
+                stringBuilder.AppendLine(header);
+            }
+
+            if (ExportConfiguration.IncludeGroupUrl)
+            {
+                stringBuilder.AppendLine($"URL: {group.Url}");
+            }
+
+            stringBuilder.AppendLine();
+        }
+
+        if (ExportConfiguration.IncludeThread)
+        {
+            stringBuilder.AppendLine(thread.Title);
+
+            if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
+                    ExportConfiguration.IncludeThreadPostedAt, out var header))
+            {
+                stringBuilder.AppendLine(header);
+            }
+
+            if (ExportConfiguration.IncludeThreadUrl)
+            {
+                stringBuilder.AppendLine($"URL: {thread.Url}");
+            }
+
+            stringBuilder.AppendLine();
+        }
+
+        for (var i = 0; i < posts.Count; ++i)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
+            var post = posts[postNumber];
+
+            if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+            {
+                stringBuilder.AppendLine(header);
+            }
+
+            WriteLines(stringBuilder, post.TextNodes);
+            stringBuilder.AppendLine();
+        }
+
+        return stringBuilder;
+    }
+
+    private static void WriteLines(StringBuilder stringBuilder, IEnumerable<HtmlNode> nodes)
     {
         foreach (var child in nodes)
         {
-            await WriteLines(txtFile, child);
+            WriteLines(stringBuilder, child);
         }
     }
 
-    private static async Task WriteLines(StreamWriter txtFile, HtmlNode node)
+    private static void WriteLines(StringBuilder stringBuilder, HtmlNode node)
     {
         if (IsSingleParagraph(node))
         {
@@ -274,20 +234,20 @@ public static class Exporter
                     ? $"[Image at {source}]"
                     : $"[{CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} at {source}]";
 
-                await txtFile.WriteLineAsync(text);
+                stringBuilder.AppendLine(text);
             }
             else
             {
                 var text = node.InnerText;
                 if (!string.IsNullOrWhiteSpace(text))
                 {
-                    await txtFile.WriteLineAsync(HttpUtility.HtmlDecode(text));
+                    stringBuilder.AppendLine(HttpUtility.HtmlDecode(text));
                 }
             }
         }
         else
         {
-            await WriteLines(txtFile, node.ChildNodes);
+            WriteLines(stringBuilder, node.ChildNodes);
         }
     }
 
@@ -299,6 +259,110 @@ public static class Exporter
         }
 
         return true;
+    }
+
+    private static StringBuilder CreateHtml(Group group, Thread thread, List<Post> posts, FileFormat fileFormat,
+        CancellationToken cancellationToken)
+    {
+        var stringBuilder = new StringBuilder();
+
+        stringBuilder
+            .Append("<html><head><title>")
+            .Append(HttpUtility.HtmlEncode(thread.Title))
+            .Append("</title></head><body>");
+
+        if (ExportConfiguration.IncludeGroup)
+        {
+            stringBuilder
+                .Append("<h3>")
+                .Append(HttpUtility.HtmlEncode(group.Title))
+                .Append("</h3>");
+
+            if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
+                    ExportConfiguration.IncludeGroupPostedAt, out var header))
+            {
+                stringBuilder
+                    .Append("<p>")
+                    .Append(HttpUtility.HtmlEncode(header))
+                    .Append("</p>");
+            }
+
+            if (ExportConfiguration.IncludeGroupUrl)
+            {
+                stringBuilder
+                    .Append("<p>URL: <a href=\"")
+                    .Append(group.Url)
+                    .Append("\">")
+                    .Append(group.Url)
+                    .Append("</a></p>");
+            }
+        }
+
+        if (ExportConfiguration.IncludeThread)
+        {
+            stringBuilder
+                .Append("<h3>")
+                .Append(HttpUtility.HtmlEncode(thread.Title))
+                .Append("</h3>");
+
+            if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
+                    ExportConfiguration.IncludeThreadPostedAt, out var header))
+            {
+                stringBuilder
+                    .Append("<p>")
+                    .Append(HttpUtility.HtmlEncode(header))
+                    .Append("</p>");
+            }
+
+            if (ExportConfiguration.IncludeThreadUrl)
+            {
+                stringBuilder
+                    .Append("<p>URL: <a href=\"")
+                    .Append(thread.Url)
+                    .Append("\">")
+                    .Append(thread.Url)
+                    .Append("</a></p>");
+            }
+        }
+
+        for (var i = 0; i < posts.Count; ++i)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
+            var post = posts[postNumber];
+
+            stringBuilder.Append("<div>");
+
+            if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+            {
+                stringBuilder
+                    .Append("<p><strong>")
+                    .Append(HttpUtility.HtmlEncode(header))
+                    .Append("</strong></p>");
+            }
+
+            foreach (var textNode in post.TextNodes)
+            {
+                foreach (var imageNode in textNode.SelectNodes(".//img"))
+                {
+                    imageNode.Attributes["src"].Value = fileFormat switch
+                    {
+                        FileFormat.Html => imageNode.Attributes["srcHtml"].Value,
+                        FileFormat.Docx => imageNode.Attributes["srcDocx"].Value,
+                        _ => throw new NotSupportedException(fileFormat.ToString())
+                    };
+                }
+
+                stringBuilder.Append(textNode.OuterHtml);
+            }
+
+            stringBuilder.Append("</div><br/>");
+        }
+
+        stringBuilder.Append("</body></html>");
+
+        return stringBuilder;
     }
 
     private static bool CreateHeaderLine(PostedText postedText, bool includeAuthor, bool includePostedAt,

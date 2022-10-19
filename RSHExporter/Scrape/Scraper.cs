@@ -106,7 +106,6 @@ public static class Scraper
             var foundHeading = false;
             HtmlNode? infoNode = null;
             var textNodes = new List<HtmlNode>();
-            var foundSignature = false;
 
             foreach (var childNode in postRow.ChildNodes)
             {
@@ -114,7 +113,7 @@ public static class Scraper
                 {
                     switch (childNode.Name)
                     {
-                        case "#text":
+                        case "#text" or "span":
                             continue;
                         case "h2":
                             foundHeading = true;
@@ -140,7 +139,6 @@ public static class Scraper
                 }
                 else if (childNode.HasClass("signature"))
                 {
-                    foundSignature = true;
                     break;
                 }
                 else
@@ -162,11 +160,6 @@ public static class Scraper
             if (textNodes.Count == 0)
             {
                 throw new NotSupportedException("Row without text nodes!");
-            }
-
-            if (!foundSignature)
-            {
-                throw new NotSupportedException("Row without signature node!");
             }
 
             var head = HttpUtility.HtmlDecode(infoNode.InnerText.Trim());

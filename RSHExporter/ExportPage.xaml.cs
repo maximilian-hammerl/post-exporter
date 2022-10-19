@@ -48,7 +48,7 @@ public partial class ExportPage : Page
             SelectableFileFormats.Add(new SelectableFileFormat(
                 fileFormat,
                 ExportConfiguration.FileFormats.Contains(fileFormat),
-                !DisabledFileFormats.Contains(fileFormat)
+                true // !DisabledFileFormats.Contains(fileFormat)
             ));
         }
 
@@ -92,28 +92,19 @@ public partial class ExportPage : Page
 
         DownloadToOwnFolderCheckBox.IsChecked = ExportConfiguration.DownloadToOwnFolder;
 
-        if (ExportConfiguration.IncludeImages)
+        IncludeImagesCheckBox.IsChecked = ExportConfiguration.IncludeImages;
+
+        if (ExportConfiguration.DownloadImages)
         {
-            IncludeImagesCheckBox.IsChecked = true;
-            ToggleImageCheckBoxes(true);
+            DownloadImagesCheckBox.IsChecked = true;
+            ToggleDownloadImageCheckBoxes(true);
 
-            if (ExportConfiguration.DownloadImages)
-            {
-                DownloadImagesCheckBox.IsChecked = true;
-                ToggleDownloadImageCheckBoxes(true);
-
-                DownloadImagesToOwnFolderCheckBox.IsChecked = ExportConfiguration.DownloadImagesToOwnFolder;
-            }
-            else
-            {
-                ToggleDownloadImageCheckBoxes(false);
-                DownloadImagesCheckBox.IsChecked = false;
-            }
+            DownloadImagesToOwnFolderCheckBox.IsChecked = ExportConfiguration.DownloadImagesToOwnFolder;
         }
         else
         {
-            IncludeImagesCheckBox.IsChecked = false;
-            ToggleImageCheckBoxes(false);
+            ToggleDownloadImageCheckBoxes(false);
+            DownloadImagesCheckBox.IsChecked = false;
         }
 
         ReserveOrderCheckBox.IsChecked = ExportConfiguration.ReserveOrder;
@@ -195,14 +186,10 @@ public partial class ExportPage : Page
 
         _cancellationTokenSource = new CancellationTokenSource();
 
-        var tasks = new List<Task>();
-
-        foreach (var thread in _threads)
+        await Task.WhenAll(_threads.Select(async thread =>
         {
-            tasks.Add(PrepareAndExport(thread, _cancellationTokenSource.Token));
-        }
-
-        await Task.WhenAll(tasks);
+            await PrepareAndExport(thread, _cancellationTokenSource.Token);
+        }));
 
         ToggleExportButtonLoading(false);
 
@@ -212,7 +199,7 @@ public partial class ExportPage : Page
         }
         else
         {
-            var numberFilesExported = tasks.Count * ExportConfiguration.FileFormats.Count;
+            var numberFilesExported = _threads.Count * ExportConfiguration.FileFormats.Count;
 
             DialogUtil.ShowInformation(numberFilesExported == 1
                 ? RSHExporter.Resources.Localization.Resources.ExportFileExported
@@ -316,27 +303,6 @@ public partial class ExportPage : Page
             IncludeThreadAuthorCheckBox.IsChecked = false;
             IncludeThreadPostedAtCheckBox.IsChecked = false;
             IncludeThreadUrlCheckBox.IsChecked = false;
-        }
-    }
-
-    private void IncludeImagesCheckBox_OnChecked(object sender, RoutedEventArgs e)
-    {
-        ToggleImageCheckBoxes(true);
-    }
-
-    private void IncludeImagesCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
-    {
-        ToggleImageCheckBoxes(false);
-    }
-
-    private void ToggleImageCheckBoxes(bool toggle)
-    {
-        DownloadImagesCheckBox.IsEnabled = toggle;
-
-        if (!toggle)
-        {
-            DownloadImagesCheckBox.IsChecked = false;
-            ToggleDownloadImageCheckBoxes(false);
         }
     }
 

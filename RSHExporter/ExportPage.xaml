@@ -190,7 +190,7 @@
                     <Separator Style="{StaticResource SeparatorStyle}" />
 
                     <StackPanel x:Name="ExportOptionsContent">
-                        <TextBlock Text="{x:Static l:Resources.ExportOptions}" Style="{StaticResource LabelTextBlock}" />
+                        <TextBlock Text="{x:Static l:Resources.ExportTextOptions}" Style="{StaticResource LabelTextBlock}" />
 
                         <CheckBox x:Name="IncludeGroupCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeGroup}" IsThreeState="False"
@@ -243,25 +243,25 @@
                                   Content="{x:Static l:Resources.OptionIncludePageNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="DownloadToOwnFolderCheckBox"
-                                  Content="{x:Static l:Resources.OptionDownloadToOwnFolder}" IsThreeState="False"
-                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
-
                         <CheckBox x:Name="IncludeImagesCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeImages}" IsThreeState="False"
-                                  Checked="IncludeImagesCheckBox_OnChecked"
-                                  Unchecked="IncludeImagesCheckBox_OnUnchecked"
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
+                        
+                        <TextBlock Text="{x:Static l:Resources.ExportOtherOptions}" Style="{StaticResource LabelTextBlock}" />
+                        
+                        <CheckBox x:Name="DownloadToOwnFolderCheckBox"
+                                  Content="{x:Static l:Resources.OptionDownloadToOwnFolder}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="DownloadImagesCheckBox"
                                   Content="{x:Static l:Resources.OptionDownloadImages}" IsThreeState="False"
                                   Checked="DownloadImagesCheckBox_OnChecked"
                                   Unchecked="DownloadImagesCheckBox_OnUnchecked"
-                                  Style="{StaticResource SecondaryCheckBoxStyle}" />
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="DownloadImagesToOwnFolderCheckBox"
                                   Content="{x:Static l:Resources.OptionDownloadImagesToOwnFolder}" IsThreeState="False"
-                                  Style="{StaticResource TertiaryCheckBoxStyle}" />
+                                  Style="{StaticResource SecondaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="ReserveOrderCheckBox"
                                   Content="{x:Static l:Resources.OptionReserveOrder}" IsThreeState="False"

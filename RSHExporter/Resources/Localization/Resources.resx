@@ -137,8 +137,8 @@
     <data name="ExportFormat" xml:space="preserve">
         <value>Export File Format:</value>
     </data>
-    <data name="ExportOptions" xml:space="preserve">
-        <value>Export Options:</value>
+    <data name="ExportTextOptions" xml:space="preserve">
+        <value>Export Text Options:</value>
     </data>
     <data name="ExportFolder" xml:space="preserve">
         <value>Export Folder</value>
@@ -198,7 +198,7 @@
         <value>Download the images for each post into a separate folder?</value>
     </data>
     <data name="OptionIncludeImages" xml:space="preserve">
-        <value>Export the images of the posts?</value>
+        <value>Export the posts with its images?</value>
     </data>
     <data name="OptionDownloadImages" xml:space="preserve">
         <value>Download the images of the posts?</value>
@@ -319,5 +319,8 @@
     </data>
     <data name="MessageHello" xml:space="preserve">
         <value>Thanks for using the RSH Exporter! Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version! I am always happy to receive your feedback. Therefore, please consider allowing Sentry to track possible errors with the program. This makes it way easier for me to fix bugs.</value>
+    </data>
+    <data name="ExportOtherOptions" xml:space="preserve">
+        <value>Other Export Options:</value>
     </data>
 </root>

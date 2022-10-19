@@ -213,11 +213,11 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Options:.
+        ///   Looks up a localized string similar to Other Export Options:.
         /// </summary>
-        public static string ExportOptions {
+        public static string ExportOtherOptions {
             get {
-                return ResourceManager.GetString("ExportOptions", resourceCulture);
+                return ResourceManager.GetString("ExportOtherOptions", resourceCulture);
             }
         }
         
@@ -227,6 +227,15 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportSelected {
             get {
                 return ResourceManager.GetString("ExportSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Text Options:.
+        /// </summary>
+        public static string ExportTextOptions {
+            get {
+                return ResourceManager.GetString("ExportTextOptions", resourceCulture);
             }
         }
         
@@ -726,7 +735,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export the images of the posts?.
+        ///   Looks up a localized string similar to Export the posts with its images?.
         /// </summary>
         public static string OptionIncludeImages {
             get {

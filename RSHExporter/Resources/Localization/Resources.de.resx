@@ -137,8 +137,8 @@
     <data name="ExportFormat" xml:space="preserve">
         <value>Export-Dateiformat:</value>
     </data>
-    <data name="ExportOptions" xml:space="preserve">
-        <value>Export-Optionen:</value>
+    <data name="ExportTextOptions" xml:space="preserve">
+        <value>Export-Text-Optionen:</value>
     </data>
     <data name="ExportFolder" xml:space="preserve">
         <value>Export-Ordner</value>
@@ -165,7 +165,7 @@
         <value>Die Bilder der Antworten herunterladen?</value>
     </data>
     <data name="OptionIncludeImages" xml:space="preserve">
-        <value>Die Bilder der Antworten exportieren?</value>
+        <value>Die Antworten mit ihren Bildern exportieren?</value>
     </data>
     <data name="OptionDownloadToOwnFolder" xml:space="preserve">
         <value>Für jede Gruppe die Beiträge in ein eigenen Ordner herunterladen?</value>
@@ -319,5 +319,8 @@
     </data>
     <data name="MessageHello" xml:space="preserve">
         <value>Danke, dass du den RSH Exporter benutzt! Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest! Ich freue mich immer über dein Feedback. Bitte ziehe daher in Erwägung, Sentry zu erlauben, mögliche Fehler mit dem Programm zu verfolgen. Das macht es für mich viel einfacher, Fehler zu beheben.</value>
+    </data>
+    <data name="ExportOtherOptions" xml:space="preserve">
+        <value>Weitere Export-Optionen:</value>
     </data>
 </root>
