@@ -519,6 +519,60 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hi! These help dialogs will hopefully help you with learning how to use this program. Most pages have a help dialog which explains how the current page works..
+        /// </summary>
+        public static string HelpWelcomeStep1 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowing Sentry to collect anonymous data when an error occurs helps me immensily with fixing these errors..
+        /// </summary>
+        public static string HelpWelcomeStep2 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can click here to go to the repository of the program..
+        /// </summary>
+        public static string HelpWelcomeStep3 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can see the current version number of the program..
+        /// </summary>
+        public static string HelpWelcomeStep4 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to And here the team which helps me with designing and programming..
+        /// </summary>
+        public static string HelpWelcomeStep5 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to And if you are ready, click here to continue to the login..
+        /// </summary>
+        public static string HelpWelcomeStep6 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {

@@ -352,4 +352,22 @@ Wenn du Hilfe benötigst, findest du auf den meisten Seiten oben einen "Hilfe"-B
 
 Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Programm Sentry, eine Software zum Monitoring und Fehlerverfolgung. Es wäre daher super, wenn du Sentry erlaubst, Fehler zu verfolgen!</value>
     </data>
+    <data name="HelpWelcomeStep6" xml:space="preserve">
+        <value>Und wenn du bereit bist, klicke hier, um zur Anmeldung zu gelangen.</value>
+    </data>
+    <data name="HelpWelcomeStep4" xml:space="preserve">
+        <value>Hier kannst du die aktuelle Versionsnummer des Programms sehen.</value>
+    </data>
+    <data name="HelpWelcomeStep5" xml:space="preserve">
+        <value>Und hier das Team, das mir bei der Gestaltung und Programmierung hilft.</value>
+    </data>
+    <data name="HelpWelcomeStep3" xml:space="preserve">
+        <value>Du kannst hier klicken, um zum Repository des Programms zu gelangen.</value>
+    </data>
+    <data name="HelpWelcomeStep1" xml:space="preserve">
+        <value>Hallo! Diese Hilfedialoge helfen dir hoffentlich dabei, zu lernen, wie du dieses Programm benutzen kannst. Die meisten Seiten haben einen Hilfedialog, der erklärt, wie die aktuelle Seite funktioniert.</value>
+    </data>
+    <data name="HelpWelcomeStep2" xml:space="preserve">
+        <value>Wenn du Sentry erlaubst, anonyme Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler.</value>
+    </data>
 </root>

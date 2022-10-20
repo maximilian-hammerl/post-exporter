@@ -95,7 +95,7 @@
             </StackPanel>
         </Border>
 
-        <Border x:Name="LoginContent" Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
+        <Border x:Name="LoginButtonContent" Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
                 Style="{StaticResource BorderStyle}">
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Width="110">
                 <Button x:Name="LoginButton" Visibility="Visible" Click="LoginButton_OnClick" IsDefault="True"
@@ -124,7 +124,7 @@
 
         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
-            <StackPanel x:Name="UsernamePasswordContent" Style="{StaticResource StackPanelStyle}" MaxWidth="420">
+            <StackPanel Style="{StaticResource StackPanelStyle}" MaxWidth="420">
 
                 <TextBlock Text="{x:Static l:Resources.LoginTitle}" Style="{StaticResource Title1TextBlock}" />
 
@@ -136,11 +136,11 @@
 
                 <TextBlock Text="{x:Static l:Resources.LoginUsername}" Style="{StaticResource TextTextBlock}"
                            Margin="9 18 3 3" />
-                <TextBox x:Name="Username" Margin="3" Padding="3" FontSize="14" />
+                <TextBox x:Name="UsernameTextBox" Margin="3" Padding="3" FontSize="14" />
 
                 <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
                            Margin="9 18 3 3" />
-                <PasswordBox x:Name="Password" Margin="3" Padding="3" FontSize="14" />
+                <PasswordBox x:Name="PasswordBox" Margin="3" Padding="3" FontSize="14" />
 
             </StackPanel>
         </Border>

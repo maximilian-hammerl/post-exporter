@@ -95,7 +95,7 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
+        <Border x:Name="ContinueButtonContent" Grid.Row="0" Grid.Column="3" Margin="3 0 0 3" CornerRadius="0 5 0 0"
                 Style="{StaticResource BorderStyle}">
 
             <Button Click="ContinueButton_OnClick" IsDefault="True" HorizontalAlignment="Right" Width="110"
@@ -132,18 +132,23 @@
                 <TextBlock Text="{x:Static l:Resources.WelcomeTitle}" Style="{StaticResource LabelTextBlock}"
                            HorizontalAlignment="Center" Margin="12 72 12 3" />
 
-                <TextBlock Text="{x:Static l:Resources.WelcomeText}" Margin="12" Style="{StaticResource TextTextBlock}" />
+                <TextBlock x:Name="WelcomeTextBlock" Text="{x:Static l:Resources.WelcomeText}" Margin="12"
+                           Style="{StaticResource TextTextBlock}" />
 
-                <CheckBox x:Name="CollectDataCheckBox" VerticalAlignment="Center" Margin="12 18 12 3" FontSize="14"
-                          IsThreeState="False" Checked="CollectDataCheckBox_OnChecked"
-                          Unchecked="CollectDataCheckBox_OnUnchecked">
-                    <TextBlock Text="{x:Static l:Resources.LoginAcceptSentry}" TextWrapping="Wrap" />
-                </CheckBox>
-                <TextBlock Margin="13 3 13 0" FontSize="14">
-                    (<Hyperlink NavigateUri="https://sentry.io/about/" RequestNavigate="Hyperlink_OnRequestNavigate">
-                        <TextBlock Text="{x:Static l:Resources.LoginOpenSentry}" />
-                    </Hyperlink>)
-                </TextBlock>
+                <StackPanel x:Name="CollectDataContent" Margin="12 18 12 0">
+                    <CheckBox x:Name="CollectDataCheckBox" Margin="0 0 0 3" VerticalAlignment="Center" FontSize="14"
+                              IsThreeState="False" Checked="CollectDataCheckBox_OnChecked"
+                              Unchecked="CollectDataCheckBox_OnUnchecked">
+                        <TextBlock Text="{x:Static l:Resources.LoginAcceptSentry}" TextWrapping="Wrap" />
+                    </CheckBox>
+                    <TextBlock FontSize="14">
+                        (
+                        <Hyperlink NavigateUri="https://sentry.io/about/" RequestNavigate="Hyperlink_OnRequestNavigate">
+                            <TextBlock Text="{x:Static l:Resources.LoginOpenSentry}" />
+                        </Hyperlink>
+                        )
+                    </TextBlock>
+                </StackPanel>
 
             </StackPanel>
         </Border>
@@ -162,7 +167,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap"
+                <TextBlock x:Name="RepositoryTextBlock" Grid.Row="0" Grid.Column="0" Margin="1" TextWrapping="Wrap"
                            HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <Hyperlink NavigateUri="https://github.com/maximilian-hammerl/rsh-exporter"
                                RequestNavigate="Hyperlink_OnRequestNavigate">
@@ -173,7 +178,7 @@
                 <TextBlock x:Name="VersionTextBlock" Grid.Row="0" Grid.Column="1" Margin="1" TextWrapping="Wrap"
                            HorizontalAlignment="Center" VerticalAlignment="Bottom" />
 
-                <TextBlock Grid.Row="0" Grid.Column="2" Margin="1" TextWrapping="Wrap"
+                <TextBlock x:Name="TeamTextBlock" Grid.Row="0" Grid.Column="2" Margin="1" TextWrapping="Wrap"
                            HorizontalAlignment="Right" VerticalAlignment="Bottom">
                     <TextBlock Text="{x:Static l:Resources.LoginLove}" />
                     Maxi,

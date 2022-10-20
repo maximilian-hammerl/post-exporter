@@ -14,14 +14,14 @@ public partial class LoginPage : Page
 
         VersionTextBlock.Text = Util.GetVersion();
 
-        Username.Focus();
+        UsernameTextBox.Focus();
     }
 
     private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
     {
         ToggleLoginButtonLoading(true);
 
-        var username = Username.Text;
+        var username = UsernameTextBox.Text;
         if (string.IsNullOrEmpty(username))
         {
             ToggleLoginButtonLoading(false);
@@ -29,7 +29,7 @@ public partial class LoginPage : Page
             return;
         }
 
-        var password = Password.Password;
+        var password = PasswordBox.Password;
         if (string.IsNullOrEmpty(password))
         {
             ToggleLoginButtonLoading(false);
@@ -70,9 +70,13 @@ public partial class LoginPage : Page
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         DialogUtil.ShowHelpAndHighlight(
-            (brush => UsernamePasswordContent.Background = brush,
+            (brush =>
+                {
+                    UsernameTextBox.Background = brush;
+                    PasswordBox.Background = brush;
+                },
                 RSHExporter.Resources.Localization.Resources.HelpLoginStep1),
-            (brush => LoginContent.Background = brush,
+            (brush => LoginButtonContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpLoginStep2)
         );
     }

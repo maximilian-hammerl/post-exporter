@@ -351,4 +351,22 @@ If you need help, most pages have a "Help" button at the top which explains the 
 
 To simplify finding and fixing possible bugs, this program uses Sentry, a application monitoring and error tracking software. Therefore, please consider allowing Sentry to track errors!</value>
     </data>
+    <data name="HelpWelcomeStep1" xml:space="preserve">
+        <value>Hi! These help dialogs will hopefully help you with learning how to use this program. Most pages have a help dialog which explains how the current page works.</value>
+    </data>
+    <data name="HelpWelcomeStep2" xml:space="preserve">
+        <value>Allowing Sentry to collect anonymous data when an error occurs helps me immensily with fixing these errors.</value>
+    </data>
+    <data name="HelpWelcomeStep3" xml:space="preserve">
+        <value>You can click here to go to the repository of the program.</value>
+    </data>
+    <data name="HelpWelcomeStep4" xml:space="preserve">
+        <value>Here you can see the current version number of the program.</value>
+    </data>
+    <data name="HelpWelcomeStep5" xml:space="preserve">
+        <value>And here the team which helps me with designing and programming.</value>
+    </data>
+    <data name="HelpWelcomeStep6" xml:space="preserve">
+        <value>And if you are ready, click here to continue to the login.</value>
+    </data>
 </root>

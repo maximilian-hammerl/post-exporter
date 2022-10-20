@@ -519,6 +519,60 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hallo! Diese Hilfedialoge helfen dir hoffentlich dabei, zu lernen, wie du dieses Programm benutzen kannst. Die meisten Seiten haben einen Hilfedialog, der erklärt, wie die aktuelle Seite funktioniert..
+        /// </summary>
+        public static string HelpWelcomeStep1 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn du Sentry erlaubst, anonyme Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler..
+        /// </summary>
+        public static string HelpWelcomeStep2 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du kannst hier klicken, um zum Repository des Programms zu gelangen..
+        /// </summary>
+        public static string HelpWelcomeStep3 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hier kannst du die aktuelle Versionsnummer des Programms sehen..
+        /// </summary>
+        public static string HelpWelcomeStep4 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Und hier das Team, das mir bei der Gestaltung und Programmierung hilft..
+        /// </summary>
+        public static string HelpWelcomeStep5 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Und wenn du bereit bist, klicke hier, um zur Anmeldung zu gelangen..
+        /// </summary>
+        public static string HelpWelcomeStep6 {
+            get {
+                return ResourceManager.GetString("HelpWelcomeStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {
@@ -801,7 +855,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Nummber der Antwort angeben?.
+        ///   Looks up a localized string similar to Die Nummer der Antwort angeben?.
         /// </summary>
         public static string OptionIncludePostNumber {
             get {
