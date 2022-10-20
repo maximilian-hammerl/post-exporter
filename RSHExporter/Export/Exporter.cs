@@ -231,8 +231,8 @@ public static class Exporter
                 var altName = node.Attributes["alt"].Value;
 
                 var text = string.IsNullOrEmpty(altName)
-                    ? $"[Image at {source}]"
-                    : $"[{CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} at {source}]";
+                    ? $"[{Resources.Localization.Resources.TemplateImageAt} {source}]"
+                    : $"[{CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} {Resources.Localization.Resources.TemplateAt} {source}]";
 
                 stringBuilder.AppendLine(text);
             }
@@ -377,12 +377,12 @@ public static class Exporter
 
         if (includeAuthor)
         {
-            headerElements.Add($"von {postedText.Author}");
+            headerElements.Add($"{Resources.Localization.Resources.TemplateFrom} {postedText.Author}");
         }
 
         if (includePostedAt)
         {
-            headerElements.Add($"am {postedText.PostedAt:dd.MM.yyyy}");
+            headerElements.Add($"{Resources.Localization.Resources.TemplateOn} {postedText.PostedAt:dd.MM.yyyy}");
         }
 
         if (headerElements.Count > 0)
@@ -401,7 +401,7 @@ public static class Exporter
 
         if (ExportConfiguration.IncludePageNumber && currentNumber % 10 == 1)
         {
-            headerElements.Add($"Seite {currentNumber / 10 + 1}");
+            headerElements.Add($"{Resources.Localization.Resources.TemplatePage} {currentNumber / 10 + 1}");
         }
 
         if (ExportConfiguration.IncludePostNumber)
@@ -411,12 +411,12 @@ public static class Exporter
 
         if (ExportConfiguration.IncludePostAuthor)
         {
-            headerElements.Add($"von {postedText.Author}");
+            headerElements.Add($"{Resources.Localization.Resources.TemplateFrom} {postedText.Author}");
         }
 
         if (ExportConfiguration.IncludePostPostedAt)
         {
-            headerElements.Add($"am {postedText.PostedAt:dd.MM.yyyy HH:mm}");
+            headerElements.Add($"{Resources.Localization.Resources.TemplateOn} {postedText.PostedAt:dd.MM.yyyy HH:mm}");
         }
 
         if (headerElements.Count > 0)

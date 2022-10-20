@@ -1035,6 +1035,51 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to unter.
+        /// </summary>
+        public static string TemplateAt {
+            get {
+                return ResourceManager.GetString("TemplateAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to von.
+        /// </summary>
+        public static string TemplateFrom {
+            get {
+                return ResourceManager.GetString("TemplateFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild unter.
+        /// </summary>
+        public static string TemplateImageAt {
+            get {
+                return ResourceManager.GetString("TemplateImageAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to am.
+        /// </summary>
+        public static string TemplateOn {
+            get {
+                return ResourceManager.GetString("TemplateOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seite.
+        /// </summary>
+        public static string TemplatePage {
+            get {
+                return ResourceManager.GetString("TemplatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zum Export.
         /// </summary>
         public static string ToExport {

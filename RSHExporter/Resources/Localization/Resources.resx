@@ -369,4 +369,19 @@ To simplify finding and fixing possible bugs, this program uses Sentry, a applic
     <data name="HelpWelcomeStep6" xml:space="preserve">
         <value>And if you are ready, click here to continue to the login.</value>
     </data>
+    <data name="TemplateImageAt" xml:space="preserve">
+        <value>Image at</value>
+    </data>
+    <data name="TemplateAt" xml:space="preserve">
+        <value>at</value>
+    </data>
+    <data name="TemplatePage" xml:space="preserve">
+        <value>Page</value>
+    </data>
+    <data name="TemplateFrom" xml:space="preserve">
+        <value>from</value>
+    </data>
+    <data name="TemplateOn" xml:space="preserve">
+        <value>on</value>
+    </data>
 </root>

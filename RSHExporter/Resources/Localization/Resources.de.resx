@@ -370,4 +370,19 @@ Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Pr
     <data name="HelpWelcomeStep2" xml:space="preserve">
         <value>Wenn du Sentry erlaubst, anonyme Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler.</value>
     </data>
+    <data name="TemplateImageAt" xml:space="preserve">
+        <value>Bild unter</value>
+    </data>
+    <data name="TemplateAt" xml:space="preserve">
+        <value>unter</value>
+    </data>
+    <data name="TemplatePage" xml:space="preserve">
+        <value>Seite</value>
+    </data>
+    <data name="TemplateFrom" xml:space="preserve">
+        <value>von</value>
+    </data>
+    <data name="TemplateOn" xml:space="preserve">
+        <value>am</value>
+    </data>
 </root>

@@ -1036,6 +1036,51 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to at.
+        /// </summary>
+        public static string TemplateAt {
+            get {
+                return ResourceManager.GetString("TemplateAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to from.
+        /// </summary>
+        public static string TemplateFrom {
+            get {
+                return ResourceManager.GetString("TemplateFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image at.
+        /// </summary>
+        public static string TemplateImageAt {
+            get {
+                return ResourceManager.GetString("TemplateImageAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to on.
+        /// </summary>
+        public static string TemplateOn {
+            get {
+                return ResourceManager.GetString("TemplateOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page.
+        /// </summary>
+        public static string TemplatePage {
+            get {
+                return ResourceManager.GetString("TemplatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To Export.
         /// </summary>
         public static string ToExport {
