@@ -174,7 +174,7 @@
         <value>Die Seitenzahl angeben?</value>
     </data>
     <data name="OptionIncludePostNumber" xml:space="preserve">
-        <value>Die Nummber der Antwort angeben?</value>
+        <value>Die Nummer der Antwort angeben?</value>
     </data>
     <data name="OptionIncludePostAuthor" xml:space="preserve">
         <value>Den Autor der Antworten angeben?</value>
