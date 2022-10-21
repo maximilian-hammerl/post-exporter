@@ -69,6 +69,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        public static string And {
+            get {
+                return ResourceManager.GetString("And", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Back.
         /// </summary>
         public static string Back {
@@ -123,6 +132,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was a problem while exporting! The thread(s) {0} could not be successfully exported!.
+        /// </summary>
+        public static string ErrorExportFailed {
+            get {
+                return ResourceManager.GetString("ErrorExportFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error has occurred! Unfortunately, because you have not agreed to the use of Sentry, the error cannot be collected..
         /// </summary>
         public static string ErrorGenericNoSentry {
@@ -132,11 +150,65 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to the placeholder {0} is missing.
+        /// </summary>
+        public static string ErrorMissingPlaceholder {
+            get {
+                return ResourceManager.GetString("ErrorMissingPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the placeholders {0} are missing.
+        /// </summary>
+        public static string ErrorMissingPlaceholders {
+            get {
+                return ResourceManager.GetString("ErrorMissingPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sentry is used to send your feedback. Unfortunately, because you have not agreed to the use of Sentry, your feedback cannot be collected..
         /// </summary>
         public static string ErrorNoSentry {
             get {
                 return ResourceManager.GetString("ErrorNoSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is a problem with your {0} templates!.
+        /// </summary>
+        public static string ErrorTemplates {
+            get {
+                return ResourceManager.GetString("ErrorTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the placeholder {0} is unused.
+        /// </summary>
+        public static string ErrorUnusedPlaceholder {
+            get {
+                return ResourceManager.GetString("ErrorUnusedPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the placeholders {0} are unused.
+        /// </summary>
+        public static string ErrorUnusedPlaceholders {
+            get {
+                return ResourceManager.GetString("ErrorUnusedPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Options for Advanced Users:.
+        /// </summary>
+        public static string ExportAdvancedOptions {
+            get {
+                return ResourceManager.GetString("ExportAdvancedOptions", resourceCulture);
             }
         }
         
@@ -164,15 +236,6 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportExport {
             get {
                 return ResourceManager.GetString("ExportExport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The export was cancelled. Some files may have already been exported..
-        /// </summary>
-        public static string ExportExportCancelled {
-            get {
-                return ResourceManager.GetString("ExportExportCancelled", resourceCulture);
             }
         }
         
@@ -411,7 +474,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Then choose the format of the exported files..
+        ///   Looks up a localized string similar to Then choose the format (or multiple formats) of the exported files..
         /// </summary>
         public static string HelpExportStep4 {
             get {
@@ -429,11 +492,29 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation..
+        ///   Looks up a localized string similar to Instead of using the checkboxes of the previous step, advanced users can also edit the export templates directly. This required basic knowledge of HTML..
         /// </summary>
         public static string HelpExportStep6 {
             get {
                 return ResourceManager.GetString("HelpExportStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can also configure where the files will be saved, whether all files should be in one folder or whether every group and/or all images of a thread should have their separate folder..
+        /// </summary>
+        public static string HelpExportStep7 {
+            get {
+                return ResourceManager.GetString("HelpExportStep7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation..
+        /// </summary>
+        public static string HelpExportStep8 {
+            get {
+                return ResourceManager.GetString("HelpExportStep8", resourceCulture);
             }
         }
         
@@ -919,11 +1000,182 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Custom Templates.
+        /// </summary>
+        public static string OptionUseCustomTemplates {
+            get {
+                return ResourceManager.GetString("OptionUseCustomTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [CurrentPostNumber].
+        /// </summary>
+        public static string PlaceholderCurrentPostNumber {
+            get {
+                return ResourceManager.GetString("PlaceholderCurrentPostNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [GroupOwner].
+        /// </summary>
+        public static string PlaceholderGroupAuthor {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [GroupCreatedAt].
+        /// </summary>
+        public static string PlaceholderGroupPostedAt {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [GroupName].
+        /// </summary>
+        public static string PlaceholderGroupTitle {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [GroupUrl].
+        /// </summary>
+        public static string PlaceholderGroupUrl {
+            get {
+                return ResourceManager.GetString("PlaceholderGroupUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostAuthor].
+        /// </summary>
+        public static string PlaceholderPostAuthor {
+            get {
+                return ResourceManager.GetString("PlaceholderPostAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostPostedAt].
+        /// </summary>
+        public static string PlaceholderPostPostedAt {
+            get {
+                return ResourceManager.GetString("PlaceholderPostPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Posts].
+        /// </summary>
+        public static string PlaceholderPosts {
+            get {
+                return ResourceManager.GetString("PlaceholderPosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [PostText].
+        /// </summary>
+        public static string PlaceholderPostText {
+            get {
+                return ResourceManager.GetString("PlaceholderPostText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [ThreadAuthor].
+        /// </summary>
+        public static string PlaceholderThreadAuthor {
+            get {
+                return ResourceManager.GetString("PlaceholderThreadAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [ThreadCreatedAt].
+        /// </summary>
+        public static string PlaceholderThreadPostedAt {
+            get {
+                return ResourceManager.GetString("PlaceholderThreadPostedAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [ThreadName].
+        /// </summary>
+        public static string PlaceholderThreadTitle {
+            get {
+                return ResourceManager.GetString("PlaceholderThreadTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [ThreadUrl].
+        /// </summary>
+        public static string PlaceholderThreadUrl {
+            get {
+                return ResourceManager.GetString("PlaceholderThreadUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [TotalPostNumber].
+        /// </summary>
+        public static string PlaceholderTotalPostNumber {
+            get {
+                return ResourceManager.GetString("PlaceholderTotalPostNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Question.
         /// </summary>
         public static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset:.
+        /// </summary>
+        public static string Reset {
+            get {
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With All Placeholders.
+        /// </summary>
+        public static string ResetAllPlaceholders {
+            get {
+                return ResourceManager.GetString("ResetAllPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With Current Placeholders.
+        /// </summary>
+        public static string ResetCurrentPlaceholders {
+            get {
+                return ResourceManager.GetString("ResetCurrentPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         
@@ -1081,6 +1333,98 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The text file export uses the text templates. The HTML file and Word file export use the HTML templates. The head templates stand for the header of the export of a thread and the body templates for the answers of the thread. At the placeholder.
+        /// </summary>
+        public static string TemplatesDetails1 {
+            get {
+                return ResourceManager.GetString("TemplatesDetails1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to of the head templates the body templates for the answers are inserted when exporting.
+        ///
+        ///The default templates are based on the current export text options. Only if a text option is selected, the placeholder is also displayed in the default template..
+        /// </summary>
+        public static string TemplatesDetails2 {
+            get {
+                return ResourceManager.GetString("TemplatesDetails2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body-Template for Html.
+        /// </summary>
+        public static string TemplatesHtmlBody {
+            get {
+                return ResourceManager.GetString("TemplatesHtmlBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Head-Template for Html.
+        /// </summary>
+        public static string TemplatesHtmlHead {
+            get {
+                return ResourceManager.GetString("TemplatesHtmlHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Optional:.
+        /// </summary>
+        public static string TemplatesOptionalPlaceholders {
+            get {
+                return ResourceManager.GetString("TemplatesOptionalPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available Placeholders.
+        /// </summary>
+        public static string TemplatesPlaceholders {
+            get {
+                return ResourceManager.GetString("TemplatesPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Required:.
+        /// </summary>
+        public static string TemplatesRequiredPlaceholders {
+            get {
+                return ResourceManager.GetString("TemplatesRequiredPlaceholders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body-Template for Text.
+        /// </summary>
+        public static string TemplatesTextBody {
+            get {
+                return ResourceManager.GetString("TemplatesTextBody", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Head-Template for Text.
+        /// </summary>
+        public static string TemplatesTextHead {
+            get {
+                return ResourceManager.GetString("TemplatesTextHead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Templates.
+        /// </summary>
+        public static string TemplatesTitle {
+            get {
+                return ResourceManager.GetString("TemplatesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To Export.
         /// </summary>
         public static string ToExport {
@@ -1090,11 +1434,29 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Templates.
+        /// </summary>
+        public static string UpdateTemplates {
+            get {
+                return ResourceManager.GetString("UpdateTemplates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The export was cancelled. Some files may have already been exported..
+        /// </summary>
+        public static string WarningExportCancelled {
+            get {
+                return ResourceManager.GetString("WarningExportCancelled", resourceCulture);
             }
         }
         

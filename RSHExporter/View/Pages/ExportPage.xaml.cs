@@ -86,6 +86,9 @@ public partial class ExportPage : Page
         IncludePostPostedAtCheckBox.IsChecked = ExportConfiguration.IncludePostPostedAt;
         IncludePostNumberCheckBox.IsChecked = ExportConfiguration.IncludePostNumber;
         IncludeImagesCheckBox.IsChecked = ExportConfiguration.IncludeImages;
+        ReserveOrderCheckBox.IsChecked = ExportConfiguration.ReserveOrder;
+
+        UseCustomTemplatesCheckBox.IsChecked = ExportConfiguration.UseCustomTemplates;
 
         DownloadToOwnFolderCheckBox.IsChecked = ExportConfiguration.DownloadToOwnFolder;
 
@@ -101,10 +104,6 @@ public partial class ExportPage : Page
             ToggleDownloadImageCheckBoxes(false);
             DownloadImagesCheckBox.IsChecked = false;
         }
-
-        ReserveOrderCheckBox.IsChecked = ExportConfiguration.ReserveOrder;
-
-        UseCustomTemplatesCheckBox.IsChecked = ExportConfiguration.UseCustomTemplates;
     }
 
     [UsedImplicitly] public ObservableCollection<Thread> SelectedThreads { get; set; }
@@ -193,6 +192,7 @@ public partial class ExportPage : Page
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
                 ShowErrorMessageForTemplate("Html", missingPlaceholders, unusedPlaceholders);
+                ToggleExportButtonLoading(false);
                 return;
             }
 
@@ -214,6 +214,7 @@ public partial class ExportPage : Page
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
                 ShowErrorMessageForTemplate("Text", missingPlaceholders, unusedPlaceholders);
+                ToggleExportButtonLoading(false);
                 return;
             }
 
@@ -409,13 +410,13 @@ public partial class ExportPage : Page
         ExportConfiguration.IncludePostPostedAt = IncludePostPostedAtCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludePostNumber = IncludePostNumberCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeImages = IncludeImagesCheckBox.IsChecked.GetValueOrDefault();
+        ExportConfiguration.ReserveOrder = ReserveOrderCheckBox.IsChecked.GetValueOrDefault();
+
+        ExportConfiguration.UseCustomTemplates = UseCustomTemplatesCheckBox.IsChecked.GetValueOrDefault();
 
         ExportConfiguration.DownloadToOwnFolder = DownloadToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.DownloadImages = DownloadImagesCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.DownloadImagesToOwnFolder = DownloadImagesToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
-        ExportConfiguration.ReserveOrder = ReserveOrderCheckBox.IsChecked.GetValueOrDefault();
-
-        ExportConfiguration.UseCustomTemplates = UseCustomTemplatesCheckBox.IsChecked.GetValueOrDefault();
     }
 
     private List<FileFormat> GetSelectedFileFormats()
@@ -595,9 +596,12 @@ public partial class ExportPage : Page
                 RSHExporter.Resources.Localization.Resources.HelpExportStep4),
             (brush => TextExportOptionsContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpExportStep5),
-            // TODO: 2 more steps
+            (brush => AdvancedExportOptionsContent.Background = brush,
+                RSHExporter.Resources.Localization.Resources.HelpExportStep6),
+            (brush => OtherExportOptionsContent.Background = brush,
+                RSHExporter.Resources.Localization.Resources.HelpExportStep7),
             (brush => StartExportContent.Background = brush,
-                RSHExporter.Resources.Localization.Resources.HelpExportStep6)
+                RSHExporter.Resources.Localization.Resources.HelpExportStep8)
         );
     }
 

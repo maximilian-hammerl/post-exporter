@@ -10,6 +10,7 @@ using DocumentFormat.OpenXml.Packaging;
 using HtmlAgilityPack;
 using HtmlToOpenXml;
 using RSHExporter.Scrape;
+using RSHExporter.Utils;
 using Thread = RSHExporter.Scrape.Thread;
 
 namespace RSHExporter.Export;
@@ -22,7 +23,8 @@ public static class Exporter
         "label", "mark", "q", "s", "samp", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr"
     };
 
-    public static async Task Export(List<Post> posts, CancellationToken cancellationToken)
+    public static async Task Export(List<Post> posts, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken)
     {
         var thread = posts[0].Thread;
         var group = thread.Group;
@@ -115,7 +117,8 @@ public static class Exporter
             {
                 case FileFormat.Txt:
                 {
-                    var stringBuilder = CreateText(group, thread, posts, cancellationToken);
+                    var stringBuilder = CreateText(group, thread, posts, textHeadTemplate, textBodyTemplate,
+                        cancellationToken);
 
                     await using var file = new StreamWriter(filePathWithExtension);
                     await file.WriteAsync(stringBuilder, cancellationToken);
@@ -125,7 +128,8 @@ public static class Exporter
 
                 case FileFormat.Html:
                 {
-                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, cancellationToken);
+                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, htmlHeadTemplate, htmlBodyTemplate,
+                        cancellationToken);
 
                     await using var file = new StreamWriter(filePathWithExtension);
                     await file.WriteAsync(stringBuilder, cancellationToken);
@@ -135,7 +139,8 @@ public static class Exporter
 
                 case FileFormat.Docx:
                 {
-                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, cancellationToken);
+                    var stringBuilder = CreateHtml(group, thread, posts, fileFormat, htmlHeadTemplate, htmlBodyTemplate,
+                        cancellationToken);
 
                     using var wordDocument =
                         WordprocessingDocument.Create(filePathWithExtension, WordprocessingDocumentType.Document);
@@ -153,46 +158,54 @@ public static class Exporter
         }
     }
 
-    private static StringBuilder CreateText(Group group, Thread thread, List<Post> posts,
-        CancellationToken cancellationToken)
+    private static StringBuilder CreateText(Group group, Thread thread, List<Post> posts, StringBuilder headTemplate,
+        StringBuilder bodyTemplate, CancellationToken cancellationToken)
     {
-        var stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder().Append(headTemplate);
 
         if (ExportConfiguration.IncludeGroup)
         {
-            stringBuilder.AppendLine(group.Title);
+            stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupTitle, group.Title);
 
-            if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                    ExportConfiguration.IncludeGroupPostedAt, out var header))
+            if (ExportConfiguration.IncludeGroupAuthor)
             {
-                stringBuilder.AppendLine(header);
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupAuthor, group.Author);
+            }
+
+            if (ExportConfiguration.IncludeGroupPostedAt)
+            {
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupPostedAt,
+                    group.PostedAt.ToString("dd.MM.yyyy HH:mm"));
             }
 
             if (ExportConfiguration.IncludeGroupUrl)
             {
-                stringBuilder.AppendLine($"URL: {group.Url}");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupUrl, group.Url);
             }
-
-            stringBuilder.AppendLine();
         }
 
         if (ExportConfiguration.IncludeThread)
         {
-            stringBuilder.AppendLine(thread.Title);
+            stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadTitle, thread.Title);
 
-            if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                    ExportConfiguration.IncludeThreadPostedAt, out var header))
+            if (ExportConfiguration.IncludeThreadAuthor)
             {
-                stringBuilder.AppendLine(header);
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadAuthor, thread.Author);
+            }
+
+            if (ExportConfiguration.IncludeThreadPostedAt)
+            {
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadPostedAt,
+                    thread.PostedAt.ToString("dd.MM.yyyy HH:mm"));
             }
 
             if (ExportConfiguration.IncludeThreadUrl)
             {
-                stringBuilder.AppendLine($"URL: {thread.Url}");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadUrl, thread.Url);
             }
-
-            stringBuilder.AppendLine();
         }
+
+        var postsBuilder = new StringBuilder();
 
         for (var i = 0; i < posts.Count; ++i)
         {
@@ -201,27 +214,51 @@ public static class Exporter
             var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
             var post = posts[postNumber];
 
-            if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+            var postBuilder = new StringBuilder().Append(bodyTemplate);
+
+            if (ExportConfiguration.IncludePostNumber)
             {
-                stringBuilder.AppendLine(header);
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderCurrentPostNumber,
+                    postNumber.ToString());
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderTotalPostNumber,
+                    posts.Count.ToString());
             }
 
-            WriteLines(stringBuilder, post.TextNodes);
-            stringBuilder.AppendLine();
+            if (ExportConfiguration.IncludePostAuthor)
+            {
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostAuthor, post.Author);
+            }
+
+            if (ExportConfiguration.IncludePostPostedAt)
+            {
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostPostedAt,
+                    post.PostedAt.ToString("dd.MM.yyyy HH:mm"));
+            }
+
+            postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostText,
+                GetTextFromNodes(post.TextNodes).ToString());
+            postsBuilder.Append(postBuilder);
         }
 
+        return stringBuilder.Replace(Resources.Localization.Resources.PlaceholderPosts, postsBuilder.ToString());
+    }
+
+    private static StringBuilder GetTextFromNodes(IEnumerable<HtmlNode> nodes)
+    {
+        var stringBuilder = new StringBuilder();
+        GetTextFromNodes(stringBuilder, nodes);
         return stringBuilder;
     }
 
-    private static void WriteLines(StringBuilder stringBuilder, IEnumerable<HtmlNode> nodes)
+    private static void GetTextFromNodes(StringBuilder stringBuilder, IEnumerable<HtmlNode> nodes)
     {
         foreach (var child in nodes)
         {
-            WriteLines(stringBuilder, child);
+            GetTextFromNodes(stringBuilder, child);
         }
     }
 
-    private static void WriteLines(StringBuilder stringBuilder, HtmlNode node)
+    private static void GetTextFromNodes(StringBuilder stringBuilder, HtmlNode node)
     {
         if (IsSingleParagraph(node))
         {
@@ -232,7 +269,7 @@ public static class Exporter
 
                 var text = string.IsNullOrEmpty(altName)
                     ? $"[{Resources.Localization.Resources.TemplateImageAt} {source}]"
-                    : $"[{CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} {Resources.Localization.Resources.TemplateAt} {source}]";
+                    : $"[{Util.CapitalizeFirstChar(HttpUtility.HtmlDecode(altName))} {Resources.Localization.Resources.TemplateAt} {source}]";
 
                 stringBuilder.AppendLine(text);
             }
@@ -247,7 +284,7 @@ public static class Exporter
         }
         else
         {
-            WriteLines(stringBuilder, node.ChildNodes);
+            GetTextFromNodes(stringBuilder, node.ChildNodes);
         }
     }
 
@@ -262,68 +299,57 @@ public static class Exporter
     }
 
     private static StringBuilder CreateHtml(Group group, Thread thread, List<Post> posts, FileFormat fileFormat,
-        CancellationToken cancellationToken)
+        StringBuilder headTemplate, StringBuilder bodyTemplate, CancellationToken cancellationToken)
     {
-        var stringBuilder = new StringBuilder();
-
-        stringBuilder
-            .Append("<html><head><title>")
-            .Append(HttpUtility.HtmlEncode(thread.Title))
-            .Append("</title></head><body>");
+        var stringBuilder = new StringBuilder().Append(headTemplate);
 
         if (ExportConfiguration.IncludeGroup)
         {
-            stringBuilder
-                .Append("<h3>")
-                .Append(HttpUtility.HtmlEncode(group.Title))
-                .Append("</h3>");
+            stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupTitle,
+                HttpUtility.HtmlEncode(group.Title));
 
-            if (CreateHeaderLine(group, ExportConfiguration.IncludeGroupAuthor,
-                    ExportConfiguration.IncludeGroupPostedAt, out var header))
+            if (ExportConfiguration.IncludeGroupAuthor)
             {
-                stringBuilder
-                    .Append("<p>")
-                    .Append(HttpUtility.HtmlEncode(header))
-                    .Append("</p>");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupAuthor,
+                    HttpUtility.HtmlEncode(group.Author));
+            }
+
+            if (ExportConfiguration.IncludeGroupPostedAt)
+            {
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupPostedAt,
+                    group.PostedAt.ToString("dd.MM.yyyy HH:mm"));
             }
 
             if (ExportConfiguration.IncludeGroupUrl)
             {
-                stringBuilder
-                    .Append("<p>URL: <a href=\"")
-                    .Append(group.Url)
-                    .Append("\">")
-                    .Append(group.Url)
-                    .Append("</a></p>");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderGroupUrl, group.Url);
             }
         }
 
         if (ExportConfiguration.IncludeThread)
         {
-            stringBuilder
-                .Append("<h3>")
-                .Append(HttpUtility.HtmlEncode(thread.Title))
-                .Append("</h3>");
+            stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadTitle,
+                HttpUtility.HtmlEncode(thread.Title));
 
-            if (CreateHeaderLine(thread, ExportConfiguration.IncludeThreadAuthor,
-                    ExportConfiguration.IncludeThreadPostedAt, out var header))
+            if (ExportConfiguration.IncludeThreadAuthor)
             {
-                stringBuilder
-                    .Append("<p>")
-                    .Append(HttpUtility.HtmlEncode(header))
-                    .Append("</p>");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadAuthor,
+                    HttpUtility.HtmlEncode(thread.Author));
+            }
+
+            if (ExportConfiguration.IncludeThreadPostedAt)
+            {
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadPostedAt,
+                    thread.PostedAt.ToString("dd.MM.yyyy HH:mm"));
             }
 
             if (ExportConfiguration.IncludeThreadUrl)
             {
-                stringBuilder
-                    .Append("<p>URL: <a href=\"")
-                    .Append(thread.Url)
-                    .Append("\">")
-                    .Append(thread.Url)
-                    .Append("</a></p>");
+                stringBuilder.Replace(Resources.Localization.Resources.PlaceholderThreadUrl, thread.Url);
             }
         }
+
+        var postsBuilder = new StringBuilder();
 
         for (var i = 0; i < posts.Count; ++i)
         {
@@ -332,106 +358,60 @@ public static class Exporter
             var postNumber = ExportConfiguration.ReserveOrder ? posts.Count - 1 - i : i;
             var post = posts[postNumber];
 
-            stringBuilder.Append("<div>");
+            var postBuilder = new StringBuilder().Append(bodyTemplate);
 
-            if (CreateHeaderLine(post, postNumber + 1, posts.Count, out var header))
+            if (ExportConfiguration.IncludePostNumber)
             {
-                stringBuilder
-                    .Append("<p><strong>")
-                    .Append(HttpUtility.HtmlEncode(header))
-                    .Append("</strong></p>");
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderCurrentPostNumber,
+                    postNumber.ToString());
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderTotalPostNumber,
+                    posts.Count.ToString());
             }
 
-            foreach (var textNode in post.TextNodes)
+            if (ExportConfiguration.IncludePostAuthor)
             {
-                if (ExportConfiguration.DownloadImages)
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostAuthor,
+                    HttpUtility.HtmlEncode(post.Author));
+            }
+
+            if (ExportConfiguration.IncludePostPostedAt)
+            {
+                postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostPostedAt,
+                    post.PostedAt.ToString("dd.MM.yyyy HH:mm"));
+            }
+
+            postBuilder.Replace(Resources.Localization.Resources.PlaceholderPostText,
+                GetHtmlFromNodes(post.TextNodes, fileFormat).ToString());
+            postsBuilder.Append(postBuilder);
+        }
+
+        return stringBuilder.Replace(Resources.Localization.Resources.PlaceholderPosts, postsBuilder.ToString());
+    }
+
+    private static StringBuilder GetHtmlFromNodes(IEnumerable<HtmlNode> nodes, FileFormat fileFormat)
+    {
+        var textBuilder = new StringBuilder();
+        foreach (var textNode in nodes)
+        {
+            if (ExportConfiguration.DownloadImages)
+            {
+                foreach (var imageNode in textNode.SelectNodes(".//img"))
                 {
-                    foreach (var imageNode in textNode.SelectNodes(".//img"))
+                    if (fileFormat == FileFormat.Html && imageNode.Attributes.Contains("srcHtml"))
                     {
-                        if (fileFormat == FileFormat.Html && imageNode.Attributes.Contains("srcHtml"))
-                        {
-                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
-                        }
-                        else if (fileFormat == FileFormat.Docx && imageNode.Attributes.Contains("srcDocx"))
-                        {
-                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
-                        }
+                        imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
+                    }
+                    else if (fileFormat == FileFormat.Docx && imageNode.Attributes.Contains("srcDocx"))
+                    {
+                        imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
                     }
                 }
-
-                stringBuilder.Append(textNode.OuterHtml);
             }
 
-            stringBuilder.Append("</div><br/>");
+            textBuilder.Append(textNode.OuterHtml);
         }
 
-        stringBuilder.Append("</body></html>");
-
-        return stringBuilder;
-    }
-
-    private static bool CreateHeaderLine(PostedText postedText, bool includeAuthor, bool includePostedAt,
-        out string? header)
-    {
-        var headerElements = new List<string>(2);
-
-        if (includeAuthor)
-        {
-            headerElements.Add($"{Resources.Localization.Resources.TemplateFrom} {postedText.Author}");
-        }
-
-        if (includePostedAt)
-        {
-            headerElements.Add($"{Resources.Localization.Resources.TemplateOn} {postedText.PostedAt:dd.MM.yyyy}");
-        }
-
-        if (headerElements.Count > 0)
-        {
-            header = CapitalizeFirstChar(string.Join(" ", headerElements));
-            return true;
-        }
-
-        header = default;
-        return false;
-    }
-
-    private static bool CreateHeaderLine(PostedText postedText, int currentNumber, int count, out string? header)
-    {
-        var headerElements = new List<string>(4);
-
-        if (ExportConfiguration.IncludePageNumber && currentNumber % 10 == 1)
-        {
-            headerElements.Add($"{Resources.Localization.Resources.TemplatePage} {currentNumber / 10 + 1}");
-        }
-
-        if (ExportConfiguration.IncludePostNumber)
-        {
-            headerElements.Add($"({currentNumber}/{count})");
-        }
-
-        if (ExportConfiguration.IncludePostAuthor)
-        {
-            headerElements.Add($"{Resources.Localization.Resources.TemplateFrom} {postedText.Author}");
-        }
-
-        if (ExportConfiguration.IncludePostPostedAt)
-        {
-            headerElements.Add($"{Resources.Localization.Resources.TemplateOn} {postedText.PostedAt:dd.MM.yyyy HH:mm}");
-        }
-
-        if (headerElements.Count > 0)
-        {
-            header = CapitalizeFirstChar(string.Join(" ", headerElements));
-            return true;
-        }
-
-        header = default;
-        return false;
-    }
-
-    private static string CapitalizeFirstChar(string text)
-    {
-        return string.Concat(text[0].ToString().ToUpper(), text.AsSpan(1));
+        return textBuilder;
     }
 
     private static (string, string, string, string) CreatePaths(Group group, Thread thread)

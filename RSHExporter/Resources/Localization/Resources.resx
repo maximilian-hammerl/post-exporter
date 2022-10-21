@@ -233,7 +233,7 @@
     <data name="ExportCancelExport" xml:space="preserve">
         <value>Do you want to cancel the export?</value>
     </data>
-    <data name="ExportExportCancelled" xml:space="preserve">
+    <data name="WarningExportCancelled" xml:space="preserve">
         <value>The export was cancelled. Some files may have already been exported.</value>
     </data>
     <data name="Ok" xml:space="preserve">
@@ -309,12 +309,12 @@
         <value>Start the export process by choosing the folder the files should be saved in. Files will be overwritten, if they already exist.</value>
     </data>
     <data name="HelpExportStep4" xml:space="preserve">
-        <value>Then choose the format of the exported files.</value>
+        <value>Then choose the format (or multiple formats) of the exported files.</value>
     </data>
     <data name="HelpExportStep5" xml:space="preserve">
         <value>Configure how you want the groups and threads to be exported.</value>
     </data>
-    <data name="HelpExportStep6" xml:space="preserve">
+    <data name="HelpExportStep8" xml:space="preserve">
         <value>Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation.</value>
     </data>
     <data name="ExportOtherOptions" xml:space="preserve">
@@ -383,5 +383,127 @@ To simplify finding and fixing possible bugs, this program uses Sentry, a applic
     </data>
     <data name="TemplateOn" xml:space="preserve">
         <value>on</value>
+    </data>
+    <data name="ErrorTemplates" xml:space="preserve">
+        <value>There is a problem with your {0} templates!</value>
+    </data>
+    <data name="ErrorMissingPlaceholder" xml:space="preserve">
+        <value>the placeholder {0} is missing</value>
+    </data>
+    <data name="ErrorMissingPlaceholders" xml:space="preserve">
+        <value>the placeholders {0} are missing</value>
+    </data>
+    <data name="ErrorUnusedPlaceholder" xml:space="preserve">
+        <value>the placeholder {0} is unused</value>
+    </data>
+    <data name="ErrorUnusedPlaceholders" xml:space="preserve">
+        <value>the placeholders {0} are unused</value>
+    </data>
+    <data name="And" xml:space="preserve">
+        <value>and</value>
+    </data>
+    <data name="PlaceholderGroupTitle" xml:space="preserve">
+        <value>[GroupName]</value>
+    </data>
+    <data name="PlaceholderGroupAuthor" xml:space="preserve">
+        <value>[GroupOwner]</value>
+    </data>
+    <data name="PlaceholderGroupPostedAt" xml:space="preserve">
+        <value>[GroupCreatedAt]</value>
+    </data>
+    <data name="PlaceholderGroupUrl" xml:space="preserve">
+        <value>[GroupUrl]</value>
+    </data>
+    <data name="PlaceholderThreadTitle" xml:space="preserve">
+        <value>[ThreadName]</value>
+    </data>
+    <data name="PlaceholderThreadAuthor" xml:space="preserve">
+        <value>[ThreadAuthor]</value>
+    </data>
+    <data name="PlaceholderThreadPostedAt" xml:space="preserve">
+        <value>[ThreadCreatedAt]</value>
+    </data>
+    <data name="PlaceholderThreadUrl" xml:space="preserve">
+        <value>[ThreadUrl]</value>
+    </data>
+    <data name="PlaceholderPosts" xml:space="preserve">
+        <value>[Posts]</value>
+    </data>
+    <data name="PlaceholderCurrentPostNumber" xml:space="preserve">
+        <value>[CurrentPostNumber]</value>
+    </data>
+    <data name="PlaceholderTotalPostNumber" xml:space="preserve">
+        <value>[TotalPostNumber]</value>
+    </data>
+    <data name="PlaceholderPostAuthor" xml:space="preserve">
+        <value>[PostAuthor]</value>
+    </data>
+    <data name="PlaceholderPostPostedAt" xml:space="preserve">
+        <value>[PostPostedAt]</value>
+    </data>
+    <data name="PlaceholderPostText" xml:space="preserve">
+        <value>[PostText]</value>
+    </data>
+    <data name="Save" xml:space="preserve">
+        <value>Save</value>
+    </data>
+    <data name="ExportAdvancedOptions" xml:space="preserve">
+        <value>Export Options for Advanced Users:</value>
+    </data>
+    <data name="OptionUseCustomTemplates" xml:space="preserve">
+        <value>Use Custom Templates</value>
+    </data>
+    <data name="UpdateTemplates" xml:space="preserve">
+        <value>Update Templates</value>
+    </data>
+    <data name="Reset" xml:space="preserve">
+        <value>Reset:</value>
+    </data>
+    <data name="TemplatesTitle" xml:space="preserve">
+        <value>Custom Templates</value>
+    </data>
+    <data name="TemplatesDetails1" xml:space="preserve">
+        <value>The text file export uses the text templates. The HTML file and Word file export use the HTML templates. The head templates stand for the header of the export of a thread and the body templates for the answers of the thread. At the placeholder</value>
+    </data>
+    <data name="TemplatesPlaceholders" xml:space="preserve">
+        <value>Available Placeholders</value>
+    </data>
+    <data name="TemplatesRequiredPlaceholders" xml:space="preserve">
+        <value>Required:</value>
+    </data>
+    <data name="TemplatesOptionalPlaceholders" xml:space="preserve">
+        <value>Optional:</value>
+    </data>
+    <data name="TemplatesTextHead" xml:space="preserve">
+        <value>Head-Template for Text</value>
+    </data>
+    <data name="TemplatesTextBody" xml:space="preserve">
+        <value>Body-Template for Text</value>
+    </data>
+    <data name="TemplatesHtmlBody" xml:space="preserve">
+        <value>Body-Template for Html</value>
+    </data>
+    <data name="TemplatesHtmlHead" xml:space="preserve">
+        <value>Head-Template for Html</value>
+    </data>
+    <data name="ErrorExportFailed" xml:space="preserve">
+        <value>There was a problem while exporting! The thread(s) {0} could not be successfully exported!</value>
+    </data>
+    <data name="HelpExportStep6" xml:space="preserve">
+        <value>Instead of using the checkboxes of the previous step, advanced users can also edit the export templates directly. This required basic knowledge of HTML.</value>
+    </data>
+    <data name="HelpExportStep7" xml:space="preserve">
+        <value>You can also configure where the files will be saved, whether all files should be in one folder or whether every group and/or all images of a thread should have their separate folder.</value>
+    </data>
+    <data name="TemplatesDetails2" xml:space="preserve">
+        <value>of the head templates the body templates for the answers are inserted when exporting.
+
+The default templates are based on the current export text options. Only if a text option is selected, the placeholder is also displayed in the default template.</value>
+    </data>
+    <data name="ResetCurrentPlaceholders" xml:space="preserve">
+        <value>With Current Placeholders</value>
+    </data>
+    <data name="ResetAllPlaceholders" xml:space="preserve">
+        <value>With All Placeholders</value>
     </data>
 </root>

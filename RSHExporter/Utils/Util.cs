@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace RSHExporter.Utils;
 
-public class Util
+public static class Util
 {
     public static void OpenBrowser(Uri uri)
     {
@@ -25,5 +25,10 @@ public class Util
     {
         var version = Assembly.GetExecutingAssembly().GetName().Version;
         return version != null ? $"Version {version.Major}.{version.Minor}" : "";
+    }
+
+    public static string CapitalizeFirstChar(string text)
+    {
+        return string.Concat(text[0].ToString().ToUpper(), text.AsSpan(1));
     }
 }

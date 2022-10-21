@@ -188,7 +188,7 @@
 
                     <Separator Style="{StaticResource SeparatorStyle}" />
 
-                    <StackPanel x:Name="ExportOptionsContent">
+                    <StackPanel x:Name="TextExportOptionsContent">
                         <TextBlock Text="{x:Static l:Resources.ExportTextOptions}"
                                    Style="{StaticResource LabelTextBlock}" />
 
@@ -239,14 +239,49 @@
                                   Content="{x:Static l:Resources.OptionIncludePostNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
-                        <CheckBox x:Name="IncludePageNumberCheckBox"
-                                  Content="{x:Static l:Resources.OptionIncludePageNumber}" IsThreeState="False"
-                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
-
                         <CheckBox x:Name="IncludeImagesCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeImages}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
+                        
+                        <CheckBox x:Name="ReserveOrderCheckBox"
+                                  Content="{x:Static l:Resources.OptionReserveOrder}" IsThreeState="False"
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
+                    </StackPanel>
 
+                    <Separator Style="{StaticResource SeparatorStyle}" />
+
+                    <StackPanel x:Name="AdvancedExportOptionsContent">
+                        <TextBlock Text="{x:Static l:Resources.ExportAdvancedOptions}"
+                                   Style="{StaticResource LabelTextBlock}" />
+
+                        <CheckBox x:Name="UseCustomTemplatesCheckBox"
+                                  Content="{x:Static l:Resources.OptionUseCustomTemplates}" IsThreeState="False"
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
+
+                        <Button Click="UpdateCustomTemplatesButton_OnClick" Width="170"
+                                Style="{StaticResource IconButtonStyle}">
+
+                            <Grid Width="160">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_PenToSquare"
+                                       Height="15" Width="15" />
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.UpdateTemplates}"
+                                           HorizontalAlignment="Center" />
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+
+                    <Separator Style="{StaticResource SeparatorStyle}" />
+
+                    <StackPanel x:Name="OtherExportOptionsContent">
                         <TextBlock Text="{x:Static l:Resources.ExportOtherOptions}"
                                    Style="{StaticResource LabelTextBlock}" />
 
@@ -263,10 +298,6 @@
                         <CheckBox x:Name="DownloadImagesToOwnFolderCheckBox"
                                   Content="{x:Static l:Resources.OptionDownloadImagesToOwnFolder}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
-
-                        <CheckBox x:Name="ReserveOrderCheckBox"
-                                  Content="{x:Static l:Resources.OptionReserveOrder}" IsThreeState="False"
-                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
@@ -298,7 +329,8 @@
                     </Grid>
                 </Button>
 
-                <ProgressBar x:Name="LoadingProgressBar" Visibility="Collapsed" Minimum="0" Height="15" Margin="3 3 3 6" />
+                <ProgressBar x:Name="LoadingProgressBar" Visibility="Collapsed" Minimum="0" Height="15"
+                             Margin="3 3 3 6" />
 
                 <Button x:Name="LoadingButton" Visibility="Collapsed" Click="LoadingButton_OnClick"
                         Style="{StaticResource IconButtonStyle}">
