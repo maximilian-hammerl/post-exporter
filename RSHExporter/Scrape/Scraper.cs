@@ -54,11 +54,11 @@ public static class Scraper
         {
             uri = new Uri(uriString);
         }
-        catch (UriFormatException)
+        catch (UriFormatException e)
         {
             if (WelcomePage.CollectDataAccepted)
             {
-                SentrySdk.CaptureMessage($"Could not determine format of URI \"{uriString}\"!");
+                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
             }
 
             return (false, string.Empty);
@@ -74,7 +74,21 @@ public static class Scraper
         var fileNameWithExtension = $"{fileName}{fileExtension}";
         var path = Path.Combine(directoryPath, fileNameWithExtension);
 
-        var imageBytes = await GetOrCreateHttpClient().GetByteArrayAsync(uri);
+        byte[] imageBytes;
+        try
+        {
+            imageBytes = await GetOrCreateHttpClient().GetByteArrayAsync(uri);
+        }
+        catch (HttpRequestException e)
+        {
+            if (WelcomePage.CollectDataAccepted)
+            {
+                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
+            }
+
+            return (false, string.Empty);
+        }
+
         await File.WriteAllBytesAsync(path, imageBytes);
 
         return (true, fileNameWithExtension);
