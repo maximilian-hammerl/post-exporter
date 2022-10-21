@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -82,13 +84,10 @@ public partial class ExportPage : Page
 
         IncludePostAuthorCheckBox.IsChecked = ExportConfiguration.IncludePostAuthor;
         IncludePostPostedAtCheckBox.IsChecked = ExportConfiguration.IncludePostPostedAt;
-
         IncludePostNumberCheckBox.IsChecked = ExportConfiguration.IncludePostNumber;
-        IncludePageNumberCheckBox.IsChecked = ExportConfiguration.IncludePageNumber;
+        IncludeImagesCheckBox.IsChecked = ExportConfiguration.IncludeImages;
 
         DownloadToOwnFolderCheckBox.IsChecked = ExportConfiguration.DownloadToOwnFolder;
-
-        IncludeImagesCheckBox.IsChecked = ExportConfiguration.IncludeImages;
 
         if (ExportConfiguration.DownloadImages)
         {
@@ -104,6 +103,8 @@ public partial class ExportPage : Page
         }
 
         ReserveOrderCheckBox.IsChecked = ExportConfiguration.ReserveOrder;
+
+        UseCustomTemplatesCheckBox.IsChecked = ExportConfiguration.UseCustomTemplates;
     }
 
     [UsedImplicitly] public ObservableCollection<Thread> SelectedThreads { get; set; }
@@ -157,6 +158,9 @@ public partial class ExportPage : Page
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
         ToggleExportButtonLoading(true);
+
+        SaveCurrentConfiguration();
+
         LoadingProgressBar.Value = 0;
         LoadingProgressBar.Maximum = _threads.Count;
 
@@ -170,8 +174,6 @@ public partial class ExportPage : Page
             return;
         }
 
-        SaveCurrentConfiguration();
-
         if (ExportConfiguration.FileFormats.Count == 0)
         {
             ToggleExportButtonLoading(false);
@@ -182,18 +184,76 @@ public partial class ExportPage : Page
             return;
         }
 
+        StringBuilder textHeadTemplate;
+        StringBuilder textBodyTemplate;
+        if (ExportConfiguration.UseCustomTemplates && ExportConfiguration.TextHeadTemplate != null &&
+            ExportConfiguration.TextBodyTemplate != null)
+        {
+            if (!ValidateTemplate(ExportConfiguration.TextHeadTemplate, ExportConfiguration.TextBodyTemplate,
+                    out var missingPlaceholders, out var unusedPlaceholders))
+            {
+                ShowErrorMessageForTemplate("Html", missingPlaceholders, unusedPlaceholders);
+                return;
+            }
+
+            textHeadTemplate = ExportConfiguration.TextHeadTemplate;
+            textBodyTemplate = ExportConfiguration.TextBodyTemplate;
+        }
+        else
+        {
+            textHeadTemplate = ExportConfiguration.GetDefaultTextHeadTemplate();
+            textBodyTemplate = ExportConfiguration.GetDefaultTextBodyTemplate();
+        }
+
+        StringBuilder htmlHeadTemplate;
+        StringBuilder htmlBodyTemplate;
+        if (ExportConfiguration.UseCustomTemplates && ExportConfiguration.HtmlHeadTemplate != null &&
+            ExportConfiguration.HtmlBodyTemplate != null)
+        {
+            if (!ValidateTemplate(ExportConfiguration.HtmlHeadTemplate, ExportConfiguration.HtmlBodyTemplate,
+                    out var missingPlaceholders, out var unusedPlaceholders))
+            {
+                ShowErrorMessageForTemplate("Text", missingPlaceholders, unusedPlaceholders);
+                return;
+            }
+
+            htmlHeadTemplate = ExportConfiguration.HtmlHeadTemplate;
+            htmlBodyTemplate = ExportConfiguration.HtmlBodyTemplate;
+        }
+        else
+        {
+            htmlHeadTemplate = ExportConfiguration.GetDefaultHtmlHeadTemplate();
+            htmlBodyTemplate = ExportConfiguration.GetDefaultHtmlBodyTemplate();
+        }
+
+        var failedExports = new ConcurrentBag<Thread>();
+
         _cancellationTokenSource = new CancellationTokenSource();
 
         await Task.WhenAll(_threads.Select(async thread =>
         {
-            await PrepareAndExport(thread, _cancellationTokenSource.Token);
+            try
+            {
+                await PrepareAndExport(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
+                    _cancellationTokenSource.Token);
+            }
+            catch (Exception)
+            {
+                failedExports.Add(thread);
+                throw;
+            }
         }));
 
         ToggleExportButtonLoading(false);
 
-        if (_cancellationTokenSource.IsCancellationRequested)
+        if (!failedExports.IsEmpty)
         {
-            DialogUtil.ShowInformation(RSHExporter.Resources.Localization.Resources.ExportExportCancelled);
+            DialogUtil.ShowError(string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
+                string.Join(", ", failedExports)));
+        }
+        else if (_cancellationTokenSource.IsCancellationRequested)
+        {
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningExportCancelled);
         }
         else
         {
@@ -208,6 +268,122 @@ public partial class ExportPage : Page
         Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
     }
 
+    private static void ShowErrorMessageForTemplate(string templateType, List<string> missingPlaceholders,
+        List<string> unusedPlaceholder)
+    {
+        var errorMessage = string.Format(RSHExporter.Resources.Localization.Resources.ErrorTemplates, templateType);
+
+        var placeHolderErrorMessage = new List<string>(2);
+
+        switch (missingPlaceholders.Count)
+        {
+            case 1:
+                placeHolderErrorMessage.Add(string.Format(
+                    RSHExporter.Resources.Localization.Resources.ErrorMissingPlaceholder, missingPlaceholders[0])
+                );
+                break;
+            case > 1:
+                placeHolderErrorMessage.Add(string.Format(
+                    RSHExporter.Resources.Localization.Resources.ErrorMissingPlaceholders,
+                    string.Join(", ", missingPlaceholders))
+                );
+                break;
+        }
+
+        switch (unusedPlaceholder.Count)
+        {
+            case 1:
+                placeHolderErrorMessage.Add(string.Format(
+                    RSHExporter.Resources.Localization.Resources.ErrorUnusedPlaceholder, unusedPlaceholder[0])
+                );
+                break;
+            case > 1:
+                placeHolderErrorMessage.Add(string.Format(
+                    RSHExporter.Resources.Localization.Resources.ErrorUnusedPlaceholders,
+                    string.Join(", ", unusedPlaceholder))
+                );
+                break;
+        }
+
+        errorMessage +=
+            $" {Util.CapitalizeFirstChar(string.Join($" {RSHExporter.Resources.Localization.Resources.And} ", placeHolderErrorMessage))}.";
+
+        DialogUtil.ShowError(errorMessage);
+    }
+
+    private static bool ValidateTemplate(StringBuilder headTemplate, StringBuilder bodyTemplate,
+        out List<string> missingPlaceholders, out List<string> unusedPlaceholders)
+    {
+        missingPlaceholders = new List<string>();
+        unusedPlaceholders = new List<string>();
+
+        var headString = headTemplate.ToString();
+        var bodyString = bodyTemplate.ToString();
+
+        // Head template
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString, ExportConfiguration.IncludeGroup,
+            RSHExporter.Resources.Localization.Resources.PlaceholderGroupTitle);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeGroup && ExportConfiguration.IncludeGroupAuthor,
+            RSHExporter.Resources.Localization.Resources.PlaceholderGroupAuthor);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeGroup && ExportConfiguration.IncludeGroupPostedAt,
+            RSHExporter.Resources.Localization.Resources.PlaceholderGroupPostedAt);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeGroup && ExportConfiguration.IncludeGroupUrl,
+            RSHExporter.Resources.Localization.Resources.PlaceholderGroupUrl);
+
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString, ExportConfiguration.IncludeThread,
+            RSHExporter.Resources.Localization.Resources.PlaceholderThreadTitle);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeThread && ExportConfiguration.IncludeThreadAuthor,
+            RSHExporter.Resources.Localization.Resources.PlaceholderThreadAuthor);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeThread && ExportConfiguration.IncludeThreadPostedAt,
+            RSHExporter.Resources.Localization.Resources.PlaceholderThreadPostedAt);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString,
+            ExportConfiguration.IncludeThread && ExportConfiguration.IncludeThreadUrl,
+            RSHExporter.Resources.Localization.Resources.PlaceholderThreadUrl);
+
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, headString, true,
+            RSHExporter.Resources.Localization.Resources.PlaceholderPosts);
+
+        // Body template
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, bodyString, ExportConfiguration.IncludePostNumber,
+            RSHExporter.Resources.Localization.Resources.PlaceholderCurrentPostNumber);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, bodyString, ExportConfiguration.IncludePostNumber,
+            RSHExporter.Resources.Localization.Resources.PlaceholderTotalPostNumber);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, bodyString, ExportConfiguration.IncludePostAuthor,
+            RSHExporter.Resources.Localization.Resources.PlaceholderPostAuthor);
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, bodyString,
+            ExportConfiguration.IncludePostPostedAt,
+            RSHExporter.Resources.Localization.Resources.PlaceholderPostPostedAt);
+
+        ValidatePlaceholder(missingPlaceholders, unusedPlaceholders, bodyString, true,
+            RSHExporter.Resources.Localization.Resources.PlaceholderPostText);
+
+        return missingPlaceholders.Count == 0 && unusedPlaceholders.Count == 0;
+    }
+
+    private static void ValidatePlaceholder(List<string> missingPlaceholders, List<string> unusedPlaceholders,
+        string text, bool shouldContainPlaceholder, string placeholder)
+    {
+        if (shouldContainPlaceholder)
+        {
+            if (!text.Contains(placeholder))
+            {
+                missingPlaceholders.Add(placeholder);
+            }
+        }
+        else
+        {
+            if (text.Contains(placeholder))
+            {
+                unusedPlaceholders.Add(placeholder);
+            }
+        }
+    }
+
     private void ToggleExportButtonLoading(bool isLoading)
     {
         ExportButton.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
@@ -218,23 +394,28 @@ public partial class ExportPage : Page
     private void SaveCurrentConfiguration()
     {
         ExportConfiguration.FileFormats = GetSelectedFileFormats();
+
         ExportConfiguration.IncludeGroup = IncludeGroupCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeGroupAuthor = IncludeGroupAuthorCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeGroupPostedAt = IncludeGroupPostedAtCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeGroupUrl = IncludeGroupUrlCheckBox.IsChecked.GetValueOrDefault();
+
         ExportConfiguration.IncludeThread = IncludeThreadCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeThreadAuthor = IncludeThreadAuthorCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeThreadPostedAt = IncludeThreadPostedAtCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeThreadUrl = IncludeThreadUrlCheckBox.IsChecked.GetValueOrDefault();
+
         ExportConfiguration.IncludePostAuthor = IncludePostAuthorCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludePostPostedAt = IncludePostPostedAtCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludePostNumber = IncludePostNumberCheckBox.IsChecked.GetValueOrDefault();
-        ExportConfiguration.IncludePageNumber = IncludePageNumberCheckBox.IsChecked.GetValueOrDefault();
-        ExportConfiguration.DownloadToOwnFolder = DownloadToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.IncludeImages = IncludeImagesCheckBox.IsChecked.GetValueOrDefault();
+
+        ExportConfiguration.DownloadToOwnFolder = DownloadToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.DownloadImages = DownloadImagesCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.DownloadImagesToOwnFolder = DownloadImagesToOwnFolderCheckBox.IsChecked.GetValueOrDefault();
         ExportConfiguration.ReserveOrder = ReserveOrderCheckBox.IsChecked.GetValueOrDefault();
+
+        ExportConfiguration.UseCustomTemplates = UseCustomTemplatesCheckBox.IsChecked.GetValueOrDefault();
     }
 
     private List<FileFormat> GetSelectedFileFormats()
@@ -244,17 +425,92 @@ public partial class ExportPage : Page
             select selectableFileFormat.FileFormat).ToList();
     }
 
-    private async Task PrepareAndExport(Thread thread, CancellationToken cancellationToken)
+    private async Task PrepareAndExport(Thread thread, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken)
     {
         try
         {
             var posts = await Scraper.GetPosts(thread, cancellationToken);
             cancellationToken.ThrowIfCancellationRequested();
-            await Exporter.Export(posts, cancellationToken);
+            await Exporter.Export(posts, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
+                cancellationToken);
             LoadingProgressBar.Value++;
         }
         catch (OperationCanceledException)
         {
+        }
+    }
+
+    private void UpdateCustomTemplatesButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        SaveCurrentConfiguration();
+
+        var templatesDialog = new TemplatesDialog();
+        templatesDialog.ShowDialog();
+
+        if (templatesDialog.DialogResult is true)
+        {
+            UseCustomTemplatesCheckBox.IsChecked = true;
+
+            if (ExportConfiguration.TextHeadTemplate != null && ExportConfiguration.HtmlHeadTemplate != null)
+            {
+                var textHeadString = ExportConfiguration.TextHeadTemplate.ToString();
+                var htmlHeadString = ExportConfiguration.HtmlHeadTemplate.ToString();
+
+                var includeGroupAuthor =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupAuthor) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupAuthor);
+                var includeGroupPostedAt =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupPostedAt) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupPostedAt);
+                var includeGroupUrl =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupUrl) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderGroupUrl);
+
+                IncludeGroupAuthorCheckBox.IsChecked = includeGroupAuthor;
+                IncludeGroupPostedAtCheckBox.IsChecked = includeGroupPostedAt;
+                IncludeGroupUrlCheckBox.IsChecked = includeGroupUrl;
+                IncludeGroupCheckBox.IsChecked = includeGroupAuthor || includeGroupPostedAt || includeGroupUrl;
+
+                var includeThreadAuthor =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadAuthor) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadAuthor);
+                var includeThreadPostedAt =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadPostedAt) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadPostedAt);
+                var includeThreadUrl =
+                    textHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadUrl) ||
+                    htmlHeadString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderThreadUrl);
+
+                IncludeThreadAuthorCheckBox.IsChecked = includeThreadAuthor;
+                IncludeThreadPostedAtCheckBox.IsChecked = includeThreadPostedAt;
+                IncludeThreadUrlCheckBox.IsChecked = includeThreadUrl;
+                IncludeThreadCheckBox.IsChecked = includeThreadAuthor || includeThreadPostedAt || includeThreadUrl;
+            }
+
+            if (ExportConfiguration.TextBodyTemplate != null && ExportConfiguration.HtmlBodyTemplate != null)
+            {
+                var textBodyString = ExportConfiguration.TextBodyTemplate.ToString();
+                var htmlBodyString = ExportConfiguration.HtmlBodyTemplate.ToString();
+
+                var includePostAuthor =
+                    textBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderPostAuthor) ||
+                    htmlBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderPostAuthor);
+                var includePostPostedAt =
+                    textBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderPostPostedAt) ||
+                    htmlBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderPostPostedAt);
+                var includePostNumber =
+                    textBodyString.Contains(RSHExporter.Resources.Localization.Resources
+                        .PlaceholderCurrentPostNumber) ||
+                    htmlBodyString.Contains(RSHExporter.Resources.Localization.Resources
+                        .PlaceholderCurrentPostNumber) ||
+                    textBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderTotalPostNumber) ||
+                    htmlBodyString.Contains(RSHExporter.Resources.Localization.Resources.PlaceholderTotalPostNumber);
+
+                IncludePostAuthorCheckBox.IsChecked = includePostAuthor;
+                IncludePostPostedAtCheckBox.IsChecked = includePostPostedAt;
+                IncludePostNumberCheckBox.IsChecked = includePostNumber;
+            }
         }
     }
 
@@ -337,8 +593,9 @@ public partial class ExportPage : Page
                 RSHExporter.Resources.Localization.Resources.HelpExportStep3),
             (brush => ExportFormatContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpExportStep4),
-            (brush => ExportOptionsContent.Background = brush,
+            (brush => TextExportOptionsContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpExportStep5),
+            // TODO: 2 more steps
             (brush => StartExportContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpExportStep6)
         );
