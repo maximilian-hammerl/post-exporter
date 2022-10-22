@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <VersionPrefix>1.6.0.0</VersionPrefix>
+        <ApplicationIcon>Resources\logo.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -43,8 +44,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Resources\logo.png"/>
-        <SplashScreen Include="Resources\logo.png"/>
+        <None Remove="Resources\splash-screen-logo.png"/>
+        <SplashScreen Include="Resources\splash-screen-logo.png"/>
         <None Remove="Resources\logo.ico"/>
         <Resource Include="Resources\logo.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
