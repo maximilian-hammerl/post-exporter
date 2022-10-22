@@ -1224,6 +1224,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alle Gruppen und Beiträge auswählen.
+        /// </summary>
+        public static string SelectSelectGroupsThreads {
+            get {
+                return ResourceManager.GetString("SelectSelectGroupsThreads", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alle Beiträge auswählen.
         /// </summary>
         public static string SelectSelectThreads {
@@ -1256,6 +1265,15 @@ namespace RSHExporter.Resources.Localization {
         public static string SelectUnselectGroups {
             get {
                 return ResourceManager.GetString("SelectUnselectGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Gruppen und Beiträge abwählen.
+        /// </summary>
+        public static string SelectUnselectGroupsThreads {
+            get {
+                return ResourceManager.GetString("SelectUnselectGroupsThreads", resourceCulture);
             }
         }
         

@@ -59,14 +59,16 @@ public partial class SelectPage : Page
 
         var selectableGroup = _selectableGroupByTitles[checkBox.Tag.ToString() ?? ""];
 
-        if (!selectableGroup.IsActive)
-        {
-            await SelectGroup(selectableGroup);
-        }
+        await SelectGroup(selectableGroup);
     }
 
     private async Task SelectGroup(SelectableGroup selectableGroup)
     {
+        if (selectableGroup.IsActive)
+        {
+            return;
+        }
+
         selectableGroup.IsActive = true;
         selectableGroup.IsLoading = true;
 
@@ -161,6 +163,35 @@ public partial class SelectPage : Page
             }
 
             selectableGroup.IsSelected = toggle;
+        }
+    }
+
+
+    private async void SelectAllGroupsThreads_OnClick(object sender, RoutedEventArgs e)
+    {
+        await ToggleSelectableGroupsThreadsSelected(true);
+    }
+
+    private async void UnselectAllGroupsThreads_OnClick(object sender, RoutedEventArgs e)
+    {
+        await ToggleSelectableGroupsThreadsSelected(false);
+    }
+
+    private async Task ToggleSelectableGroupsThreadsSelected(bool toggle)
+    {
+        foreach (var selectableGroup in SelectableGroups)
+        {
+            if (!selectableGroup.IsEnabled)
+            {
+                continue;
+            }
+
+            selectableGroup.IsSelected = toggle;
+
+            foreach (var selectableThread in await selectableGroup.GetOrLoadSelectableThreads())
+            {
+                selectableThread.IsSelected = toggle;
+            }
         }
     }
 

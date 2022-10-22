@@ -506,4 +506,10 @@ The default templates are based on the current export text options. Only if a te
     <data name="ResetAllPlaceholders" xml:space="preserve">
         <value>With All Placeholders</value>
     </data>
+    <data name="SelectSelectGroupsThreads" xml:space="preserve">
+        <value>Select All Groups and Threads</value>
+    </data>
+    <data name="SelectUnselectGroupsThreads" xml:space="preserve">
+        <value>Unselect All Groups and Threads</value>
+    </data>
 </root>

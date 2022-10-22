@@ -507,4 +507,10 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="ResetCurrentPlaceholders" xml:space="preserve">
         <value>Mit aktuellen Platzhaltern</value>
     </data>
+    <data name="SelectSelectGroupsThreads" xml:space="preserve">
+        <value>Alle Gruppen und Beiträge auswählen</value>
+    </data>
+    <data name="SelectUnselectGroupsThreads" xml:space="preserve">
+        <value>Alle Gruppen und Beiträge abwählen</value>
+    </data>
 </root>
