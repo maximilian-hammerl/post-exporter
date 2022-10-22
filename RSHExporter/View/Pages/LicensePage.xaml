@@ -40,7 +40,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Xmark"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Decline}"
                                HorizontalAlignment="Center" />
                 </Grid>
@@ -86,7 +86,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Check"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Accept}"
                                HorizontalAlignment="Center" />
                 </Grid>
@@ -97,19 +97,19 @@
         <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 3 0 0" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
-                
+
                 <TextBlock Text="{x:Static l:Resources.LoginTitle}" Style="{StaticResource Title1TextBlock}" />
 
                 <TextBlock Text="{x:Static l:Resources.LoginSubtitle}" Style="{StaticResource TextTextBlock}"
                            HorizontalAlignment="Center" MaxWidth="290" />
-                
+
                 <TextBlock Text="{x:Static l:Resources.LicenseTitle}" Style="{StaticResource LabelTextBlock}"
                            HorizontalAlignment="Center" Margin="12 72 12 3" />
 
                 <TextBox Text="{x:Static l:Resources.LicenseText}" Margin="12" Background="Transparent"
                          BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True"
                          VerticalScrollBarVisibility="Visible" MaxHeight="400" FontSize="14" />
-                
+
             </StackPanel>
         </Border>
 

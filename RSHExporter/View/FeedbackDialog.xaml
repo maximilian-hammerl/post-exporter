@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
-        xmlns:l = "clr-namespace:RSHExporter.Resources.Localization"
+        xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
         mc:Ignorable="d"
         Title="FeedbackDialog"
         Icon="/Resources/logo.ico"
@@ -37,10 +37,10 @@
 
             <TextBox x:Name="EmailTextBox" Margin="6" FontSize="14" />
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="6" Orientation="Horizontal" HorizontalAlignment="Right">
 
-            <Button Click="OkButton_OnClick" IsDefault="True" Width="110" 
+            <Button Click="OkButton_OnClick" IsDefault="True" Width="110"
                     Style="{StaticResource IconButtonStyle}">
 
                 <Grid Width="100">
@@ -54,9 +54,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Envelope"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Send}" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Send}"
+                               HorizontalAlignment="Center" />
                 </Grid>
             </Button>
 
@@ -74,9 +75,10 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Xmark"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Cancel}" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Cancel}"
+                               HorizontalAlignment="Center" />
                 </Grid>
             </Button>
 

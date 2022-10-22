@@ -176,7 +176,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_RotateLeft"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.ResetCurrentPlaceholders}"
                                HorizontalAlignment="Center" TextWrapping="Wrap" />
@@ -195,7 +195,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_RotateLeft"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.ResetAllPlaceholders}"
                                HorizontalAlignment="Center" TextWrapping="Wrap" />
@@ -218,7 +218,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_FloppyDisk"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Save}"
                                HorizontalAlignment="Center" />
@@ -237,7 +237,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Xmark"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Cancel}"
                                HorizontalAlignment="Center" />

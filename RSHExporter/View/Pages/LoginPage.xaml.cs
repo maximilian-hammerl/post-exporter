@@ -63,8 +63,9 @@ public partial class LoginPage : Page
 
     private void ToggleLoginButtonLoading(bool isLoading)
     {
-        LoginButton.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
-        LoadingSpinner.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
+        LoginButton.IsEnabled = !isLoading;
+        DefaultIcon.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
+        LoadingIcon.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)

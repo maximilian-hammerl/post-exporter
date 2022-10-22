@@ -185,8 +185,8 @@ public partial class ExportPage : Page
 
         StringBuilder textHeadTemplate;
         StringBuilder textBodyTemplate;
-        if (ExportConfiguration.UseCustomTemplates && ExportConfiguration.TextHeadTemplate != null &&
-            ExportConfiguration.TextBodyTemplate != null)
+        if (ExportConfiguration.UseCustomTemplates && ExportConfiguration.FileFormats.Contains(FileFormat.Txt) &&
+            ExportConfiguration.TextHeadTemplate != null && ExportConfiguration.TextBodyTemplate != null)
         {
             if (!ValidateTemplate(ExportConfiguration.TextHeadTemplate, ExportConfiguration.TextBodyTemplate,
                     out var missingPlaceholders, out var unusedPlaceholders))
@@ -207,8 +207,10 @@ public partial class ExportPage : Page
 
         StringBuilder htmlHeadTemplate;
         StringBuilder htmlBodyTemplate;
-        if (ExportConfiguration.UseCustomTemplates && ExportConfiguration.HtmlHeadTemplate != null &&
-            ExportConfiguration.HtmlBodyTemplate != null)
+        if (ExportConfiguration.UseCustomTemplates &&
+            (ExportConfiguration.FileFormats.Contains(FileFormat.Html) ||
+             ExportConfiguration.FileFormats.Contains(FileFormat.Docx)) &&
+            ExportConfiguration.HtmlHeadTemplate != null && ExportConfiguration.HtmlBodyTemplate != null)
         {
             if (!ValidateTemplate(ExportConfiguration.HtmlHeadTemplate, ExportConfiguration.HtmlBodyTemplate,
                     out var missingPlaceholders, out var unusedPlaceholders))

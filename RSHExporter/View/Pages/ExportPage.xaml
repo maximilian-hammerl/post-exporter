@@ -40,7 +40,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowLeft"
-                           Height="15" Width="15" />
+                           Style="{StaticResource IconImageStyle}" />
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Back}"
                                HorizontalAlignment="Center" />
                 </Grid>
@@ -66,7 +66,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Question"
-                               Height="15" Width="15" />
+                               Style="{StaticResource IconImageStyle}" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Help}"
                                    HorizontalAlignment="Center" />
                     </Grid>
@@ -86,7 +86,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Comment"
-                               Height="15" Width="15" />
+                               Style="{StaticResource IconImageStyle}" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Feedback}"
                                    HorizontalAlignment="Center" />
                     </Grid>
@@ -158,7 +158,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_FolderOpen"
-                                       Height="15" Width="15" />
+                                       Style="{StaticResource IconImageStyle}" />
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.ExportFolder}"
                                            HorizontalAlignment="Center" />
                             </Grid>
@@ -176,8 +176,8 @@
                                     <CheckBox IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
                                               VerticalAlignment="Center" Style="{StaticResource PrimaryCheckBoxStyle}">
                                         <WrapPanel>
-                                            <Image fa:FontAwesome.Icon="{Binding Path=Icon}" Height="15" Width="15"
-                                                   Margin="3  0" />
+                                            <Image fa:FontAwesome.Icon="{Binding Path=Icon}" Margin="3  0"
+                                                   Style="{StaticResource IconImageStyle}" />
                                             <TextBlock Text="{Binding Path=Label}" />
                                         </WrapPanel>
                                     </CheckBox>
@@ -242,7 +242,7 @@
                         <CheckBox x:Name="IncludeImagesCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludeImages}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
-                        
+
                         <CheckBox x:Name="ReserveOrderCheckBox"
                                   Content="{x:Static l:Resources.OptionReserveOrder}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
@@ -272,7 +272,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_PenToSquare"
-                                       Height="15" Width="15" />
+                                       Style="{StaticResource IconImageStyle}" />
                                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.UpdateTemplates}"
                                            HorizontalAlignment="Center" />
                             </Grid>
@@ -323,7 +323,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Download"
-                               Height="15" Width="15" />
+                               Style="{StaticResource IconImageStyle}" />
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.StartExport}"
                                    HorizontalAlignment="Center" />
                     </Grid>
@@ -344,8 +344,8 @@
                             <ColumnDefinition Width="4*" />
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Spinner" Height="15" Width="15"
-                               Style="{StaticResource LoadingImageStyle}" />
+                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Spinner"
+                               Style="{StaticResource LoadingIconImageStyle}" />
 
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Cancel}"
                                    HorizontalAlignment="Center" />
