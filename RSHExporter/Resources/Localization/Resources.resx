@@ -288,15 +288,12 @@
         <value>Then, for each group, select the posts you want to export.</value>
     </data>
     <data name="HelpSelectStep3" xml:space="preserve">
-        <value>You can select und unselect all groups here...</value>
+        <value>Here you can select und unselect all groups and/or threads.</value>
     </data>
     <data name="HelpSelectStep4" xml:space="preserve">
-        <value>...and all threads here.</value>
-    </data>
-    <data name="HelpSelectStep5" xml:space="preserve">
         <value>You can open a group or thread in the browser by clicking on the small icon to the right of the group or thread name.</value>
     </data>
-    <data name="HelpSelectStep6" xml:space="preserve">
+    <data name="HelpSelectStep5" xml:space="preserve">
         <value>If you have selected all groups and threads, continue to export by clicking here. (You can also go back again without losing any of your changes.)</value>
     </data>
     <data name="HelpExportStep1" xml:space="preserve">

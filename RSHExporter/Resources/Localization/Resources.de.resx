@@ -288,15 +288,12 @@
         <value>Wähle dann für jede Gruppe die Beiträge aus, die du exportieren möchtest.</value>
     </data>
     <data name="HelpSelectStep3" xml:space="preserve">
-        <value>Du kannst hier alle Gruppen an- und abwählen...</value>
+        <value>Hier kannst du alle Gruppen und/oder Beiträge an- und abwählen.</value>
     </data>
     <data name="HelpSelectStep4" xml:space="preserve">
-        <value>...und alle Beiträge hier.</value>
-    </data>
-    <data name="HelpSelectStep5" xml:space="preserve">
         <value>Du kannst eine Gruppe oder einen Beitrag im Browser öffnen, indem du auf das kleine Symbol rechts neben dem Namen der Gruppe oder des Beitrags klickst.</value>
     </data>
-    <data name="HelpSelectStep6" xml:space="preserve">
+    <data name="HelpSelectStep5" xml:space="preserve">
         <value>Wenn du alle Gruppen und Beiträge ausgewählt hast, fahre mit dem Export fort, indem du hier klickst. (Du kannst auch wieder zurückgehen, ohne dass deine Änderungen verloren gehen.)</value>
     </data>
     <data name="HelpExportStep1" xml:space="preserve">

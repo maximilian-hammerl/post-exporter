@@ -555,7 +555,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can select und unselect all groups here....
+        ///   Looks up a localized string similar to Here you can select und unselect all groups and/or threads..
         /// </summary>
         public static string HelpSelectStep3 {
             get {
@@ -564,7 +564,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ...and all threads here..
+        ///   Looks up a localized string similar to You can open a group or thread in the browser by clicking on the small icon to the right of the group or thread name..
         /// </summary>
         public static string HelpSelectStep4 {
             get {
@@ -573,20 +573,11 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can open a group or thread in the browser by clicking on the small icon to the right of the group or thread name..
+        ///   Looks up a localized string similar to If you have selected all groups and threads, continue to export by clicking here. (You can also go back again without losing any of your changes.).
         /// </summary>
         public static string HelpSelectStep5 {
             get {
                 return ResourceManager.GetString("HelpSelectStep5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you have selected all groups and threads, continue to export by clicking here. (You can also go back again without losing any of your changes.).
-        /// </summary>
-        public static string HelpSelectStep6 {
-            get {
-                return ResourceManager.GetString("HelpSelectStep6", resourceCulture);
             }
         }
         

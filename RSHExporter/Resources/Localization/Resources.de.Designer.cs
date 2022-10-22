@@ -555,7 +555,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Du kannst hier alle Gruppen an- und abwählen....
+        ///   Looks up a localized string similar to Hier kannst du alle Gruppen und/oder Beiträge an- und abwählen..
         /// </summary>
         public static string HelpSelectStep3 {
             get {
@@ -564,7 +564,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ...und alle Beiträge hier..
+        ///   Looks up a localized string similar to Du kannst eine Gruppe oder einen Beitrag im Browser öffnen, indem du auf das kleine Symbol rechts neben dem Namen der Gruppe oder des Beitrags klickst..
         /// </summary>
         public static string HelpSelectStep4 {
             get {
@@ -573,20 +573,11 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Du kannst eine Gruppe oder einen Beitrag im Browser öffnen, indem du auf das kleine Symbol rechts neben dem Namen der Gruppe oder des Beitrags klickst..
+        ///   Looks up a localized string similar to Wenn du alle Gruppen und Beiträge ausgewählt hast, fahre mit dem Export fort, indem du hier klickst. (Du kannst auch wieder zurückgehen, ohne dass deine Änderungen verloren gehen.).
         /// </summary>
         public static string HelpSelectStep5 {
             get {
                 return ResourceManager.GetString("HelpSelectStep5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wenn du alle Gruppen und Beiträge ausgewählt hast, fahre mit dem Export fort, indem du hier klickst. (Du kannst auch wieder zurückgehen, ohne dass deine Änderungen verloren gehen.).
-        /// </summary>
-        public static string HelpSelectStep6 {
-            get {
-                return ResourceManager.GetString("HelpSelectStep6", resourceCulture);
             }
         }
         

@@ -47,7 +47,7 @@ public partial class SelectPage : Page
         }
 
         var selectableGroup = _selectableGroupByTitles[button.Content.ToString() ?? ""];
-        await SelectGroup(selectableGroup);
+        await UpdateGroupSelected(selectableGroup);
     }
 
     private async void GroupCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -59,10 +59,11 @@ public partial class SelectPage : Page
 
         var selectableGroup = _selectableGroupByTitles[checkBox.Tag.ToString() ?? ""];
 
-        await SelectGroup(selectableGroup);
+        await UpdateGroupSelected(selectableGroup);
     }
 
-    private async Task SelectGroup(SelectableGroup selectableGroup)
+    private async Task UpdateGroupSelected(SelectableGroup selectableGroup, bool updateGroupSelected = true,
+        bool? updateThreadSelected = null)
     {
         if (selectableGroup.IsActive)
         {
@@ -86,6 +87,14 @@ public partial class SelectPage : Page
             return;
         }
 
+        if (updateThreadSelected != null)
+        {
+            foreach (var selectableThread in selectableThreads)
+            {
+                selectableThread.IsSelected = updateThreadSelected.Value;
+            }
+        }
+
         if (_currentSelectableGroup != null)
         {
             _currentSelectableGroup.IsActive = false;
@@ -93,7 +102,7 @@ public partial class SelectPage : Page
 
         _currentSelectableGroup = selectableGroup;
 
-        selectableGroup.IsSelected = true;
+        selectableGroup.IsSelected = updateGroupSelected;
         selectableGroup.IsLoading = false;
 
         ThreadLabel.Text = string.Format(RSHExporter.Resources.Localization.Resources.SelectThreadsOf,
@@ -143,17 +152,17 @@ public partial class SelectPage : Page
         NavigationService.Navigate(new ExportPage(threads));
     }
 
-    private void SelectAllGroups_OnClick(object sender, RoutedEventArgs e)
+    private async void SelectAllGroups_OnClick(object sender, RoutedEventArgs e)
     {
-        ToggleSelectableGroupsSelected(true);
+        await ToggleSelectableGroupsSelected(true);
     }
 
-    private void UnselectAllGroups_OnClick(object sender, RoutedEventArgs e)
+    private async void UnselectAllGroups_OnClick(object sender, RoutedEventArgs e)
     {
-        ToggleSelectableGroupsSelected(false);
+        await ToggleSelectableGroupsSelected(false);
     }
 
-    private void ToggleSelectableGroupsSelected(bool toggle)
+    private async Task ToggleSelectableGroupsSelected(bool toggle)
     {
         foreach (var selectableGroup in SelectableGroups)
         {
@@ -162,10 +171,9 @@ public partial class SelectPage : Page
                 continue;
             }
 
-            selectableGroup.IsSelected = toggle;
+            await UpdateGroupSelected(selectableGroup, toggle);
         }
     }
-
 
     private async void SelectAllGroupsThreads_OnClick(object sender, RoutedEventArgs e)
     {
@@ -186,12 +194,7 @@ public partial class SelectPage : Page
                 continue;
             }
 
-            selectableGroup.IsSelected = toggle;
-
-            foreach (var selectableThread in await selectableGroup.GetOrLoadSelectableThreads())
-            {
-                selectableThread.IsSelected = toggle;
-            }
+            await UpdateGroupSelected(selectableGroup, toggle, toggle);
         }
     }
 
@@ -226,18 +229,20 @@ public partial class SelectPage : Page
                 RSHExporter.Resources.Localization.Resources.HelpSelectStep1),
             (brush => ThreadsContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpSelectStep2),
-            (brush => GroupButtonsContent.Background = brush,
+            (brush =>
+                {
+                    GroupButtonsContent.Background = brush;
+                    ThreadButtonsContent.Background = brush;
+                },
                 RSHExporter.Resources.Localization.Resources.HelpSelectStep3),
-            (brush => ThreadButtonsContent.Background = brush,
-                RSHExporter.Resources.Localization.Resources.HelpSelectStep4),
             (brush =>
                 {
                     GroupsContent.Background = brush;
                     ThreadsContent.Background = brush;
                 },
-                RSHExporter.Resources.Localization.Resources.HelpSelectStep5),
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep4),
             (brush => ToExportContent.Background = brush,
-                RSHExporter.Resources.Localization.Resources.HelpSelectStep6)
+                RSHExporter.Resources.Localization.Resources.HelpSelectStep5)
         );
     }
 
