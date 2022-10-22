@@ -600,7 +600,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allowing Sentry to collect anonymous data when an error occurs helps me immensily with fixing these errors..
+        ///   Looks up a localized string similar to Allowing Sentry to collect anonymous data when an error occurs helps me immensely with fixing these errors..
         /// </summary>
         public static string HelpWelcomeStep2 {
             get {
@@ -1470,7 +1470,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?.
+        ///   Looks up a localized string similar to It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?.
         /// </summary>
         public static string WelcomeAllowSentryQuestion {
             get {

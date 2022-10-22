@@ -352,7 +352,7 @@ To simplify finding and fixing possible bugs, this program uses Sentry, a applic
         <value>Hi! These help dialogs will hopefully help you with learning how to use this program. Most pages have a help dialog which explains how the current page works.</value>
     </data>
     <data name="HelpWelcomeStep2" xml:space="preserve">
-        <value>Allowing Sentry to collect anonymous data when an error occurs helps me immensily with fixing these errors.</value>
+        <value>Allowing Sentry to collect anonymous data when an error occurs helps me immensely with fixing these errors.</value>
     </data>
     <data name="HelpWelcomeStep3" xml:space="preserve">
         <value>You can click here to go to the repository of the program.</value>
@@ -510,6 +510,6 @@ The default templates are based on the current export text options. Only if a te
         <value>Unselect All Groups and Threads</value>
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
-        <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?</value>
+        <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?</value>
     </data>
 </root>

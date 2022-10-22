@@ -1352,7 +1352,7 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to bei den Head-Templates werden beim Exportieren die Body-Templates für die Antworten eingefügt.
         ///
-        ///Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn eine Text-Option ausgewählt wurde, wird auch der Platzhalder im Standard-Template angezeigt..
+        ///Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn eine Text-Option ausgewählt wurde, wird auch der Platzhalter im Standard-Template angezeigt..
         /// </summary>
         public static string TemplatesDetails2 {
             get {
@@ -1460,7 +1460,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der Export wurde abgebrochen. Manche Dateien wurden möglichbereits bereits exportiert..
+        ///   Looks up a localized string similar to Der Export wurde abgebrochen. Manche Dateien wurden möglicherweise bereits exportiert..
         /// </summary>
         public static string WarningExportCancelled {
             get {
@@ -1469,7 +1469,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?.
+        ///   Looks up a localized string similar to Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?.
         /// </summary>
         public static string WelcomeAllowSentryQuestion {
             get {

@@ -234,7 +234,7 @@
         <value>Willst du den Export abbrechen?</value>
     </data>
     <data name="WarningExportCancelled" xml:space="preserve">
-        <value>Der Export wurde abgebrochen. Manche Dateien wurden möglichbereits bereits exportiert.</value>
+        <value>Der Export wurde abgebrochen. Manche Dateien wurden möglicherweise bereits exportiert.</value>
     </data>
     <data name="Ok" xml:space="preserve">
         <value>Ok</value>
@@ -496,7 +496,7 @@ Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Pr
     <data name="TemplatesDetails2" xml:space="preserve">
         <value>bei den Head-Templates werden beim Exportieren die Body-Templates für die Antworten eingefügt.
 
-Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn eine Text-Option ausgewählt wurde, wird auch der Platzhalder im Standard-Template angezeigt.</value>
+Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn eine Text-Option ausgewählt wurde, wird auch der Platzhalter im Standard-Template angezeigt.</value>
     </data>
     <data name="ResetAllPlaceholders" xml:space="preserve">
         <value>Mit allen Platzhaltern</value>
@@ -511,6 +511,6 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
         <value>Alle Gruppen und Beiträge abwählen</value>
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
-        <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?</value>
+        <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?</value>
     </data>
 </root>
