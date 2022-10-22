@@ -150,8 +150,15 @@
 
                                     <Border Grid.Column="1" Style="{StaticResource ListBorderStyle}"
                                             Visibility="{Binding Path=IsActive, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                        <TextBlock Text="{Binding Path=Group.Title}"
-                                                   Style="{StaticResource ListTextBlockStyle}" />
+                                        <StackPanel Margin="2">
+                                            <TextBlock Text="{Binding Path=Group.Title}"
+                                                       Style="{StaticResource ListTextBlockStyle}"
+                                                       Visibility="{Binding Path=IsLoading, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
+
+                                            <Image fa:FontAwesome.Icon="Solid_Spinner"
+                                                   Style="{StaticResource LoadingIconImageStyle}"
+                                                   Visibility="{Binding Path=IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        </StackPanel>
                                     </Border>
 
                                     <Button Grid.Column="2" Tag="{Binding Path=Group.Url}" Click="UrlButton_OnClick"

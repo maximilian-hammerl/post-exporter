@@ -58,6 +58,7 @@ public partial class SelectPage : Page
         }
 
         var selectableGroup = _selectableGroupByTitles[checkBox.Tag.ToString() ?? ""];
+
         if (!selectableGroup.IsActive)
         {
             await SelectGroup(selectableGroup);
@@ -66,12 +67,18 @@ public partial class SelectPage : Page
 
     private async Task SelectGroup(SelectableGroup selectableGroup)
     {
+        selectableGroup.IsActive = true;
+        selectableGroup.IsLoading = true;
+
         var selectableThreads = await selectableGroup.GetOrLoadSelectableThreads();
 
         if (selectableThreads.Count == 0)
         {
+            selectableGroup.IsLoading = false;
+            selectableGroup.IsActive = false;
             selectableGroup.IsSelected = false;
             selectableGroup.IsEnabled = false;
+
             DialogUtil.ShowWarning(string.Format(RSHExporter.Resources.Localization.Resources.SelectNoThreadsFor,
                 selectableGroup.Group));
             return;
@@ -85,7 +92,7 @@ public partial class SelectPage : Page
         _currentSelectableGroup = selectableGroup;
 
         selectableGroup.IsSelected = true;
-        selectableGroup.IsActive = true;
+        selectableGroup.IsLoading = false;
 
         ThreadLabel.Text = string.Format(RSHExporter.Resources.Localization.Resources.SelectThreadsOf,
             selectableGroup.Group.Title);
@@ -225,7 +232,10 @@ public partial class SelectPage : Page
         private Group _group;
         private bool _isActive;
         private bool _isEnabled;
+        private bool _isLoading;
+
         private bool _isSelected;
+
         private List<SelectableThread>? _selectableThreads;
 
         public SelectableGroup(Group group)
@@ -233,6 +243,7 @@ public partial class SelectPage : Page
             _group = group;
             _isSelected = false;
             _isActive = false;
+            _isLoading = false;
             _isEnabled = true;
             _selectableThreads = null;
         }
@@ -256,6 +267,13 @@ public partial class SelectPage : Page
         {
             get => _isActive;
             set => SetField(ref _isActive, value);
+        }
+
+        [UsedImplicitly]
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => SetField(ref _isLoading, value);
         }
 
         [UsedImplicitly]
