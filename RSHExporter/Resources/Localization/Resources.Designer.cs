@@ -510,7 +510,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation..
+        ///   Looks up a localized string similar to Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can also cancel the export at any time..
         /// </summary>
         public static string HelpExportStep8 {
             get {

@@ -315,7 +315,7 @@
         <value>Lege fest, wie die Gruppen und Beiträge exportiert werden sollen.</value>
     </data>
     <data name="HelpExportStep8" xml:space="preserve">
-        <value>Abschließend kannst du den Export hier starten. (Der Export kann eine Weile dauern, besonders bei einer langsamen Internetverbindung.) Du kannst den Export jederzeit abbrechen, indem du auf die Ladeanimation klickst.</value>
+        <value>Abschließend kannst du den Export hier starten. (Der Export kann eine Weile dauern, besonders bei einer langsamen Internetverbindung.) Du kannst den Export auch jederzeit abbrechen.</value>
     </data>
     <data name="ExportOtherOptions" xml:space="preserve">
         <value>Weitere Export-Optionen:</value>

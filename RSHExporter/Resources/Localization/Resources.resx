@@ -315,7 +315,7 @@
         <value>Configure how you want the groups and threads to be exported.</value>
     </data>
     <data name="HelpExportStep8" xml:space="preserve">
-        <value>Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can always cancel the export by clicking on the loading animation.</value>
+        <value>Finally, you can start the export here. (Exporting can take a while, especially with a slow internet connection.) You can also cancel the export at any time.</value>
     </data>
     <data name="ExportOtherOptions" xml:space="preserve">
         <value>Other Export Options:</value>
