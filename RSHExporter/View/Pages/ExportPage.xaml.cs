@@ -19,6 +19,7 @@ using Ookii.Dialogs.Wpf;
 using RSHExporter.Export;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
+using Sentry;
 using Thread = RSHExporter.Scrape.Thread;
 
 namespace RSHExporter.View.Pages;
@@ -240,10 +241,14 @@ public partial class ExportPage : Page
                 await PrepareAndExport(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
                     _cancellationTokenSource.Token);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 failedExports.Add(thread);
-                throw;
+
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureException(exception);
+                }
             }
         }));
 
@@ -252,7 +257,7 @@ public partial class ExportPage : Page
         if (!failedExports.IsEmpty)
         {
             DialogUtil.ShowError(string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
-                string.Join(", ", failedExports)));
+                string.Join(", ", failedExports.Select(thread => $"{thread.Title} ({thread.Group.Title})"))));
         }
         else if (_cancellationTokenSource.IsCancellationRequested)
         {
