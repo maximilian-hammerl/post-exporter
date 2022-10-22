@@ -8,6 +8,7 @@
         Icon="/Resources/logo.ico"
         Height="1200"
         Width="1500"
+        WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
     <DockPanel Background="#183153">
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="9" />
