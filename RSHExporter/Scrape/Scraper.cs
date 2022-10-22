@@ -43,24 +43,13 @@ public static class Scraper
 
     public static async Task<(bool, string)> DownloadImage(string uriString, string directoryPath, string fileName)
     {
-        // Relative URI
-        if (uriString.StartsWith("/"))
+        if (!TryCreateUri(uriString, out var uri))
         {
-            uriString = $"https://rollenspielhimmel.de{uriString}";
+            return (false, string.Empty);
         }
 
-        Uri uri;
-        try
+        if (uri == null)
         {
-            uri = new Uri(uriString);
-        }
-        catch (UriFormatException e)
-        {
-            if (WelcomePage.CollectDataAccepted)
-            {
-                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
-            }
-
             return (false, string.Empty);
         }
 
@@ -92,6 +81,55 @@ public static class Scraper
         await File.WriteAllBytesAsync(path, imageBytes);
 
         return (true, fileNameWithExtension);
+    }
+
+    public static async Task<bool> TestImage(string uriString)
+    {
+        if (!TryCreateUri(uriString, out var uri))
+        {
+            return false;
+        }
+
+        if (uri == null)
+        {
+            return false;
+        }
+
+        try
+        {
+            var imageBytes = await GetOrCreateHttpClient().GetByteArrayAsync(uri);
+            return imageBytes.Length > 0;
+        }
+        catch (HttpRequestException e)
+        {
+            if (WelcomePage.CollectDataAccepted)
+            {
+                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
+            }
+
+            return false;
+        }
+    }
+
+    private static bool TryCreateUri(string uriString, out Uri? uri)
+    {
+        // Relative URI
+        if (uriString.StartsWith("/"))
+        {
+            uriString = $"https://rollenspielhimmel.de{uriString}";
+        }
+
+        if (Uri.TryCreate(uriString, UriKind.Absolute, out uri))
+        {
+            return true;
+        }
+
+        if (WelcomePage.CollectDataAccepted)
+        {
+            SentrySdk.CaptureMessage($"Cannot parse URI \"{uriString}\"!");
+        }
+
+        return false;
     }
 
     public static async Task<List<Post>> GetPosts(Thread thread, CancellationToken cancellationToken)

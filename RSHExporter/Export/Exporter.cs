@@ -29,7 +29,7 @@ public static class Exporter
         var thread = posts[0].Thread;
         var group = thread.Group;
 
-        var (directoryPath, imagesDirectoryPath, imagesDirectory, filePathWithoutExtension) =
+        var (directoryPath, imagesDirectoryPath, imagesDirectory, imageFileNamePrefix, filePathWithoutExtension) =
             CreatePaths(group, thread);
 
         Directory.CreateDirectory(directoryPath);
@@ -38,73 +38,19 @@ public static class Exporter
         {
             if (ExportConfiguration.DownloadImages)
             {
-                var directoryAlreadyCreated = false;
-
-                for (int i = 0; i < posts.Count; ++i)
-                {
-                    cancellationToken.ThrowIfCancellationRequested();
-
-                    var post = posts[i];
-
-                    var imageNodes = new List<HtmlNode>();
-                    foreach (var textNode in post.TextNodes)
-                    {
-                        imageNodes.AddRange(textNode.SelectNodes(".//img"));
-                    }
-
-                    for (var j = 0; j < imageNodes.Count; ++j)
-                    {
-                        var imageNode = imageNodes[j];
-
-                        var source = imageNode.Attributes["src"].Value;
-                        var altName = imageNode.Attributes["alt"].Value;
-
-                        var fileNameBuilder = new StringBuilder();
-                        fileNameBuilder.Append($"{i:D3}-{j:D3}");
-
-                        if (!string.IsNullOrEmpty(altName))
-                        {
-                            fileNameBuilder.Append('-').Append(HttpUtility.HtmlDecode(altName));
-                            SanitizeFileName(fileNameBuilder);
-                        }
-
-                        var fileName = fileNameBuilder.ToString();
-
-                        if (!directoryAlreadyCreated)
-                        {
-                            Directory.CreateDirectory(imagesDirectoryPath);
-                            directoryAlreadyCreated = true;
-                        }
-
-                        var (success, fileNameWithExtension) =
-                            await Scraper.DownloadImage(source, imagesDirectoryPath, fileName);
-
-                        if (success)
-                        {
-                            imageNode.SetAttributeValue("srcHtml",
-                                Path.Combine(imagesDirectory, fileNameWithExtension));
-                            imageNode.SetAttributeValue("srcDocx",
-                                Path.Combine(imagesDirectoryPath, fileNameWithExtension));
-                        }
-                    }
-                }
+                await DownloadImagesAndUpdateImageSources(posts, imagesDirectoryPath, imagesDirectory,
+                    imageFileNamePrefix,
+                    cancellationToken);
+            }
+            else
+            {
+                await UpdateImageSources(posts, ExportConfiguration.FileFormats.Contains(FileFormat.Docx),
+                    cancellationToken);
             }
         }
         else
         {
-            foreach (var post in posts)
-            {
-                var imageNodes = new List<HtmlNode>();
-                foreach (var textNode in post.TextNodes)
-                {
-                    imageNodes.AddRange(textNode.SelectNodes(".//img"));
-                }
-
-                foreach (var imageNode in imageNodes)
-                {
-                    imageNode.Remove();
-                }
-            }
+            RemoveImages(posts);
         }
 
         foreach (var fileFormat in ExportConfiguration.FileFormats)
@@ -154,6 +100,112 @@ public static class Exporter
 
                 default:
                     throw new NotSupportedException(fileFormat.ToString());
+            }
+        }
+    }
+
+    private static async Task DownloadImagesAndUpdateImageSources(List<Post> posts, string imagesDirectoryPath,
+        string imagesDirectory,
+        string imageFileNamePrefix, CancellationToken cancellationToken)
+    {
+        var directoryAlreadyCreated = false;
+
+        for (var i = 0; i < posts.Count; ++i)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var post = posts[i];
+
+            var imageNodes = new List<HtmlNode>();
+            foreach (var textNode in post.TextNodes)
+            {
+                imageNodes.AddRange(textNode.SelectNodes(".//img"));
+            }
+
+            for (var j = 0; j < imageNodes.Count; ++j)
+            {
+                var imageNode = imageNodes[j];
+
+                var source = imageNode.Attributes["src"].Value;
+                var altName = imageNode.Attributes["alt"].Value;
+
+                var fileNameBuilder = new StringBuilder(imageFileNamePrefix);
+                fileNameBuilder.Append($"{i:D3}-{j:D3}");
+
+                if (!string.IsNullOrEmpty(altName))
+                {
+                    fileNameBuilder.Append('-').Append(HttpUtility.HtmlDecode(altName));
+                    SanitizeFileName(fileNameBuilder);
+                }
+
+                var fileName = fileNameBuilder.ToString();
+
+                if (!directoryAlreadyCreated)
+                {
+                    Directory.CreateDirectory(imagesDirectoryPath);
+                    directoryAlreadyCreated = true;
+                }
+
+                var (success, fileNameWithExtension) =
+                    await Scraper.DownloadImage(source, imagesDirectoryPath, fileName);
+
+                if (success)
+                {
+                    // HTML can use relative paths
+                    imageNode.SetAttributeValue("srcHtml",
+                        Path.Combine(imagesDirectory, fileNameWithExtension));
+                    // DOCX requires absolute paths
+                    imageNode.SetAttributeValue("srcDocx",
+                        Path.Combine(imagesDirectoryPath, fileNameWithExtension));
+                }
+                else
+                {
+                    // HTML has no problem with (possibly temporarily) failing image sources
+                    imageNode.SetAttributeValue("srcHtml", source);
+                    // DOCX will crash with failing images sources
+                    imageNode.SetAttributeValue("srcDocx", "");
+                }
+            }
+        }
+    }
+
+    private static async Task UpdateImageSources(List<Post> posts, bool testImageSources,
+        CancellationToken cancellationToken)
+    {
+        foreach (var post in posts)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            foreach (var textNode in post.TextNodes)
+            {
+                foreach (var imageNode in textNode.SelectNodes(".//img"))
+                {
+                    var source = imageNode.Attributes["src"].Value;
+
+                    var success = !testImageSources || await Scraper.TestImage(source);
+
+                    // HTML has no problem with (possibly temporarily) failing image sources
+                    imageNode.SetAttributeValue("srcHtml", source);
+                    // DOCX will crash with failing images sources
+                    imageNode.SetAttributeValue("srcDocx", success ? source : "");
+                }
+            }
+        }
+    }
+
+    private static void RemoveImages(List<Post> posts)
+    {
+        foreach (var post in posts)
+        {
+            var imageNodes = new List<HtmlNode>();
+            foreach (var textNode in post.TextNodes)
+            {
+                imageNodes.AddRange(textNode.SelectNodes(".//img"));
+            }
+
+            foreach (var imageNode in imageNodes)
+            {
+                imageNode.Remove();
             }
         }
     }
@@ -397,11 +449,11 @@ public static class Exporter
             {
                 foreach (var imageNode in textNode.SelectNodes(".//img"))
                 {
-                    if (fileFormat == FileFormat.Html && imageNode.Attributes.Contains("srcHtml"))
+                    if (fileFormat == FileFormat.Html)
                     {
                         imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
                     }
-                    else if (fileFormat == FileFormat.Docx && imageNode.Attributes.Contains("srcDocx"))
+                    else if (fileFormat == FileFormat.Docx)
                     {
                         imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
                     }
@@ -414,44 +466,49 @@ public static class Exporter
         return textBuilder;
     }
 
-    private static (string, string, string, string) CreatePaths(Group group, Thread thread)
+    private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
-        var groupTitle = new StringBuilder(group.Title);
-        SanitizeFileName(groupTitle);
+        var groupTitleBuilder = new StringBuilder(group.Title);
+        SanitizeFileName(groupTitleBuilder);
 
-        var threadTitle = new StringBuilder(thread.Title);
-        SanitizeFileName(threadTitle);
+        var threadTitleBuilder = new StringBuilder(thread.Title);
+        SanitizeFileName(threadTitleBuilder);
 
         string directoryPath;
-        StringBuilder fileName;
+        StringBuilder fileNameBuilder;
 
         if (ExportConfiguration.DownloadToOwnFolder)
         {
-            directoryPath = Path.Combine(ExportConfiguration.ExportDirectoryPath, groupTitle.ToString());
-            fileName = threadTitle;
+            directoryPath = Path.Combine(ExportConfiguration.ExportDirectoryPath, groupTitleBuilder.ToString());
+            fileNameBuilder = threadTitleBuilder;
         }
         else
         {
             directoryPath = ExportConfiguration.ExportDirectoryPath;
-            fileName = new StringBuilder().Append(groupTitle).Append('-').Append(threadTitle);
+            fileNameBuilder = new StringBuilder().Append(groupTitleBuilder).Append('-').Append(threadTitleBuilder);
         }
+
+        var fileName = fileNameBuilder.ToString();
 
         string imagesDirectoryPath;
         string imagesDirectory;
+        string imageFileNamePrefix;
 
         if (ExportConfiguration.DownloadImagesToOwnFolder)
         {
-            var directoryName = fileName.ToString();
-            imagesDirectoryPath = Path.Combine(directoryPath, directoryName);
-            imagesDirectory = Path.Combine(".", directoryName);
+            imagesDirectoryPath = Path.Combine(directoryPath, fileName);
+            imagesDirectory = Path.Combine(".", fileName);
+            imageFileNamePrefix = "";
         }
         else
         {
             imagesDirectoryPath = directoryPath;
             imagesDirectory = ".";
+            imageFileNamePrefix = $"{fileName}-";
         }
 
-        return (directoryPath, imagesDirectoryPath, imagesDirectory, Path.Join(directoryPath, fileName.ToString()));
+        return (directoryPath, imagesDirectoryPath, imagesDirectory, imageFileNamePrefix,
+            Path.Join(directoryPath, fileName));
     }
 
     private static void SanitizeFileName(StringBuilder stringBuilder)
