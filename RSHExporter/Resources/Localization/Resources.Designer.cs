@@ -215,9 +215,9 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to cancel the export?.
         /// </summary>
-        public static string ExportCancelExport {
+        public static string ExportCancelExportQuestion {
             get {
-                return ResourceManager.GetString("ExportCancelExport", resourceCulture);
+                return ResourceManager.GetString("ExportCancelExportQuestion", resourceCulture);
             }
         }
         
@@ -269,9 +269,9 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to This folder already contains files. Files will be overwritten, if they have the same name. Are you sure that you want to use this folder?.
         /// </summary>
-        public static string ExportFolderContainsFiles {
+        public static string ExportFolderContainsFilesQuestion {
             get {
-                return ResourceManager.GetString("ExportFolderContainsFiles", resourceCulture);
+                return ResourceManager.GetString("ExportFolderContainsFilesQuestion", resourceCulture);
             }
         }
         
@@ -1466,6 +1466,15 @@ namespace RSHExporter.Resources.Localization {
         public static string WarningExportCancelled {
             get {
                 return ResourceManager.GetString("WarningExportCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?.
+        /// </summary>
+        public static string WelcomeAllowSentryQuestion {
+            get {
+                return ResourceManager.GetString("WelcomeAllowSentryQuestion", resourceCulture);
             }
         }
         

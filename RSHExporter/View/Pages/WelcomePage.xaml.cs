@@ -43,6 +43,12 @@ public partial class WelcomePage : Page
 
     private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
     {
+        if (!CollectDataAccepted)
+        {
+            CollectDataAccepted =
+                DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.WelcomeAllowSentryQuestion);
+        }
+
         NavigationService.Navigate(new LoginPage());
     }
 

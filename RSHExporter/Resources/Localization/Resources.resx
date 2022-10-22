@@ -152,7 +152,7 @@
     <data name="ExportMissingFolder" xml:space="preserve">
         <value>Please choose an export folder first!</value>
     </data>
-    <data name="ExportFolderContainsFiles" xml:space="preserve">
+    <data name="ExportFolderContainsFilesQuestion" xml:space="preserve">
         <value>This folder already contains files. Files will be overwritten, if they have the same name. Are you sure that you want to use this folder?</value>
     </data>
     <data name="OptionIncludeGroup" xml:space="preserve">
@@ -230,7 +230,7 @@
     <data name="CancelExport" xml:space="preserve">
         <value>Click to cancel export</value>
     </data>
-    <data name="ExportCancelExport" xml:space="preserve">
+    <data name="ExportCancelExportQuestion" xml:space="preserve">
         <value>Do you want to cancel the export?</value>
     </data>
     <data name="WarningExportCancelled" xml:space="preserve">
@@ -508,5 +508,8 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="SelectUnselectGroupsThreads" xml:space="preserve">
         <value>Unselect All Groups and Threads</value>
+    </data>
+    <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
+        <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?</value>
     </data>
 </root>

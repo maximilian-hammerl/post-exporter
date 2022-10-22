@@ -215,9 +215,9 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Willst du den Export abbrechen?.
         /// </summary>
-        public static string ExportCancelExport {
+        public static string ExportCancelExportQuestion {
             get {
-                return ResourceManager.GetString("ExportCancelExport", resourceCulture);
+                return ResourceManager.GetString("ExportCancelExportQuestion", resourceCulture);
             }
         }
         
@@ -269,9 +269,9 @@ namespace RSHExporter.Resources.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Dieser Ordner enthält bereits Dateien. Dateien werden überschrieben, wenn sie denselben Namen haben. Bist du sicher, dass du diesen Ordner verwenden möchtest?.
         /// </summary>
-        public static string ExportFolderContainsFiles {
+        public static string ExportFolderContainsFilesQuestion {
             get {
-                return ResourceManager.GetString("ExportFolderContainsFiles", resourceCulture);
+                return ResourceManager.GetString("ExportFolderContainsFilesQuestion", resourceCulture);
             }
         }
         
@@ -1465,6 +1465,15 @@ namespace RSHExporter.Resources.Localization {
         public static string WarningExportCancelled {
             get {
                 return ResourceManager.GetString("WarningExportCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?.
+        /// </summary>
+        public static string WelcomeAllowSentryQuestion {
+            get {
+                return ResourceManager.GetString("WelcomeAllowSentryQuestion", resourceCulture);
             }
         }
         

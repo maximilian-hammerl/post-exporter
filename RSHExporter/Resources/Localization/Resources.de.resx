@@ -152,7 +152,7 @@
     <data name="ExportMissingFolder" xml:space="preserve">
         <value>Bitte wähle zuerst einen Export-Ordner aus!</value>
     </data>
-    <data name="ExportFolderContainsFiles" xml:space="preserve">
+    <data name="ExportFolderContainsFilesQuestion" xml:space="preserve">
         <value>Dieser Ordner enthält bereits Dateien. Dateien werden überschrieben, wenn sie denselben Namen haben. Bist du sicher, dass du diesen Ordner verwenden möchtest?</value>
     </data>
     <data name="OptionReserveOrder" xml:space="preserve">
@@ -230,7 +230,7 @@
     <data name="CancelExport" xml:space="preserve">
         <value>Klicken, um den Export abzubrechen</value>
     </data>
-    <data name="ExportCancelExport" xml:space="preserve">
+    <data name="ExportCancelExportQuestion" xml:space="preserve">
         <value>Willst du den Export abbrechen?</value>
     </data>
     <data name="WarningExportCancelled" xml:space="preserve">
@@ -509,5 +509,8 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="SelectUnselectGroupsThreads" xml:space="preserve">
         <value>Alle Gruppen und Beiträge abwählen</value>
+    </data>
+    <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
+        <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?</value>
     </data>
 </root>

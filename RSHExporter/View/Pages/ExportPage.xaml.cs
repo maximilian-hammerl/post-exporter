@@ -137,7 +137,8 @@ public partial class ExportPage : Page
 
             if (Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length > 0)
             {
-                if (!DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportFolderContainsFiles))
+                if (!DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources
+                        .ExportFolderContainsFilesQuestion))
                 {
                     continue;
                 }
@@ -629,7 +630,7 @@ public partial class ExportPage : Page
 
     private void LoadingButton_OnClick(object sender, RoutedEventArgs e)
     {
-        if (DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportCancelExport))
+        if (DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportCancelExportQuestion))
         {
             _cancellationTokenSource.Cancel();
         }
