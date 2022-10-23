@@ -271,7 +271,7 @@ public static class Exporter
             if (ExportConfiguration.IncludePostNumber)
             {
                 postBuilder.Replace(Resources.Localization.Resources.PlaceholderCurrentPostNumber,
-                    postNumber.ToString());
+                    (postNumber + 1).ToString());
                 postBuilder.Replace(Resources.Localization.Resources.PlaceholderTotalPostNumber,
                     posts.Count.ToString());
             }
@@ -415,7 +415,7 @@ public static class Exporter
             if (ExportConfiguration.IncludePostNumber)
             {
                 postBuilder.Replace(Resources.Localization.Resources.PlaceholderCurrentPostNumber,
-                    postNumber.ToString());
+                    (postNumber + 1).ToString());
                 postBuilder.Replace(Resources.Localization.Resources.PlaceholderTotalPostNumber,
                     posts.Count.ToString());
             }
