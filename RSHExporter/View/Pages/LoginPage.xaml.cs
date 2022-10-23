@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Scrape;
@@ -44,8 +46,32 @@ public partial class LoginPage : Page
             return;
         }
 
-        var (groups, loadedAllGroupsSuccessfully) = await Scraper.LoginAndGetGroups(username, password);
-        if (groups == null)
+        SentryUtil.HandleBreadcrumb(
+            message: "Trying to login",
+            category: "LoginPage",
+            level: BreadcrumbLevel.Info
+        );
+
+        (List<Group>? groups, bool loadedAllGroupsSuccessfully) response;
+        try
+        {
+            response = await Scraper.LoginAndGetGroups(username, password);
+        }
+        catch (HttpRequestException exception)
+        {
+            SentryUtil.HandleBreadcrumb(
+                message: "Could not login because of server problems",
+                category: "LoginPage",
+                level: BreadcrumbLevel.Error
+            );
+            SentryUtil.HandleException(exception);
+
+            ToggleLoginButtonLoading(false);
+            DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorServerUnavailable, false);
+            return;
+        }
+
+        if (response.groups == null)
         {
             SentryUtil.HandleBreadcrumb(
                 message: "Wrong username or password",
@@ -58,7 +84,7 @@ public partial class LoginPage : Page
             return;
         }
 
-        if (!loadedAllGroupsSuccessfully)
+        if (!response.loadedAllGroupsSuccessfully)
         {
             SentryUtil.HandleBreadcrumb(
                 message: "Not all groups loaded successfully",
@@ -69,7 +95,7 @@ public partial class LoginPage : Page
             DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
         }
 
-        if (groups.Count == 0)
+        if (response.groups.Count == 0)
         {
             SentryUtil.HandleBreadcrumb(
                 message: "No groups could be loaded",
@@ -91,7 +117,7 @@ public partial class LoginPage : Page
         );
 
         ToggleLoginButtonLoading(false);
-        NavigationService.Navigate(new SelectPage(groups));
+        NavigationService.Navigate(new SelectPage(response.groups));
     }
 
     private void ToggleLoginButtonLoading(bool isLoading)

@@ -525,6 +525,9 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
         <value>Der Fehler konnte nicht gemeldet werden, weil Sentry keine Fehler sammeln darf.</value>
     </data>
     <data name="WarningSelectedDocx" xml:space="preserve">
-        <value>Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil ein Bild nicht heruntergeladen werden kann. Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren.</value>
+        <value>Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil Bilder nicht hinzugefügt werden können. (Der Fehler tritt seltener auf, wenn man die Bilder der Antworten herunterlädt.) Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren.</value>
+    </data>
+    <data name="ErrorServerUnavailable" xml:space="preserve">
+        <value>Der Rollenspielhimmel-Server ist im Moment nicht erreichbar. Versuche es in ein paar Minuten noch einmal!</value>
     </data>
 </root>

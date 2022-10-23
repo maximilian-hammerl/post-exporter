@@ -204,6 +204,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Der Rollenspielhimmel-Server ist im Moment nicht erreichbar. Versuche es in ein paar Minuten noch einmal!.
+        /// </summary>
+        public static string ErrorServerUnavailable {
+            get {
+                return ResourceManager.GetString("ErrorServerUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manche Gruppen konnten nicht geladen werden!.
         /// </summary>
         public static string ErrorSomeGroupsFailedToLoad {
@@ -1487,7 +1496,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil ein Bild nicht heruntergeladen werden kann. Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren..
+        ///   Looks up a localized string similar to Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil Bilder nicht hinzugefügt werden können. (Der Fehler tritt seltener auf, wenn man die Bilder der Antworten herunterlädt.) Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren..
         /// </summary>
         public static string WarningSelectedDocx {
             get {

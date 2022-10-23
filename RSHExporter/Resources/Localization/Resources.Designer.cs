@@ -204,6 +204,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Rollenspielhimmel server is not reachable right now. Try again in a few minutes!.
+        /// </summary>
+        public static string ErrorServerUnavailable {
+            get {
+                return ResourceManager.GetString("ErrorServerUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Some groups could not be loaded!.
         /// </summary>
         public static string ErrorSomeGroupsFailedToLoad {
@@ -1488,7 +1497,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Just a heads-up: The Word export sometimes fails, because an image cannot be downloaded. This error is most of the time just temporary. If you retry after a few minutes, it should probably work..
+        ///   Looks up a localized string similar to Just a heads up: The Word export sometimes fails because images cannot be added. (The error occurs less often when the images of the answers are downloaded.) Most of the time, this error is temporary. If you try again after a few minutes, it should probably work..
         /// </summary>
         public static string WarningSelectedDocx {
             get {
