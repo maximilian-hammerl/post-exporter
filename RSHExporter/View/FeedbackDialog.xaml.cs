@@ -8,7 +8,7 @@ public partial class FeedbackDialog : Window
     public enum FeedbackType
     {
         Default,
-        Error,
+        Error
     }
 
     public FeedbackDialog(FeedbackType feedbackType, string? id = null)

@@ -46,7 +46,6 @@ public partial class ExportPage : Page
         SelectableFileFormats = new ObservableCollection<SelectableFileFormat>();
         foreach (var fileFormat in Enum.GetValues<FileFormat>())
         {
-            // FIXME
             SelectableFileFormats.Add(new SelectableFileFormat(fileFormat,
                 ExportConfiguration.FileFormats.Contains(fileFormat)));
         }

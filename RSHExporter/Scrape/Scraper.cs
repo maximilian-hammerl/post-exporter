@@ -31,7 +31,7 @@ public static class Scraper
                 AllowAutoRedirect = true,
                 UseDefaultCredentials = true,
                 CookieContainer = cookieContainer,
-                UseCookies = true,
+                UseCookies = true
             };
             _client = new HttpClient(clientHandler);
             _client.DefaultRequestHeaders.UserAgent.ParseAdd(
@@ -437,7 +437,7 @@ public static class Scraper
             {
                 new("username", username),
                 new("password", password),
-                new("use_cookie", "1"),
+                new("use_cookie", "1")
             }
         );
 

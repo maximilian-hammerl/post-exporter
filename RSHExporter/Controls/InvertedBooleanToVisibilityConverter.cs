@@ -6,13 +6,13 @@ using System.Windows.Data;
 namespace RSHExporter.Controls;
 
 /// <summary>
-/// Convert between boolean and visibility
+///     Convert between boolean and visibility
 /// </summary>
 [Localizability(LocalizationCategory.NeverLocalize)]
 public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
 {
     /// <summary>
-    /// Convert bool or Nullable&lt;bool&gt; to Visibility
+    ///     Convert bool or Nullable&lt;bool&gt; to Visibility
     /// </summary>
     /// <param name="value">bool or Nullable&lt;bool&gt;</param>
     /// <param name="targetType">Visibility</param>
@@ -21,22 +21,22 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
     /// <returns>Visible or Collapsed</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        bool bValue = false;
+        var bValue = false;
         if (value is bool)
         {
             bValue = (bool)value;
         }
-        else if (value is Nullable<bool>)
+        else if (value is bool?)
         {
-            Nullable<bool> tmp = (Nullable<bool>)value;
+            var tmp = (bool?)value;
             bValue = tmp.HasValue ? tmp.Value : false;
         }
 
-        return (bValue) ? Visibility.Collapsed : Visibility.Visible;
+        return bValue ? Visibility.Collapsed : Visibility.Visible;
     }
 
     /// <summary>
-    /// Convert Visibility to boolean
+    ///     Convert Visibility to boolean
     /// </summary>
     /// <param name="value"></param>
     /// <param name="targetType"></param>
@@ -49,9 +49,7 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
         {
             return (Visibility)value == Visibility.Collapsed;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 }

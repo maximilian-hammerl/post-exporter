@@ -16,7 +16,7 @@ public partial class WelcomePage : Page
         VersionTextBlock.Text = Util.GetVersion();
     }
 
-    public static bool CollectDataAccepted { get; private set; } = false;
+    public static bool CollectDataAccepted { get; private set; }
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {

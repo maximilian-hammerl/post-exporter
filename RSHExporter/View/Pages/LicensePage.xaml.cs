@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Utils;
@@ -13,7 +15,7 @@ public partial class LicensePage : Page
 
         VersionTextBlock.Text = Util.GetVersion();
 
-        var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+        var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
         if (currentCulture == "de" || currentCulture.StartsWith("de-"))
         {
             ToGermanButton.IsEnabled = false;
@@ -36,13 +38,13 @@ public partial class LicensePage : Page
 
     private void ToGermanButton_OnClick(object sender, RoutedEventArgs e)
     {
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de");
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo("de");
         NavigationService.Navigate(new LicensePage());
     }
 
     private void ToEnglishButton_OnClick(object sender, RoutedEventArgs e)
     {
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
         NavigationService.Navigate(new LicensePage());
     }
 
