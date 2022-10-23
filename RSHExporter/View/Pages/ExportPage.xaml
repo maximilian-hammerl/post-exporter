@@ -173,8 +173,10 @@
                         <ItemsControl x:Name="FileFormats" ItemsSource="{Binding}" Margin="3 3 3 3">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
-                                              VerticalAlignment="Center" Style="{StaticResource PrimaryCheckBoxStyle}">
+                                    <CheckBox IsChecked="{Binding Path=IsSelected}" Tag="{Binding Path=Name}"
+                                              IsThreeState="False" VerticalAlignment="Center"
+                                              Checked="FileFormatCheckBox_OnChecked"
+                                              Style="{StaticResource PrimaryCheckBoxStyle}">
                                         <WrapPanel>
                                             <Image fa:FontAwesome.Icon="{Binding Path=Icon}" Margin="3  0"
                                                    Style="{StaticResource IconImageStyle}" />

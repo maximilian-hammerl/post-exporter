@@ -104,6 +104,12 @@ public partial class ExportPage : Page
             ToggleDownloadImageCheckBoxes(false);
             DownloadImagesCheckBox.IsChecked = false;
         }
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened page",
+            category: "ExportPage",
+            level: BreadcrumbLevel.Info
+        );
     }
 
     [UsedImplicitly] public ObservableCollection<Thread> SelectedThreads { get; set; }
@@ -111,6 +117,12 @@ public partial class ExportPage : Page
 
     private void BackButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Back to selecting groups and threads",
+            category: "ExportPage",
+            level: BreadcrumbLevel.Info
+        );
+
         SaveCurrentConfiguration();
         NavigationService.GoBack();
     }
@@ -155,9 +167,37 @@ public partial class ExportPage : Page
         ExportDirectoryTextBlock.Text = path ?? "/";
     }
 
+    private void FileFormatCheckBox_OnChecked(object sender, RoutedEventArgs e)
+    {
+        if (sender is not CheckBox checkBox)
+        {
+            throw new ArgumentException(sender.ToString());
+        }
+
+        if (!checkBox.IsChecked.HasValue || !checkBox.IsChecked.Value)
+        {
+            return;
+        }
+
+        var fileFormat = Enum.Parse<FileFormat>(checkBox.Tag.ToString() ?? "");
+
+        if (fileFormat != FileFormat.Docx)
+        {
+            return;
+        }
+
+        DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningSelectedDocx);
+    }
+
     private async void ExportButton_OnClick(object sender, RoutedEventArgs e)
     {
         ToggleExportButtonLoading(true);
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Started export",
+            category: "ExportPage",
+            level: BreadcrumbLevel.Info
+        );
 
         SaveCurrentConfiguration();
 
@@ -166,6 +206,12 @@ public partial class ExportPage : Page
 
         if (string.IsNullOrWhiteSpace(ExportConfiguration.DirectoryPath))
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "Missing folder",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Warning
+            );
+
             ToggleExportButtonLoading(false);
 
             ExportFolderContent.Background = Brushes.LightBlue;
@@ -176,6 +222,12 @@ public partial class ExportPage : Page
 
         if (ExportConfiguration.FileFormats.Count == 0)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "Missing file format",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Warning
+            );
+
             ToggleExportButtonLoading(false);
 
             ExportFormatContent.Background = Brushes.LightBlue;
@@ -192,6 +244,12 @@ public partial class ExportPage : Page
             if (!ValidateTemplate(ExportConfiguration.TextHeadTemplate, ExportConfiguration.TextBodyTemplate,
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
+                SentryUtil.HandleBreadcrumb(
+                    message: "Html template not complete",
+                    category: "ExportPage",
+                    level: BreadcrumbLevel.Warning
+                );
+
                 ShowErrorMessageForTemplate("Html", missingPlaceholders, unusedPlaceholders);
                 ToggleExportButtonLoading(false);
                 return;
@@ -216,6 +274,12 @@ public partial class ExportPage : Page
             if (!ValidateTemplate(ExportConfiguration.HtmlHeadTemplate, ExportConfiguration.HtmlBodyTemplate,
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
+                SentryUtil.HandleBreadcrumb(
+                    message: "Text template not complete",
+                    category: "ExportPage",
+                    level: BreadcrumbLevel.Warning
+                );
+
                 ShowErrorMessageForTemplate("Text", missingPlaceholders, unusedPlaceholders);
                 ToggleExportButtonLoading(false);
                 return;
@@ -245,10 +309,7 @@ public partial class ExportPage : Page
             {
                 failedExports.Add(thread);
 
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureException(exception);
-                }
+                SentryUtil.HandleException(exception);
             }
         }));
 
@@ -256,17 +317,35 @@ public partial class ExportPage : Page
 
         if (!failedExports.IsEmpty)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: $"{failedExports.Count} of {_threads.Count} exports failed",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Error
+            );
+
             DialogUtil.ShowError(
                 string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
                     string.Join(", ", failedExports.Select(thread => $"{thread.Title} ({thread.Group.Title})"))), true);
         }
         else if (_cancellationTokenSource.IsCancellationRequested)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: $"Export of {_threads.Count} threads was cancelled",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Warning
+            );
+
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningExportCancelled);
         }
         else
         {
             var numberFilesExported = _threads.Count * ExportConfiguration.FileFormats.Count;
+
+            SentryUtil.HandleBreadcrumb(
+                message: $"Successfully exported {numberFilesExported} files",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Info
+            );
 
             DialogUtil.ShowInformation(numberFilesExported == 1
                 ? RSHExporter.Resources.Localization.Resources.InfoFileSuccessfullyExported
@@ -522,6 +601,12 @@ public partial class ExportPage : Page
                 IncludePostNumberCheckBox.IsChecked = includePostNumber;
             }
         }
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Updated custom templates",
+            category: "ExportPage",
+            level: BreadcrumbLevel.Info
+        );
     }
 
     private void IncludeGroupCheckBox_OnChecked(object sender, RoutedEventArgs e)
@@ -594,6 +679,12 @@ public partial class ExportPage : Page
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened help",
+            category: "ExportPage",
+            level: BreadcrumbLevel.Info
+        );
+
         DialogUtil.ShowHelpAndHighlight(
             (brush => SelectedContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpExportStep1),
@@ -634,6 +725,12 @@ public partial class ExportPage : Page
         if (DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.ExportCancelExportQuestion))
         {
             _cancellationTokenSource.Cancel();
+
+            SentryUtil.HandleBreadcrumb(
+                message: "Cancelled export",
+                category: "ExportPage",
+                level: BreadcrumbLevel.Warning
+            );
         }
     }
 
@@ -643,11 +740,13 @@ public partial class ExportPage : Page
         private string _icon;
         private bool _isSelected;
         private string _label;
+        private string _name;
 
         public SelectableFileFormat(FileFormat fileFormat, bool isSelected)
         {
             _fileFormat = fileFormat;
             _label = fileFormat.DisplayName();
+            _name = fileFormat.ToString();
             _icon = fileFormat.FontAwesomeIcon();
             _isSelected = isSelected;
         }
@@ -664,6 +763,13 @@ public partial class ExportPage : Page
         {
             get => _label;
             set => SetField(ref _label, value);
+        }
+
+        [UsedImplicitly]
+        public string Name
+        {
+            get => _name;
+            set => SetField(ref _name, value);
         }
 
         [UsedImplicitly]
