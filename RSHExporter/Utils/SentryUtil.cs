@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RSHExporter.View;
 using RSHExporter.View.Pages;
 using Sentry;
@@ -17,6 +18,45 @@ public static class SentryUtil
             o.Release = $"{Util.GetAppName()}@{Util.GetVersion(4)}";
             o.AutoSessionTracking = true;
         });
+    }
+
+    public static void HandleException(Exception exception)
+    {
+        if (WelcomePage.CollectDataAccepted)
+        {
+            SentrySdk.CaptureException(exception);
+        }
+    }
+
+    public static void HandleMessage(string? message)
+    {
+        if (WelcomePage.CollectDataAccepted && !string.IsNullOrEmpty(message))
+        {
+            SentrySdk.CaptureMessage(message);
+        }
+    }
+
+    public static void HandleBreadcrumb(string message, string? category = null, string? type = null,
+        IDictionary<string, string>? data = null, BreadcrumbLevel level = default)
+    {
+        if (WelcomePage.CollectDataAccepted)
+        {
+            SentrySdk.AddBreadcrumb(message, category, type, data, level);
+        }
+    }
+
+    public static void UpdateUser(string username)
+    {
+        if (WelcomePage.CollectDataAccepted)
+        {
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.User = new User
+                {
+                    Username = username
+                };
+            });
+        }
     }
 
     public static void HandleFeedbackForException(Exception exception)

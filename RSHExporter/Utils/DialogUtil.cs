@@ -66,8 +66,10 @@ public static class DialogUtil
         MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 
-    public static void ShowError(string text, bool includeSentryMessage)
+    public static void ShowError(string text, bool includeSentryMessage, string? caption = null)
     {
+        caption ??= Resources.Localization.Resources.Error;
+
         if (includeSentryMessage)
         {
             text += WelcomePage.CollectDataAccepted
@@ -75,6 +77,6 @@ public static class DialogUtil
                 : $" {Resources.Localization.Resources.ErrorNotReportedToSentry}";
         }
 
-        MessageBox.Show(text, Resources.Localization.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+        MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }

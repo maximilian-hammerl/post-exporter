@@ -524,4 +524,7 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="ErrorNotReportedToSentry" xml:space="preserve">
         <value>Der Fehler konnte nicht gemeldet werden, weil Sentry keine Fehler sammeln darf.</value>
     </data>
+    <data name="WarningSelectedDocx" xml:space="preserve">
+        <value>Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil ein Bild nicht heruntergeladen werden kann. Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren.</value>
+    </data>
 </root>

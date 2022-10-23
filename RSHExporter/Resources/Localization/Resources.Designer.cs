@@ -1488,6 +1488,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Just a heads-up: The Word export sometimes fails, because an image cannot be downloaded. This error is most of the time just temporary. If you retry after a few minutes, it should probably work..
+        /// </summary>
+        public static string WarningSelectedDocx {
+            get {
+                return ResourceManager.GetString("WarningSelectedDocx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a group first..
         /// </summary>
         public static string WarningSelectGroupFirst {

@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using JetBrains.Annotations;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
+using Sentry;
 
 namespace RSHExporter.View.Pages;
 
@@ -34,6 +35,12 @@ public partial class SelectPage : Page
             _selectableGroupByTitles[group.Title] = selectableGroup;
             SelectableGroups.Add(selectableGroup);
         }
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened page",
+            category: "SelectPage",
+            level: BreadcrumbLevel.Info
+        );
     }
 
     [UsedImplicitly] public ObservableCollection<SelectableGroup> SelectableGroups { get; set; }
@@ -115,6 +122,12 @@ public partial class SelectPage : Page
 
     private void LogoutButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Logged out",
+            category: "SelectPage",
+            level: BreadcrumbLevel.Info
+        );
+
         NavigationService.Navigate(new LoginPage());
     }
 
@@ -142,9 +155,21 @@ public partial class SelectPage : Page
 
         if (threads.Count == 0)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "Nothing selected",
+                category: "SelectPage",
+                level: BreadcrumbLevel.Warning
+            );
+
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningNothingSelected);
             return;
         }
+
+        SentryUtil.HandleBreadcrumb(
+            message: $"To export with {threads.Count} threads",
+            category: "SelectPage",
+            level: BreadcrumbLevel.Info
+        );
 
         NavigationService.Navigate(new ExportPage(threads));
     }
@@ -221,6 +246,12 @@ public partial class SelectPage : Page
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened help",
+            category: "SelectPage",
+            level: BreadcrumbLevel.Info
+        );
+
         DialogUtil.ShowHelpAndHighlight(
             (brush => GroupsContent.Background = brush,
                 RSHExporter.Resources.Localization.Resources.HelpSelectStep1),

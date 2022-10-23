@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Utils;
+using Sentry;
 
 namespace RSHExporter.View.Pages;
 
@@ -20,6 +21,12 @@ public partial class WelcomePage : Page
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened help",
+            category: "WelcomePage",
+            level: BreadcrumbLevel.Info
+        );
+
         DialogUtil.ShowHelpAndHighlight(
             (brush => { WelcomeTextBlock.Background = brush; },
                 RSHExporter.Resources.Localization.Resources.HelpWelcomeStep1),

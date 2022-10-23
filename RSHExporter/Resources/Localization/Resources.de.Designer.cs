@@ -1487,6 +1487,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nur eine Vorwarnung: Der Word-Export schlägt manchmal fehl, weil ein Bild nicht heruntergeladen werden kann. Meistens ist dieser Fehler nur vorübergehend. Wenn du es nach ein paar Minuten erneut versuchst, sollte es wahrscheinlich funktionieren..
+        /// </summary>
+        public static string WarningSelectedDocx {
+            get {
+                return ResourceManager.GetString("WarningSelectedDocx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wähle zuerst eine Gruppe aus..
         /// </summary>
         public static string WarningSelectGroupFirst {

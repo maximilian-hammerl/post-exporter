@@ -523,4 +523,7 @@ The default templates are based on the current export text options. Only if a te
     <data name="ErrorNotReportedToSentry" xml:space="preserve">
         <value>Unfortunately, because you have not agreed to the use of Sentry, the error cannot be collected.</value>
     </data>
+    <data name="WarningSelectedDocx" xml:space="preserve">
+        <value>Just a heads-up: The Word export sometimes fails, because an image cannot be downloaded. This error is most of the time just temporary. If you retry after a few minutes, it should probably work.</value>
+    </data>
 </root>

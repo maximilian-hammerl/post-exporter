@@ -9,8 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
-using RSHExporter.View.Pages;
-using Sentry;
+using RSHExporter.Utils;
 
 namespace RSHExporter.Scrape;
 
@@ -70,10 +69,7 @@ public static class Scraper
         }
         catch (HttpRequestException e)
         {
-            if (WelcomePage.CollectDataAccepted)
-            {
-                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
-            }
+            SentryUtil.HandleMessage($"{e} for \"{uriString}\"!");
 
             return (false, string.Empty);
         }
@@ -102,10 +98,7 @@ public static class Scraper
         }
         catch (HttpRequestException e)
         {
-            if (WelcomePage.CollectDataAccepted)
-            {
-                SentrySdk.CaptureMessage($"{e} for \"{uriString}\"!");
-            }
+            SentryUtil.HandleMessage($"{e} for \"{uriString}\"!");
 
             return false;
         }
@@ -124,10 +117,7 @@ public static class Scraper
             return true;
         }
 
-        if (WelcomePage.CollectDataAccepted)
-        {
-            SentrySdk.CaptureMessage($"Cannot parse URI \"{uriString}\"!");
-        }
+        SentryUtil.HandleMessage($"Cannot parse URI \"{uriString}\"!");
 
         return false;
     }
@@ -261,10 +251,7 @@ public static class Scraper
             if (titleNode == null)
             {
                 loadedAllThreadsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find thread title in \"{threadRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find thread title in \"{threadRow.InnerHtml}\"!");
 
                 continue;
             }
@@ -277,10 +264,7 @@ public static class Scraper
             if (detailsNode == null)
             {
                 loadedAllThreadsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find thread details in \"{threadRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find thread details in \"{threadRow.InnerHtml}\"!");
 
                 continue;
             }
@@ -343,10 +327,7 @@ public static class Scraper
             if (tableNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find table node in \"{groupRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find table node in \"{groupRow.InnerHtml}\"!");
 
                 continue;
             }
@@ -356,10 +337,7 @@ public static class Scraper
             if (titleNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find title in \"{groupRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find title in \"{groupRow.InnerHtml}\"!");
 
                 continue;
             }
@@ -372,10 +350,7 @@ public static class Scraper
             if (founderNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find founder in \"{groupRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find founder in \"{groupRow.InnerHtml}\"!");
 
                 continue;
             }
@@ -387,10 +362,7 @@ public static class Scraper
             if (foundedAtNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                if (WelcomePage.CollectDataAccepted)
-                {
-                    SentrySdk.CaptureMessage($"Could not find founded at in \"{groupRow.InnerHtml}\"!");
-                }
+                SentryUtil.HandleMessage($"Could not find founded at in \"{groupRow.InnerHtml}\"!");
 
                 continue;
             }

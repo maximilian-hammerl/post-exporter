@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
+using Sentry;
 
 namespace RSHExporter.View.Pages;
 
@@ -15,6 +16,12 @@ public partial class LoginPage : Page
         VersionTextBlock.Text = $"Version {Util.GetVersion()}";
 
         UsernameTextBox.Focus();
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened page",
+            category: "LoginPage",
+            level: BreadcrumbLevel.Info
+        );
     }
 
     private async void LoginButton_OnClick(object sender, RoutedEventArgs e)
@@ -40,6 +47,12 @@ public partial class LoginPage : Page
         var (groups, loadedAllGroupsSuccessfully) = await Scraper.LoginAndGetGroups(username, password);
         if (groups == null)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "Wrong username or password",
+                category: "LoginPage",
+                level: BreadcrumbLevel.Warning
+            );
+
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningWrongUsernamePassword);
             return;
@@ -47,15 +60,35 @@ public partial class LoginPage : Page
 
         if (!loadedAllGroupsSuccessfully)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "Not all groups loaded successfully",
+                category: "LoginPage",
+                level: BreadcrumbLevel.Error
+            );
+
             DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
         }
 
         if (groups.Count == 0)
         {
+            SentryUtil.HandleBreadcrumb(
+                message: "No groups could be loaded",
+                category: "LoginPage",
+                level: BreadcrumbLevel.Error
+            );
+
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorNoGroups, false);
             return;
         }
+
+        SentryUtil.UpdateUser(username);
+
+        SentryUtil.HandleBreadcrumb(
+            message: "Successful logged in",
+            category: "LoginPage",
+            level: BreadcrumbLevel.Info
+        );
 
         ToggleLoginButtonLoading(false);
         NavigationService.Navigate(new SelectPage(groups));
@@ -70,6 +103,12 @@ public partial class LoginPage : Page
 
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
+        SentryUtil.HandleBreadcrumb(
+            message: "Opened help",
+            category: "LoginPage",
+            level: BreadcrumbLevel.Info
+        );
+
         DialogUtil.ShowHelpAndHighlight(
             (brush =>
                 {
