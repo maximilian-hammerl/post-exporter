@@ -106,8 +106,8 @@ public partial class ExportPage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            message: "Opened page",
-            category: "ExportPage",
+            "Opened page",
+            "ExportPage",
             level: BreadcrumbLevel.Info
         );
     }
@@ -118,8 +118,8 @@ public partial class ExportPage : Page
     private void BackButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Back to selecting groups and threads",
-            category: "ExportPage",
+            "Back to selecting groups and threads",
+            "ExportPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -194,8 +194,8 @@ public partial class ExportPage : Page
         ToggleExportButtonLoading(true);
 
         SentryUtil.HandleBreadcrumb(
-            message: "Started export",
-            category: "ExportPage",
+            "Started export",
+            "ExportPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -207,8 +207,8 @@ public partial class ExportPage : Page
         if (string.IsNullOrWhiteSpace(ExportConfiguration.DirectoryPath))
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Missing folder",
-                category: "ExportPage",
+                "Missing folder",
+                "ExportPage",
                 level: BreadcrumbLevel.Warning
             );
 
@@ -223,8 +223,8 @@ public partial class ExportPage : Page
         if (ExportConfiguration.FileFormats.Count == 0)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Missing file format",
-                category: "ExportPage",
+                "Missing file format",
+                "ExportPage",
                 level: BreadcrumbLevel.Warning
             );
 
@@ -245,8 +245,8 @@ public partial class ExportPage : Page
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
                 SentryUtil.HandleBreadcrumb(
-                    message: "Html template not complete",
-                    category: "ExportPage",
+                    "Html template not complete",
+                    "ExportPage",
                     level: BreadcrumbLevel.Warning
                 );
 
@@ -275,8 +275,8 @@ public partial class ExportPage : Page
                     out var missingPlaceholders, out var unusedPlaceholders))
             {
                 SentryUtil.HandleBreadcrumb(
-                    message: "Text template not complete",
-                    category: "ExportPage",
+                    "Text template not complete",
+                    "ExportPage",
                     level: BreadcrumbLevel.Warning
                 );
 
@@ -318,8 +318,8 @@ public partial class ExportPage : Page
         if (!failedExports.IsEmpty)
         {
             SentryUtil.HandleBreadcrumb(
-                message: $"{failedExports.Count} of {_threads.Count} exports failed",
-                category: "ExportPage",
+                $"{failedExports.Count} of {_threads.Count} exports failed",
+                "ExportPage",
                 level: BreadcrumbLevel.Error
             );
 
@@ -330,8 +330,8 @@ public partial class ExportPage : Page
         else if (_cancellationTokenSource.IsCancellationRequested)
         {
             SentryUtil.HandleBreadcrumb(
-                message: $"Export of {_threads.Count} threads was cancelled",
-                category: "ExportPage",
+                $"Export of {_threads.Count} threads was cancelled",
+                "ExportPage",
                 level: BreadcrumbLevel.Warning
             );
 
@@ -342,8 +342,8 @@ public partial class ExportPage : Page
             var numberFilesExported = _threads.Count * ExportConfiguration.FileFormats.Count;
 
             SentryUtil.HandleBreadcrumb(
-                message: $"Successfully exported {numberFilesExported} files",
-                category: "ExportPage",
+                $"Successfully exported {numberFilesExported} files",
+                "ExportPage",
                 level: BreadcrumbLevel.Info
             );
 
@@ -603,8 +603,8 @@ public partial class ExportPage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            message: "Updated custom templates",
-            category: "ExportPage",
+            "Updated custom templates",
+            "ExportPage",
             level: BreadcrumbLevel.Info
         );
     }
@@ -680,8 +680,8 @@ public partial class ExportPage : Page
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Opened help",
-            category: "ExportPage",
+            "Opened help",
+            "ExportPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -727,8 +727,8 @@ public partial class ExportPage : Page
             _cancellationTokenSource.Cancel();
 
             SentryUtil.HandleBreadcrumb(
-                message: "Cancelled export",
-                category: "ExportPage",
+                "Cancelled export",
+                "ExportPage",
                 level: BreadcrumbLevel.Warning
             );
         }

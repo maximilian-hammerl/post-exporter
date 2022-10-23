@@ -37,8 +37,8 @@ public partial class SelectPage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            message: "Opened page",
-            category: "SelectPage",
+            "Opened page",
+            "SelectPage",
             level: BreadcrumbLevel.Info
         );
     }
@@ -123,8 +123,8 @@ public partial class SelectPage : Page
     private void LogoutButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Logged out",
-            category: "SelectPage",
+            "Logged out",
+            "SelectPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -156,8 +156,8 @@ public partial class SelectPage : Page
         if (threads.Count == 0)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Nothing selected",
-                category: "SelectPage",
+                "Nothing selected",
+                "SelectPage",
                 level: BreadcrumbLevel.Warning
             );
 
@@ -166,8 +166,8 @@ public partial class SelectPage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            message: $"To export with {threads.Count} threads",
-            category: "SelectPage",
+            $"To export with {threads.Count} threads",
+            "SelectPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -247,8 +247,8 @@ public partial class SelectPage : Page
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Opened help",
-            category: "SelectPage",
+            "Opened help",
+            "SelectPage",
             level: BreadcrumbLevel.Info
         );
 

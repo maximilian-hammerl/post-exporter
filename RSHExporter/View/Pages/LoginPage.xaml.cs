@@ -20,8 +20,8 @@ public partial class LoginPage : Page
         UsernameTextBox.Focus();
 
         SentryUtil.HandleBreadcrumb(
-            message: "Opened page",
-            category: "LoginPage",
+            "Opened page",
+            "LoginPage",
             level: BreadcrumbLevel.Info
         );
     }
@@ -47,8 +47,8 @@ public partial class LoginPage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            message: "Trying to login",
-            category: "LoginPage",
+            "Trying to login",
+            "LoginPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -60,8 +60,8 @@ public partial class LoginPage : Page
         catch (HttpRequestException exception)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Could not login because of server problems",
-                category: "LoginPage",
+                "Could not login because of server problems",
+                "LoginPage",
                 level: BreadcrumbLevel.Error
             );
             SentryUtil.HandleException(exception);
@@ -74,8 +74,8 @@ public partial class LoginPage : Page
         if (response.groups == null)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Wrong username or password",
-                category: "LoginPage",
+                "Wrong username or password",
+                "LoginPage",
                 level: BreadcrumbLevel.Warning
             );
 
@@ -87,8 +87,8 @@ public partial class LoginPage : Page
         if (!response.loadedAllGroupsSuccessfully)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "Not all groups loaded successfully",
-                category: "LoginPage",
+                "Not all groups loaded successfully",
+                "LoginPage",
                 level: BreadcrumbLevel.Error
             );
 
@@ -98,8 +98,8 @@ public partial class LoginPage : Page
         if (response.groups.Count == 0)
         {
             SentryUtil.HandleBreadcrumb(
-                message: "No groups could be loaded",
-                category: "LoginPage",
+                "No groups could be loaded",
+                "LoginPage",
                 level: BreadcrumbLevel.Error
             );
 
@@ -111,8 +111,8 @@ public partial class LoginPage : Page
         SentryUtil.UpdateUser(username);
 
         SentryUtil.HandleBreadcrumb(
-            message: "Successful logged in",
-            category: "LoginPage",
+            "Successful logged in",
+            "LoginPage",
             level: BreadcrumbLevel.Info
         );
 
@@ -130,8 +130,8 @@ public partial class LoginPage : Page
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Opened help",
-            category: "LoginPage",
+            "Opened help",
+            "LoginPage",
             level: BreadcrumbLevel.Info
         );
 

@@ -22,8 +22,8 @@ public partial class WelcomePage : Page
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
-            message: "Opened help",
-            category: "WelcomePage",
+            "Opened help",
+            "WelcomePage",
             level: BreadcrumbLevel.Info
         );
 
