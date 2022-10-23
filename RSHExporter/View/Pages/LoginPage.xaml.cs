@@ -25,7 +25,7 @@ public partial class LoginPage : Page
         if (string.IsNullOrEmpty(username))
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingUsername);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningMissingUsername);
             return;
         }
 
@@ -33,22 +33,27 @@ public partial class LoginPage : Page
         if (string.IsNullOrEmpty(password))
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginMissingPassword);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningMissingPassword);
             return;
         }
 
-        var groups = await Scraper.LoginAndGetGroups(username, password);
+        var (groups, loadedAllGroupsSuccessfully) = await Scraper.LoginAndGetGroups(username, password);
         if (groups == null)
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.LoginWrongUsernamePassword);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningWrongUsernamePassword);
             return;
+        }
+
+        if (!loadedAllGroupsSuccessfully)
+        {
+            DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
         }
 
         if (groups.Count == 0)
         {
             ToggleLoginButtonLoading(false);
-            DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.LoginNoGroups);
+            DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorNoGroups, false);
             return;
         }
 

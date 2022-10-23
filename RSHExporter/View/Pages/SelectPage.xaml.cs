@@ -81,9 +81,6 @@ public partial class SelectPage : Page
             selectableGroup.IsActive = false;
             selectableGroup.IsSelected = false;
             selectableGroup.IsEnabled = false;
-
-            DialogUtil.ShowWarning(string.Format(RSHExporter.Resources.Localization.Resources.SelectNoThreadsFor,
-                selectableGroup.Group));
             return;
         }
 
@@ -145,7 +142,7 @@ public partial class SelectPage : Page
 
         if (threads.Count == 0)
         {
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.SelectNothingSelected);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningNothingSelected);
             return;
         }
 
@@ -212,7 +209,7 @@ public partial class SelectPage : Page
     {
         if (_currentSelectableGroup == null)
         {
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.SelectGroupFirst);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningSelectGroupFirst);
             return;
         }
 
@@ -330,10 +327,26 @@ public partial class SelectPage : Page
 
             _selectableThreads = new List<SelectableThread>();
 
-            var threads = await Scraper.GetThreads(Group);
-            foreach (var thread in threads)
+            var (threads, loadedAllThreadsSuccessfully) = await Scraper.GetThreads(Group);
+
+            if (!loadedAllThreadsSuccessfully)
             {
-                _selectableThreads.Add(new SelectableThread(thread));
+                DialogUtil.ShowError(
+                    string.Format(RSHExporter.Resources.Localization.Resources.ErrorSomeThreadsFailedToLoad,
+                        Group.Title), true);
+            }
+
+            if (threads.Count == 0)
+            {
+                DialogUtil.ShowWarning(string.Format(RSHExporter.Resources.Localization.Resources.WarningNoThreadsFor,
+                    Group.Title));
+            }
+            else
+            {
+                foreach (var thread in threads)
+                {
+                    _selectableThreads.Add(new SelectableThread(thread));
+                }
             }
 
             return _selectableThreads;

@@ -35,16 +35,16 @@
     <data name="Cancel" xml:space="preserve">
         <value>Cancel</value>
     </data>
-    <data name="LoginMissingUsername" xml:space="preserve">
+    <data name="WarningMissingUsername" xml:space="preserve">
         <value>Please enter your username first!</value>
     </data>
-    <data name="LoginMissingPassword" xml:space="preserve">
+    <data name="WarningMissingPassword" xml:space="preserve">
         <value>Please enter your password first!</value>
     </data>
-    <data name="LoginWrongUsernamePassword" xml:space="preserve">
+    <data name="WarningWrongUsernamePassword" xml:space="preserve">
         <value>You could not be logged in! Please check your username and password.</value>
     </data>
-    <data name="LoginNoGroups" xml:space="preserve">
+    <data name="ErrorNoGroups" xml:space="preserve">
         <value>No groups could be loaded! Either you have no groups or something went wrong.</value>
     </data>
     <data name="FeedbackTitleDefault" xml:space="preserve">
@@ -101,13 +101,13 @@
     <data name="SelectThreadsOf" xml:space="preserve">
         <value>2. Your Threads of {0}:</value>
     </data>
-    <data name="SelectNoThreadsFor" xml:space="preserve">
+    <data name="WarningNoThreadsFor" xml:space="preserve">
         <value>No threads could be loaded for group {0}!</value>
     </data>
-    <data name="SelectNothingSelected" xml:space="preserve">
+    <data name="WarningNothingSelected" xml:space="preserve">
         <value>You have to select at least one group and one thread!</value>
     </data>
-    <data name="SelectGroupFirst" xml:space="preserve">
+    <data name="WarningSelectGroupFirst" xml:space="preserve">
         <value>Select a group first.</value>
     </data>
     <data name="SelectSelectGroups" xml:space="preserve">
@@ -146,10 +146,10 @@
     <data name="ExportChosenFolder" xml:space="preserve">
         <value>Export Folder:</value>
     </data>
-    <data name="ExportFilesExported" xml:space="preserve">
+    <data name="InfoFilesSuccessfullyExported" xml:space="preserve">
         <value>{0} files were successfully exported!</value>
     </data>
-    <data name="ExportMissingFolder" xml:space="preserve">
+    <data name="WarningMissingFolder" xml:space="preserve">
         <value>Please choose an export folder first!</value>
     </data>
     <data name="ExportFolderContainsFilesQuestion" xml:space="preserve">
@@ -215,10 +215,10 @@
     <data name="FileFormatDocx" xml:space="preserve">
         <value>Word File (.docx) - Contains text and (if selected) images</value>
     </data>
-    <data name="ExportMissingFileFormat" xml:space="preserve">
+    <data name="WarningMissingFileFormat" xml:space="preserve">
         <value>Please choose at least one export file format!</value>
     </data>
-    <data name="ExportFileExported" xml:space="preserve">
+    <data name="InfoFileSuccessfullyExported" xml:space="preserve">
         <value>One file was successfully exported!</value>
     </data>
     <data name="LoginTitle" xml:space="preserve">
@@ -257,8 +257,8 @@
     <data name="ErrorNoSentry" xml:space="preserve">
         <value>Sentry is used to send your feedback. Unfortunately, because you have not agreed to the use of Sentry, your feedback cannot be collected.</value>
     </data>
-    <data name="ErrorGenericNoSentry" xml:space="preserve">
-        <value>An error has occurred! Unfortunately, because you have not agreed to the use of Sentry, the error cannot be collected.</value>
+    <data name="ErrorGeneric" xml:space="preserve">
+        <value>An error has occurred!</value>
     </data>
     <data name="HelpStep" xml:space="preserve">
         <value>Step {0} of {1}</value>
@@ -511,5 +511,17 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
         <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?</value>
+    </data>
+    <data name="ErrorSomeThreadsFailedToLoad" xml:space="preserve">
+        <value>Some thread(s) of group {0} could not be loaded!</value>
+    </data>
+    <data name="ErrorSomeGroupsFailedToLoad" xml:space="preserve">
+        <value>Some groups could not be loaded!</value>
+    </data>
+    <data name="ErrorReportedToSentry" xml:space="preserve">
+        <value>The error has been reported with Sentry and hopefully will be fixed soon!</value>
+    </data>
+    <data name="ErrorNotReportedToSentry" xml:space="preserve">
+        <value>Unfortunately, because you have not agreed to the use of Sentry, the error cannot be collected.</value>
     </data>
 </root>

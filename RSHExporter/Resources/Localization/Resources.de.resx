@@ -35,16 +35,16 @@
     <data name="Cancel" xml:space="preserve">
         <value>Abbrechen</value>
     </data>
-    <data name="LoginMissingUsername" xml:space="preserve">
+    <data name="WarningMissingUsername" xml:space="preserve">
         <value>Bitte gib zuerst deinen Benutzernamen ein!</value>
     </data>
-    <data name="LoginMissingPassword" xml:space="preserve">
+    <data name="WarningMissingPassword" xml:space="preserve">
         <value>Bitte gib zuerst dein Passwort ein!</value>
     </data>
-    <data name="LoginWrongUsernamePassword" xml:space="preserve">
+    <data name="WarningWrongUsernamePassword" xml:space="preserve">
         <value>Du konntest nicht eingeloggt werden! Bitte überprüfe deinen Benutzernamen und dein Passwort.</value>
     </data>
-    <data name="LoginNoGroups" xml:space="preserve">
+    <data name="ErrorNoGroups" xml:space="preserve">
         <value>Es konnten keine Gruppen geladen werden! Entweder hast du keine Gruppen oder es ist etwas schief gelaufen.</value>
     </data>
     <data name="FeedbackTitleDefault" xml:space="preserve">
@@ -101,13 +101,13 @@
     <data name="SelectThreadsOf" xml:space="preserve">
         <value>2. Deine Beiträge von {0}:</value>
     </data>
-    <data name="SelectNoThreadsFor" xml:space="preserve">
+    <data name="WarningNoThreadsFor" xml:space="preserve">
         <value>Es konnten keine Beiträge für Gruppe {0} geladen werden!</value>
     </data>
-    <data name="SelectNothingSelected" xml:space="preserve">
+    <data name="WarningNothingSelected" xml:space="preserve">
         <value>Du musst mindestens eine Gruppe und einen Beitrag auswählen!</value>
     </data>
-    <data name="SelectGroupFirst" xml:space="preserve">
+    <data name="WarningSelectGroupFirst" xml:space="preserve">
         <value>Wähle zuerst eine Gruppe aus.</value>
     </data>
     <data name="SelectSelectGroups" xml:space="preserve">
@@ -146,10 +146,10 @@
     <data name="ExportChosenFolder" xml:space="preserve">
         <value>Export-Ordner:</value>
     </data>
-    <data name="ExportFilesExported" xml:space="preserve">
+    <data name="InfoFilesSuccessfullyExported" xml:space="preserve">
         <value>{0} Dateien wurden erfolgreich exportiert!</value>
     </data>
-    <data name="ExportMissingFolder" xml:space="preserve">
+    <data name="WarningMissingFolder" xml:space="preserve">
         <value>Bitte wähle zuerst einen Export-Ordner aus!</value>
     </data>
     <data name="ExportFolderContainsFilesQuestion" xml:space="preserve">
@@ -215,10 +215,10 @@
     <data name="FileFormatTxt" xml:space="preserve">
         <value>Text-Datei (.txt) - Enthält nur Text, keine Formatierung und keine Bilder</value>
     </data>
-    <data name="ExportMissingFileFormat" xml:space="preserve">
+    <data name="WarningMissingFileFormat" xml:space="preserve">
         <value>Bitte wähle mindestens ein Export-Dateiformat aus!</value>
     </data>
-    <data name="ExportFileExported" xml:space="preserve">
+    <data name="InfoFileSuccessfullyExported" xml:space="preserve">
         <value>Eine Datei wurde erfolgreich exportiert!</value>
     </data>
     <data name="LoginTitle" xml:space="preserve">
@@ -257,8 +257,8 @@
     <data name="ErrorNoSentry" xml:space="preserve">
         <value>Sentry wird verwendet, um dein Feedback zu senden. Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden.</value>
     </data>
-    <data name="ErrorGenericNoSentry" xml:space="preserve">
-        <value>Ein Fehler ist aufgetreten! Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden.</value>
+    <data name="ErrorGeneric" xml:space="preserve">
+        <value>Ein Fehler ist aufgetreten!</value>
     </data>
     <data name="HelpStep" xml:space="preserve">
         <value>Schritt {0} von {1}</value>
@@ -512,5 +512,17 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
         <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?</value>
+    </data>
+    <data name="ErrorSomeGroupsFailedToLoad" xml:space="preserve">
+        <value>Manche Gruppen konnten nicht geladen werden!</value>
+    </data>
+    <data name="ErrorSomeThreadsFailedToLoad" xml:space="preserve">
+        <value>Manche Beiträge von Gruppe {0} konnten nicht geladen werden</value>
+    </data>
+    <data name="ErrorReportedToSentry" xml:space="preserve">
+        <value>Der Fehler wurde mit Sentry gemeldet und wird hoffentlich bald behoben!</value>
+    </data>
+    <data name="ErrorNotReportedToSentry" xml:space="preserve">
+        <value>Der Fehler konnte nicht gemeldet werden, weil Sentry keine Fehler sammeln darf.</value>
     </data>
 </root>

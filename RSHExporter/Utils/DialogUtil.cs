@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using RSHExporter.View;
+using RSHExporter.View.Pages;
 
 namespace RSHExporter.Utils;
 
@@ -85,9 +86,15 @@ public static class DialogUtil
         MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 
-    public static void ShowError(string text, string? caption = null)
+    public static void ShowError(string text, bool includeSentryMessage)
     {
-        caption ??= Resources.Localization.Resources.Error;
-        MessageBox.Show(text, caption, MessageBoxButton.OK, MessageBoxImage.Error);
+        if (includeSentryMessage)
+        {
+            text += WelcomePage.CollectDataAccepted
+                ? $" {Resources.Localization.Resources.ErrorReportedToSentry}"
+                : $" {Resources.Localization.Resources.ErrorNotReportedToSentry}";
+        }
+
+        MessageBox.Show(text, Resources.Localization.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
     }
 }

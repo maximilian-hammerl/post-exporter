@@ -141,11 +141,11 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ein Fehler ist aufgetreten! Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden..
+        ///   Looks up a localized string similar to Ein Fehler ist aufgetreten!.
         /// </summary>
-        public static string ErrorGenericNoSentry {
+        public static string ErrorGeneric {
             get {
-                return ResourceManager.GetString("ErrorGenericNoSentry", resourceCulture);
+                return ResourceManager.GetString("ErrorGeneric", resourceCulture);
             }
         }
         
@@ -168,11 +168,56 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Es konnten keine Gruppen geladen werden! Entweder hast du keine Gruppen oder es ist etwas schief gelaufen..
+        /// </summary>
+        public static string ErrorNoGroups {
+            get {
+                return ResourceManager.GetString("ErrorNoGroups", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sentry wird verwendet, um dein Feedback zu senden. Da du der Verwendung von Sentry nicht zugestimmt hast, kann dein Feedback leider nicht erfasst werden..
         /// </summary>
         public static string ErrorNoSentry {
             get {
                 return ResourceManager.GetString("ErrorNoSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Fehler konnte nicht gemeldet werden, weil Sentry keine Fehler sammeln darf..
+        /// </summary>
+        public static string ErrorNotReportedToSentry {
+            get {
+                return ResourceManager.GetString("ErrorNotReportedToSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der Fehler wurde mit Sentry gemeldet und wird hoffentlich bald behoben!.
+        /// </summary>
+        public static string ErrorReportedToSentry {
+            get {
+                return ResourceManager.GetString("ErrorReportedToSentry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manche Gruppen konnten nicht geladen werden!.
+        /// </summary>
+        public static string ErrorSomeGroupsFailedToLoad {
+            get {
+                return ResourceManager.GetString("ErrorSomeGroupsFailedToLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manche Beiträge von Gruppe {0} konnten nicht geladen werden.
+        /// </summary>
+        public static string ErrorSomeThreadsFailedToLoad {
+            get {
+                return ResourceManager.GetString("ErrorSomeThreadsFailedToLoad", resourceCulture);
             }
         }
         
@@ -240,24 +285,6 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eine Datei wurde erfolgreich exportiert!.
-        /// </summary>
-        public static string ExportFileExported {
-            get {
-                return ResourceManager.GetString("ExportFileExported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} Dateien wurden erfolgreich exportiert!.
-        /// </summary>
-        public static string ExportFilesExported {
-            get {
-                return ResourceManager.GetString("ExportFilesExported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Export-Ordner.
         /// </summary>
         public static string ExportFolder {
@@ -281,24 +308,6 @@ namespace RSHExporter.Resources.Localization {
         public static string ExportFormat {
             get {
                 return ResourceManager.GetString("ExportFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bitte wähle mindestens ein Export-Dateiformat aus!.
-        /// </summary>
-        public static string ExportMissingFileFormat {
-            get {
-                return ResourceManager.GetString("ExportMissingFileFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bitte wähle zuerst einen Export-Ordner aus!.
-        /// </summary>
-        public static string ExportMissingFolder {
-            get {
-                return ResourceManager.GetString("ExportMissingFolder", resourceCulture);
             }
         }
         
@@ -645,6 +654,24 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Dateien wurden erfolgreich exportiert!.
+        /// </summary>
+        public static string InfoFilesSuccessfullyExported {
+            get {
+                return ResourceManager.GetString("InfoFilesSuccessfullyExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eine Datei wurde erfolgreich exportiert!.
+        /// </summary>
+        public static string InfoFileSuccessfullyExported {
+            get {
+                return ResourceManager.GetString("InfoFileSuccessfullyExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         public static string Information {
@@ -729,33 +756,6 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bitte gib zuerst dein Passwort ein!.
-        /// </summary>
-        public static string LoginMissingPassword {
-            get {
-                return ResourceManager.GetString("LoginMissingPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bitte gib zuerst deinen Benutzernamen ein!.
-        /// </summary>
-        public static string LoginMissingUsername {
-            get {
-                return ResourceManager.GetString("LoginMissingUsername", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Es konnten keine Gruppen geladen werden! Entweder hast du keine Gruppen oder es ist etwas schief gelaufen..
-        /// </summary>
-        public static string LoginNoGroups {
-            get {
-                return ResourceManager.GetString("LoginNoGroups", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (Klicke hier, um die geltenden Hinweise und Lizenzbedingungen zu öffnen).
         /// </summary>
         public static string LoginOpenLicense {
@@ -806,15 +806,6 @@ namespace RSHExporter.Resources.Localization {
         public static string LoginUsername {
             get {
                 return ResourceManager.GetString("LoginUsername", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Du konntest nicht eingeloggt werden! Bitte überprüfe deinen Benutzernamen und dein Passwort..
-        /// </summary>
-        public static string LoginWrongUsernamePassword {
-            get {
-                return ResourceManager.GetString("LoginWrongUsernamePassword", resourceCulture);
             }
         }
         
@@ -1170,38 +1161,11 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wähle zuerst eine Gruppe aus..
-        /// </summary>
-        public static string SelectGroupFirst {
-            get {
-                return ResourceManager.GetString("SelectGroupFirst", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 1. Deine Gruppen:.
         /// </summary>
         public static string SelectGroups {
             get {
                 return ResourceManager.GetString("SelectGroups", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Du musst mindestens eine Gruppe und einen Beitrag auswählen!.
-        /// </summary>
-        public static string SelectNothingSelected {
-            get {
-                return ResourceManager.GetString("SelectNothingSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Es konnten keine Beiträge für Gruppe {0} geladen werden!.
-        /// </summary>
-        public static string SelectNoThreadsFor {
-            get {
-                return ResourceManager.GetString("SelectNoThreadsFor", resourceCulture);
             }
         }
         
@@ -1465,6 +1429,78 @@ namespace RSHExporter.Resources.Localization {
         public static string WarningExportCancelled {
             get {
                 return ResourceManager.GetString("WarningExportCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte wähle mindestens ein Export-Dateiformat aus!.
+        /// </summary>
+        public static string WarningMissingFileFormat {
+            get {
+                return ResourceManager.GetString("WarningMissingFileFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte wähle zuerst einen Export-Ordner aus!.
+        /// </summary>
+        public static string WarningMissingFolder {
+            get {
+                return ResourceManager.GetString("WarningMissingFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte gib zuerst dein Passwort ein!.
+        /// </summary>
+        public static string WarningMissingPassword {
+            get {
+                return ResourceManager.GetString("WarningMissingPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte gib zuerst deinen Benutzernamen ein!.
+        /// </summary>
+        public static string WarningMissingUsername {
+            get {
+                return ResourceManager.GetString("WarningMissingUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du musst mindestens eine Gruppe und einen Beitrag auswählen!.
+        /// </summary>
+        public static string WarningNothingSelected {
+            get {
+                return ResourceManager.GetString("WarningNothingSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es konnten keine Beiträge für Gruppe {0} geladen werden!.
+        /// </summary>
+        public static string WarningNoThreadsFor {
+            get {
+                return ResourceManager.GetString("WarningNoThreadsFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wähle zuerst eine Gruppe aus..
+        /// </summary>
+        public static string WarningSelectGroupFirst {
+            get {
+                return ResourceManager.GetString("WarningSelectGroupFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du konntest nicht eingeloggt werden! Bitte überprüfe deinen Benutzernamen und dein Passwort..
+        /// </summary>
+        public static string WarningWrongUsernamePassword {
+            get {
+                return ResourceManager.GetString("WarningWrongUsernamePassword", resourceCulture);
             }
         }
         

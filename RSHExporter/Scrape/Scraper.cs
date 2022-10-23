@@ -236,7 +236,7 @@ public static class Scraper
         return posts;
     }
 
-    public static async Task<List<Thread>> GetThreads(Group group)
+    public static async Task<(List<Thread>, bool)> GetThreads(Group group)
     {
         var threadsPath = await GetThreadsPath(group.Url);
 
@@ -251,21 +251,47 @@ public static class Scraper
         doc.LoadHtml(threadsContent);
 
         var threadRows = doc.DocumentNode.SelectNodes("//table[@class='sortable tableForums']/tbody/tr");
+        var loadedAllThreadsSuccessfully = true;
 
         var threads = new List<Thread>();
         foreach (var threadRow in threadRows)
         {
-            var titleATag = threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='sticky']/a");
-            var title = HttpUtility.HtmlDecode(titleATag.InnerText);
-            var path = titleATag.Attributes["href"].Value;
+            var titleNode = threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='sticky']/a");
 
-            var details = HttpUtility.HtmlDecode(threadRow.SelectSingleNode("./td[1]/span[@class='small']").InnerText);
+            if (titleNode == null)
+            {
+                loadedAllThreadsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find thread title in \"{threadRow.InnerHtml}\"!");
+                }
+
+                continue;
+            }
+
+            var title = HttpUtility.HtmlDecode(titleNode.InnerText);
+            var path = titleNode.Attributes["href"].Value;
+
+            var detailsNode = threadRow.SelectSingleNode("./td[1]/span[@class='small']");
+
+            if (detailsNode == null)
+            {
+                loadedAllThreadsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find thread details in \"{threadRow.InnerHtml}\"!");
+                }
+
+                continue;
+            }
+
+            var details = HttpUtility.HtmlDecode(detailsNode.InnerText);
             var (author, postedAt) = GetUserAndDateTime(details);
 
             threads.Add(new Thread(author, postedAt, title, $"https://rollenspielhimmel.de/forum/{path}", group));
         }
 
-        return threads;
+        return (threads, loadedAllThreadsSuccessfully);
     }
 
     private static async Task<string> GetThreadsPath(string groupUrl)
@@ -283,12 +309,12 @@ public static class Scraper
         return doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']").Attributes["href"].Value;
     }
 
-    private static async Task<List<Group>> GetGroups()
+    private static async Task<(List<Group>, bool)> GetGroups()
     {
         return await GetGroups("mygroups.html");
     }
 
-    private static async Task<List<Group>> GetGroups(string groupsPath)
+    private static async Task<(List<Group>, bool)> GetGroups(string groupsPath)
     {
         var groupsResponse =
             await GetOrCreateHttpClient().GetAsync($"https://rollenspielhimmel.de/groups/{groupsPath}");
@@ -308,20 +334,68 @@ public static class Scraper
         groupRows.Remove(0);
 
         var groups = new List<Group>();
+        var loadedAllGroupsSuccessfully = true;
 
         foreach (var groupRow in groupRows)
         {
-            var groupTbodyTag = groupRow.SelectSingleNode(".//table[@class='profileTable']/tbody");
+            var tableNode = groupRow.SelectSingleNode(".//table[@class='profileTable']/tbody");
 
-            var titleATag = groupTbodyTag.SelectSingleNode("./tr[1]/td[2]/a");
-            var title = HttpUtility.HtmlDecode(titleATag.InnerText);
-            var path = titleATag.Attributes["href"].Value;
+            if (tableNode == null)
+            {
+                loadedAllGroupsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find table node in \"{groupRow.InnerHtml}\"!");
+                }
 
-            var founderATag = groupTbodyTag.SelectSingleNode("./tr[3]/td[2]/a");
-            var founder = HttpUtility.HtmlDecode(founderATag.InnerText);
+                continue;
+            }
 
-            var foundedAtTdTag = groupTbodyTag.SelectSingleNode("./tr[4]/td[2]");
-            var foundedAt = DateTime.ParseExact(HttpUtility.HtmlDecode(foundedAtTdTag.InnerText), "dd.MM.yyyy",
+            var titleNode = tableNode.SelectSingleNode("./tr[1]/td[2]/a");
+
+            if (titleNode == null)
+            {
+                loadedAllGroupsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find title in \"{groupRow.InnerHtml}\"!");
+                }
+
+                continue;
+            }
+
+            var title = HttpUtility.HtmlDecode(titleNode.InnerText);
+            var path = titleNode.Attributes["href"].Value;
+
+            var founderNode = tableNode.SelectSingleNode("./tr[3]/td[2]/a");
+
+            if (founderNode == null)
+            {
+                loadedAllGroupsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find founder in \"{groupRow.InnerHtml}\"!");
+                }
+
+                continue;
+            }
+
+            var founder = HttpUtility.HtmlDecode(founderNode.InnerText);
+
+            var foundedAtNode = tableNode.SelectSingleNode("./tr[4]/td[2]");
+
+            if (foundedAtNode == null)
+            {
+                loadedAllGroupsSuccessfully = false;
+                if (WelcomePage.CollectDataAccepted)
+                {
+                    SentrySdk.CaptureMessage($"Could not find founded at in \"{groupRow.InnerHtml}\"!");
+                }
+
+                continue;
+            }
+
+            var foundedAt = DateTime.ParseExact(HttpUtility.HtmlDecode(foundedAtNode.InnerText), "dd.MM.yyyy",
                 CultureInfo.InvariantCulture);
 
             groups.Add(new Group(founder, foundedAt, title, $"https://rollenspielhimmel.de{path}"));
@@ -332,23 +406,25 @@ public static class Scraper
 
         if (nextGroupsButton is not { InnerHtml: "&raquo;" })
         {
-            return groups;
+            return (groups, loadedAllGroupsSuccessfully);
         }
 
         var nextGroupsPath = nextGroupsButton.Attributes["href"].Value;
         nextGroupsPath = nextGroupsPath.Replace("amp;", "");
-        groups.AddRange(await GetGroups(nextGroupsPath));
 
-        return groups;
+        var (additionalGroups, loadedAdditionalGroupsSuccessfully) = await GetGroups(nextGroupsPath);
+        groups.AddRange(additionalGroups);
+
+        return (groups, loadedAllGroupsSuccessfully && loadedAdditionalGroupsSuccessfully);
     }
 
-    public static async Task<List<Group>?> LoginAndGetGroups(string username, string password)
+    public static async Task<(List<Group>?, bool)> LoginAndGetGroups(string username, string password)
     {
         var loginSuccessful = await Login(username, password);
 
         if (!loginSuccessful)
         {
-            return null;
+            return (null, false);
         }
 
         return await GetGroups();

@@ -170,7 +170,7 @@ public partial class ExportPage : Page
             ToggleExportButtonLoading(false);
 
             ExportFolderContent.Background = Brushes.LightBlue;
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFolder);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningMissingFolder);
             ExportFolderContent.Background = Brushes.White;
             return;
         }
@@ -180,7 +180,7 @@ public partial class ExportPage : Page
             ToggleExportButtonLoading(false);
 
             ExportFormatContent.Background = Brushes.LightBlue;
-            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.ExportMissingFileFormat);
+            DialogUtil.ShowWarning(RSHExporter.Resources.Localization.Resources.WarningMissingFileFormat);
             ExportFormatContent.Background = Brushes.White;
             return;
         }
@@ -257,8 +257,9 @@ public partial class ExportPage : Page
 
         if (!failedExports.IsEmpty)
         {
-            DialogUtil.ShowError(string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
-                string.Join(", ", failedExports.Select(thread => $"{thread.Title} ({thread.Group.Title})"))));
+            DialogUtil.ShowError(
+                string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
+                    string.Join(", ", failedExports.Select(thread => $"{thread.Title} ({thread.Group.Title})"))), true);
         }
         else if (_cancellationTokenSource.IsCancellationRequested)
         {
@@ -269,8 +270,9 @@ public partial class ExportPage : Page
             var numberFilesExported = _threads.Count * ExportConfiguration.FileFormats.Count;
 
             DialogUtil.ShowInformation(numberFilesExported == 1
-                ? RSHExporter.Resources.Localization.Resources.ExportFileExported
-                : string.Format(RSHExporter.Resources.Localization.Resources.ExportFilesExported, numberFilesExported)
+                ? RSHExporter.Resources.Localization.Resources.InfoFileSuccessfullyExported
+                : string.Format(RSHExporter.Resources.Localization.Resources.InfoFilesSuccessfullyExported,
+                    numberFilesExported)
             );
         }
 
@@ -317,7 +319,7 @@ public partial class ExportPage : Page
         errorMessage +=
             $" {Util.CapitalizeFirstChar(string.Join($" {RSHExporter.Resources.Localization.Resources.And} ", placeHolderErrorMessage))}.";
 
-        DialogUtil.ShowError(errorMessage);
+        DialogUtil.ShowError(errorMessage, false);
     }
 
     private static bool ValidateTemplate(StringBuilder headTemplate, StringBuilder bodyTemplate,

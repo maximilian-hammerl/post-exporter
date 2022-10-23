@@ -21,7 +21,7 @@ public static class FeedbackUtil
         }
         else
         {
-            DialogUtil.ShowError(Resources.Localization.Resources.ErrorGenericNoSentry);
+            DialogUtil.ShowError(Resources.Localization.Resources.ErrorGeneric, true);
         }
     }
 
@@ -40,7 +40,7 @@ public static class FeedbackUtil
         }
         else
         {
-            DialogUtil.ShowError(Resources.Localization.Resources.ErrorNoSentry);
+            DialogUtil.ShowError(Resources.Localization.Resources.ErrorNoSentry, false);
         }
     }
 }
