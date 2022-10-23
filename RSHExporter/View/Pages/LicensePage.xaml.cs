@@ -13,7 +13,7 @@ public partial class LicensePage : Page
     {
         InitializeComponent();
 
-        VersionTextBlock.Text = Util.GetVersion();
+        VersionTextBlock.Text = $"Version {Util.GetVersion()}";
 
         var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
         if (currentCulture == "de" || currentCulture.StartsWith("de-"))

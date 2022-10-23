@@ -21,10 +21,14 @@ public static class Util
         process.Start();
     }
 
-    public static string GetVersion()
+    public static string GetVersion(int fieldCount = 2)
     {
-        var version = Assembly.GetExecutingAssembly().GetName().Version;
-        return version != null ? $"Version {version.Major}.{version.Minor}" : "";
+        return Assembly.GetExecutingAssembly().GetName().Version?.ToString(fieldCount) ?? string.Empty;
+    }
+
+    public static string GetAppName()
+    {
+        return Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty;
     }
 
     public static string CapitalizeFirstChar(string text)

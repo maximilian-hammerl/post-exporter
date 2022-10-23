@@ -12,7 +12,7 @@ public partial class LoginPage : Page
     {
         InitializeComponent();
 
-        VersionTextBlock.Text = Util.GetVersion();
+        VersionTextBlock.Text = $"Version {Util.GetVersion()}";
 
         UsernameTextBox.Focus();
     }
@@ -61,11 +61,6 @@ public partial class LoginPage : Page
         NavigationService.Navigate(new SelectPage(groups));
     }
 
-    private void BackButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Navigate(new WelcomePage());
-    }
-
     private void ToggleLoginButtonLoading(bool isLoading)
     {
         LoginButton.IsEnabled = !isLoading;
@@ -89,7 +84,7 @@ public partial class LoginPage : Page
 
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        FeedbackUtil.HandleFeedback("LoginPage");
+        SentryUtil.HandleFeedback("LoginPage");
     }
 
     private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)

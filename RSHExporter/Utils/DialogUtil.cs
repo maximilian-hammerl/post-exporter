@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using RSHExporter.View;
 using RSHExporter.View.Pages;
 
 namespace RSHExporter.Utils;
@@ -46,25 +45,6 @@ public static class DialogUtil
         var result = MessageBox.Show(text, caption, MessageBoxButton.OKCancel,
             MessageBoxImage.Information);
         return result == MessageBoxResult.OK;
-    }
-
-    public static (string Response, string Email)? ShowFeedbackDialog()
-    {
-        return ShowFeedbackDialog(FeedbackDialog.FeedbackType.Default);
-    }
-
-    public static (string Response, string Email)? ShowErrorFeedbackDialog(string id)
-    {
-        return ShowFeedbackDialog(FeedbackDialog.FeedbackType.Error, id);
-    }
-
-    private static (string Response, string Email)? ShowFeedbackDialog(FeedbackDialog.FeedbackType feedbackType,
-        string? id = null)
-    {
-        var feedbackDialog = new FeedbackDialog(feedbackType, id);
-        feedbackDialog.ShowDialog();
-
-        return feedbackDialog.DialogResult is true ? (feedbackDialog.Response, feedbackDialog.Email) : null;
     }
 
     public static bool ShowQuestion(string text, string? caption = null)

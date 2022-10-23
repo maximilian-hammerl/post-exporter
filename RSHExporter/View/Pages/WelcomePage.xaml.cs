@@ -13,7 +13,7 @@ public partial class WelcomePage : Page
 
         CollectDataCheckBox.IsChecked = CollectDataAccepted;
 
-        VersionTextBlock.Text = Util.GetVersion();
+        VersionTextBlock.Text = $"Version {Util.GetVersion()}";
     }
 
     public static bool CollectDataAccepted { get; private set; }
@@ -38,7 +38,7 @@ public partial class WelcomePage : Page
 
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        FeedbackUtil.HandleFeedback("FeedbackPage");
+        SentryUtil.HandleFeedback("FeedbackPage");
     }
 
     private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
@@ -49,12 +49,12 @@ public partial class WelcomePage : Page
                 DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources.WelcomeAllowSentryQuestion);
         }
 
-        NavigationService.Navigate(new LoginPage());
-    }
+        if (CollectDataAccepted)
+        {
+            SentryUtil.InitializeSentry();
+        }
 
-    private void BackButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        NavigationService.Navigate(new LicensePage());
+        NavigationService.Navigate(new LoginPage());
     }
 
     private void CollectDataCheckBox_OnChecked(object sender, RoutedEventArgs e)

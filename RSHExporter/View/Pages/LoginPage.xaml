@@ -24,29 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Row="0" Grid.Column="1" Margin="0 0 3 3" CornerRadius="5 0 0 0"
-                Style="{StaticResource BorderStyle}">
-
-            <Button Click="BackButton_OnClick" IsCancel="True" HorizontalAlignment="Left" Width="110"
-                    Style="{StaticResource IconButtonStyle}">
-
-                <Grid Width="100">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="4*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_ArrowLeft"
-                           Style="{StaticResource IconImageStyle}" />
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.Back}"
-                               HorizontalAlignment="Center" />
-                </Grid>
-            </Button>
-
-        </Border>
+                Style="{StaticResource BorderStyle}" />
 
         <Border Grid.Row="0" Grid.Column="2" Margin="3 0 3 3" CornerRadius="0 0 0 0"
                 Style="{StaticResource BorderStyle}">
