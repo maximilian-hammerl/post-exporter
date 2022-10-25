@@ -1,8 +1,8 @@
 # RSH Exporter
 
-[WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export [Rollenspielhimmel](https://rollenspielhimmel.de/) groups, threads and posts to various file formats
+.NET 6.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export [Rollenspielhimmel](https://rollenspielhimmel.de/) groups, threads and posts to various file formats
 
-## Dependencies:
+## Dependencies
 
 - [FontAwesome 6 Svg](https://github.com/MartinTopfstedt/FontAwesome6): WPF integration of [Font Awesome](https://fontawesome.com/)
 - [Html Agility Pack](https://html-agility-pack.net): Parsing HTML
