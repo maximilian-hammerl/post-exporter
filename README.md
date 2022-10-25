@@ -2,6 +2,16 @@
 
 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export [Rollenspielhimmel](https://rollenspielhimmel.de/) groups, threads and posts to various file formats
 
+## Dependencies:
+
+- [FontAwesome 6 Svg](https://github.com/MartinTopfstedt/FontAwesome6): WPF integration of [Font Awesome](https://fontawesome.com/)
+- [Html Agility Pack](https://html-agility-pack.net): Parsing HTML
+- [Open XML SDK](https://github.com/OfficeDev/Open-XML-SDK): Generating Word documents
+- [Html2OpenXml](https://github.com/onizet/html2openxml): Converting HTML to OpenXml components for Word documents
+- [JetBrains Code Annotation Attributes﻿](https://www.jetbrains.com/help/resharper/Code_Analysis__Code_Annotations.html)
+- [Ookii Dialogs Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf): Dialogs for WPF
+- [Sentry](https://sentry.io/for/csharp/): Error and performance monitoring
+
 ## Publish
 
 Build a single executable with these settings:
