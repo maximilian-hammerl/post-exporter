@@ -2,6 +2,7 @@
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/rsh-exporter)](https://choosealicense.com/licenses/mit/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximilian-hammerl/rsh-exporter)](https://github.com/maximilian-hammerl/rsh-exporter/releases)
+[![GitHub top language](https://img.shields.io/github/languages/top/maximilian-hammerl/rsh-exporter)](https://github.com/maximilian-hammerl/rsh-exporter/search?l=c%23)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maximilian-hammerl/rsh-exporter/CodeQL)](https://github.com/maximilian-hammerl/rsh-exporter/actions/workflows/codeql.yml)
 [![GitHub issues](https://img.shields.io/github/issues-raw/maximilian-hammerl/rsh-exporter)](https://github.com/maximilian-hammerl/rsh-exporter/issues)
 
