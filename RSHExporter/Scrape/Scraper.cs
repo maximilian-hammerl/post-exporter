@@ -229,8 +229,12 @@ public static class Scraper
     public static async Task<(List<Thread>, bool)> GetThreads(Group group)
     {
         var threadsPath = await GetThreadsPath(group.Url);
+        return await GetThreads(group, $"https://rollenspielhimmel.de{threadsPath}");
+    }
 
-        var threadsResponse = await GetOrCreateHttpClient().GetAsync($"https://rollenspielhimmel.de{threadsPath}");
+    private static async Task<(List<Thread>, bool)> GetThreads(Group group, string threadsUrl)
+    {
+        var threadsResponse = await GetOrCreateHttpClient().GetAsync(threadsUrl);
         threadsResponse.EnsureSuccessStatusCode();
         var threadsContent = await threadsResponse.Content.ReadAsStringAsync();
 
@@ -246,7 +250,8 @@ public static class Scraper
         var threads = new List<Thread>();
         foreach (var threadRow in threadRows)
         {
-            var titleNode = threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='sticky']/a");
+            var titleNode =
+                threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='newthread' or @class='sticky']/a");
 
             if (titleNode == null)
             {
@@ -275,7 +280,22 @@ public static class Scraper
             threads.Add(new Thread(author, postedAt, title, $"https://rollenspielhimmel.de/forum/{path}", group));
         }
 
-        return (threads, loadedAllThreadsSuccessfully);
+        var nextThreadsButton =
+            doc.DocumentNode.SelectSingleNode("//div[@id='content']/form/p/span[1]/a[position() = (last()-1)]");
+
+        if (nextThreadsButton is not { InnerHtml: "&raquo;" })
+        {
+            return (threads, loadedAllThreadsSuccessfully);
+        }
+
+        var nextThreadsPath = nextThreadsButton.Attributes["href"].Value;
+        nextThreadsPath = nextThreadsPath.Replace("amp;", "");
+
+        var (additionalThreads, loadedAdditionalThreadsSuccessfully) =
+            await GetThreads(group, $"https://rollenspielhimmel.de/forum/{nextThreadsPath}");
+        threads.AddRange(additionalThreads);
+
+        return (threads, loadedAllThreadsSuccessfully && loadedAdditionalThreadsSuccessfully);
     }
 
     private static async Task<string> GetThreadsPath(string groupUrl)
