@@ -4,4 +4,4 @@ updates:
     directory: "/RSHExporter"
     schedule:
       interval: "daily"
-    target-branch: "master"
+    target-branch: "main"
