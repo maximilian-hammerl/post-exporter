@@ -530,4 +530,10 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="ErrorServerUnavailable" xml:space="preserve">
         <value>Der Rollenspielhimmel-Server ist im Moment nicht erreichbar. Versuche es in ein paar Minuten noch einmal!</value>
     </data>
+    <data name="Group" xml:space="preserve">
+        <value>Gruppe</value>
+    </data>
+    <data name="Thread" xml:space="preserve">
+        <value>Beitrag</value>
+    </data>
 </root>

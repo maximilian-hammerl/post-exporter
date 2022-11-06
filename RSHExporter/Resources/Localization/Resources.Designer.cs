@@ -456,6 +456,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group.
+        /// </summary>
+        public static string Group {
+            get {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string Help {
@@ -1403,6 +1412,15 @@ namespace RSHExporter.Resources.Localization {
         public static string TemplatesTitle {
             get {
                 return ResourceManager.GetString("TemplatesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thread.
+        /// </summary>
+        public static string Thread {
+            get {
+                return ResourceManager.GetString("Thread", resourceCulture);
             }
         }
         

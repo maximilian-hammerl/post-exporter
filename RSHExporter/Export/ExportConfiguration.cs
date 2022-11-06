@@ -42,9 +42,9 @@ public static class ExportConfiguration
     public static bool IncludeImages { get; set; } = true;
     public static bool ReserveOrder { get; set; } = false;
     public static bool UseCustomTemplates { get; set; } = false;
-    public static bool DownloadToOwnFolder { get; set; } = false;
-    public static bool DownloadImages { get; set; } = false;
-    public static bool DownloadImagesToOwnFolder { get; set; } = false;
+    public static bool DownloadToOwnFolder { get; set; } = true;
+    public static bool DownloadImages { get; set; } = true;
+    public static bool DownloadImagesToOwnFolder { get; set; } = true;
 
     public static StringBuilder GetDefaultTextHeadTemplate(bool withAllPlaceholders = false)
     {

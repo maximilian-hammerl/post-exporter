@@ -469,10 +469,22 @@ public static class Exporter
     private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
         var groupTitleBuilder = new StringBuilder(group.Title);
-        SanitizeFileName(groupTitleBuilder);
+        groupTitleBuilder.SanitizeFileName().Trim();
+        if (groupTitleBuilder.Length > 0)
+        {
+            groupTitleBuilder.Append(' ');
+        }
+
+        groupTitleBuilder.Append(Resources.Localization.Resources.Group);
 
         var threadTitleBuilder = new StringBuilder(thread.Title);
-        SanitizeFileName(threadTitleBuilder);
+        threadTitleBuilder.SanitizeFileName().Trim();
+        if (threadTitleBuilder.Length > 0)
+        {
+            threadTitleBuilder.Append(' ');
+        }
+
+        threadTitleBuilder.Append(Resources.Localization.Resources.Thread);
 
         string directoryPath;
         StringBuilder fileNameBuilder;
@@ -511,11 +523,57 @@ public static class Exporter
             Path.Join(directoryPath, fileName));
     }
 
-    private static void SanitizeFileName(StringBuilder stringBuilder)
+    private static StringBuilder SanitizeFileName(this StringBuilder stringBuilder)
     {
         foreach (var c in Path.GetInvalidFileNameChars())
         {
             stringBuilder.Replace(c, '-');
         }
+
+        return stringBuilder;
+    }
+
+    private static StringBuilder Trim(this StringBuilder stringBuilder)
+    {
+        var onlyWhiteSpaces = true;
+
+        for (var start = 0; start < stringBuilder.Length; start++)
+        {
+            if (char.IsWhiteSpace(stringBuilder[start]))
+            {
+                continue;
+            }
+
+            if (start > 0)
+            {
+                stringBuilder.Remove(0, start);
+            }
+
+            onlyWhiteSpaces = false;
+            break;
+        }
+
+        if (onlyWhiteSpaces)
+        {
+            stringBuilder.Clear();
+            return stringBuilder;
+        }
+
+        for (var end = stringBuilder.Length - 1; end >= 0; end--)
+        {
+            if (char.IsWhiteSpace(stringBuilder[end]))
+            {
+                continue;
+            }
+
+            if (end < stringBuilder.Length - 1)
+            {
+                stringBuilder.Remove(end + 1, stringBuilder.Length - 1 - end);
+            }
+
+            break;
+        }
+
+        return stringBuilder;
     }
 }

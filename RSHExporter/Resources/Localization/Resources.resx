@@ -529,4 +529,10 @@ The default templates are based on the current export text options. Only if a te
     <data name="ErrorServerUnavailable" xml:space="preserve">
         <value>The Rollenspielhimmel server is not reachable right now. Try again in a few minutes!</value>
     </data>
+    <data name="Group" xml:space="preserve">
+        <value>Group</value>
+    </data>
+    <data name="Thread" xml:space="preserve">
+        <value>Thread</value>
+    </data>
 </root>
