@@ -322,22 +322,22 @@ public partial class ExportPage : Page
             catch (UnauthorizedAccessException exception)
             {
                 failedExports[ExportError.DirectoryAccess].Add(thread);
-                SentryUtil.HandleMessage($"UnauthorizedAccessException {exception} for {thread.Title} ({thread.Url})!");
+                SentryUtil.HandleMessage($"UnauthorizedAccessException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (EndOfStreamException exception)
             {
                 failedExports[ExportError.WordImageDownload].Add(thread);
-                SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})!");
+                SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (HttpRequestException exception)
             {
                 failedExports[ExportError.Connection].Add(thread);
-                SentryUtil.HandleMessage($"HttpRequestException {exception} for {thread.Title} ({thread.Url})!");
+                SentryUtil.HandleMessage($"HttpRequestException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (Exception exception)
             {
                 failedExports[ExportError.Unrecognized].Add(thread);
-                SentryUtil.HandleMessage($"Exception {exception} for {thread.Title} ({thread.Url})!");
+                SentryUtil.HandleMessage($"Exception {exception} for {thread.Title} ({thread.Url})");
             }
         }));
 

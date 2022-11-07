@@ -69,7 +69,7 @@ public static class Scraper
         }
         catch (HttpRequestException e)
         {
-            SentryUtil.HandleMessage($"{e} for \"{uriString}\"!");
+            SentryUtil.HandleMessage($"{e} for \"{uriString}\"");
 
             return (false, string.Empty);
         }
@@ -98,7 +98,7 @@ public static class Scraper
         }
         catch (HttpRequestException e)
         {
-            SentryUtil.HandleMessage($"{e} for \"{uriString}\"!");
+            SentryUtil.HandleMessage($"{e} for \"{uriString}\"");
 
             return false;
         }
@@ -117,7 +117,7 @@ public static class Scraper
             return true;
         }
 
-        SentryUtil.HandleMessage($"Cannot parse URI \"{uriString}\"!");
+        SentryUtil.HandleMessage($"Cannot parse URI \"{uriString}\"");
 
         return false;
     }
@@ -163,7 +163,7 @@ public static class Scraper
                             break;
                         default:
                             throw new NotSupportedException(
-                                $"Heading node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}!");
+                                $"Heading node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}");
                     }
                 }
                 else if (infoNode == null)
@@ -177,7 +177,7 @@ public static class Scraper
                             break;
                         default:
                             throw new NotSupportedException(
-                                $"Info node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}!");
+                                $"Info node is {childNode.Name} with classes {string.Join(", ", childNode.GetClasses())}");
                     }
                 }
                 else if (childNode.HasClass("signature"))
@@ -192,17 +192,17 @@ public static class Scraper
 
             if (!foundHeading)
             {
-                throw new NotSupportedException("Row without heading node!");
+                throw new NotSupportedException("Row without heading node");
             }
 
             if (infoNode == null)
             {
-                throw new NotSupportedException("Row without info node!");
+                throw new NotSupportedException("Row without info node");
             }
 
             if (textNodes.Count == 0)
             {
-                throw new NotSupportedException("Row without text nodes!");
+                throw new NotSupportedException("Row without text nodes");
             }
 
             var head = HttpUtility.HtmlDecode(infoNode.InnerText.Trim());
@@ -256,7 +256,7 @@ public static class Scraper
             if (titleNode == null)
             {
                 loadedAllThreadsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find thread title in \"{threadRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find thread title in \"{threadRow.InnerHtml}\"");
 
                 continue;
             }
@@ -269,7 +269,7 @@ public static class Scraper
             if (detailsNode == null)
             {
                 loadedAllThreadsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find thread details in \"{threadRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find thread details in \"{threadRow.InnerHtml}\"");
 
                 continue;
             }
@@ -347,7 +347,7 @@ public static class Scraper
             if (tableNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find table node in \"{groupRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find table node in \"{groupRow.InnerHtml}\"");
 
                 continue;
             }
@@ -357,7 +357,7 @@ public static class Scraper
             if (titleNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find title in \"{groupRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find title in \"{groupRow.InnerHtml}\"");
 
                 continue;
             }
@@ -370,7 +370,7 @@ public static class Scraper
             if (founderNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find founder in \"{groupRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find founder in \"{groupRow.InnerHtml}\"");
 
                 continue;
             }
@@ -382,7 +382,7 @@ public static class Scraper
             if (foundedAtNode == null)
             {
                 loadedAllGroupsSuccessfully = false;
-                SentryUtil.HandleMessage($"Could not find founded at in \"{groupRow.InnerHtml}\"!");
+                SentryUtil.HandleMessage($"Could not find founded at in \"{groupRow.InnerHtml}\"");
 
                 continue;
             }
