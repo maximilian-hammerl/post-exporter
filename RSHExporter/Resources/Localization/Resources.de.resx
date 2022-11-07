@@ -483,9 +483,6 @@ Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Pr
     <data name="TemplatesTextHead" xml:space="preserve">
         <value>Head-Template für Text</value>
     </data>
-    <data name="ErrorExportFailed" xml:space="preserve">
-        <value>Es gab ein Problem beim Exportieren! Der Beitrag/die Beiträge {0} konnte(n) nicht erfolgreich exportiert werden!</value>
-    </data>
     <data name="HelpExportStep6" xml:space="preserve">
         <value>Anstatt die Checkboxes des vorherigen Schritts zu verwenden, können fortgeschrittene Benutzer die Export-Templates auch direkt bearbeiten. Dafür sind Grundkenntnisse in HTML erforderlich.</value>
     </data>
@@ -538,5 +535,17 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="ErrorUnauthorizedAccess" xml:space="preserve">
         <value>Dem Exporter wurde der Zugriff auf den von dir ausgewählten Ordner verweigert. Möglicherweise sperrt ein Antivirensystem oder Windows das Programm.</value>
+    </data>
+    <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
+        <value>Die Beiträge {0} konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows.</value>
+    </data>
+    <data name="ErrorExportFailedConnection" xml:space="preserve">
+        <value>Die Beiträge {0} konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist.</value>
+    </data>
+    <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
+        <value>Die Beiträge {0} konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist.</value>
+    </data>
+    <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
+        <value>Die Beiträge {0} konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist.</value>
     </data>
 </root>

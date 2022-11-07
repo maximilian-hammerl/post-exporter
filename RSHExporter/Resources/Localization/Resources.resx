@@ -482,9 +482,6 @@ To simplify finding and fixing possible bugs, this program uses Sentry, a applic
     <data name="TemplatesHtmlHead" xml:space="preserve">
         <value>Head-Template for Html</value>
     </data>
-    <data name="ErrorExportFailed" xml:space="preserve">
-        <value>There was a problem while exporting! The thread(s) {0} could not be successfully exported!</value>
-    </data>
     <data name="HelpExportStep6" xml:space="preserve">
         <value>Instead of using the checkboxes of the previous step, advanced users can also edit the export templates directly. This required basic knowledge of HTML.</value>
     </data>
@@ -537,5 +534,17 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="ErrorUnauthorizedAccess" xml:space="preserve">
         <value>The exporter was denied access to the folder you selected. Possibly an antivirus system or Windows blocks the program.</value>
+    </data>
+    <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
+        <value>The threads {0} could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows.</value>
+    </data>
+    <data name="ErrorExportFailedConnection" xml:space="preserve">
+        <value>The threads {0} could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable.</value>
+    </data>
+    <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
+        <value>The threads {0} could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore.</value>
+    </data>
+    <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
+        <value>The threads {0} could not be exported because of an unrecognized error.</value>
     </data>
 </root>

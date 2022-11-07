@@ -132,11 +132,38 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es gab ein Problem beim Exportieren! Der Beitrag/die Beiträge {0} konnte(n) nicht erfolgreich exportiert werden!.
+        ///   Looks up a localized string similar to Die Beiträge {0} konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist..
         /// </summary>
-        public static string ErrorExportFailed {
+        public static string ErrorExportFailedConnection {
             get {
-                return ResourceManager.GetString("ErrorExportFailed", resourceCulture);
+                return ResourceManager.GetString("ErrorExportFailedConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Beiträge {0} konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows..
+        /// </summary>
+        public static string ErrorExportFailedDirectoryAccess {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedDirectoryAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Beiträge {0} konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist..
+        /// </summary>
+        public static string ErrorExportFailedUnrecognized {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedUnrecognized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die Beiträge {0} konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist..
+        /// </summary>
+        public static string ErrorExportFailedWordImageDownload {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedWordImageDownload", resourceCulture);
             }
         }
         

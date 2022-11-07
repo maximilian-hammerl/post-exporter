@@ -18,7 +18,7 @@ public static class FileFormatExtensions
             FileFormat.Txt => "txt",
             FileFormat.Html => "html",
             FileFormat.Docx => "docx",
-            _ => throw new NotSupportedException(fileFormat.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(fileFormat), fileFormat, @"Unknown value")
         };
     }
 
@@ -29,7 +29,7 @@ public static class FileFormatExtensions
             FileFormat.Txt => Resources.Localization.Resources.FileFormatTxt,
             FileFormat.Html => Resources.Localization.Resources.FileFormatHtml,
             FileFormat.Docx => Resources.Localization.Resources.FileFormatDocx,
-            _ => throw new NotSupportedException(fileFormat.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(fileFormat), fileFormat, @"Unknown value")
         };
     }
 
@@ -40,7 +40,7 @@ public static class FileFormatExtensions
             FileFormat.Txt => "Solid_FileLines",
             FileFormat.Html => "Solid_FileCode",
             FileFormat.Docx => "Solid_FileWord",
-            _ => throw new NotSupportedException(fileFormat.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(fileFormat), fileFormat, @"Unknown value")
         };
     }
 }

@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
@@ -302,7 +303,12 @@ public partial class ExportPage : Page
             htmlBodyTemplate = ExportConfiguration.GetDefaultHtmlBodyTemplate();
         }
 
-        var failedExports = new ConcurrentBag<Thread>();
+        var failedExports = new ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>();
+
+        foreach (var exportError in Enum.GetValues<ExportError>())
+        {
+            failedExports[exportError] = new ConcurrentBag<Thread>();
+        }
 
         _cancellationTokenSource = new CancellationTokenSource();
 
@@ -313,27 +319,80 @@ public partial class ExportPage : Page
                 await PrepareAndExport(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
                     _cancellationTokenSource.Token);
             }
+            catch (UnauthorizedAccessException)
+            {
+                failedExports[ExportError.DirectoryAccess].Add(thread);
+            }
+            catch (EndOfStreamException)
+            {
+                failedExports[ExportError.WordImageDownload].Add(thread);
+            }
+            catch (HttpRequestException)
+            {
+                failedExports[ExportError.Connection].Add(thread);
+            }
             catch (Exception exception)
             {
-                failedExports.Add(thread);
-
-                SentryUtil.HandleException(exception);
+                failedExports[ExportError.Unrecognized].Add(thread);
+                SentryUtil.HandleMessage($"{exception} for {thread.Title} ({thread.Url})!");
             }
         }));
 
         ToggleExportButtonLoading(false);
 
-        if (!failedExports.IsEmpty)
+        var numberFailedExports = failedExports.Values.Sum(threads => threads.Count);
+
+        if (numberFailedExports > 0)
         {
             SentryUtil.HandleBreadcrumb(
-                $"{failedExports.Count} of {_threads.Count} exports failed",
+                $"{numberFailedExports} of {_threads.Count} exports failed",
                 "ExportPage",
                 level: BreadcrumbLevel.Error
             );
 
-            DialogUtil.ShowError(
-                string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailed,
-                    string.Join(", ", failedExports.Select(thread => $"{thread.Title} ({thread.Group.Title})"))), true);
+            foreach (var (exportError, threads) in failedExports)
+            {
+                if (!threads.IsEmpty)
+                {
+                    SentryUtil.HandleBreadcrumb(
+                        $"{threads.Count} of {_threads.Count} exports failed because of {exportError}",
+                        "ExportPage",
+                        level: BreadcrumbLevel.Error
+                    );
+
+                    var threadTitles = string.Join(", ",
+                        threads.Select(thread => $"{thread.Title} ({thread.Group.Title})"));
+
+                    switch (exportError)
+                    {
+                        case ExportError.DirectoryAccess:
+                            DialogUtil.ShowError(
+                                string.Format(
+                                    RSHExporter.Resources.Localization.Resources.ErrorExportFailedDirectoryAccess,
+                                    threadTitles), false);
+                            break;
+                        case ExportError.Connection:
+                            DialogUtil.ShowError(
+                                string.Format(RSHExporter.Resources.Localization.Resources.ErrorExportFailedConnection,
+                                    threadTitles), false);
+                            break;
+                        case ExportError.WordImageDownload:
+                            DialogUtil.ShowError(
+                                string.Format(
+                                    RSHExporter.Resources.Localization.Resources.ErrorExportFailedWordImageDownload,
+                                    threadTitles), false);
+                            break;
+                        case ExportError.Unrecognized:
+                            DialogUtil.ShowError(
+                                string.Format(
+                                    RSHExporter.Resources.Localization.Resources.ErrorExportFailedUnrecognized,
+                                    threadTitles), true);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(exportError), exportError, @"Unknown value");
+                    }
+                }
+            }
         }
         else if (_cancellationTokenSource.IsCancellationRequested)
         {
@@ -811,5 +870,13 @@ public partial class ExportPage : Page
             field = value;
             OnPropertyChanged(propertyName);
         }
+    }
+
+    private enum ExportError
+    {
+        DirectoryAccess,
+        Connection,
+        WordImageDownload,
+        Unrecognized,
     }
 }

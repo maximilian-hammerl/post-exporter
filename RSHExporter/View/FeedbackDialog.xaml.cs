@@ -19,28 +19,28 @@ public partial class FeedbackDialog : Window
         {
             FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackTitleDefault,
             FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackTitleError,
-            _ => throw new NotSupportedException(feedbackType.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
         };
 
         DetailsTextBlock.Text = feedbackType switch
         {
             FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackDetailsDefault,
             FeedbackType.Error => string.Format(RSHExporter.Resources.Localization.Resources.FeedbackDetailsError, id),
-            _ => throw new NotSupportedException(feedbackType.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
         };
 
         ResponseTextBlock.Text = feedbackType switch
         {
             FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackResponseDefault,
             FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackResponseError,
-            _ => throw new NotSupportedException(feedbackType.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
         };
 
         EmailTextBlock.Text = feedbackType switch
         {
             FeedbackType.Default => RSHExporter.Resources.Localization.Resources.FeedbackEmailDefault,
             FeedbackType.Error => RSHExporter.Resources.Localization.Resources.FeedbackEmailError,
-            _ => throw new NotSupportedException(feedbackType.ToString())
+            _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
         };
 
         ResponseTextBox.Focus();
