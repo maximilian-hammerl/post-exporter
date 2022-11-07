@@ -240,6 +240,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dem Exporter wurde der Zugriff auf den von dir ausgewählten Ordner verweigert. Möglicherweise sperrt ein Antivirensystem oder Windows das Programm..
+        /// </summary>
+        public static string ErrorUnauthorizedAccess {
+            get {
+                return ResourceManager.GetString("ErrorUnauthorizedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to der Platzhalter {0} ist unbenutzt.
         /// </summary>
         public static string ErrorUnusedPlaceholder {

@@ -240,6 +240,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The exporter was denied access to the folder you selected. Possibly an antivirus system or Windows blocks the program..
+        /// </summary>
+        public static string ErrorUnauthorizedAccess {
+            get {
+                return ResourceManager.GetString("ErrorUnauthorizedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to the placeholder {0} is unused.
         /// </summary>
         public static string ErrorUnusedPlaceholder {

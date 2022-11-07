@@ -146,13 +146,21 @@ public partial class ExportPage : Page
                 return;
             }
 
-            if (Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length > 0)
+            try
             {
-                if (!DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources
-                        .ExportFolderContainsFilesQuestion))
+                if (Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length > 0)
                 {
-                    continue;
+                    if (!DialogUtil.ShowQuestion(RSHExporter.Resources.Localization.Resources
+                            .ExportFolderContainsFilesQuestion))
+                    {
+                        continue;
+                    }
                 }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                DialogUtil.ShowError(RSHExporter.Resources.Localization.Resources.ErrorUnauthorizedAccess, false);
+                return;
             }
 
             ExportConfiguration.DirectoryPath = path;

@@ -535,4 +535,7 @@ The default templates are based on the current export text options. Only if a te
     <data name="Thread" xml:space="preserve">
         <value>Thread</value>
     </data>
+    <data name="ErrorUnauthorizedAccess" xml:space="preserve">
+        <value>The exporter was denied access to the folder you selected. Possibly an antivirus system or Windows blocks the program.</value>
+    </data>
 </root>

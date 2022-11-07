@@ -536,4 +536,7 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="Thread" xml:space="preserve">
         <value>Beitrag</value>
     </data>
+    <data name="ErrorUnauthorizedAccess" xml:space="preserve">
+        <value>Dem Exporter wurde der Zugriff auf den von dir ausgewählten Ordner verweigert. Möglicherweise sperrt ein Antivirensystem oder Windows das Programm.</value>
+    </data>
 </root>
