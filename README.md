@@ -1,4 +1,4 @@
-p# RSH Exporter
+# RSH Exporter
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/rsh-exporter)](https://choosealicense.com/licenses/mit/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximilian-hammerl/rsh-exporter)](https://github.com/maximilian-hammerl/rsh-exporter/releases)
