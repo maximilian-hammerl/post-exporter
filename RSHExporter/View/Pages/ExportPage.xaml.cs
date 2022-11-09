@@ -329,6 +329,11 @@ public partial class ExportPage : Page
                 failedExports[ExportError.WordImageDownload].Add(thread);
                 SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})");
             }
+            catch (InvalidOperationException exception)
+            {
+                failedExports[ExportError.WordImageDownload].Add(thread);
+                SentryUtil.HandleMessage($"InvalidOperationException {exception} for {thread.Title} ({thread.Url})");
+            }
             catch (HttpRequestException exception)
             {
                 failedExports[ExportError.Connection].Add(thread);
