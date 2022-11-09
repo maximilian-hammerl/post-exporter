@@ -137,14 +137,14 @@
                                         <ColumnDefinition Width="35" />
                                     </Grid.ColumnDefinitions>
 
-                                    <CheckBox Grid.Column="0" IsChecked="{Binding Path=IsSelected}"
-                                              IsThreeState="False" IsEnabled="{Binding Path=IsEnabled}"
-                                              Tag="{Binding Path=Group.Title}" Checked="GroupCheckBox_OnChecked"
-                                              HorizontalAlignment="Center"
-                                              Style="{StaticResource ListCheckBoxStyle}" />
+                                    <CheckBox Grid.Column="0" Tag="{Binding Path=Group.Id}"
+                                              IsChecked="{Binding Path=IsSelected}" IsThreeState="False"
+                                              IsEnabled="{Binding Path=IsEnabled}" Checked="GroupCheckBox_OnChecked"
+                                              HorizontalAlignment="Center" Style="{StaticResource ListCheckBoxStyle}" />
 
-                                    <Button Grid.Column="1" Content="{Binding Path=Group.Title}"
-                                            Click="GroupButton_OnClick" IsEnabled="{Binding Path=IsEnabled}"
+                                    <Button Grid.Column="1" Tag="{Binding Path=Group.Id}"
+                                            Content="{Binding Path=Group.Title}" Click="GroupButton_OnClick"
+                                            IsEnabled="{Binding Path=IsEnabled}"
                                             Style="{StaticResource ListButtonStyle}"
                                             Visibility="{Binding Path=IsActive, Converter={StaticResource InvertedBooleanToVisibilityConverter}}" />
 

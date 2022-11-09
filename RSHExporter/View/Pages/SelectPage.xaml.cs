@@ -16,7 +16,7 @@ namespace RSHExporter.View.Pages;
 
 public partial class SelectPage : Page
 {
-    private readonly Dictionary<string, SelectableGroup> _selectableGroupByTitles = new();
+    private readonly Dictionary<int, SelectableGroup> _selectableGroupByIds = new();
     private SelectableGroup? _currentSelectableGroup;
 
     public SelectPage(IEnumerable<Group> groups)
@@ -32,7 +32,7 @@ public partial class SelectPage : Page
         foreach (var group in groups)
         {
             var selectableGroup = new SelectableGroup(group);
-            _selectableGroupByTitles[group.Title] = selectableGroup;
+            _selectableGroupByIds[group.Id] = selectableGroup;
             SelectableGroups.Add(selectableGroup);
         }
 
@@ -53,7 +53,7 @@ public partial class SelectPage : Page
             throw new ArgumentException(sender.ToString());
         }
 
-        var selectableGroup = _selectableGroupByTitles[button.Content.ToString() ?? ""];
+        var selectableGroup = _selectableGroupByIds[(int)button.Tag];
         await UpdateGroupSelected(selectableGroup);
     }
 
@@ -64,7 +64,7 @@ public partial class SelectPage : Page
             throw new ArgumentException(sender.ToString());
         }
 
-        var selectableGroup = _selectableGroupByTitles[checkBox.Tag.ToString() ?? ""];
+        var selectableGroup = _selectableGroupByIds[(int)checkBox.Tag];
 
         await UpdateGroupSelected(selectableGroup);
     }

@@ -469,22 +469,14 @@ public static class Exporter
     private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
         var groupTitleBuilder = new StringBuilder(group.Title);
-        groupTitleBuilder.SanitizeFileName().Trim();
-        if (groupTitleBuilder.Length > 0)
-        {
-            groupTitleBuilder.Append(' ');
-        }
-
-        groupTitleBuilder.Append(Resources.Localization.Resources.Group);
+        groupTitleBuilder.SanitizeFileName().Trim()
+            .Append(" (").Append(group.Id).Append(") ")
+            .Append(Resources.Localization.Resources.Group);
 
         var threadTitleBuilder = new StringBuilder(thread.Title);
-        threadTitleBuilder.SanitizeFileName().Trim();
-        if (threadTitleBuilder.Length > 0)
-        {
-            threadTitleBuilder.Append(' ');
-        }
-
-        threadTitleBuilder.Append(Resources.Localization.Resources.Thread);
+        threadTitleBuilder.SanitizeFileName().Trim()
+            .Append(" (").Append(thread.Id).Append(") ")
+            .Append(Resources.Localization.Resources.Thread);
 
         string directoryPath;
         StringBuilder fileNameBuilder;

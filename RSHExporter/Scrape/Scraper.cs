@@ -277,7 +277,8 @@ public static class Scraper
             var details = HttpUtility.HtmlDecode(detailsNode.InnerText);
             var (author, postedAt) = GetUserAndDateTime(details);
 
-            threads.Add(new Thread(author, postedAt, title, $"https://rollenspielhimmel.de/forum/{path}", group));
+            var id = GetThreadIdFromPath(path);
+            threads.Add(new Thread(id, author, postedAt, title, $"https://rollenspielhimmel.de/forum/{path}", group));
         }
 
         var nextThreadsButton =
@@ -296,6 +297,13 @@ public static class Scraper
         threads.AddRange(additionalThreads);
 
         return (threads, loadedAllThreadsSuccessfully && loadedAdditionalThreadsSuccessfully);
+    }
+
+    private static int GetThreadIdFromPath(string path)
+    {
+        var split = path.Split("-");
+
+        return int.Parse(split[^2]);
     }
 
     private static async Task<string> GetThreadsPath(string groupUrl)
@@ -363,7 +371,7 @@ public static class Scraper
             }
 
             var title = HttpUtility.HtmlDecode(titleNode.InnerText);
-            var path = titleNode.Attributes["href"].Value;
+            var pathWithQuery = titleNode.Attributes["href"].Value;
 
             var founderNode = tableNode.SelectSingleNode("./tr[3]/td[2]/a");
 
@@ -390,7 +398,8 @@ public static class Scraper
             var foundedAt = DateTime.ParseExact(HttpUtility.HtmlDecode(foundedAtNode.InnerText), "dd.MM.yyyy",
                 CultureInfo.InvariantCulture);
 
-            groups.Add(new Group(founder, foundedAt, title, $"https://rollenspielhimmel.de{path}"));
+            var id = GetGroupIdFromPath(pathWithQuery);
+            groups.Add(new Group(id, founder, foundedAt, title, $"https://rollenspielhimmel.de{pathWithQuery}"));
         }
 
         var nextGroupsButton = doc.DocumentNode.SelectSingleNode(
@@ -408,6 +417,22 @@ public static class Scraper
         groups.AddRange(additionalGroups);
 
         return (groups, loadedAllGroupsSuccessfully && loadedAdditionalGroupsSuccessfully);
+    }
+
+    private static int GetGroupIdFromPath(string pathWithQuery)
+    {
+        var query = pathWithQuery[(pathWithQuery.IndexOf('?') + 1)..];
+        var queryParts = query.Split("&");
+
+        foreach (var queryPart in queryParts)
+        {
+            if (queryPart.StartsWith("id="))
+            {
+                return int.Parse(queryPart[(queryPart.IndexOf('=') + 1)..]);
+            }
+        }
+
+        throw new ArgumentException($"No group ID in \"{pathWithQuery}\"");
     }
 
     public static async Task<(List<Group>?, bool)> LoginAndGetGroups(string username, string password)
