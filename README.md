@@ -1,4 +1,4 @@
-# RSH Exporter
+p# RSH Exporter
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/rsh-exporter)](https://choosealicense.com/licenses/mit/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximilian-hammerl/rsh-exporter)](https://github.com/maximilian-hammerl/rsh-exporter/releases)
@@ -14,7 +14,7 @@
 - [Html Agility Pack](https://html-agility-pack.net): Parsing HTML
 - [Open XML SDK](https://github.com/OfficeDev/Open-XML-SDK): Generating Word documents
 - [Html2OpenXml](https://github.com/onizet/html2openxml): Converting HTML to OpenXml components for Word documents
-- [JetBrains Code Annotation Attributes﻿](https://www.jetbrains.com/help/resharper/Code_Analysis__Code_Annotations.html)
+- [JetBrains Code Annotation Attributes](https://www.jetbrains.com/help/resharper/Code_Analysis__Code_Annotations.html)
 - [Ookii Dialogs Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf): Dialogs for WPF
 - [Sentry](https://sentry.io/for/csharp/): Error and performance monitoring
 
@@ -31,6 +31,6 @@ produce_single_file="true"
 ready_to_run="true"
 runtime="win-x64"
 self_contained="true"
-target_folder="..."
+target_folder="$PROJECT_DIR$/PATH/TO/TARGET_FOLDER"
 target_framework="net6.0-windows"
 ```
