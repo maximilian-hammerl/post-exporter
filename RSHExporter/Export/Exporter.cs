@@ -468,15 +468,11 @@ public static class Exporter
 
     private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
-        var groupTitleBuilder = new StringBuilder(group.Title);
-        groupTitleBuilder.SanitizeFileName().Trim()
-            .Append(" (").Append(group.Id).Append(") ")
-            .Append(Resources.Localization.Resources.Group);
+        var groupTitleBuilder = CreateTitleBuilder(group.Title, group.Id,
+            ExportConfiguration.IncludeGroupId, Resources.Localization.Resources.Group);
 
-        var threadTitleBuilder = new StringBuilder(thread.Title);
-        threadTitleBuilder.SanitizeFileName().Trim()
-            .Append(" (").Append(thread.Id).Append(") ")
-            .Append(Resources.Localization.Resources.Thread);
+        var threadTitleBuilder = CreateTitleBuilder(thread.Title, thread.Id,
+            ExportConfiguration.IncludeThreadIdByGroupIds[group.Id], Resources.Localization.Resources.Thread);
 
         string directoryPath;
         StringBuilder fileNameBuilder;
@@ -513,6 +509,25 @@ public static class Exporter
 
         return (directoryPath, imagesDirectoryPath, imagesDirectory, imageFileNamePrefix,
             Path.Join(directoryPath, fileName));
+    }
+
+    private static StringBuilder CreateTitleBuilder(string title, int id, bool includeId, string postfix)
+    {
+        var titleBuilder = new StringBuilder(title);
+        titleBuilder.SanitizeFileName().Trim();
+
+        if (includeId)
+        {
+            titleBuilder.Append(" (").Append(id).Append(") ");
+        }
+        else
+        {
+            titleBuilder.Append(' ');
+        }
+
+        titleBuilder.Append(postfix);
+
+        return titleBuilder;
     }
 
     private static StringBuilder SanitizeFileName(this StringBuilder stringBuilder)

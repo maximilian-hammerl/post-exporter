@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using JetBrains.Annotations;
+using RSHExporter.Export;
 using RSHExporter.Scrape;
 using RSHExporter.Utils;
 using Sentry;
@@ -135,12 +136,31 @@ public partial class SelectPage : Page
     {
         var threads = new List<Thread>();
 
+        var groupTitles = new HashSet<string>();
+
         foreach (var selectableGroup in SelectableGroups)
         {
             if (!selectableGroup.IsEnabled || !selectableGroup.IsSelected)
             {
                 continue;
             }
+
+            if (!ExportConfiguration.IncludeGroupId)
+            {
+                var groupTitle = selectableGroup.Group.Title;
+
+                if (groupTitles.Contains(groupTitle))
+                {
+                    ExportConfiguration.IncludeGroupId = true;
+                }
+                else
+                {
+                    groupTitles.Add(groupTitle);
+                }
+            }
+
+            var includeThreadId = false;
+            var threadTitles = new HashSet<string>();
 
             foreach (var selectableThread in await selectableGroup.GetOrLoadSelectableThreads())
             {
@@ -149,8 +169,24 @@ public partial class SelectPage : Page
                     continue;
                 }
 
+                if (!includeThreadId)
+                {
+                    var threadTitle = selectableThread.Thread.Title;
+
+                    if (threadTitles.Contains(threadTitle))
+                    {
+                        includeThreadId = true;
+                    }
+                    else
+                    {
+                        threadTitles.Add(threadTitle);
+                    }
+                }
+
                 threads.Add(selectableThread.Thread);
             }
+
+            ExportConfiguration.IncludeThreadIdByGroupIds[selectableGroup.Group.Id] = includeThreadId;
         }
 
         if (threads.Count == 0)

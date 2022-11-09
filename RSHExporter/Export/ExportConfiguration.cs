@@ -7,11 +7,13 @@ namespace RSHExporter.Export;
 
 public static class ExportConfiguration
 {
+    // Config options for templates
     public static StringBuilder? TextHeadTemplate { get; set; } = null;
     public static StringBuilder? TextBodyTemplate { get; set; } = null;
     public static StringBuilder? HtmlHeadTemplate { get; set; } = null;
     public static StringBuilder? HtmlBodyTemplate { get; set; } = null;
 
+    // Config options configured by user
     public static string? DirectoryPath { get; set; } = null;
 
     public static string ExportDirectoryPath
@@ -45,6 +47,10 @@ public static class ExportConfiguration
     public static bool DownloadToOwnFolder { get; set; } = true;
     public static bool DownloadImages { get; set; } = true;
     public static bool DownloadImagesToOwnFolder { get; set; } = true;
+
+    // Other config options
+    public static bool IncludeGroupId { get; set; } = false;
+    public static Dictionary<int, bool> IncludeThreadIdByGroupIds { get; set; } = new();
 
     public static StringBuilder GetDefaultTextHeadTemplate(bool withAllPlaceholders = false)
     {
