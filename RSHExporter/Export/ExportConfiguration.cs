@@ -49,8 +49,8 @@ public static class ExportConfiguration
     public static bool DownloadImagesToOwnFolder { get; set; } = true;
 
     // Other config options
-    public static bool IncludeGroupId { get; set; } = false;
-    public static Dictionary<int, bool> IncludeThreadIdByGroupIds { get; set; } = new();
+    public static HashSet<int> GroupIdsWithSameTitle { get; } = new();
+    public static HashSet<int> ThreadIdsWithSameTitle { get; } = new();
 
     public static StringBuilder GetDefaultTextHeadTemplate(bool withAllPlaceholders = false)
     {

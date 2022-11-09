@@ -136,7 +136,10 @@ public partial class SelectPage : Page
     {
         var threads = new List<Thread>();
 
-        var groupTitles = new HashSet<string>();
+        ExportConfiguration.GroupIdsWithSameTitle.Clear();
+        ExportConfiguration.ThreadIdsWithSameTitle.Clear();
+
+        var groupIdsByGroupTitles = new Dictionary<string, HashSet<int>>();
 
         foreach (var selectableGroup in SelectableGroups)
         {
@@ -145,22 +148,18 @@ public partial class SelectPage : Page
                 continue;
             }
 
-            if (!ExportConfiguration.IncludeGroupId)
+            var groupTitle = selectableGroup.Group.Title;
+            var groupId = selectableGroup.Group.Id;
+            if (groupIdsByGroupTitles.TryGetValue(groupTitle, out var groupIds))
             {
-                var groupTitle = selectableGroup.Group.Title;
-
-                if (groupTitles.Contains(groupTitle))
-                {
-                    ExportConfiguration.IncludeGroupId = true;
-                }
-                else
-                {
-                    groupTitles.Add(groupTitle);
-                }
+                groupIds.Add(groupId);
+            }
+            else
+            {
+                groupIdsByGroupTitles[groupTitle] = new HashSet<int> { groupId };
             }
 
-            var includeThreadId = false;
-            var threadTitles = new HashSet<string>();
+            var threadIdsByThreadTitles = new Dictionary<string, HashSet<int>>();
 
             foreach (var selectableThread in await selectableGroup.GetOrLoadSelectableThreads())
             {
@@ -169,24 +168,41 @@ public partial class SelectPage : Page
                     continue;
                 }
 
-                if (!includeThreadId)
+                var threadTitle = selectableThread.Thread.Title;
+                var threadId = selectableThread.Thread.Id;
+                if (threadIdsByThreadTitles.TryGetValue(threadTitle, out var threadIds))
                 {
-                    var threadTitle = selectableThread.Thread.Title;
-
-                    if (threadTitles.Contains(threadTitle))
-                    {
-                        includeThreadId = true;
-                    }
-                    else
-                    {
-                        threadTitles.Add(threadTitle);
-                    }
+                    threadIds.Add(threadId);
+                }
+                else
+                {
+                    threadIdsByThreadTitles[threadTitle] = new HashSet<int> { threadId };
                 }
 
                 threads.Add(selectableThread.Thread);
             }
 
-            ExportConfiguration.IncludeThreadIdByGroupIds[selectableGroup.Group.Id] = includeThreadId;
+            foreach (var threadIds in threadIdsByThreadTitles.Values)
+            {
+                if (threadIds.Count > 1)
+                {
+                    foreach (var threadId in threadIds)
+                    {
+                        ExportConfiguration.ThreadIdsWithSameTitle.Add(threadId);
+                    }
+                }
+            }
+        }
+
+        foreach (var groupIds in groupIdsByGroupTitles.Values)
+        {
+            if (groupIds.Count > 1)
+            {
+                foreach (var groupId in groupIds)
+                {
+                    ExportConfiguration.GroupIdsWithSameTitle.Add(groupId);
+                }
+            }
         }
 
         if (threads.Count == 0)

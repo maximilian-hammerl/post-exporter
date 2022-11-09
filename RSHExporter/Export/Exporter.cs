@@ -469,10 +469,10 @@ public static class Exporter
     private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
         var groupTitleBuilder = CreateTitleBuilder(group.Title, group.Id,
-            ExportConfiguration.IncludeGroupId, Resources.Localization.Resources.Group);
+            ExportConfiguration.GroupIdsWithSameTitle.Contains(group.Id), Resources.Localization.Resources.Group);
 
         var threadTitleBuilder = CreateTitleBuilder(thread.Title, thread.Id,
-            ExportConfiguration.IncludeThreadIdByGroupIds[group.Id], Resources.Localization.Resources.Thread);
+            ExportConfiguration.ThreadIdsWithSameTitle.Contains(thread.Id), Resources.Localization.Resources.Thread);
 
         string directoryPath;
         StringBuilder fileNameBuilder;
