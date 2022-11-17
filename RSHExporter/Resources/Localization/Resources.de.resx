@@ -248,7 +248,7 @@
         <value>Bevor du dich einloggen kannst, musst du die geltenden Hinweise und Lizenzbedingungen akzeptieren</value>
     </data>
     <data name="LoginAcceptSentry" xml:space="preserve">
-        <value>Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden.</value>
+        <value>Ich erlaube, dass Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden.</value>
     </data>
     <data name="LoginOpenSentry" xml:space="preserve">
         <value>Klicke hier, um mehr über Sentry zu erfahren</value>
@@ -364,7 +364,7 @@ Um das Finden und Beheben möglicher Fehler zu vereinfachen, verwendet dieses Pr
         <value>Hallo! Diese Hilfedialoge helfen dir hoffentlich dabei, zu lernen, wie du dieses Programm benutzen kannst. Die meisten Seiten haben einen Hilfedialog, der erklärt, wie die aktuelle Seite funktioniert.</value>
     </data>
     <data name="HelpWelcomeStep2" xml:space="preserve">
-        <value>Wenn du Sentry erlaubst, anonyme Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler.</value>
+        <value>Wenn du Sentry erlaubst, Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler.</value>
     </data>
     <data name="TemplateImageAt" xml:space="preserve">
         <value>Bild unter</value>
@@ -507,7 +507,7 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
         <value>Alle Gruppen und Beiträge abwählen</value>
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
-        <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?</value>
+        <value>Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry Daten sammeln, wenn ein Fehler auftritt?</value>
     </data>
     <data name="ErrorSomeGroupsFailedToLoad" xml:space="preserve">
         <value>Manche Gruppen konnten nicht geladen werden!</value>
@@ -547,5 +547,44 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
         <value>Die Beiträge {0} konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist.</value>
+    </data>
+    <data name="Ignore" xml:space="preserve">
+        <value>Ignorieren</value>
+    </data>
+    <data name="Close" xml:space="preserve">
+        <value>Schließen</value>
+    </data>
+    <data name="NewReleaseTitle" xml:space="preserve">
+        <value>Es gibt eine neue Version des RSH Exporters!</value>
+    </data>
+    <data name="NewReleaseDetails1" xml:space="preserve">
+        <value>Du verwendest derzeit Version</value>
+    </data>
+    <data name="NewReleaseDetails2" xml:space="preserve">
+        <value>Die aktuellste Version des RSH Exporters ist Version</value>
+    </data>
+    <data name="NewReleaseDetails3" xml:space="preserve">
+        <value>Bitte aktualisiere auf die neueste Version, um die neuesten Funktionen und Fehlerbehebungen zu nutzen.</value>
+    </data>
+    <data name="NewReleaseClickToDownload" xml:space="preserve">
+        <value>Um die neueste Version herunterzuladen, klicke bitte hier:</value>
+    </data>
+    <data name="Download" xml:space="preserve">
+        <value>Herunterladen</value>
+    </data>
+    <data name="NewReleaseUrlToDownload" xml:space="preserve">
+        <value>Alternativ kannst du auch diese URL kopieren und in deinem Browser öffnen:</value>
+    </data>
+    <data name="NewReleaseMoreInfo1" xml:space="preserve">
+        <value>Weitere Informationen findest du im</value>
+    </data>
+    <data name="NewReleaseMoreInfo4" xml:space="preserve">
+        <value>Versionshinweisen auf dem GitHub-Repository</value>
+    </data>
+    <data name="NewReleaseMoreInfo3" xml:space="preserve">
+        <value>oder in den</value>
+    </data>
+    <data name="NewReleaseMoreInfo2" xml:space="preserve">
+        <value>Rollenspielhimmel-Forumsbeitrag</value>
     </data>
 </root>

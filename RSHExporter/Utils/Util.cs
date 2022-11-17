@@ -21,14 +21,21 @@ public static class Util
         process.Start();
     }
 
-    public static string GetVersion(int fieldCount = 2)
+    public static Version GetCurrentVersion()
     {
-        return Assembly.GetExecutingAssembly().GetName().Version?.ToString(fieldCount) ?? string.Empty;
+        return Assembly.GetExecutingAssembly().GetName().Version ??
+               throw new InvalidOperationException("Cannot get current version");
+    }
+
+    public static string GetCurrentVersionAsString(int fieldCount = 2)
+    {
+        return GetCurrentVersion().ToString(fieldCount);
     }
 
     public static string GetAppName()
     {
-        return Assembly.GetExecutingAssembly().GetName().Name ?? string.Empty;
+        return Assembly.GetExecutingAssembly().GetName().Name ??
+               throw new InvalidOperationException("Cannot get app name");
     }
 
     public static string CapitalizeFirstChar(string text)

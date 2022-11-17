@@ -6,7 +6,7 @@
       xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
       xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
       mc:Ignorable="d"
-      Title="ExportPage"
+      Title="Export Page"
       ShowsNavigationUI="False">
     <Grid>
 

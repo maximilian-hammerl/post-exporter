@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using RSHExporter.Utils;
@@ -14,7 +15,7 @@ public partial class WelcomePage : Page
 
         CollectDataCheckBox.IsChecked = CollectDataAccepted;
 
-        VersionTextBlock.Text = $"Version {Util.GetVersion()}";
+        VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
     }
 
     public static bool CollectDataAccepted { get; private set; }
@@ -48,7 +49,7 @@ public partial class WelcomePage : Page
         SentryUtil.HandleFeedback("FeedbackPage");
     }
 
-    private void ContinueButton_OnClick(object sender, RoutedEventArgs e)
+    private async void ContinueButton_OnClick(object sender, RoutedEventArgs e)
     {
         if (!CollectDataAccepted)
         {
@@ -59,6 +60,28 @@ public partial class WelcomePage : Page
         if (CollectDataAccepted)
         {
             SentryUtil.InitializeSentry();
+        }
+
+        await CheckCurrentVersion();
+    }
+
+    private async Task CheckCurrentVersion()
+    {
+        var latestRelease = await GitHubUtil.GetLatestRelease();
+        var latestVersion = latestRelease.GetVersion();
+
+        var currentVersion = Util.GetCurrentVersion();
+
+        if (currentVersion.Major < latestVersion.Major || currentVersion.Minor < latestVersion.Minor)
+        {
+            var newReleaseDialog = new NewReleaseDialog(latestRelease, currentVersion);
+            newReleaseDialog.ShowDialog();
+
+            if (newReleaseDialog.DialogResult is true)
+            {
+                Window.GetWindow(this).Close();
+                return;
+            }
         }
 
         NavigationService.Navigate(new LoginPage());

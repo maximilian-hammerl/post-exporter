@@ -105,6 +105,15 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Schließen.
+        /// </summary>
+        public static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weiter.
         /// </summary>
         public static string Continue {
@@ -119,6 +128,15 @@ namespace RSHExporter.Resources.Localization {
         public static string Decline {
             get {
                 return ResourceManager.GetString("Decline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Herunterladen.
+        /// </summary>
+        public static string Download {
+            get {
+                return ResourceManager.GetString("Download", resourceCulture);
             }
         }
         
@@ -663,7 +681,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wenn du Sentry erlaubst, anonyme Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler..
+        ///   Looks up a localized string similar to Wenn du Sentry erlaubst, Daten zu sammeln, wenn ein Fehler auftritt, hilft mir das ungemein bei der Behebung dieser Fehler..
         /// </summary>
         public static string HelpWelcomeStep2 {
             get {
@@ -704,6 +722,15 @@ namespace RSHExporter.Resources.Localization {
         public static string HelpWelcomeStep6 {
             get {
                 return ResourceManager.GetString("HelpWelcomeStep6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignorieren.
+        /// </summary>
+        public static string Ignore {
+            get {
+                return ResourceManager.GetString("Ignore", resourceCulture);
             }
         }
         
@@ -774,7 +801,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ich erlaube, dass anonyme Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden..
+        ///   Looks up a localized string similar to Ich erlaube, dass Daten zum Monitoring und Fehlerverfolgung mittels Sentry gesammelt werden..
         /// </summary>
         public static string LoginAcceptSentry {
             get {
@@ -869,6 +896,96 @@ namespace RSHExporter.Resources.Localization {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Um die neueste Version herunterzuladen, klicke bitte hier:.
+        /// </summary>
+        public static string NewReleaseClickToDownload {
+            get {
+                return ResourceManager.GetString("NewReleaseClickToDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Du verwendest derzeit Version.
+        /// </summary>
+        public static string NewReleaseDetails1 {
+            get {
+                return ResourceManager.GetString("NewReleaseDetails1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die aktuellste Version des RSH Exporters ist Version.
+        /// </summary>
+        public static string NewReleaseDetails2 {
+            get {
+                return ResourceManager.GetString("NewReleaseDetails2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bitte aktualisiere auf die neueste Version, um die neuesten Funktionen und Fehlerbehebungen zu nutzen..
+        /// </summary>
+        public static string NewReleaseDetails3 {
+            get {
+                return ResourceManager.GetString("NewReleaseDetails3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weitere Informationen findest du im.
+        /// </summary>
+        public static string NewReleaseMoreInfo1 {
+            get {
+                return ResourceManager.GetString("NewReleaseMoreInfo1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rollenspielhimmel-Forumsbeitrag.
+        /// </summary>
+        public static string NewReleaseMoreInfo2 {
+            get {
+                return ResourceManager.GetString("NewReleaseMoreInfo2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to oder in den.
+        /// </summary>
+        public static string NewReleaseMoreInfo3 {
+            get {
+                return ResourceManager.GetString("NewReleaseMoreInfo3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Versionshinweisen auf dem GitHub-Repository.
+        /// </summary>
+        public static string NewReleaseMoreInfo4 {
+            get {
+                return ResourceManager.GetString("NewReleaseMoreInfo4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es gibt eine neue Version des RSH Exporters!.
+        /// </summary>
+        public static string NewReleaseTitle {
+            get {
+                return ResourceManager.GetString("NewReleaseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alternativ kannst du auch diese URL kopieren und in deinem Browser öffnen:.
+        /// </summary>
+        public static string NewReleaseUrlToDownload {
+            get {
+                return ResourceManager.GetString("NewReleaseUrlToDownload", resourceCulture);
             }
         }
         
@@ -1577,7 +1694,7 @@ namespace RSHExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry anonyme Daten sammeln, wenn ein Fehler auftritt?.
+        ///   Looks up a localized string similar to Es wäre super, falls du Sentry erlauben könntest, Fehler zu verfolgen! Darf Sentry Daten sammeln, wenn ein Fehler auftritt?.
         /// </summary>
         public static string WelcomeAllowSentryQuestion {
             get {

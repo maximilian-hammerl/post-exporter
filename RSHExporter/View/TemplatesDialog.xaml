@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
         xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
         mc:Ignorable="d"
-        Title="TemplatesDialog"
+        Title="Templates"
         Icon="/Resources/logo.ico"
         Height="1100"
         Width="1400"
@@ -55,7 +55,8 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="6">
-            <TextBlock Text="{x:Static l:Resources.TemplatesTitle}" Margin="6" Style="{StaticResource LabelTextBlock}" />
+            <TextBlock Text="{x:Static l:Resources.TemplatesTitle}" Margin="6" FontSize="16"
+                       Style="{StaticResource LabelTextBlock}" />
 
             <TextBlock Margin="6" Style="{StaticResource TextTextBlock}">
                 <Run Text="{x:Static l:Resources.TemplatesDetails1}" />

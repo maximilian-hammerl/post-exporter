@@ -6,7 +6,7 @@
       xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
       xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
       mc:Ignorable="d"
-      Title="WelcomePage"
+      Title="Welcome Page"
       ShowsNavigationUI="False">
     <Grid>
         <Grid.RowDefinitions>
@@ -120,11 +120,9 @@
                         <TextBlock Text="{x:Static l:Resources.LoginAcceptSentry}" TextWrapping="Wrap" />
                     </CheckBox>
                     <TextBlock FontSize="14">
-                        (
-                        <Hyperlink NavigateUri="https://sentry.io/about/" RequestNavigate="Hyperlink_OnRequestNavigate">
+                        (<Hyperlink NavigateUri="https://sentry.io/about/" RequestNavigate="Hyperlink_OnRequestNavigate">
                             <TextBlock Text="{x:Static l:Resources.LoginOpenSentry}" />
-                        </Hyperlink>
-                        )
+                        </Hyperlink>)
                     </TextBlock>
                 </StackPanel>
 

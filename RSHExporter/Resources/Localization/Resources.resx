@@ -251,7 +251,7 @@
         <value>Click here to learn more out Sentry</value>
     </data>
     <data name="LoginAcceptSentry" xml:space="preserve">
-        <value>I allow anonymous data to be collected for application monitoring and error tracking using Sentry.</value>
+        <value>I allow data to be collected for application monitoring and error tracking using Sentry.</value>
     </data>
     <data name="ErrorNoSentry" xml:space="preserve">
         <value>Sentry is used to send your feedback. Unfortunately, because you have not agreed to the use of Sentry, your feedback cannot be collected.</value>
@@ -351,7 +351,7 @@ To simplify finding and fixing possible bugs, this program uses Sentry, a applic
         <value>Hi! These help dialogs will hopefully help you with learning how to use this program. Most pages have a help dialog which explains how the current page works.</value>
     </data>
     <data name="HelpWelcomeStep2" xml:space="preserve">
-        <value>Allowing Sentry to collect anonymous data when an error occurs helps me immensely with fixing these errors.</value>
+        <value>Allowing Sentry to collect data when an error occurs helps me immensely with fixing these errors.</value>
     </data>
     <data name="HelpWelcomeStep3" xml:space="preserve">
         <value>You can click here to go to the repository of the program.</value>
@@ -506,7 +506,7 @@ The default templates are based on the current export text options. Only if a te
         <value>Unselect All Groups and Threads</value>
     </data>
     <data name="WelcomeAllowSentryQuestion" xml:space="preserve">
-        <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect anonymous data when a bug occurs?</value>
+        <value>It would be great if you could allow Sentry to track bugs! Is Sentry allowed to collect data when a bug occurs?</value>
     </data>
     <data name="ErrorSomeThreadsFailedToLoad" xml:space="preserve">
         <value>Some thread(s) of group {0} could not be loaded!</value>
@@ -546,5 +546,44 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
         <value>The threads {0} could not be exported because of an unrecognized error.</value>
+    </data>
+    <data name="Ignore" xml:space="preserve">
+        <value>Ignore</value>
+    </data>
+    <data name="Close" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="NewReleaseTitle" xml:space="preserve">
+        <value>There is a new release of the RSH Exporter available!</value>
+    </data>
+    <data name="NewReleaseDetails1" xml:space="preserve">
+        <value>You are currently using version</value>
+    </data>
+    <data name="NewReleaseDetails2" xml:space="preserve">
+        <value>The latest version of the RSH Exporter is version</value>
+    </data>
+    <data name="NewReleaseDetails3" xml:space="preserve">
+        <value>Please upgrade to the latest version to take advantage of the latest features and bug fixes.</value>
+    </data>
+    <data name="NewReleaseClickToDownload" xml:space="preserve">
+        <value>To download the latest version, please click here:</value>
+    </data>
+    <data name="Download" xml:space="preserve">
+        <value>Download</value>
+    </data>
+    <data name="NewReleaseUrlToDownload" xml:space="preserve">
+        <value>Alternatively, you can copy this URL and open it in your browser:</value>
+    </data>
+    <data name="NewReleaseMoreInfo1" xml:space="preserve">
+        <value>For more information, check out the</value>
+    </data>
+    <data name="NewReleaseMoreInfo2" xml:space="preserve">
+        <value>Rollenspielhimmel forum post</value>
+    </data>
+    <data name="NewReleaseMoreInfo3" xml:space="preserve">
+        <value>or the</value>
+    </data>
+    <data name="NewReleaseMoreInfo4" xml:space="preserve">
+        <value>release notes on the GitHub repository</value>
     </data>
 </root>

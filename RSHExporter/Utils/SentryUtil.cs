@@ -15,7 +15,7 @@ public static class SentryUtil
             o.Dsn = "https://57c119ee365d4707b7f99e2b36c8782d@o1430708.ingest.sentry.io/6781778";
             o.TracesSampleRate = 1.0;
             o.IsGlobalModeEnabled = true;
-            o.Release = $"{Util.GetAppName()}@{Util.GetVersion(4)}";
+            o.Release = $"{Util.GetAppName()}@{Util.GetCurrentVersionAsString(4)}";
             o.AutoSessionTracking = true;
         });
     }

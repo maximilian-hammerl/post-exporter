@@ -15,7 +15,7 @@ public partial class LoginPage : Page
     {
         InitializeComponent();
 
-        VersionTextBlock.Text = $"Version {Util.GetVersion()}";
+        VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
 
         UsernameTextBox.Focus();
 

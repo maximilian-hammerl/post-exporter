@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
         xmlns:l="clr-namespace:RSHExporter.Resources.Localization"
         mc:Ignorable="d"
-        Title="FeedbackDialog"
+        Title="Feedback"
         Icon="/Resources/logo.ico"
         Height="450"
         Width="800"
@@ -23,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="6">
-            <TextBlock x:Name="TitleTextBlock" Margin="6" Style="{StaticResource LabelTextBlock}" />
+            <TextBlock x:Name="TitleTextBlock" Margin="6" FontSize="16" Style="{StaticResource LabelTextBlock}" />
 
             <TextBox x:Name="DetailsTextBlock" Background="Transparent" BorderThickness="0" IsReadOnly="True"
                      TextWrapping="Wrap" Margin="6" FontSize="14" />
