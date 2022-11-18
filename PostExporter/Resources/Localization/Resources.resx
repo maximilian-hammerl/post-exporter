@@ -53,7 +53,7 @@
         <value>An error has occurred!</value>
     </data>
     <data name="FeedbackDetailsDefault" xml:space="preserve">
-        <value>Your feedback will be sent to Maxi! You can also, e.g., include links to images.</value>
+        <value>Your feedback will be sent to Maxi (the developer of the exporter)! You can also, e.g., include links to images.</value>
     </data>
     <data name="FeedbackDetailsError" xml:space="preserve">
         <value>Something went wrong unexpectedly! The error has been reported with the ID {0}.</value>

@@ -411,7 +411,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dein Feedback wird an Maxi gesendet! Du kannst z.B. auch Links zu Bildern einfügen..
+        ///   Looks up a localized string similar to Dein Feedback wird an Maxi (den Entwickler des Exporters) gesendet! Du kannst z.B. auch Links zu Bildern einfügen..
         /// </summary>
         public static string FeedbackDetailsDefault {
             get {

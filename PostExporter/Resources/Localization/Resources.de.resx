@@ -53,7 +53,7 @@
         <value>Ein Fehler ist aufgetreten!</value>
     </data>
     <data name="FeedbackDetailsDefault" xml:space="preserve">
-        <value>Dein Feedback wird an Maxi gesendet! Du kannst z.B. auch Links zu Bildern einfügen.</value>
+        <value>Dein Feedback wird an Maxi (den Entwickler des Exporters) gesendet! Du kannst z.B. auch Links zu Bildern einfügen.</value>
     </data>
     <data name="FeedbackDetailsError" xml:space="preserve">
         <value>Etwas ist unerwartet schief gelaufen! Der Fehler wurde mit der ID {0} registriert.</value>
