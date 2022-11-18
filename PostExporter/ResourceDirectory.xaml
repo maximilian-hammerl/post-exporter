@@ -108,7 +108,7 @@
 
     <Style x:Key="ListBorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="LightBlue" />
-        <Setter Property="BorderBrush" Value="#183153" />
+        <Setter Property="BorderBrush" Value="#83DED5" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CornerRadius" Value="5" />
     </Style>

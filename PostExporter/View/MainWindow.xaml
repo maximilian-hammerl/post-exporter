@@ -10,7 +10,7 @@
         Width="1500"
         WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
-    <DockPanel Background="#183153">
+    <DockPanel Background="#83DED5">
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="9" />
     </DockPanel>
 </Window>
