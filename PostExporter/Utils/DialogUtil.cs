@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using PostExporter.View.Pages;
 
 namespace PostExporter.Utils;
 

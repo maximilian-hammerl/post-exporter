@@ -37,8 +37,6 @@ public static class GitHubUtil
 
     public class Release
     {
-        private const string AssetName = "PostExporter.exe";
-
         private string? _downloadUrl;
 
         private Version? _version;
@@ -78,17 +76,19 @@ public static class GitHubUtil
                 {
                     foreach (var asset in Assets)
                     {
-                        if (asset.Name is AssetName)
+                        if (asset.Name == null || !asset.Name.EndsWith(".exe"))
                         {
-                            _downloadUrl = asset.BrowserDownloadUrl;
-                            break;
+                            continue;
                         }
+
+                        _downloadUrl = asset.BrowserDownloadUrl;
+                        break;
                     }
                 }
 
                 if (_downloadUrl == null)
                 {
-                    throw new InvalidOperationException($"No asset for {AssetName}");
+                    throw new InvalidOperationException($"No asset for executable");
                 }
             }
 
