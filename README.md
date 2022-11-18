@@ -2,9 +2,10 @@
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/post-exporter)](https://choosealicense.com/licenses/mit/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/releases)
+[![GitHub all releases](https://img.shields.io/github/downloads/maximilian-hammerl/post-exporter/total)](https://github.com/maximilian-hammerl/post-exporter/releases)
 [![GitHub top language](https://img.shields.io/github/languages/top/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/search?l=c%23)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maximilian-hammerl/post-exporter/CodeQL)](https://github.com/maximilian-hammerl/post-exporter/actions/workflows/codeql.yml)
 [![GitHub issues](https://img.shields.io/github/issues-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/pulls)
 
 .NET 6.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
