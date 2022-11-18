@@ -98,10 +98,15 @@
                 Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
 
-                <TextBlock Text="{x:Static l:Resources.LoginTitle}" Style="{StaticResource Title1TextBlock}" />
-
-                <TextBlock Text="{x:Static l:Resources.LoginSubtitle}" Style="{StaticResource TextTextBlock}"
-                           HorizontalAlignment="Center" MaxWidth="290" />
+                <Border Margin="3 12 3 12" Padding="3" MaxWidth="600" CornerRadius="5" BorderThickness="0" Background="#83DED5"
+                        BorderBrush="Transparent">
+                    <StackPanel>
+                        <Image Source="/Resources/splash-screen-logo.png" />
+                    
+                        <TextBlock Text="{x:Static l:Resources.LoginSubtitle}" Margin="3 3 3 18" Style="{StaticResource LabelTextBlock}"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+                </Border>
 
                 <TextBlock Text="{x:Static l:Resources.LicenseTitle}" Style="{StaticResource LabelTextBlock}"
                            HorizontalAlignment="Center" Margin="12 72 12 3" />
