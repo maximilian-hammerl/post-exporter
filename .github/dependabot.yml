@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/RSHExporter"
+    directory: "/PostExporter"
     schedule:
       interval: "daily"
     target-branch: "main"
