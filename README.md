@@ -6,7 +6,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maximilian-hammerl/post-exporter/CodeQL)](https://github.com/maximilian-hammerl/post-exporter/actions/workflows/codeql.yml)
 [![GitHub issues](https://img.shields.io/github/issues-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/issues)
 
-.NET 6.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export [Rollenspielhimmel](https://rollenspielhimmel.de/) groups, threads and posts to various file formats
+.NET 6.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
 ## Dependencies
 
