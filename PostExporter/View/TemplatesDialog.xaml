@@ -7,7 +7,7 @@
         xmlns:l="clr-namespace:PostExporter.Resources.Localization"
         mc:Ignorable="d"
         Title="Templates"
-        Icon="/Resources/logo.ico"
+        Icon="/Resources/icon.ico"
         Height="1100"
         Width="1400"
         WindowStartupLocation="CenterScreen">
