@@ -600,7 +600,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gib zuerst deinen Benutzernamen und dein Passwort ein, um dich anzumelden..
+        ///   Looks up a localized string similar to Gib zunächst hier die URL des Forums ein..
         /// </summary>
         public static string HelpLoginStep1 {
             get {
@@ -609,11 +609,20 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Klicke dann hier, um dich einzuloggen und mit dem Auswählen deiner Gruppen und Beiträge fortzufahren..
+        ///   Looks up a localized string similar to Gib dann den Benutzernamen und das Passwort ein, mit denen du dich im Forum anmeldest..
         /// </summary>
         public static string HelpLoginStep2 {
             get {
                 return ResourceManager.GetString("HelpLoginStep2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn du fertig bist, klicke hier, um dich einzuloggen und mit der Auswahl deiner Gruppen und Themen fortzufahren..
+        /// </summary>
+        public static string HelpLoginStep3 {
+            get {
+                return ResourceManager.GetString("HelpLoginStep3", resourceCulture);
             }
         }
         

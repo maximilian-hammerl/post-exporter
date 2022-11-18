@@ -167,14 +167,16 @@ public partial class LoginPage : Page
         );
 
         DialogUtil.ShowHelpAndHighlight(
+            (brush => BaseUrlTextBox.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpLoginStep1),
             (brush =>
                 {
                     UsernameTextBox.Background = brush;
                     PasswordBox.Background = brush;
                 },
-                PostExporter.Resources.Localization.Resources.HelpLoginStep1),
+                PostExporter.Resources.Localization.Resources.HelpLoginStep2),
             (brush => LoginButtonContent.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpLoginStep2)
+                PostExporter.Resources.Localization.Resources.HelpLoginStep3)
         );
     }
 

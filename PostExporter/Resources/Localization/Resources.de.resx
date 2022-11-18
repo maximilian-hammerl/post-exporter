@@ -274,11 +274,11 @@
     <data name="Question" xml:space="preserve">
         <value>Frage</value>
     </data>
-    <data name="HelpLoginStep1" xml:space="preserve">
-        <value>Gib zuerst deinen Benutzernamen und dein Passwort ein, um dich anzumelden.</value>
-    </data>
     <data name="HelpLoginStep2" xml:space="preserve">
-        <value>Klicke dann hier, um dich einzuloggen und mit dem Auswählen deiner Gruppen und Beiträge fortzufahren.</value>
+        <value>Gib dann den Benutzernamen und das Passwort ein, mit denen du dich im Forum anmeldest.</value>
+    </data>
+    <data name="HelpLoginStep3" xml:space="preserve">
+        <value>Wenn du fertig bist, klicke hier, um dich einzuloggen und mit der Auswahl deiner Gruppen und Themen fortzufahren.</value>
     </data>
     <data name="HelpSelectStep1" xml:space="preserve">
         <value>Beginne damit, die Gruppen auszuwählen. Wenn du auf eine Gruppe klickst, werden alle Beiträge dieser Gruppe geladen.</value>
@@ -592,5 +592,8 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="LoginBaseUrlHelp" xml:space="preserve">
         <value>Die URL sollte ähnlich aussehen wie "the-forum.de" oder "the-forum.yooco.de".</value>
+    </data>
+    <data name="HelpLoginStep1" xml:space="preserve">
+        <value>Gib zunächst hier die URL des Forums ein.</value>
     </data>
 </root>
