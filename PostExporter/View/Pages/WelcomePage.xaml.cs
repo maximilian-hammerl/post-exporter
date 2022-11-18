@@ -70,7 +70,7 @@ public partial class WelcomePage : Page
 
         var currentVersion = Util.GetCurrentVersion();
 
-        if (currentVersion.Major < latestVersion.Major || currentVersion.Minor < latestVersion.Minor)
+        if (currentVersion.Major <= latestVersion.Major && currentVersion.Minor < latestVersion.Minor)
         {
             var newReleaseDialog = new NewReleaseDialog(latestRelease, currentVersion);
             newReleaseDialog.ShowDialog();
