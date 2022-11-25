@@ -25,8 +25,8 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="6">
             <TextBlock x:Name="TitleTextBlock" Margin="6" FontSize="16" Style="{StaticResource LabelTextBlock}" />
 
-            <TextBox x:Name="DetailsTextBlock" Background="Transparent" BorderThickness="0" IsReadOnly="True"
-                     TextWrapping="Wrap" Margin="6" FontSize="14" />
+            <TextBox x:Name="DetailsTextBlock" Margin="6" Background="Transparent" BorderThickness="0"
+                     IsReadOnly="True" TextWrapping="Wrap" FontSize="14" />
 
             <TextBlock x:Name="ResponseTextBlock" Margin="6" FontSize="14" />
 
