@@ -112,7 +112,7 @@
                     </Border>
 
                     <TextBlock Text="{x:Static l:Resources.LicenseTitle}" Style="{StaticResource LabelTextBlock}"
-                               HorizontalAlignment="Center" Margin="12 72 12 3" />
+                               HorizontalAlignment="Center" Margin="12 48 12 3" />
 
                     <TextBox Text="{x:Static l:Resources.LicenseText}" Margin="12" Background="Transparent"
                              BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" FontSize="14" />

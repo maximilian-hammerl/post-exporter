@@ -116,7 +116,7 @@
                     </Border>
 
                     <TextBlock Text="{x:Static l:Resources.WelcomeTitle}" Style="{StaticResource LabelTextBlock}"
-                               HorizontalAlignment="Center" Margin="12 72 12 3" />
+                               HorizontalAlignment="Center" Margin="12 48 12 3" />
 
                     <TextBlock x:Name="WelcomeTextBlock" Text="{x:Static l:Resources.WelcomeText}" Margin="12"
                                Style="{StaticResource TextTextBlock}" />

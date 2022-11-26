@@ -121,7 +121,7 @@
                     <StackPanel MaxWidth="420">
                         <TextBlock Text="{x:Static l:Resources.LoginExplanation}"
                                    Style="{StaticResource LabelTextBlock}"
-                                   HorizontalAlignment="Center" Margin="3 72 3 3" />
+                                   HorizontalAlignment="Center" Margin="3 48 3 3" />
 
                         <TextBlock Text="{x:Static l:Resources.LoginBaseUrl}" Style="{StaticResource TextTextBlock}"
                                    Margin="9 18 3 3" />
