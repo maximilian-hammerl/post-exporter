@@ -593,6 +593,6 @@ The default templates are based on the current export text options. Only if a te
         <value>The URL should look similar to "the-forum.de" or "the-forum.yooco.de".</value>
     </data>
     <data name="HelpLoginStep1" xml:space="preserve">
-        <value>Start by entering the URL of the foum here.</value>
+        <value>Start by entering the URL of the forum here.</value>
     </data>
 </root>

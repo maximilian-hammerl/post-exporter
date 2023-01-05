@@ -600,7 +600,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start by entering the URL of the foum here..
+        ///   Looks up a localized string similar to Start by entering the URL of the forum here..
         /// </summary>
         public static string HelpLoginStep1 {
             get {

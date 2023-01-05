@@ -88,7 +88,7 @@ public static class GitHubUtil
 
                 if (_downloadUrl == null)
                 {
-                    throw new InvalidOperationException($"No asset for executable");
+                    throw new InvalidOperationException("No asset for executable");
                 }
             }
 

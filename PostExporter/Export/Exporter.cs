@@ -449,13 +449,14 @@ public static class Exporter
             {
                 foreach (var imageNode in textNode.SelectNodes(".//img"))
                 {
-                    if (fileFormat == FileFormat.Html)
+                    switch (fileFormat)
                     {
-                        imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
-                    }
-                    else if (fileFormat == FileFormat.Docx)
-                    {
-                        imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
+                        case FileFormat.Html:
+                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcHtml"].Value;
+                            break;
+                        case FileFormat.Docx:
+                            imageNode.Attributes["src"].Value = imageNode.Attributes["srcDocx"].Value;
+                            break;
                     }
                 }
             }
