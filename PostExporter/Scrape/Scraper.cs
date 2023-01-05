@@ -251,7 +251,7 @@ public static class Scraper
         foreach (var threadRow in threadRows)
         {
             var titleNode =
-                threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='newthread' or @class='sticky']/a");
+                threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='newthread' or @class='sticky' or @class='newsticky']/a");
 
             if (titleNode == null)
             {
