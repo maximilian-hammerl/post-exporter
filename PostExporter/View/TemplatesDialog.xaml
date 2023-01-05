@@ -165,8 +165,8 @@
 
             <TextBlock Text="{x:Static l:Resources.Reset}" Margin="6" Style="{StaticResource LabelTextBlock}" />
 
-            <Button Click="ResetCurrentPlaceholdersButton_OnClick" Width="210" Style="{StaticResource IconButtonStyle}">
-                <Grid Width="200">
+            <Button Click="ResetCurrentPlaceholdersButton_OnClick" Width="220" Style="{StaticResource IconButtonStyle}">
+                <Grid Width="210">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
