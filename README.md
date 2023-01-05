@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/pulls)
 
-.NET 6.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
+.NET 7.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
 ## Dependencies
 
