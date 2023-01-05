@@ -8,6 +8,10 @@
 
 .NET 7.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
+## .NET 7.0 Release
+
+As soon as https://github.com/dotnet/wpf/issues/7282 is fixed, a new version with .NET 7.0 will be released.
+
 ## Dependencies
 
 - [FontAwesome 6 Svg](https://github.com/MartinTopfstedt/FontAwesome6): WPF integration of [Font Awesome](https://fontawesome.com/)
