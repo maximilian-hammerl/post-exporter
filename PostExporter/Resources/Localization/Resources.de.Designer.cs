@@ -762,6 +762,15 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alle Beiträge wurden erfolgreich exportiert:.
+        /// </summary>
+        public static string InfoAllThreadsSuccessfullyExported {
+            get {
+                return ResourceManager.GetString("InfoAllThreadsSuccessfullyExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der Export wurde abgebrochen. Manche der folgenden Beiträge wurden möglicherweise bereits exportiert:.
         /// </summary>
         public static string InfoCancelledThreadsExported {

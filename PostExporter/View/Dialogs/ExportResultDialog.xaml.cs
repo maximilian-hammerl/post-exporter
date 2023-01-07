@@ -74,7 +74,9 @@ public partial class ExportResultDialog : Window
                 );
 
                 ExportResults.Add(new ExportResult(
-                    PostExporter.Resources.Localization.Resources.InfoThreadsSuccessfullyExported,
+                    successfulThreads.Count == threads.Count
+                        ? PostExporter.Resources.Localization.Resources.InfoAllThreadsSuccessfullyExported
+                        : PostExporter.Resources.Localization.Resources.InfoThreadsSuccessfullyExported,
                     "Solid_Check",
                     "Green",
                     successfulThreads

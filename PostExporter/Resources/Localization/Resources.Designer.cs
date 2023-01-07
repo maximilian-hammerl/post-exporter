@@ -762,6 +762,15 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All threads were successfully exported:.
+        /// </summary>
+        public static string InfoAllThreadsSuccessfullyExported {
+            get {
+                return ResourceManager.GetString("InfoAllThreadsSuccessfullyExported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The export was cancelled. Some of the following threads have already been exported:.
         /// </summary>
         public static string InfoCancelledThreadsExported {

@@ -598,4 +598,7 @@ The default templates are based on the current export text options. Only if a te
     <data name="BackToExport" xml:space="preserve">
         <value>Back to Export</value>
     </data>
+    <data name="InfoAllThreadsSuccessfullyExported" xml:space="preserve">
+        <value>All threads were successfully exported:</value>
+    </data>
 </root>

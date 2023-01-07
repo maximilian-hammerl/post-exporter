@@ -599,4 +599,7 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="BackToExport" xml:space="preserve">
         <value>Zurück zum Export</value>
     </data>
+    <data name="InfoAllThreadsSuccessfullyExported" xml:space="preserve">
+        <value>Alle Beiträge wurden erfolgreich exportiert:</value>
+    </data>
 </root>
