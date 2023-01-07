@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="{x:Static l:Resources.NewReleaseTitle}"
         Icon="/Resources/icon.ico"
-        Height="450"
+        Height="500"
         Width="800"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="12">

@@ -71,7 +71,7 @@ public static class DialogUtil
 
         if (includeSentryMessage)
         {
-            text += ApplicationConfiguration.CollectDataAccepted
+            text += SentryUtil.CollectDataAccepted
                 ? $" {Resources.Localization.Resources.ErrorReportedToSentry}"
                 : $" {Resources.Localization.Resources.ErrorNotReportedToSentry}";
         }

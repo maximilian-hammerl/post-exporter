@@ -275,7 +275,7 @@ public partial class SelectPage : Page
 
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        SentryUtil.HandleFeedback("ExportPage");
+        SentryUtil.HandleFeedback("SelectPage");
     }
 
     private void UrlButton_OnClick(object sender, RoutedEventArgs e)

@@ -16,7 +16,7 @@ public partial class LoginPage : Page
     {
         InitializeComponent();
 
-        BaseUrlTextBox.Text = ApplicationConfiguration.BaseUrl ?? "rollenspielhimmel.de";
+        BaseUrlTextBox.Text = Scraper.BaseUrl ?? "rollenspielhimmel.de";
 
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
 
@@ -61,7 +61,7 @@ public partial class LoginPage : Page
             return;
         }
 
-        ApplicationConfiguration.BaseUrl = uriResult.GetLeftPart(UriPartial.Authority);
+        Scraper.BaseUrl = uriResult.GetLeftPart(UriPartial.Authority);
 
         var username = UsernameTextBox.Text;
         if (string.IsNullOrWhiteSpace(username))
@@ -93,7 +93,7 @@ public partial class LoginPage : Page
         catch (HttpRequestException exception)
         {
             SentryUtil.HandleBreadcrumb(
-                $"Could not login to {baseUrl} ({ApplicationConfiguration.BaseUrl}) because of server problems",
+                $"Could not login to {baseUrl} ({Scraper.BaseUrl}) because of server problems",
                 "LoginPage",
                 level: BreadcrumbLevel.Error
             );

@@ -429,7 +429,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your feedback will be sent to Maxi (the developer of the exporter)! You can also, e.g., include links to images..
+        ///   Looks up a localized string similar to You can also, e.g., include links to images..
         /// </summary>
         public static string FeedbackDetailsDefault {
             get {
@@ -447,20 +447,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you want to possibly be contacted, enter your email address here:.
+        ///   Looks up a localized string similar to Alternatively, if you prefer being contacted by email, enter your email address here:.
         /// </summary>
         public static string FeedbackEmailDefault {
             get {
                 return ResourceManager.GetString("FeedbackEmailDefault", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you want to be notified by email when the error is fixed, enter your email address here:.
-        /// </summary>
-        public static string FeedbackEmailError {
-            get {
-                return ResourceManager.GetString("FeedbackEmailError", resourceCulture);
             }
         }
         
@@ -497,6 +488,15 @@ namespace PostExporter.Resources.Localization {
         public static string FeedbackTitleError {
             get {
                 return ResourceManager.GetString("FeedbackTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If I (the developer of the exporter) may contact you for questions, enter your username here:.
+        /// </summary>
+        public static string FeedbackUsernameDefault {
+            get {
+                return ResourceManager.GetString("FeedbackUsernameDefault", resourceCulture);
             }
         }
         

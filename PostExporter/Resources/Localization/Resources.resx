@@ -53,7 +53,7 @@
         <value>An error has occurred!</value>
     </data>
     <data name="FeedbackDetailsDefault" xml:space="preserve">
-        <value>Your feedback will be sent to Maxi (the developer of the exporter)! You can also, e.g., include links to images.</value>
+        <value>You can also, e.g., include links to images.</value>
     </data>
     <data name="FeedbackDetailsError" xml:space="preserve">
         <value>Something went wrong unexpectedly! The error has been reported with the ID {0}.</value>
@@ -65,10 +65,7 @@
         <value>If possible, please enter more details what you did before the error occured here:</value>
     </data>
     <data name="FeedbackEmailDefault" xml:space="preserve">
-        <value>If you want to possibly be contacted, enter your email address here:</value>
-    </data>
-    <data name="FeedbackEmailError" xml:space="preserve">
-        <value>If you want to be notified by email when the error is fixed, enter your email address here:</value>
+        <value>Alternatively, if you prefer being contacted by email, enter your email address here:</value>
     </data>
     <data name="LoginUsername" xml:space="preserve">
         <value>Your Username:</value>
@@ -600,5 +597,8 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="InfoAllThreadsSuccessfullyExported" xml:space="preserve">
         <value>All threads were successfully exported:</value>
+    </data>
+    <data name="FeedbackUsernameDefault" xml:space="preserve">
+        <value>If I (the developer of the exporter) may contact you for questions, enter your username here:</value>
     </data>
 </root>

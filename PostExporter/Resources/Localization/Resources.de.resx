@@ -53,7 +53,7 @@
         <value>Ein Fehler ist aufgetreten!</value>
     </data>
     <data name="FeedbackDetailsDefault" xml:space="preserve">
-        <value>Dein Feedback wird an Maxi (den Entwickler des Exporters) gesendet! Du kannst z.B. auch Links zu Bildern einfügen.</value>
+        <value>Du kannst z.B. auch Links zu Bildern einfügen.</value>
     </data>
     <data name="FeedbackDetailsError" xml:space="preserve">
         <value>Etwas ist unerwartet schief gelaufen! Der Fehler wurde mit der ID {0} registriert.</value>
@@ -65,10 +65,7 @@
         <value>Wenn möglich, gib hier bitte mehr Details darüber an, was du getan hast, bevor der Fehler aufgetreten ist:</value>
     </data>
     <data name="FeedbackEmailDefault" xml:space="preserve">
-        <value>Wenn du möglicherweise kontaktiert werden möchtest, gib hier deine E-Mail-Adresse ein:</value>
-    </data>
-    <data name="FeedbackEmailError" xml:space="preserve">
-        <value>Wenn du per E-Mail benachrichtigt werden möchtest, wenn der Fehler behoben ist, gib deine E-Mail-Adresse hier ein:</value>
+        <value>Wenn du lieber per E-Mail kontaktiert werden möchtest, kannst du hier deine E-Mail-Adresse eingeben:</value>
     </data>
     <data name="LoginUsername" xml:space="preserve">
         <value>Dein Benutzername:</value>
@@ -601,5 +598,8 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="InfoAllThreadsSuccessfullyExported" xml:space="preserve">
         <value>Alle Beiträge wurden erfolgreich exportiert:</value>
+    </data>
+    <data name="FeedbackUsernameDefault" xml:space="preserve">
+        <value>Wenn ich (der Entwickler des Exporters) dich für Fragen kontaktieren darf, gib hier deinen Benutzernamen ein:</value>
     </data>
 </root>

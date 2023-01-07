@@ -14,7 +14,7 @@ public partial class WelcomePage : Page
     {
         InitializeComponent();
 
-        CollectDataCheckBox.IsChecked = ApplicationConfiguration.CollectDataAccepted;
+        CollectDataCheckBox.IsChecked = SentryUtil.CollectDataAccepted;
 
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
     }
@@ -45,20 +45,15 @@ public partial class WelcomePage : Page
 
     private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
     {
-        SentryUtil.HandleFeedback("FeedbackPage");
+        SentryUtil.HandleFeedback("WelcomePage");
     }
 
     private async void ContinueButton_OnClick(object sender, RoutedEventArgs e)
     {
-        if (!ApplicationConfiguration.CollectDataAccepted)
+        if (!SentryUtil.CollectDataAccepted)
         {
-            ApplicationConfiguration.CollectDataAccepted =
+            SentryUtil.CollectDataAccepted =
                 DialogUtil.ShowQuestion(PostExporter.Resources.Localization.Resources.WelcomeAllowSentryQuestion);
-        }
-
-        if (ApplicationConfiguration.CollectDataAccepted)
-        {
-            SentryUtil.InitializeSentry();
         }
 
         await CheckCurrentVersion();
@@ -88,12 +83,12 @@ public partial class WelcomePage : Page
 
     private void CollectDataCheckBox_OnChecked(object sender, RoutedEventArgs e)
     {
-        ApplicationConfiguration.CollectDataAccepted = true;
+        SentryUtil.CollectDataAccepted = true;
     }
 
     private void CollectDataCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
     {
-        ApplicationConfiguration.CollectDataAccepted = false;
+        SentryUtil.CollectDataAccepted = false;
     }
 
     private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)

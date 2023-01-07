@@ -36,17 +36,15 @@ public partial class FeedbackDialog : Window
             _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
         };
 
-        EmailTextBlock.Text = feedbackType switch
-        {
-            FeedbackType.Default => PostExporter.Resources.Localization.Resources.FeedbackEmailDefault,
-            FeedbackType.Error => PostExporter.Resources.Localization.Resources.FeedbackEmailError,
-            _ => throw new ArgumentOutOfRangeException(nameof(feedbackType), feedbackType, @"Unknown value")
-        };
+        UsernameTextBlock.Text = PostExporter.Resources.Localization.Resources.FeedbackUsernameDefault;
+
+        EmailTextBlock.Text = PostExporter.Resources.Localization.Resources.FeedbackEmailDefault;
 
         ResponseTextBox.Focus();
     }
 
     public string Response => ResponseTextBox.Text;
+    public string Username => UsernameTextBox.Text;
     public string Email => EmailTextBox.Text;
 
     private void OkButton_OnClick(object sender, RoutedEventArgs e)

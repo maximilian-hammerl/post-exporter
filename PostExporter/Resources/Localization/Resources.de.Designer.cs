@@ -429,7 +429,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dein Feedback wird an Maxi (den Entwickler des Exporters) gesendet! Du kannst z.B. auch Links zu Bildern einfügen..
+        ///   Looks up a localized string similar to Du kannst z.B. auch Links zu Bildern einfügen..
         /// </summary>
         public static string FeedbackDetailsDefault {
             get {
@@ -447,20 +447,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wenn du möglicherweise kontaktiert werden möchtest, gib hier deine E-Mail-Adresse ein:.
+        ///   Looks up a localized string similar to Wenn du lieber per E-Mail kontaktiert werden möchtest, kannst du hier deine E-Mail-Adresse eingeben:.
         /// </summary>
         public static string FeedbackEmailDefault {
             get {
                 return ResourceManager.GetString("FeedbackEmailDefault", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wenn du per E-Mail benachrichtigt werden möchtest, wenn der Fehler behoben ist, gib deine E-Mail-Adresse hier ein:.
-        /// </summary>
-        public static string FeedbackEmailError {
-            get {
-                return ResourceManager.GetString("FeedbackEmailError", resourceCulture);
             }
         }
         
@@ -497,6 +488,15 @@ namespace PostExporter.Resources.Localization {
         public static string FeedbackTitleError {
             get {
                 return ResourceManager.GetString("FeedbackTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wenn ich (der Entwickler des Exporters) dich für Fragen kontaktieren darf, gib hier deinen Benutzernamen ein:.
+        /// </summary>
+        public static string FeedbackUsernameDefault {
+            get {
+                return ResourceManager.GetString("FeedbackUsernameDefault", resourceCulture);
             }
         }
         

@@ -1,13 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using PostExporter.Scrape;
 using PostExporter.View.Dialogs;
 using Sentry;
+using Thread = System.Threading.Thread;
 
 namespace PostExporter.Utils;
 
 public static class SentryUtil
 {
-    public static void InitializeSentry()
+    private static bool _collectDataAccepted;
+
+    public static bool CollectDataAccepted
+    {
+        get => _collectDataAccepted;
+        set
+        {
+            _collectDataAccepted = value;
+
+            if (_collectDataAccepted)
+            {
+                InitializeSentry();
+            }
+        }
+    }
+
+    private static void InitializeSentry()
     {
         SentrySdk.Init(o =>
         {
@@ -21,7 +39,7 @@ public static class SentryUtil
 
     public static void HandleException(Exception exception)
     {
-        if (ApplicationConfiguration.CollectDataAccepted)
+        if (CollectDataAccepted)
         {
             SentrySdk.CaptureException(exception);
         }
@@ -29,7 +47,7 @@ public static class SentryUtil
 
     public static void HandleMessage(string? message)
     {
-        if (ApplicationConfiguration.CollectDataAccepted && !string.IsNullOrEmpty(message))
+        if (CollectDataAccepted && !string.IsNullOrEmpty(message))
         {
             SentrySdk.CaptureMessage(message);
         }
@@ -38,7 +56,7 @@ public static class SentryUtil
     public static void HandleBreadcrumb(string message, string? category = null, string? type = null,
         IDictionary<string, string>? data = null, BreadcrumbLevel level = default)
     {
-        if (ApplicationConfiguration.CollectDataAccepted)
+        if (CollectDataAccepted)
         {
             SentrySdk.AddBreadcrumb(message, category, type, data, level);
         }
@@ -46,13 +64,24 @@ public static class SentryUtil
 
     public static void UpdateUser(string username)
     {
-        if (ApplicationConfiguration.CollectDataAccepted)
+        if (CollectDataAccepted)
         {
+            var otherData = new Dictionary<string, string>
+            {
+                ["Culture"] = Thread.CurrentThread.CurrentUICulture.Name
+            };
+
+            if (!string.IsNullOrEmpty(Scraper.BaseUrl))
+            {
+                otherData["BaseUrl"] = Scraper.BaseUrl;
+            }
+
             SentrySdk.ConfigureScope(scope =>
             {
                 scope.User = new User
                 {
-                    Username = username
+                    Username = username,
+                    Other = otherData
                 };
             });
         }
@@ -60,7 +89,7 @@ public static class SentryUtil
 
     public static void HandleFeedbackForException(Exception exception)
     {
-        if (ApplicationConfiguration.CollectDataAccepted)
+        if (CollectDataAccepted)
         {
             var sentryId = SentrySdk.CaptureException(exception);
 
@@ -68,7 +97,8 @@ public static class SentryUtil
 
             if (feedback != null && !string.IsNullOrWhiteSpace(feedback.Value.Response))
             {
-                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response);
+                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response,
+                    feedback.Value.Username);
             }
         }
         else
@@ -79,15 +109,15 @@ public static class SentryUtil
 
     public static void HandleFeedback(string source)
     {
-        if (ApplicationConfiguration.CollectDataAccepted)
+        if (CollectDataAccepted)
         {
             var feedback = ShowFeedbackDialog();
 
             if (feedback != null && !string.IsNullOrWhiteSpace(feedback.Value.Response))
             {
-                var sentryId =
-                    SentrySdk.CaptureMessage($"New feedback from {source}");
-                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response);
+                var sentryId = SentrySdk.CaptureMessage($"New feedback from {source}");
+                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response,
+                    feedback.Value.Username);
             }
         }
         else
@@ -96,12 +126,14 @@ public static class SentryUtil
         }
     }
 
-    private static (string Response, string Email)? ShowFeedbackDialog(
+    private static (string Response, string Username, string Email)? ShowFeedbackDialog(
         FeedbackDialog.FeedbackType feedbackType = FeedbackDialog.FeedbackType.Default, string? id = null)
     {
         var feedbackDialog = new FeedbackDialog(feedbackType, id);
         feedbackDialog.ShowDialog();
 
-        return feedbackDialog.DialogResult is true ? (feedbackDialog.Response, feedbackDialog.Email) : null;
+        return feedbackDialog.DialogResult is true
+            ? (feedbackDialog.Response, feedbackDialog.Username, feedbackDialog.Email)
+            : null;
     }
 }

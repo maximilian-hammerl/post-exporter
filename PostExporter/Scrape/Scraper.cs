@@ -19,6 +19,7 @@ public static class Scraper
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     private static HttpClient? _client;
+    public static string? BaseUrl { get; set; }
 
     private static HttpClient GetOrCreateHttpClient(bool createNew = false)
     {
@@ -109,7 +110,7 @@ public static class Scraper
         // Relative URI
         if (uriString.StartsWith("/"))
         {
-            uriString = $"{ApplicationConfiguration.BaseUrl}{uriString}";
+            uriString = $"{BaseUrl}{uriString}";
         }
 
         if (Uri.TryCreate(uriString, UriKind.Absolute, out uri))
@@ -220,8 +221,7 @@ public static class Scraper
 
         var nextPostsPath = nextPostsButton.Attributes["href"].Value;
         nextPostsPath = nextPostsPath.Replace("amp;", "");
-        posts.AddRange(await GetPosts(thread, $"{ApplicationConfiguration.BaseUrl}/forum/{nextPostsPath}",
-            cancellationToken));
+        posts.AddRange(await GetPosts(thread, $"{BaseUrl}/forum/{nextPostsPath}", cancellationToken));
 
         return posts;
     }
@@ -229,7 +229,7 @@ public static class Scraper
     public static async Task<(List<Thread>, bool)> GetThreads(Group group)
     {
         var threadsPath = await GetThreadsPath(group.Url);
-        return await GetThreads(group, $"{ApplicationConfiguration.BaseUrl}{threadsPath}");
+        return await GetThreads(group, $"{BaseUrl}{threadsPath}");
     }
 
     private static async Task<(List<Thread>, bool)> GetThreads(Group group, string threadsUrl)
@@ -251,7 +251,8 @@ public static class Scraper
         foreach (var threadRow in threadRows)
         {
             var titleNode =
-                threadRow.SelectSingleNode("./td[1]/h2[@class='thread' or @class='newthread' or @class='sticky' or @class='newsticky']/a");
+                threadRow.SelectSingleNode(
+                    "./td[1]/h2[@class='thread' or @class='newthread' or @class='sticky' or @class='newsticky']/a");
 
             if (titleNode == null)
             {
@@ -278,7 +279,7 @@ public static class Scraper
             var (author, postedAt) = GetUserAndDateTime(details);
 
             var id = GetThreadIdFromPath(path);
-            threads.Add(new Thread(id, author, postedAt, title, $"{ApplicationConfiguration.BaseUrl}/forum/{path}", group));
+            threads.Add(new Thread(id, author, postedAt, title, $"{BaseUrl}/forum/{path}", group));
         }
 
         var nextThreadsButton =
@@ -293,7 +294,7 @@ public static class Scraper
         nextThreadsPath = nextThreadsPath.Replace("amp;", "");
 
         var (additionalThreads, loadedAdditionalThreadsSuccessfully) =
-            await GetThreads(group, $"{ApplicationConfiguration.BaseUrl}/forum/{nextThreadsPath}");
+            await GetThreads(group, $"{BaseUrl}/forum/{nextThreadsPath}");
         threads.AddRange(additionalThreads);
 
         return (threads, loadedAllThreadsSuccessfully && loadedAdditionalThreadsSuccessfully);
@@ -328,8 +329,7 @@ public static class Scraper
 
     private static async Task<(List<Group>, bool)> GetGroups(string groupsPath)
     {
-        var groupsResponse =
-            await GetOrCreateHttpClient().GetAsync($"{ApplicationConfiguration.BaseUrl}/groups/{groupsPath}");
+        var groupsResponse = await GetOrCreateHttpClient().GetAsync($"{BaseUrl}/groups/{groupsPath}");
         groupsResponse.EnsureSuccessStatusCode();
         var groupsContent = await groupsResponse.Content.ReadAsStringAsync();
 
@@ -399,7 +399,7 @@ public static class Scraper
                 CultureInfo.InvariantCulture);
 
             var id = GetGroupIdFromPath(pathWithQuery);
-            groups.Add(new Group(id, founder, foundedAt, title, $"{ApplicationConfiguration.BaseUrl}{pathWithQuery}"));
+            groups.Add(new Group(id, founder, foundedAt, title, $"{BaseUrl}{pathWithQuery}"));
         }
 
         var nextGroupsButton = doc.DocumentNode.SelectSingleNode(
@@ -458,8 +458,7 @@ public static class Scraper
             }
         );
 
-        var loginResponse =
-            await GetOrCreateHttpClient(true).PostAsync($"{ApplicationConfiguration.BaseUrl}/login.do", authContent);
+        var loginResponse = await GetOrCreateHttpClient(true).PostAsync($"{BaseUrl}/login.do", authContent);
         loginResponse.EnsureSuccessStatusCode();
         var loginResponseBody = await loginResponse.Content.ReadAsStringAsync();
 
