@@ -17,7 +17,7 @@ public partial class LoginPage : Page
         InitializeComponent();
 
         BaseUrlTextBox.Text = ApplicationConfiguration.BaseUrl ?? "rollenspielhimmel.de";
-        
+
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
 
         UsernameTextBox.Focus();
@@ -45,22 +45,24 @@ public partial class LoginPage : Page
         if (baseUrl.StartsWith("http://"))
         {
             baseUrl = baseUrl.Replace("http://", "https://");
-        } else if (!baseUrl.StartsWith("https://"))
+        }
+        else if (!baseUrl.StartsWith("https://"))
         {
             baseUrl = $"https://{baseUrl}";
         }
-        
-        var isValidUri = Uri.TryCreate(baseUrl, UriKind.Absolute, out var uriResult) && uriResult.Scheme == Uri.UriSchemeHttps;
 
-        if (!isValidUri)
+        var isValidUri = Uri.TryCreate(baseUrl, UriKind.Absolute, out var uriResult) &&
+                         uriResult.Scheme == Uri.UriSchemeHttps;
+
+        if (!isValidUri || uriResult == null)
         {
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowWarning(PostExporter.Resources.Localization.Resources.WarningInvalidBaseUrl);
             return;
         }
 
-        ApplicationConfiguration.BaseUrl = baseUrl;
-        
+        ApplicationConfiguration.BaseUrl = uriResult.GetLeftPart(UriPartial.Authority);
+
         var username = UsernameTextBox.Text;
         if (string.IsNullOrWhiteSpace(username))
         {
@@ -91,7 +93,7 @@ public partial class LoginPage : Page
         catch (HttpRequestException exception)
         {
             SentryUtil.HandleBreadcrumb(
-                "Could not login because of server problems",
+                $"Could not login to {baseUrl} ({ApplicationConfiguration.BaseUrl}) because of server problems",
                 "LoginPage",
                 level: BreadcrumbLevel.Error
             );
