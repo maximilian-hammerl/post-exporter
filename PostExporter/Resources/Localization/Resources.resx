@@ -338,7 +338,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <value>Thanks for using the Post Exporter</value>
     </data>
     <data name="WelcomeText" xml:space="preserve">
-        <value>Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version!
+        <value>Just a heads-up before you jump in: The program is still in development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version!
 
 If you need help, most pages have a "Help" button at the top which explains the current page in detail. There is also a "Feedback" button for your ideas, suggestions and general feedback which I am always happy to receive.
 

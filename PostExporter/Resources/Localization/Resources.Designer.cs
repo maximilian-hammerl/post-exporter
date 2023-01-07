@@ -1749,11 +1749,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Just a heads-up before you jump in: The program is still in early development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version!
+        ///   Looks up a localized string similar to Just a heads-up before you jump in: The program is still in development. You might experience some bugs and some features are still being developed. Make sure that you are using the most recent version!
         ///
         ///If you need help, most pages have a &quot;Help&quot; button at the top which explains the current page in detail. There is also a &quot;Feedback&quot; button for your ideas, suggestions and general feedback which I am always happy to receive.
         ///
-        ///To simplify finding and fixing possible bugs, this program uses Sentry, a  [rest of string was truncated]&quot;;.
+        ///To simplify finding and fixing possible bugs, this program uses Sentry, a applic [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WelcomeText {
             get {
