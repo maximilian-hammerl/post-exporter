@@ -8,13 +8,13 @@ namespace PostExporter.Export;
 public static class ExportConfiguration
 {
     // Config options for templates
-    public static StringBuilder? TextHeadTemplate { get; set; } = null;
-    public static StringBuilder? TextBodyTemplate { get; set; } = null;
-    public static StringBuilder? HtmlHeadTemplate { get; set; } = null;
-    public static StringBuilder? HtmlBodyTemplate { get; set; } = null;
+    public static StringBuilder? TextHeadTemplate { get; set; }
+    public static StringBuilder? TextBodyTemplate { get; set; }
+    public static StringBuilder? HtmlHeadTemplate { get; set; }
+    public static StringBuilder? HtmlBodyTemplate { get; set; }
 
     // Config options configured by user
-    public static string? DirectoryPath { get; set; } = null;
+    public static string? DirectoryPath { get; set; }
 
     public static string ExportDirectoryPath
     {
@@ -30,27 +30,23 @@ public static class ExportConfiguration
     }
 
     public static List<FileFormat> FileFormats { get; set; } = new(3) { FileFormat.Html };
-    public static bool IncludeGroup { get; set; } = false;
-    public static bool IncludeGroupAuthor { get; set; } = false;
-    public static bool IncludeGroupPostedAt { get; set; } = false;
-    public static bool IncludeGroupUrl { get; set; } = false;
-    public static bool IncludeThread { get; set; } = false;
-    public static bool IncludeThreadAuthor { get; set; } = false;
-    public static bool IncludeThreadPostedAt { get; set; } = false;
-    public static bool IncludeThreadUrl { get; set; } = false;
-    public static bool IncludePostAuthor { get; set; } = false;
-    public static bool IncludePostPostedAt { get; set; } = false;
-    public static bool IncludePostNumber { get; set; } = false;
+    public static bool IncludeGroup { get; set; }
+    public static bool IncludeGroupAuthor { get; set; }
+    public static bool IncludeGroupPostedAt { get; set; }
+    public static bool IncludeGroupUrl { get; set; }
+    public static bool IncludeThread { get; set; }
+    public static bool IncludeThreadAuthor { get; set; }
+    public static bool IncludeThreadPostedAt { get; set; }
+    public static bool IncludeThreadUrl { get; set; }
+    public static bool IncludePostAuthor { get; set; }
+    public static bool IncludePostPostedAt { get; set; }
+    public static bool IncludePostNumber { get; set; }
     public static bool IncludeImages { get; set; } = true;
-    public static bool ReserveOrder { get; set; } = false;
-    public static bool UseCustomTemplates { get; set; } = false;
+    public static bool ReserveOrder { get; set; }
+    public static bool UseCustomTemplates { get; set; }
     public static bool DownloadToOwnFolder { get; set; } = true;
     public static bool DownloadImages { get; set; } = true;
     public static bool DownloadImagesToOwnFolder { get; set; } = true;
-
-    // Other config options
-    public static HashSet<int> GroupIdsWithSameTitle { get; } = new();
-    public static HashSet<int> ThreadIdsWithSameTitle { get; } = new();
 
     public static StringBuilder GetDefaultTextHeadTemplate(bool withAllPlaceholders = false)
     {

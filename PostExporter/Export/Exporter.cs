@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -26,11 +27,16 @@ public static class Exporter
         "label", "mark", "q", "s", "samp", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr"
     };
 
+    private static readonly HashSet<int> GroupIdsWithSameTitle = new();
+    private static readonly HashSet<(int GroupId, int ThreadId)> GroupIdThreadIdsWithSameTitle = new();
+
     public static async Task<ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>> ExportThreads(
-        IEnumerable<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+        ReadOnlyCollection<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
         StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, Action threadExportedAction,
         CancellationToken cancellationToken)
     {
+        UpdateGroupsThreadsWithSameTitle(threads);
+
         var failedExports = new ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>();
 
         foreach (var exportError in Enum.GetValues<ExportError>())
@@ -77,6 +83,58 @@ public static class Exporter
         }));
 
         return failedExports;
+    }
+
+    private static void UpdateGroupsThreadsWithSameTitle(ReadOnlyCollection<Thread> threads)
+    {
+        GroupIdsWithSameTitle.Clear();
+        GroupIdThreadIdsWithSameTitle.Clear();
+
+        var groupIdsByGroupTitles = new Dictionary<string, HashSet<int>>();
+        var threadIdsByGroupIdThreadTitles = new Dictionary<(int GroupId, string ThreadTitle), HashSet<int>>();
+
+        foreach (var (threadId, _, _, threadTitle, _, (groupId, _, _, groupTitle, _)) in threads)
+        {
+            if (groupIdsByGroupTitles.TryGetValue(groupTitle, out var groupIds))
+            {
+                groupIds.Add(groupId);
+            }
+            else
+            {
+                groupIdsByGroupTitles[groupTitle] = new HashSet<int> { groupId };
+            }
+
+            if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, threadTitle), out var threadIds))
+            {
+                threadIds.Add(threadId);
+            }
+            else
+            {
+                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> { threadId };
+            }
+        }
+
+        foreach (var groupIds in groupIdsByGroupTitles.Values)
+        {
+            if (groupIds.Count > 1)
+            {
+                foreach (var groupId in groupIds)
+                {
+                    GroupIdsWithSameTitle.Add(groupId);
+                }
+            }
+        }
+
+        foreach (var ((groupId, _), threadIds) in threadIdsByGroupIdThreadTitles)
+        {
+            if (threadIds.Count > 1)
+            {
+                foreach (var threadId in threadIds)
+                {
+                    GroupIdThreadIdsWithSameTitle.Add((groupId, threadId));
+                }
+            }
+        }
     }
 
     private static async Task ExportThread(Thread thread, StringBuilder textHeadTemplate,
@@ -543,10 +601,10 @@ public static class Exporter
     private static (string, string, string, string, string) CreatePaths(Group group, Thread thread)
     {
         var groupTitleBuilder = CreateTitleBuilder(group.Title, group.Id,
-            ExportConfiguration.GroupIdsWithSameTitle.Contains(group.Id), Resources.Localization.Resources.Group);
+            GroupIdsWithSameTitle.Contains(group.Id), Resources.Localization.Resources.Group);
 
         var threadTitleBuilder = CreateTitleBuilder(thread.Title, thread.Id,
-            ExportConfiguration.ThreadIdsWithSameTitle.Contains(thread.Id), Resources.Localization.Resources.Thread);
+            GroupIdThreadIdsWithSameTitle.Contains((group.Id, thread.Id)), Resources.Localization.Resources.Thread);
 
         string directoryPath;
         StringBuilder fileNameBuilder;
