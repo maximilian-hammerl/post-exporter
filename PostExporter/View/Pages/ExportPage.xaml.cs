@@ -24,10 +24,10 @@ namespace PostExporter.View.Pages;
 
 public partial class ExportPage : Page
 {
-    private readonly List<Thread> _threads;
+    private readonly ReadOnlyCollection<Thread> _threads;
     private CancellationTokenSource? _cancellationTokenSource;
 
-    public ExportPage(List<Thread> threads)
+    public ExportPage(ReadOnlyCollection<Thread> threads)
     {
         InitializeComponent();
 
@@ -302,7 +302,7 @@ public partial class ExportPage : Page
 
         _cancellationTokenSource = new CancellationTokenSource();
         var failedExports = await Exporter.ExportThreads(_threads, textHeadTemplate, textBodyTemplate, htmlHeadTemplate,
-            htmlBodyTemplate, _cancellationTokenSource.Token, () => { LoadingProgressBar.Value++; });
+            htmlBodyTemplate, () => { LoadingProgressBar.Value++; }, _cancellationTokenSource.Token);
 
         ToggleExportButtonLoading(false);
 

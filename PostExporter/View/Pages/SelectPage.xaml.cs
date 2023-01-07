@@ -222,7 +222,7 @@ public partial class SelectPage : Page
             level: BreadcrumbLevel.Info
         );
 
-        NavigationService.Navigate(new ExportPage(threads));
+        NavigationService.Navigate(new ExportPage(threads.AsReadOnly()));
     }
 
     private async void SelectAllGroups_OnClick(object sender, RoutedEventArgs e)

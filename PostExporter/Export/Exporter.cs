@@ -27,9 +27,9 @@ public static class Exporter
     };
 
     public static async Task<ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>> ExportThreads(
-        List<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
-        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken,
-        Action threadExportedAction)
+        IEnumerable<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, Action threadExportedAction,
+        CancellationToken cancellationToken)
     {
         var failedExports = new ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>();
 
@@ -99,7 +99,7 @@ public static class Exporter
         StringBuilder textBodyTemplate, StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate,
         CancellationToken cancellationToken)
     {
-        var thread = posts[0].Thread;
+        var thread = posts.First().Thread;
         var group = thread.Group;
 
         var (directoryPath, imagesDirectoryPath, imagesDirectory, imageFileNamePrefix, filePathWithoutExtension) =

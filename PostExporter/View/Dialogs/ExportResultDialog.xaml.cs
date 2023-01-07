@@ -15,7 +15,7 @@ namespace PostExporter.View.Dialogs;
 
 public partial class ExportResultDialog : Window
 {
-    public ExportResultDialog(List<Thread> threads,
+    public ExportResultDialog(ReadOnlyCollection<Thread> threads,
         ConcurrentDictionary<ExportError, ConcurrentBag<Thread>> failedExports, bool wasCancelled)
     {
         InitializeComponent();
