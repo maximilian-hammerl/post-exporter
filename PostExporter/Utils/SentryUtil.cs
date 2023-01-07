@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using PostExporter.View;
+using PostExporter.View.Dialogs;
 using Sentry;
 
 namespace PostExporter.Utils;

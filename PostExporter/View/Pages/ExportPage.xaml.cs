@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,8 +15,8 @@ using System.Windows.Navigation;
 using JetBrains.Annotations;
 using Ookii.Dialogs.Wpf;
 using PostExporter.Export;
-using PostExporter.Scrape;
 using PostExporter.Utils;
+using PostExporter.View.Dialogs;
 using Sentry;
 using Thread = PostExporter.Scrape.Thread;
 
@@ -28,7 +25,7 @@ namespace PostExporter.View.Pages;
 public partial class ExportPage : Page
 {
     private readonly List<Thread> _threads;
-    private CancellationTokenSource _cancellationTokenSource = new();
+    private CancellationTokenSource? _cancellationTokenSource;
 
     public ExportPage(List<Thread> threads)
     {
@@ -303,133 +300,20 @@ public partial class ExportPage : Page
             htmlBodyTemplate = ExportConfiguration.GetDefaultHtmlBodyTemplate();
         }
 
-        var failedExports = new ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>();
-
-        foreach (var exportError in Enum.GetValues<ExportError>())
-        {
-            failedExports[exportError] = new ConcurrentBag<Thread>();
-        }
-
         _cancellationTokenSource = new CancellationTokenSource();
-
-        await Task.WhenAll(_threads.Select(async thread =>
-        {
-            try
-            {
-                await PrepareAndExport(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
-                    _cancellationTokenSource.Token);
-            }
-            catch (UnauthorizedAccessException exception)
-            {
-                failedExports[ExportError.DirectoryAccess].Add(thread);
-                SentryUtil.HandleMessage($"UnauthorizedAccessException {exception} for {thread.Title} ({thread.Url})");
-            }
-            catch (EndOfStreamException exception)
-            {
-                failedExports[ExportError.WordImageDownload].Add(thread);
-                SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})");
-            }
-            catch (InvalidOperationException exception)
-            {
-                failedExports[ExportError.WordImageDownload].Add(thread);
-                SentryUtil.HandleMessage($"InvalidOperationException {exception} for {thread.Title} ({thread.Url})");
-            }
-            catch (HttpRequestException exception)
-            {
-                failedExports[ExportError.Connection].Add(thread);
-                SentryUtil.HandleMessage($"HttpRequestException {exception} for {thread.Title} ({thread.Url})");
-            }
-            catch (Exception exception)
-            {
-                failedExports[ExportError.Unrecognized].Add(thread);
-                SentryUtil.HandleMessage($"Exception {exception} for {thread.Title} ({thread.Url})");
-            }
-        }));
+        var failedExports = await Exporter.ExportThreads(_threads, textHeadTemplate, textBodyTemplate, htmlHeadTemplate,
+            htmlBodyTemplate, _cancellationTokenSource.Token, () => { LoadingProgressBar.Value++; });
 
         ToggleExportButtonLoading(false);
 
-        var numberFailedExports = failedExports.Values.Sum(threads => threads.Count);
+        var exportResultDialog =
+            new ExportResultDialog(_threads, failedExports, _cancellationTokenSource.IsCancellationRequested);
+        exportResultDialog.ShowDialog();
 
-        if (numberFailedExports > 0)
+        if (exportResultDialog.DialogResult is true)
         {
-            SentryUtil.HandleBreadcrumb(
-                $"{numberFailedExports} of {_threads.Count} exports failed",
-                "ExportPage",
-                level: BreadcrumbLevel.Error
-            );
-
-            foreach (var (exportError, threads) in failedExports)
-            {
-                if (!threads.IsEmpty)
-                {
-                    SentryUtil.HandleBreadcrumb(
-                        $"{threads.Count} of {_threads.Count} exports failed because of {exportError}",
-                        "ExportPage",
-                        level: BreadcrumbLevel.Error
-                    );
-
-                    var threadTitles = string.Join(", ",
-                        threads.Select(thread => $"{thread.Title} ({thread.Group.Title})"));
-
-                    switch (exportError)
-                    {
-                        case ExportError.DirectoryAccess:
-                            DialogUtil.ShowError(
-                                string.Format(
-                                    PostExporter.Resources.Localization.Resources.ErrorExportFailedDirectoryAccess,
-                                    threadTitles), false);
-                            break;
-                        case ExportError.Connection:
-                            DialogUtil.ShowError(
-                                string.Format(PostExporter.Resources.Localization.Resources.ErrorExportFailedConnection,
-                                    threadTitles), false);
-                            break;
-                        case ExportError.WordImageDownload:
-                            DialogUtil.ShowError(
-                                string.Format(
-                                    PostExporter.Resources.Localization.Resources.ErrorExportFailedWordImageDownload,
-                                    threadTitles), false);
-                            break;
-                        case ExportError.Unrecognized:
-                            DialogUtil.ShowError(
-                                string.Format(
-                                    PostExporter.Resources.Localization.Resources.ErrorExportFailedUnrecognized,
-                                    threadTitles), true);
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException(nameof(exportError), exportError, @"Unknown value");
-                    }
-                }
-            }
+            Window.GetWindow(this).Close();
         }
-        else if (_cancellationTokenSource.IsCancellationRequested)
-        {
-            SentryUtil.HandleBreadcrumb(
-                $"Export of {_threads.Count} threads was cancelled",
-                "ExportPage",
-                level: BreadcrumbLevel.Warning
-            );
-
-            DialogUtil.ShowWarning(PostExporter.Resources.Localization.Resources.WarningExportCancelled);
-        }
-        else
-        {
-            var numberFilesExported = _threads.Count * ExportConfiguration.FileFormats.Count;
-
-            SentryUtil.HandleBreadcrumb(
-                $"Successfully exported {numberFilesExported} files",
-                "ExportPage",
-                level: BreadcrumbLevel.Info
-            );
-
-            DialogUtil.ShowInformation(numberFilesExported == 1
-                ? PostExporter.Resources.Localization.Resources.InfoFileSuccessfullyExported
-                : string.Format(PostExporter.Resources.Localization.Resources.InfoFilesSuccessfullyExported,
-                    numberFilesExported)
-            );
-        }
-
-        Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
     }
 
     private static void ShowErrorMessageForTemplate(string templateType, List<string> missingPlaceholders,
@@ -589,22 +473,6 @@ public partial class ExportPage : Page
             select selectableFileFormat.FileFormat).ToList();
     }
 
-    private async Task PrepareAndExport(Thread thread, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
-        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken)
-    {
-        try
-        {
-            var posts = await Scraper.GetPosts(thread, cancellationToken);
-            cancellationToken.ThrowIfCancellationRequested();
-            await Exporter.Export(posts, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
-                cancellationToken);
-            LoadingProgressBar.Value++;
-        }
-        catch (OperationCanceledException)
-        {
-        }
-    }
-
     private void UpdateCustomTemplatesButton_OnClick(object sender, RoutedEventArgs e)
     {
         SaveCurrentConfiguration();
@@ -752,6 +620,11 @@ public partial class ExportPage : Page
         }
     }
 
+    private void UrlButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        Util.OpenBrowser((string)((Button)sender).Tag);
+    }
+
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
@@ -822,7 +695,7 @@ public partial class ExportPage : Page
             _fileFormat = fileFormat;
             _label = fileFormat.DisplayName();
             _name = fileFormat.ToString();
-            _icon = fileFormat.FontAwesomeIcon();
+            _icon = fileFormat.Icon();
             _isSelected = isSelected;
         }
 
@@ -878,13 +751,5 @@ public partial class ExportPage : Page
             field = value;
             OnPropertyChanged(propertyName);
         }
-    }
-
-    private enum ExportError
-    {
-        DirectoryAccess,
-        Connection,
-        WordImageDownload,
-        Unrecognized,
     }
 }

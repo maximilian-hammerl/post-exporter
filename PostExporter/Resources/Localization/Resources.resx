@@ -145,8 +145,8 @@
     <data name="ExportChosenFolder" xml:space="preserve">
         <value>Export Folder:</value>
     </data>
-    <data name="InfoFilesSuccessfullyExported" xml:space="preserve">
-        <value>{0} files were successfully exported!</value>
+    <data name="InfoThreadsSuccessfullyExported" xml:space="preserve">
+        <value>The following threads were successfully exported:</value>
     </data>
     <data name="WarningMissingFolder" xml:space="preserve">
         <value>Please choose an export folder first!</value>
@@ -217,8 +217,8 @@
     <data name="WarningMissingFileFormat" xml:space="preserve">
         <value>Please choose at least one export file format!</value>
     </data>
-    <data name="InfoFileSuccessfullyExported" xml:space="preserve">
-        <value>One file was successfully exported!</value>
+    <data name="InfoCancelledThreadsExported" xml:space="preserve">
+        <value>The export was cancelled. Some of the following threads have already been exported:</value>
     </data>
     <data name="LoginTitle" xml:space="preserve">
         <value>Post Exporter</value>
@@ -231,9 +231,6 @@
     </data>
     <data name="ExportCancelExportQuestion" xml:space="preserve">
         <value>Do you want to cancel the export?</value>
-    </data>
-    <data name="WarningExportCancelled" xml:space="preserve">
-        <value>The export was cancelled. Some files may have already been exported.</value>
     </data>
     <data name="Ok" xml:space="preserve">
         <value>Ok</value>
@@ -536,22 +533,22 @@ The default templates are based on the current export text options. Only if a te
         <value>The exporter was denied access to the folder you selected. Possibly an antivirus system or Windows blocks the program.</value>
     </data>
     <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
-        <value>The threads {0} could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows.</value>
+        <value>The following threads could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows:</value>
     </data>
     <data name="ErrorExportFailedConnection" xml:space="preserve">
-        <value>The threads {0} could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable.</value>
+        <value>The following threads could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable:</value>
     </data>
     <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
-        <value>The threads {0} could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore.</value>
+        <value>The following threads could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore:</value>
     </data>
     <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
-        <value>The threads {0} could not be exported because of an unrecognized error.</value>
+        <value>The following threads could not be exported because of an unrecognized error:</value>
     </data>
     <data name="Ignore" xml:space="preserve">
         <value>Ignore</value>
     </data>
     <data name="Close" xml:space="preserve">
-        <value>Close</value>
+        <value>Close Exporter</value>
     </data>
     <data name="NewReleaseTitle" xml:space="preserve">
         <value>There is a new release of the Post Exporter available!</value>
@@ -594,5 +591,11 @@ The default templates are based on the current export text options. Only if a te
     </data>
     <data name="HelpLoginStep1" xml:space="preserve">
         <value>Start by entering the URL of the forum here.</value>
+    </data>
+    <data name="ExportResultTitle" xml:space="preserve">
+        <value>Export Result</value>
+    </data>
+    <data name="BackToExport" xml:space="preserve">
+        <value>Back to Export</value>
     </data>
 </root>

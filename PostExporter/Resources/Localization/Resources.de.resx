@@ -145,8 +145,8 @@
     <data name="ExportChosenFolder" xml:space="preserve">
         <value>Export-Ordner:</value>
     </data>
-    <data name="InfoFilesSuccessfullyExported" xml:space="preserve">
-        <value>{0} Dateien wurden erfolgreich exportiert!</value>
+    <data name="InfoThreadsSuccessfullyExported" xml:space="preserve">
+        <value>Die folgenden Beiträge wurden erfolgreich exportiert:</value>
     </data>
     <data name="WarningMissingFolder" xml:space="preserve">
         <value>Bitte wähle zuerst einen Export-Ordner aus!</value>
@@ -217,8 +217,8 @@
     <data name="WarningMissingFileFormat" xml:space="preserve">
         <value>Bitte wähle mindestens ein Export-Dateiformat aus!</value>
     </data>
-    <data name="InfoFileSuccessfullyExported" xml:space="preserve">
-        <value>Eine Datei wurde erfolgreich exportiert!</value>
+    <data name="InfoCancelledThreadsExported" xml:space="preserve">
+        <value>Der Export wurde abgebrochen. Manche der folgenden Beiträge wurden möglicherweise bereits exportiert:</value>
     </data>
     <data name="LoginTitle" xml:space="preserve">
         <value>Post Exporter</value>
@@ -231,9 +231,6 @@
     </data>
     <data name="ExportCancelExportQuestion" xml:space="preserve">
         <value>Willst du den Export abbrechen?</value>
-    </data>
-    <data name="WarningExportCancelled" xml:space="preserve">
-        <value>Der Export wurde abgebrochen. Manche Dateien wurden möglicherweise bereits exportiert.</value>
     </data>
     <data name="Ok" xml:space="preserve">
         <value>Ok</value>
@@ -537,22 +534,22 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
         <value>Dem Exporter wurde der Zugriff auf den von dir ausgewählten Ordner verweigert. Möglicherweise sperrt ein Antivirensystem oder Windows das Programm.</value>
     </data>
     <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
-        <value>Die Beiträge {0} konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows.</value>
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows:</value>
     </data>
     <data name="ErrorExportFailedConnection" xml:space="preserve">
-        <value>Die Beiträge {0} konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist.</value>
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist:</value>
     </data>
     <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
-        <value>Die Beiträge {0} konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist.</value>
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist:</value>
     </data>
     <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
-        <value>Die Beiträge {0} konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist.</value>
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:</value>
     </data>
     <data name="Ignore" xml:space="preserve">
         <value>Ignorieren</value>
     </data>
     <data name="Close" xml:space="preserve">
-        <value>Schließen</value>
+        <value>Exporter schließen</value>
     </data>
     <data name="NewReleaseTitle" xml:space="preserve">
         <value>Es gibt eine neue Version des Post Exporters!</value>
@@ -595,5 +592,11 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="HelpLoginStep1" xml:space="preserve">
         <value>Gib zunächst hier die URL des Forums ein.</value>
+    </data>
+    <data name="ExportResultTitle" xml:space="preserve">
+        <value>Export-Ergebnis</value>
+    </data>
+    <data name="BackToExport" xml:space="preserve">
+        <value>Zurück zum Export</value>
     </data>
 </root>

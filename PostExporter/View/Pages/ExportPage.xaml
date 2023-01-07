@@ -111,19 +111,25 @@
                                 <Grid Margin="4">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="35" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0" Text="{Binding Path=Group.Title}"
-                                               Style="{StaticResource TextTextBlock}" />
+                                    <TextBlock Grid.Column="0"  Style="{StaticResource TextTextBlock}">
+                                        <TextBlock Text="{Binding Path=Group.Title}"/>
+                                        <TextBlock FontWeight="Bold">   |   </TextBlock>
+                                        <TextBlock Text="{Binding Path=Title}"/>
+                                    </TextBlock>
 
-                                    <TextBlock Grid.Column="1" Text="{Binding Path=Title}"
-                                               Style="{StaticResource TextTextBlock}" />
+                                    <Button Grid.Column="1" Tag="{Binding Path=Url}" Click="UrlButton_OnClick"
+                                            ToolTip="{Binding Path=Url}"
+                                            Height="25" Width="25" Style="{StaticResource ListButtonStyle}">
+                                        <Image fa:FontAwesome.Icon="Solid_ArrowUpRightFromSquare"
+                                               Style="{StaticResource IconImageStyle}" />
+                                    </Button>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
                 </StackPanel>
             </ScrollViewer>
         </Border>

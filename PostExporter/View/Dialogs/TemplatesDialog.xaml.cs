@@ -2,7 +2,7 @@
 using System.Windows;
 using PostExporter.Export;
 
-namespace PostExporter.View;
+namespace PostExporter.View.Dialogs;
 
 public partial class TemplatesDialog : Window
 {

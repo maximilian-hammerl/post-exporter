@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,8 +26,78 @@ public static class Exporter
         "label", "mark", "q", "s", "samp", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr"
     };
 
-    public static async Task Export(List<Post> posts, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+    public static async Task<ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>> ExportThreads(
+        List<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,
+        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken,
+        Action threadExportedAction)
+    {
+        var failedExports = new ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>();
+
+        foreach (var exportError in Enum.GetValues<ExportError>())
+        {
+            failedExports[exportError] = new ConcurrentBag<Thread>();
+        }
+
+        await Task.WhenAll(threads.Select(async thread =>
+        {
+            try
+            {
+                await ExportThread(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
+                    cancellationToken);
+            }
+            catch (UnauthorizedAccessException exception)
+            {
+                failedExports[ExportError.DirectoryAccess].Add(thread);
+                SentryUtil.HandleMessage($"UnauthorizedAccessException {exception} for {thread.Title} ({thread.Url})");
+            }
+            catch (EndOfStreamException exception)
+            {
+                failedExports[ExportError.WordImageDownload].Add(thread);
+                SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})");
+            }
+            catch (InvalidOperationException exception)
+            {
+                failedExports[ExportError.WordImageDownload].Add(thread);
+                SentryUtil.HandleMessage($"InvalidOperationException {exception} for {thread.Title} ({thread.Url})");
+            }
+            catch (HttpRequestException exception)
+            {
+                failedExports[ExportError.Connection].Add(thread);
+                SentryUtil.HandleMessage($"HttpRequestException {exception} for {thread.Title} ({thread.Url})");
+            }
+            catch (Exception exception)
+            {
+                failedExports[ExportError.Unrecognized].Add(thread);
+                SentryUtil.HandleMessage($"Exception {exception} for {thread.Title} ({thread.Url})");
+            }
+            finally
+            {
+                threadExportedAction();
+            }
+        }));
+
+        return failedExports;
+    }
+
+    private static async Task ExportThread(Thread thread, StringBuilder textHeadTemplate,
+        StringBuilder textBodyTemplate,
         StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var posts = await Scraper.GetPosts(thread, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
+            await ExportPosts(posts, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
+                cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
+    private static async Task ExportPosts(List<Post> posts, StringBuilder textHeadTemplate,
+        StringBuilder textBodyTemplate, StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate,
+        CancellationToken cancellationToken)
     {
         var thread = posts[0].Thread;
         var group = thread.Group;

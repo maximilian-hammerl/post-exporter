@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -333,14 +332,7 @@ public partial class SelectPage : Page
 
     private void UrlButton_OnClick(object sender, RoutedEventArgs e)
     {
-        var url = (string)((Button)sender).Tag;
-
-        using var process = new Process();
-        process.StartInfo = new ProcessStartInfo(url)
-        {
-            UseShellExecute = true
-        };
-        process.Start();
+        Util.OpenBrowser((string)((Button)sender).Tag);
     }
 
     public sealed class SelectableGroup : INotifyPropertyChanged

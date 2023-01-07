@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using PostExporter.Utils;
 
-namespace PostExporter.View;
+namespace PostExporter.View.Dialogs;
 
 public partial class NewReleaseDialog : Window
 {

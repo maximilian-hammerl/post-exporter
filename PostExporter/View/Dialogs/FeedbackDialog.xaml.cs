@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-namespace PostExporter.View;
+namespace PostExporter.View.Dialogs;
 
 public partial class FeedbackDialog : Window
 {

@@ -87,6 +87,15 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to Export.
+        /// </summary>
+        public static string BackToExport {
+            get {
+                return ResourceManager.GetString("BackToExport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -105,7 +114,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
+        ///   Looks up a localized string similar to Close Exporter.
         /// </summary>
         public static string Close {
             get {
@@ -150,7 +159,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The threads {0} could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable..
+        ///   Looks up a localized string similar to The following threads could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable:.
         /// </summary>
         public static string ErrorExportFailedConnection {
             get {
@@ -159,7 +168,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The threads {0} could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows..
+        ///   Looks up a localized string similar to The following threads could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows:.
         /// </summary>
         public static string ErrorExportFailedDirectoryAccess {
             get {
@@ -168,7 +177,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The threads {0} could not be exported because of an unrecognized error..
+        ///   Looks up a localized string similar to The following threads could not be exported because of an unrecognized error:.
         /// </summary>
         public static string ErrorExportFailedUnrecognized {
             get {
@@ -177,7 +186,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The threads {0} could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore..
+        ///   Looks up a localized string similar to The following threads could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore:.
         /// </summary>
         public static string ErrorExportFailedWordImageDownload {
             get {
@@ -380,6 +389,15 @@ namespace PostExporter.Resources.Localization {
         public static string ExportOtherOptions {
             get {
                 return ResourceManager.GetString("ExportOtherOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export Result.
+        /// </summary>
+        public static string ExportResultTitle {
+            get {
+                return ResourceManager.GetString("ExportResultTitle", resourceCulture);
             }
         }
         
@@ -744,20 +762,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} files were successfully exported!.
+        ///   Looks up a localized string similar to The export was cancelled. Some of the following threads have already been exported:.
         /// </summary>
-        public static string InfoFilesSuccessfullyExported {
+        public static string InfoCancelledThreadsExported {
             get {
-                return ResourceManager.GetString("InfoFilesSuccessfullyExported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to One file was successfully exported!.
-        /// </summary>
-        public static string InfoFileSuccessfullyExported {
-            get {
-                return ResourceManager.GetString("InfoFileSuccessfullyExported", resourceCulture);
+                return ResourceManager.GetString("InfoCancelledThreadsExported", resourceCulture);
             }
         }
         
@@ -767,6 +776,15 @@ namespace PostExporter.Resources.Localization {
         public static string Information {
             get {
                 return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following threads were successfully exported:.
+        /// </summary>
+        public static string InfoThreadsSuccessfullyExported {
+            get {
+                return ResourceManager.GetString("InfoThreadsSuccessfullyExported", resourceCulture);
             }
         }
         
@@ -1610,15 +1628,6 @@ namespace PostExporter.Resources.Localization {
         public static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The export was cancelled. Some files may have already been exported..
-        /// </summary>
-        public static string WarningExportCancelled {
-            get {
-                return ResourceManager.GetString("WarningExportCancelled", resourceCulture);
             }
         }
         

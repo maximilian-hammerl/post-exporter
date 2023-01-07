@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using PostExporter.Utils;
+using PostExporter.View.Dialogs;
 using Sentry;
 
 namespace PostExporter.View.Pages;

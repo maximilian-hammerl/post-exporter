@@ -33,7 +33,7 @@ public static class FileFormatExtensions
         };
     }
 
-    public static string FontAwesomeIcon(this FileFormat fileFormat)
+    public static string Icon(this FileFormat fileFormat)
     {
         return fileFormat switch
         {
