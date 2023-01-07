@@ -1748,9 +1748,9 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in einer frühen Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest!
+        ///   Looks up a localized string similar to Nur eine kleine Vorwarnung, bevor du loslegst: Das Programm befindet sich noch in der Entwicklungsphase. Es kann sein, dass du auf einige Fehler stößt und einige Funktionen sind noch in der Entwicklung. Vergewissere dich, dass du die aktuellste Version verwendest!
         ///
-        ///Wenn du Hilfe benötigst, findest du auf den meisten Seiten oben einen &quot;Hilfe&quot;-Button, der die aktuelle Seite im Detail erklärt. Es gibt auch einen &quot;Feedback&quot;-Button für deine Ideen, Vorschläge und allgemeines Feedback, über das ich mic [rest of string was truncated]&quot;;.
+        ///Wenn du Hilfe benötigst, findest du auf den meisten Seiten oben einen &quot;Hilfe&quot;-Button, der die aktuelle Seite im Detail erklärt. Es gibt auch einen &quot;Feedback&quot;-Button für deine Ideen, Vorschläge und allgemeines Feedback, über das ich mich immer f [rest of string was truncated]&quot;;.
         /// </summary>
         public static string WelcomeText {
             get {
