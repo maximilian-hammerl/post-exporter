@@ -86,7 +86,10 @@ public partial class ExportResultDialog : Window
 
         ExportResultItems.DataContext = ExportResults;
 
-        Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
+        if (!string.IsNullOrEmpty(ExportConfiguration.DirectoryPath))
+        {
+            Process.Start("explorer.exe", ExportConfiguration.DirectoryPath);
+        }
     }
 
     [UsedImplicitly] public ObservableCollection<ExportResult> ExportResults { get; set; }

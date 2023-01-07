@@ -672,6 +672,11 @@ public partial class ExportPage : Page
     {
         if (DialogUtil.ShowQuestion(PostExporter.Resources.Localization.Resources.ExportCancelExportQuestion))
         {
+            if (_cancellationTokenSource == null)
+            {
+                throw new InvalidOperationException("Cannot cancel without token source");
+            }
+
             _cancellationTokenSource.Cancel();
 
             SentryUtil.HandleBreadcrumb(

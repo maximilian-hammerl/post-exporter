@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
         xmlns:l="clr-namespace:PostExporter.Resources.Localization"
         mc:Ignorable="d"
-        Title="New Release"
+        Title="{x:Static l:Resources.NewReleaseTitle}"
         Icon="/Resources/icon.ico"
         Height="450"
         Width="800"

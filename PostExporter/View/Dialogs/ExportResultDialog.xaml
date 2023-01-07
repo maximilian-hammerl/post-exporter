@@ -6,7 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/svg/properties"
         xmlns:l="clr-namespace:PostExporter.Resources.Localization"
         mc:Ignorable="d"
-        Title="Export Result"
+        Title="{x:Static l:Resources.ExportResultTitle}"
         Icon="/Resources/icon.ico"
         Height="1100"
         Width="1400"
