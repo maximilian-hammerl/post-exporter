@@ -229,16 +229,16 @@
                                   Content="{x:Static l:Resources.OptionIncludeThreadUrl}" IsThreeState="False"
                                   Style="{StaticResource SecondaryCheckBoxStyle}" />
 
+                        <CheckBox x:Name="IncludePostNumberCheckBox"
+                                  Content="{x:Static l:Resources.OptionIncludePostNumber}" IsThreeState="False"
+                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
+                        
                         <CheckBox x:Name="IncludePostAuthorCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludePostAuthor}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludePostPostedAtCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludePostPostedAt}" IsThreeState="False"
-                                  Style="{StaticResource PrimaryCheckBoxStyle}" />
-
-                        <CheckBox x:Name="IncludePostNumberCheckBox"
-                                  Content="{x:Static l:Resources.OptionIncludePostNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
 
                         <CheckBox x:Name="IncludeImagesCheckBox"
