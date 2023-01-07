@@ -19,35 +19,6 @@ public partial class WelcomePage : Page
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
     }
 
-    private void HelpButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        SentryUtil.HandleBreadcrumb(
-            "Opened help",
-            "WelcomePage",
-            level: BreadcrumbLevel.Info
-        );
-
-        DialogUtil.ShowHelpAndHighlight(
-            (brush => { WelcomeTextBlock.Background = brush; },
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep1),
-            (brush => CollectDataContent.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep2),
-            (brush => RepositoryTextBlock.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep3),
-            (brush => VersionTextBlock.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep4),
-            (brush => TeamTextBlock.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep5),
-            (brush => ContinueButtonContent.Background = brush,
-                PostExporter.Resources.Localization.Resources.HelpWelcomeStep6)
-        );
-    }
-
-    private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        SentryUtil.HandleFeedback("WelcomePage");
-    }
-
     private async void ContinueButton_OnClick(object sender, RoutedEventArgs e)
     {
         if (!SentryUtil.CollectDataAccepted)
@@ -89,6 +60,40 @@ public partial class WelcomePage : Page
     private void CollectDataCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
     {
         SentryUtil.CollectDataAccepted = false;
+    }
+
+    private void BackButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new LicensePage());
+    }
+
+    private void HelpButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        SentryUtil.HandleBreadcrumb(
+            "Opened help",
+            "WelcomePage",
+            level: BreadcrumbLevel.Info
+        );
+
+        DialogUtil.ShowHelpAndHighlight(
+            (brush => { WelcomeTextBlock.Background = brush; },
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep1),
+            (brush => CollectDataContent.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep2),
+            (brush => RepositoryTextBlock.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep3),
+            (brush => VersionTextBlock.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep4),
+            (brush => TeamTextBlock.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep5),
+            (brush => ContinueButtonContent.Background = brush,
+                PostExporter.Resources.Localization.Resources.HelpWelcomeStep6)
+        );
+    }
+
+    private void FeedbackButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        SentryUtil.HandleFeedback("WelcomePage");
     }
 
     private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)

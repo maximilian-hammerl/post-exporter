@@ -160,6 +160,11 @@ public partial class LoginPage : Page
         LoadingIcon.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
     }
 
+    private void BackButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new WelcomePage());
+    }
+
     private void HelpButton_OnClick(object sender, RoutedEventArgs e)
     {
         SentryUtil.HandleBreadcrumb(
