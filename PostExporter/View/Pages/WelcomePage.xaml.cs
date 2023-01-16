@@ -24,7 +24,8 @@ public partial class WelcomePage : Page
         if (!SentryUtil.CollectDataAccepted)
         {
             SentryUtil.CollectDataAccepted =
-                DialogUtil.ShowQuestion(PostExporter.Resources.Localization.Resources.WelcomeAllowSentryQuestion);
+                DialogUtil.ShowQuestion(PostExporter.Resources.Localization.Resources.WelcomeAllowSentryQuestion,
+                    "Sentry");
         }
 
         await CheckCurrentVersion();
