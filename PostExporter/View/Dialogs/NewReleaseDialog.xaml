@@ -77,10 +77,10 @@
 
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="6" Orientation="Horizontal" HorizontalAlignment="Right">
 
-            <Button Click="CloseButton_OnClick" IsDefault="True" Width="110"
+            <Button Click="CloseButton_OnClick" IsDefault="True" Width="160"
                     Style="{StaticResource IconButtonStyle}">
 
-                <Grid Width="100">
+                <Grid Width="150">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
