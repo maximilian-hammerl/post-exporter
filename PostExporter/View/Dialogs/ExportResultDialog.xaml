@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="{x:Static l:Resources.ExportResultTitle}"
         Icon="/Resources/icon.ico"
-        Height="1100"
-        Width="1400"
+        Height="800"
+        Width="1100"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="12">
 
@@ -21,8 +21,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-
-
+        
         <ScrollViewer Grid.Row="0" Grid.Column="0" Margin="6" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <TextBlock Text="{x:Static l:Resources.ExportResultTitle}" Margin="6" FontSize="16"
