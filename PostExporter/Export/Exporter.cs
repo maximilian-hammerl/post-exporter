@@ -58,17 +58,17 @@ public static class Exporter
             }
             catch (EndOfStreamException exception)
             {
-                failedExports[ExportError.WordImageDownload].Add(thread);
+                failedExports[ExportError.WordImageExport].Add(thread);
                 SentryUtil.HandleMessage($"EndOfStreamException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (InvalidOperationException exception)
             {
-                failedExports[ExportError.WordImageDownload].Add(thread);
+                failedExports[ExportError.WordImageExport].Add(thread);
                 SentryUtil.HandleMessage($"InvalidOperationException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (HttpRequestException exception)
             {
-                failedExports[ExportError.Connection].Add(thread);
+                failedExports[ExportError.ImageDownload].Add(thread);
                 SentryUtil.HandleMessage($"HttpRequestException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (Exception exception)

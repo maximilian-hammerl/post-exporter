@@ -532,11 +532,11 @@ The default templates are based on the current export text options. Only if a te
     <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
         <value>The following threads could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows:</value>
     </data>
-    <data name="ErrorExportFailedConnection" xml:space="preserve">
-        <value>The following threads could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable:</value>
+    <data name="ErrorExportFailedImageDownload" xml:space="preserve">
+        <value>The following threads could not be exported, because the download of an image failed, because you were either blocked by the server hosting the image, because your internet connection is not stable or because the image is not available anymore:</value>
     </data>
-    <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
-        <value>The following threads could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore:</value>
+    <data name="ErrorExportFailedWordImageExport" xml:space="preserve">
+        <value>The following threads could not be exported, because the export of an image failed (most likely for the Word export), because you were either blocked by the server hosting the image, because your internet connection is not stable or because the image is not available anymore:</value>
     </data>
     <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
         <value>The following threads could not be exported because of an unrecognized error:</value>

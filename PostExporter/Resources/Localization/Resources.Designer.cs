@@ -159,20 +159,20 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following threads could not be exported, because the exporter could not connect to a server, either because you were blocked by the server or because your internet connection is not stable:.
-        /// </summary>
-        public static string ErrorExportFailedConnection {
-            get {
-                return ResourceManager.GetString("ErrorExportFailedConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The following threads could not be exported, because the exporter was denied access to the export folder, possibly by an antivirus system or Windows:.
         /// </summary>
         public static string ErrorExportFailedDirectoryAccess {
             get {
                 return ResourceManager.GetString("ErrorExportFailedDirectoryAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following threads could not be exported, because the download of an image failed, because you were either blocked by the server hosting the image, because your internet connection is not stable or because the image is not available anymore:.
+        /// </summary>
+        public static string ErrorExportFailedImageDownload {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedImageDownload", resourceCulture);
             }
         }
         
@@ -186,11 +186,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The following threads could not be exported, because the download of an image failed (most likely the Word export), because you were blocked by the server, because your internet connection is not stable or because the image is not available anymore:.
+        ///   Looks up a localized string similar to The following threads could not be exported, because the export of an image failed (most likely for the Word export), because you were either blocked by the server hosting the image, because your internet connection is not stable or because the image is not available anymore:.
         /// </summary>
-        public static string ErrorExportFailedWordImageDownload {
+        public static string ErrorExportFailedWordImageExport {
             get {
-                return ResourceManager.GetString("ErrorExportFailedWordImageDownload", resourceCulture);
+                return ResourceManager.GetString("ErrorExportFailedWordImageExport", resourceCulture);
             }
         }
         

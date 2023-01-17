@@ -533,14 +533,14 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="ErrorExportFailedDirectoryAccess" xml:space="preserve">
         <value>Die folgenden Beiträge konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows:</value>
     </data>
-    <data name="ErrorExportFailedConnection" xml:space="preserve">
-        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist:</value>
+    <data name="ErrorExportFailedImageDownload" xml:space="preserve">
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist, weil du entweder von dem Server, der das Bild hostet, blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:</value>
     </data>
     <data name="ErrorExportFailedUnrecognized" xml:space="preserve">
         <value>Die folgenden Beiträge konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist:</value>
     </data>
-    <data name="ErrorExportFailedWordImageDownload" xml:space="preserve">
-        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:</value>
+    <data name="ErrorExportFailedWordImageExport" xml:space="preserve">
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil der Export eines Bildes fehlgeschlagen ist (höchstwahrscheinlich für den Word-Export), weil du entweder von dem Server, der das Bild hostet, blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:</value>
     </data>
     <data name="Ignore" xml:space="preserve">
         <value>Ignorieren</value>

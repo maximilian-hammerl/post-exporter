@@ -159,20 +159,20 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil der Exporter keine Verbindung zu einem Server herstellen konnte, entweder weil du vom Server blockiert wurdest oder weil deine Internetverbindung nicht stabil ist:.
-        /// </summary>
-        public static string ErrorExportFailedConnection {
-            get {
-                return ResourceManager.GetString("ErrorExportFailedConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil dem Exporter der Zugriff auf den Export-Ordner verweigert wurde, möglicherweise durch ein Antivirensystem oder Windows:.
         /// </summary>
         public static string ErrorExportFailedDirectoryAccess {
             get {
                 return ResourceManager.GetString("ErrorExportFailedDirectoryAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist, weil du entweder von dem Server, der das Bild hostet, blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:.
+        /// </summary>
+        public static string ErrorExportFailedImageDownload {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedImageDownload", resourceCulture);
             }
         }
         
@@ -186,11 +186,11 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil der Download eines Bildes fehlgeschlagen ist (höchstwahrscheinlich der Word-Export), weil du vom Server blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:.
+        ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil der Export eines Bildes fehlgeschlagen ist (höchstwahrscheinlich für den Word-Export), weil du entweder von dem Server, der das Bild hostet, blockiert wurdest, weil deine Internetverbindung nicht stabil ist oder weil das Bild nicht mehr verfügbar ist:.
         /// </summary>
-        public static string ErrorExportFailedWordImageDownload {
+        public static string ErrorExportFailedWordImageExport {
             get {
-                return ResourceManager.GetString("ErrorExportFailedWordImageDownload", resourceCulture);
+                return ResourceManager.GetString("ErrorExportFailedWordImageExport", resourceCulture);
             }
         }
         

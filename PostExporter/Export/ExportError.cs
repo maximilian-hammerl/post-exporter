@@ -5,8 +5,8 @@ namespace PostExporter.Export;
 public enum ExportError
 {
     DirectoryAccess,
-    Connection,
-    WordImageDownload,
+    ImageDownload,
+    WordImageExport,
     Unrecognized,
 }
 
@@ -17,8 +17,8 @@ public static class ExportErrorExtensions
         return exportError switch
         {
             ExportError.DirectoryAccess => Resources.Localization.Resources.ErrorExportFailedDirectoryAccess,
-            ExportError.Connection => Resources.Localization.Resources.ErrorExportFailedConnection,
-            ExportError.WordImageDownload => Resources.Localization.Resources.ErrorExportFailedWordImageDownload,
+            ExportError.ImageDownload => Resources.Localization.Resources.ErrorExportFailedImageDownload,
+            ExportError.WordImageExport => Resources.Localization.Resources.ErrorExportFailedWordImageExport,
             ExportError.Unrecognized => Resources.Localization.Resources.ErrorExportFailedUnrecognized,
             _ => throw new ArgumentOutOfRangeException(nameof(exportError), exportError, @"Unknown value")
         };
