@@ -15,7 +15,15 @@ namespace PostExporter.Scrape;
 
 public static class Scraper
 {
+    private static readonly HashSet<HttpStatusCode> IgnoredStatusCodes = new()
+    {
+        HttpStatusCode.Unauthorized, HttpStatusCode.PaymentRequired, HttpStatusCode.Forbidden, HttpStatusCode.NotFound,
+    };
+    
     private static readonly Regex UserAndDateTimeRegex = new(@"^von\s.+\sam\s\d{2}.\d{2}.\d{4}\s\d{2}:\d{2}$",
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
+    
+    private static readonly Regex UserAndDateRegex = new(@"^von\s.+\sam\s\d{2}.\d{2}.\d{4}$",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
     private static HttpClient? _client;
@@ -70,7 +78,10 @@ public static class Scraper
         }
         catch (HttpRequestException e)
         {
-            SentryUtil.HandleMessage($"{e} for \"{uriString}\"");
+            if (!e.StatusCode.HasValue || !IgnoredStatusCodes.Contains(e.StatusCode.Value))
+            {
+                SentryUtil.HandleMessage($"{e} for \"{uriString}\"");
+            }
 
             return (false, string.Empty);
         }
@@ -275,7 +286,7 @@ public static class Scraper
                 continue;
             }
 
-            var details = HttpUtility.HtmlDecode(detailsNode.InnerText);
+            var details = HttpUtility.HtmlDecode(detailsNode.InnerText.Trim());
             var (author, postedAt) = GetUserAndDateTime(details);
 
             var id = GetThreadIdFromPath(path);
@@ -467,15 +478,24 @@ public static class Scraper
 
     private static (string, DateTime) GetUserAndDateTime(string text)
     {
-        if (!UserAndDateTimeRegex.IsMatch(text))
+        if (UserAndDateTimeRegex.IsMatch(text))
         {
-            throw new ArgumentException($"Cannot match user and date time from \"{text}\"");
+            var split = text.Split(" am ");
+            var user = split[0][4..];
+            var dateTime = DateTime.ParseExact(split[1], "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+
+            return (user, dateTime);
         }
 
-        var split = text.Split(" am ");
-        var user = split[0][4..];
-        var dateTime = DateTime.ParseExact(split[1], "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
+        if (UserAndDateRegex.IsMatch(text))
+        {
+            var split = text.Split(" am ");
+            var user = split[0][4..];
+            var dateTime = DateTime.ParseExact(split[1], "dd.MM.yyyy", CultureInfo.InvariantCulture);
 
-        return (user, dateTime);
+            return (user, dateTime);
+        }
+
+        throw new ArgumentException($"Cannot match user and date (time) from \"{text}\"");
     }
 }
