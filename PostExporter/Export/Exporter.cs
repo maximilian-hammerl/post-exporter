@@ -101,7 +101,7 @@ public static class Exporter
             }
             else
             {
-                groupIdsByGroupTitles[groupTitle] = new HashSet<int> { groupId };
+                groupIdsByGroupTitles[groupTitle] = new HashSet<int> {groupId};
             }
 
             if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, threadTitle), out var threadIds))
@@ -110,7 +110,7 @@ public static class Exporter
             }
             else
             {
-                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> { threadId };
+                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> {threadId};
             }
         }
 
@@ -666,7 +666,23 @@ public static class Exporter
     {
         foreach (var c in Path.GetInvalidFileNameChars())
         {
-            stringBuilder.Replace(c, '-');
+            stringBuilder.RemoveChar(c);
+        }
+
+        stringBuilder.RemoveChar('.');
+
+        return stringBuilder;
+    }
+
+    private static StringBuilder RemoveChar(this StringBuilder stringBuilder, char charToRemove)
+    {
+        for (var i = 0; i < stringBuilder.Length; i++)
+        {
+            if (stringBuilder[i] == charToRemove)
+            {
+                stringBuilder.Remove(i, 1);
+                i--;
+            }
         }
 
         return stringBuilder;
