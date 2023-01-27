@@ -56,6 +56,11 @@ public static class Exporter
                 failedExports[ExportError.DirectoryAccess].Add(thread);
                 SentryUtil.HandleMessage($"UnauthorizedAccessException {exception} for {thread.Title} ({thread.Url})");
             }
+            catch (FileNotFoundException exception)
+            {
+                failedExports[ExportError.DirectoryAccess].Add(thread);
+                SentryUtil.HandleMessage($"FileNotFoundException {exception} for {thread.Title} ({thread.Url})");
+            }
             catch (EndOfStreamException exception)
             {
                 failedExports[ExportError.WordImageExport].Add(thread);
@@ -101,7 +106,7 @@ public static class Exporter
             }
             else
             {
-                groupIdsByGroupTitles[groupTitle] = new HashSet<int> {groupId};
+                groupIdsByGroupTitles[groupTitle] = new HashSet<int> { groupId };
             }
 
             if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, threadTitle), out var threadIds))
@@ -110,7 +115,7 @@ public static class Exporter
             }
             else
             {
-                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> {threadId};
+                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> { threadId };
             }
         }
 

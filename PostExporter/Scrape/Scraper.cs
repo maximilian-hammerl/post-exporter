@@ -18,11 +18,13 @@ public static class Scraper
     private static readonly HashSet<HttpStatusCode> IgnoredStatusCodes = new()
     {
         HttpStatusCode.Unauthorized, HttpStatusCode.PaymentRequired, HttpStatusCode.Forbidden, HttpStatusCode.NotFound,
+        HttpStatusCode.InternalServerError, HttpStatusCode.NotImplemented, HttpStatusCode.BadGateway,
+        HttpStatusCode.ServiceUnavailable, HttpStatusCode.GatewayTimeout
     };
-    
+
     private static readonly Regex UserAndDateTimeRegex = new(@"^von\s.+\sam\s\d{2}.\d{2}.\d{4}\s\d{2}:\d{2}$",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
-    
+
     private static readonly Regex UserAndDateRegex = new(@"^von\s.+\sam\s\d{2}.\d{2}.\d{4}$",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
