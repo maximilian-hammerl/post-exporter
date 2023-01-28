@@ -242,6 +242,11 @@ public static class Scraper
     public static async Task<(List<Thread>, bool)> GetThreads(Group group)
     {
         var threadsPath = await GetThreadsPath(group.Url);
+        if (threadsPath == null)
+        {
+            return (new List<Thread>(), true);
+        }
+
         return await GetThreads(group, $"{BaseUrl}{threadsPath}");
     }
 
@@ -320,7 +325,7 @@ public static class Scraper
         return int.Parse(split[^2]);
     }
 
-    private static async Task<string> GetThreadsPath(string groupUrl)
+    private static async Task<string?> GetThreadsPath(string groupUrl)
     {
         var groupResponse = await GetOrCreateHttpClient().GetAsync(groupUrl);
         groupResponse.EnsureSuccessStatusCode();
@@ -332,7 +337,7 @@ public static class Scraper
         };
         doc.LoadHtml(groupContent);
 
-        return doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']").Attributes["href"].Value;
+        return doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']")?.Attributes["href"].Value;
     }
 
     private static async Task<(List<Group>, bool)> GetGroups()
