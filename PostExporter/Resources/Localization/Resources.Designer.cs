@@ -177,6 +177,15 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The following threads could not be exported, because no posts could be loaded (if this is an error, please contact me using the feedback dialog):.
+        /// </summary>
+        public static string ErrorExportFailedNoPosts {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedNoPosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following threads could not be exported because of an unrecognized error:.
         /// </summary>
         public static string ErrorExportFailedUnrecognized {
@@ -1704,7 +1713,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No threads could be loaded for group {0}!.
+        ///   Looks up a localized string similar to No threads could be loaded for group {0}! (If this is an error, please contact me using the feedback dialog.).
         /// </summary>
         public static string WarningNoThreadsFor {
             get {

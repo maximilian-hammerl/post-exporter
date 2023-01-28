@@ -4,6 +4,7 @@ namespace PostExporter.Export;
 
 public enum ExportError
 {
+    NoPosts,
     DirectoryAccess,
     ImageDownload,
     WordImageExport,
@@ -16,6 +17,7 @@ public static class ExportErrorExtensions
     {
         return exportError switch
         {
+            ExportError.NoPosts => Resources.Localization.Resources.ErrorExportFailedNoPosts,
             ExportError.DirectoryAccess => Resources.Localization.Resources.ErrorExportFailedDirectoryAccess,
             ExportError.ImageDownload => Resources.Localization.Resources.ErrorExportFailedImageDownload,
             ExportError.WordImageExport => Resources.Localization.Resources.ErrorExportFailedWordImageExport,

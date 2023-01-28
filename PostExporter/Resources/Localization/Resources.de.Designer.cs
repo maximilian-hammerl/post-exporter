@@ -177,6 +177,15 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil keine Beiträge geladen werden konnten (wenn das ein Fehler ist, kontaktiere mich bitte über den Feedback-Dialog):.
+        /// </summary>
+        public static string ErrorExportFailedNoPosts {
+            get {
+                return ResourceManager.GetString("ErrorExportFailedNoPosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Die folgenden Beiträge konnten nicht exportiert werden, weil ein nicht erkannter Fehler aufgetreten ist:.
         /// </summary>
         public static string ErrorExportFailedUnrecognized {
@@ -1703,7 +1712,7 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es konnten keine Beiträge für Gruppe {0} geladen werden!.
+        ///   Looks up a localized string similar to Es konnten keine Beiträge für Gruppe {0} geladen werden! (Wenn das ein Fehler ist, kontaktiere mich bitte über den Feedback-Dialog.).
         /// </summary>
         public static string WarningNoThreadsFor {
             get {

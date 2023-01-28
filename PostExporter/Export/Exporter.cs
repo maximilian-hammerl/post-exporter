@@ -13,6 +13,7 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using HtmlAgilityPack;
 using HtmlToOpenXml;
+using PostExporter.Exceptions;
 using PostExporter.Scrape;
 using PostExporter.Utils;
 using Thread = PostExporter.Scrape.Thread;
@@ -50,6 +51,11 @@ public static class Exporter
             {
                 await ExportThread(thread, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
                     cancellationToken);
+            }
+            catch (NoPostsException exception)
+            {
+                failedExports[ExportError.NoPosts].Add(thread);
+                SentryUtil.HandleMessage($"NoPostsException {exception} for {thread.Title} ({thread.Url})");
             }
             catch (UnauthorizedAccessException exception)
             {
@@ -100,22 +106,25 @@ public static class Exporter
 
         foreach (var (threadId, _, _, threadTitle, _, (groupId, _, _, groupTitle, _)) in threads)
         {
-            if (groupIdsByGroupTitles.TryGetValue(groupTitle, out var groupIds))
+            var sanitizedGroupTitle = new StringBuilder(groupTitle).SanitizeFileName().Trim().ToString();
+            var sanitizedThreadTitle = new StringBuilder(threadTitle).SanitizeFileName().Trim().ToString();
+
+            if (groupIdsByGroupTitles.TryGetValue(sanitizedGroupTitle, out var groupIds))
             {
                 groupIds.Add(groupId);
             }
             else
             {
-                groupIdsByGroupTitles[groupTitle] = new HashSet<int> { groupId };
+                groupIdsByGroupTitles[sanitizedGroupTitle] = new HashSet<int> { groupId };
             }
 
-            if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, threadTitle), out var threadIds))
+            if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, sanitizedThreadTitle), out var threadIds))
             {
                 threadIds.Add(threadId);
             }
             else
             {
-                threadIdsByGroupIdThreadTitles[(groupId, threadTitle)] = new HashSet<int> { threadId };
+                threadIdsByGroupIdThreadTitles[(groupId, sanitizedThreadTitle)] = new HashSet<int> { threadId };
             }
         }
 
@@ -143,14 +152,14 @@ public static class Exporter
     }
 
     private static async Task ExportThread(Thread thread, StringBuilder textHeadTemplate,
-        StringBuilder textBodyTemplate,
-        StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate, CancellationToken cancellationToken)
+        StringBuilder textBodyTemplate, StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate,
+        CancellationToken cancellationToken)
     {
         try
         {
             var posts = await Scraper.GetPosts(thread, cancellationToken);
             cancellationToken.ThrowIfCancellationRequested();
-            await ExportPosts(posts, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
+            await ExportPosts(thread, posts, textHeadTemplate, textBodyTemplate, htmlHeadTemplate, htmlBodyTemplate,
                 cancellationToken);
         }
         catch (OperationCanceledException)
@@ -158,11 +167,15 @@ public static class Exporter
         }
     }
 
-    private static async Task ExportPosts(List<Post> posts, StringBuilder textHeadTemplate,
+    private static async Task ExportPosts(Thread thread, List<Post> posts, StringBuilder textHeadTemplate,
         StringBuilder textBodyTemplate, StringBuilder htmlHeadTemplate, StringBuilder htmlBodyTemplate,
         CancellationToken cancellationToken)
     {
-        var thread = posts.First().Thread;
+        if (posts.Count == 0)
+        {
+            throw new NoPostsException();
+        }
+
         var group = thread.Group;
 
         var (directoryPath, imagesDirectoryPath, imagesDirectory, imageFileNamePrefix, filePathWithoutExtension) =
@@ -270,11 +283,13 @@ public static class Exporter
 
                 if (!string.IsNullOrEmpty(altName))
                 {
-                    fileNameBuilder.Append('-').Append(HttpUtility.HtmlDecode(altName));
-                    SanitizeFileName(fileNameBuilder);
+                    fileNameBuilder
+                        .Append('-')
+                        .Append(HttpUtility.HtmlDecode(altName))
+                        .SanitizeFileName();
                 }
 
-                var fileName = fileNameBuilder.ToString();
+                var fileName = fileNameBuilder.Trim().ToString();
 
                 if (!directoryAlreadyCreated)
                 {

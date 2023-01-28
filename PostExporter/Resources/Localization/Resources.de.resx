@@ -98,7 +98,7 @@
         <value>2. Deine Beiträge von {0}:</value>
     </data>
     <data name="WarningNoThreadsFor" xml:space="preserve">
-        <value>Es konnten keine Beiträge für Gruppe {0} geladen werden!</value>
+        <value>Es konnten keine Beiträge für Gruppe {0} geladen werden! (Wenn das ein Fehler ist, kontaktiere mich bitte über den Feedback-Dialog.)</value>
     </data>
     <data name="WarningNothingSelected" xml:space="preserve">
         <value>Du musst mindestens eine Gruppe und einen Beitrag auswählen!</value>
@@ -601,5 +601,8 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     </data>
     <data name="FeedbackUsernameDefault" xml:space="preserve">
         <value>Wenn ich (der Entwickler des Exporters) dich für Fragen kontaktieren darf, gib hier deinen Benutzernamen ein:</value>
+    </data>
+    <data name="ErrorExportFailedNoPosts" xml:space="preserve">
+        <value>Die folgenden Beiträge konnten nicht exportiert werden, weil keine Beiträge geladen werden konnten (wenn das ein Fehler ist, kontaktiere mich bitte über den Feedback-Dialog):</value>
     </data>
 </root>
