@@ -244,7 +244,8 @@ public static class Scraper
         var threadsPath = await GetThreadsPath(group.Url);
         if (threadsPath == null)
         {
-            return (new List<Thread>(), true);
+            SentryUtil.HandleMessage($"No threads path for group URL \"{group.Url}\"");
+            return (new List<Thread>(), false);
         }
 
         return await GetThreads(group, $"{BaseUrl}{threadsPath}");
@@ -337,10 +338,19 @@ public static class Scraper
         };
         doc.LoadHtml(groupContent);
 
-        return doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']")?.Attributes["href"].Value;
+        var node = doc.DocumentNode.SelectSingleNode("//a[@class='icon topics']");
+
+        if (node == null)
+        {
+            SentryUtil.HandleMessage(
+                $"Could not find threads button in \"{doc.DocumentNode.SelectSingleNode("//div[@id='content']")?.InnerHtml}\"");
+            return null;
+        }
+
+        return node.Attributes["href"].Value;
     }
 
-    private static async Task<(List<Group>, bool)> GetGroups()
+    public static async Task<(List<Group>, bool)> GetGroups()
     {
         return await GetGroups("mygroups.html");
     }
@@ -359,6 +369,13 @@ public static class Scraper
 
         var groupRows =
             doc.DocumentNode.SelectNodes("//div[@id='tab-pane-1']/div[@class='tab-page']/table[@class='table']/tr");
+
+        if (groupRows.Count == 0)
+        {
+            SentryUtil.HandleMessage(
+                $"Could not find group table nodes in \"{doc.DocumentNode.SelectSingleNode("//div[@id='tab-pane-1']")?.InnerHtml}\"");
+            return (new List<Group>(), false);
+        }
 
         // Remove header row
         groupRows.Remove(0);
@@ -453,19 +470,7 @@ public static class Scraper
         throw new ArgumentException($"No group ID in \"{pathWithQuery}\"");
     }
 
-    public static async Task<(List<Group>?, bool)> LoginAndGetGroups(string username, string password)
-    {
-        var loginSuccessful = await Login(username, password);
-
-        if (!loginSuccessful)
-        {
-            return (null, false);
-        }
-
-        return await GetGroups();
-    }
-
-    private static async Task<bool> Login(string username, string password)
+    public static async Task<bool> Login(string username, string password)
     {
         var authContent = new FormUrlEncodedContent(
             new List<KeyValuePair<string, string>>

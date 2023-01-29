@@ -85,10 +85,10 @@ public partial class LoginPage : Page
             level: BreadcrumbLevel.Info
         );
 
-        (List<Group>? groups, bool loadedAllGroupsSuccessfully) response;
+        bool successfulLogin;
         try
         {
-            response = await Scraper.LoginAndGetGroups(username, password);
+            successfulLogin = await Scraper.Login(username, password);
         }
         catch (HttpRequestException exception)
         {
@@ -104,7 +104,7 @@ public partial class LoginPage : Page
             return;
         }
 
-        if (response.groups == null)
+        if (!successfulLogin)
         {
             SentryUtil.HandleBreadcrumb(
                 "Wrong username or password",
@@ -117,16 +117,7 @@ public partial class LoginPage : Page
             return;
         }
 
-        if (!response.loadedAllGroupsSuccessfully)
-        {
-            SentryUtil.HandleBreadcrumb(
-                "Not all groups loaded successfully",
-                "LoginPage",
-                level: BreadcrumbLevel.Error
-            );
-
-            DialogUtil.ShowError(PostExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
-        }
+        (List<Group> groups, bool loadedAllGroupsSuccessfully) response = await Scraper.GetGroups();
 
         if (response.groups.Count == 0)
         {
@@ -139,6 +130,17 @@ public partial class LoginPage : Page
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowError(PostExporter.Resources.Localization.Resources.ErrorNoGroups, false);
             return;
+        }
+
+        if (!response.loadedAllGroupsSuccessfully)
+        {
+            SentryUtil.HandleBreadcrumb(
+                "Not all groups loaded successfully",
+                "LoginPage",
+                level: BreadcrumbLevel.Error
+            );
+
+            DialogUtil.ShowError(PostExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
         }
 
         SentryUtil.UpdateUser(username);
