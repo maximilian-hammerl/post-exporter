@@ -33,24 +33,91 @@ public partial class WelcomePage : Page
 
     private async Task CheckCurrentVersion()
     {
+        SentryUtil.HandleBreadcrumb(
+            "Checking for current version",
+            "WelcomePage",
+            level: BreadcrumbLevel.Info
+        );
+
+        if (await CheckCloseForNewVersion())
+        {
+            SentryUtil.HandleBreadcrumb(
+                "Closing Exporter",
+                "WelcomePage",
+                level: BreadcrumbLevel.Info
+            );
+
+            Window.GetWindow(this).Close();
+        }
+        else
+        {
+            SentryUtil.HandleBreadcrumb(
+                "To Login Page",
+                "WelcomePage",
+                level: BreadcrumbLevel.Info
+            );
+
+            NavigationService.Navigate(new LoginPage());
+        }
+    }
+
+    private static async Task<bool> CheckCloseForNewVersion()
+    {
         var latestRelease = await GitHubUtil.GetLatestRelease();
         var latestVersion = latestRelease.GetVersion();
 
         var currentVersion = Util.GetCurrentVersion();
 
+        SentryUtil.HandleBreadcrumb(
+            $"Current version is {currentVersion.ToString()}, latest version is {latestVersion.ToString()}",
+            "WelcomePage",
+            level: BreadcrumbLevel.Info
+        );
+
         if (currentVersion.Major <= latestVersion.Major && currentVersion.Minor < latestVersion.Minor)
         {
+            SentryUtil.HandleBreadcrumb(
+                "New release available",
+                "WelcomePage",
+                level: BreadcrumbLevel.Info
+            );
+
             var newReleaseDialog = new NewReleaseDialog(latestRelease, currentVersion);
             newReleaseDialog.ShowDialog();
 
             if (newReleaseDialog.DialogResult is true)
             {
-                Window.GetWindow(this).Close();
-                return;
+                SentryUtil.HandleBreadcrumb(
+                    "Close Exporter because of new release",
+                    "WelcomePage",
+                    level: BreadcrumbLevel.Info
+                );
+
+                return true;
             }
+
+            SentryUtil.HandleBreadcrumb(
+                "Ignoring new release",
+                "WelcomePage",
+                level: BreadcrumbLevel.Info
+            );
+        }
+        else
+        {
+            SentryUtil.HandleBreadcrumb(
+                "Already on latest release",
+                "WelcomePage",
+                level: BreadcrumbLevel.Info
+            );
         }
 
-        NavigationService.Navigate(new LoginPage());
+        SentryUtil.HandleBreadcrumb(
+            $"Continuing with current version",
+            "WelcomePage",
+            level: BreadcrumbLevel.Info
+        );
+
+        return false;
     }
 
     private void CollectDataCheckBox_OnChecked(object sender, RoutedEventArgs e)

@@ -97,7 +97,7 @@ public partial class LoginPage : Page
                 "LoginPage",
                 level: BreadcrumbLevel.Error
             );
-            SentryUtil.HandleException(exception);
+            SentryUtil.HandleMessage($"{exception} for \"{baseUrl}\" (\"{Scraper.BaseUrl}\")");
 
             ToggleLoginButtonLoading(false);
             DialogUtil.ShowError(PostExporter.Resources.Localization.Resources.ErrorServerUnavailable, false);
