@@ -36,5 +36,5 @@ ready_to_run="true"
 runtime="win-x64"
 self_contained="true"
 target_folder="$PROJECT_DIR$/PATH/TO/TARGET_FOLDER"
-target_framework="net6.0-windows"
+target_framework="net7.0-windows"
 ```

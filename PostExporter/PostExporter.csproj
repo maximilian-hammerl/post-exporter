@@ -2,10 +2,12 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <!-- https://github.com/dotnet/wpf/issues/7282#issuecomment-1423636074 -->
+        <PublishReadyToRunComposite>false</PublishReadyToRunComposite>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
-        <VersionPrefix>2.5.0.0</VersionPrefix>
+        <VersionPrefix>2.6.0.0</VersionPrefix>
         <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
