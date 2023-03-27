@@ -605,4 +605,10 @@ Die Standard-Templates basieren auf den aktuellen Export-Text-Optionen. Nur wenn
     <data name="ErrorExportFailedNoPosts" xml:space="preserve">
         <value>Die folgenden Beiträge konnten nicht exportiert werden, weil keine Beiträge geladen werden konnten (wenn das ein Fehler ist, kontaktiere mich bitte über den Feedback-Dialog):</value>
     </data>
+    <data name="LoginRememberPassword" xml:space="preserve">
+        <value>Dein Passwort merken?</value>
+    </data>
+    <data name="LoginRememberUsername" xml:space="preserve">
+        <value>Deinen Benutzername merken?</value>
+    </data>
 </root>

@@ -15,10 +15,28 @@ public partial class LoginPage : Page
     public LoginPage()
     {
         InitializeComponent();
-
-        BaseUrlTextBox.Text = Scraper.BaseUrl ?? "rollenspielhimmel.de";
-
+        
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
+
+        var credential = CredentialUtil.ReadCredential();
+
+        if (credential.HasValue)
+        {
+            BaseUrlTextBox.Text = credential.Value.BaseUrl;
+            UsernameTextBox.Text = credential.Value.Username;
+            RememberUsernameCheckBox.IsChecked = true;
+
+            if (credential.Value.Password is not null)
+            {
+                PasswordBox.Password = credential.Value.Password;
+                RememberPasswordCheckBox.IsChecked = true;
+            }
+        }
+        else
+        {
+            BaseUrlTextBox.Text = Scraper.BaseUrl ?? "rollenspielhimmel.de";
+            RememberPasswordCheckBox.IsEnabled = false;
+        }
 
         UsernameTextBox.Focus();
 
@@ -143,6 +161,19 @@ public partial class LoginPage : Page
             DialogUtil.ShowError(PostExporter.Resources.Localization.Resources.ErrorSomeGroupsFailedToLoad, true);
         }
 
+        if (RememberUsernameCheckBox.IsChecked is true)
+        {
+            CredentialUtil.UpdateCredential(
+                Scraper.BaseUrl,
+                username,
+                RememberPasswordCheckBox.IsChecked is true ? password : null
+            );
+        }
+        else
+        {
+            CredentialUtil.DeleteCredential();
+        }
+
         SentryUtil.UpdateUser(username);
 
         SentryUtil.HandleBreadcrumb(
@@ -160,6 +191,17 @@ public partial class LoginPage : Page
         LoginButton.IsEnabled = !isLoading;
         DefaultIcon.Visibility = isLoading ? Visibility.Collapsed : Visibility.Visible;
         LoadingIcon.Visibility = isLoading ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void RememberUsernameCheckBox_OnChecked(object sender, RoutedEventArgs e)
+    {
+        RememberPasswordCheckBox.IsEnabled = true;
+    }
+
+    private void RememberUsernameCheckBox_OnUnchecked(object sender, RoutedEventArgs e)
+    {
+        RememberPasswordCheckBox.IsEnabled = false;
+        RememberPasswordCheckBox.IsChecked = false;
     }
 
     private void BackButton_OnClick(object sender, RoutedEventArgs e)

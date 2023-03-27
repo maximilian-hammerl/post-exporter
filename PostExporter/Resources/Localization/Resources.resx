@@ -604,4 +604,10 @@ The default templates are based on the current export text options. Only if a te
     <data name="ErrorExportFailedNoPosts" xml:space="preserve">
         <value>The following threads could not be exported, because no posts could be loaded (if this is an error, please contact me using the feedback dialog):</value>
     </data>
+    <data name="LoginRememberUsername" xml:space="preserve">
+        <value>Remember your Username?</value>
+    </data>
+    <data name="LoginRememberPassword" xml:space="preserve">
+        <value>Remember your Password?</value>
+    </data>
 </root>

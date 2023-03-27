@@ -927,6 +927,24 @@ namespace PostExporter.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dein Passwort merken?.
+        /// </summary>
+        public static string LoginRememberPassword {
+            get {
+                return ResourceManager.GetString("LoginRememberPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deinen Benutzername merken?.
+        /// </summary>
+        public static string LoginRememberUsername {
+            get {
+                return ResourceManager.GetString("LoginRememberUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exportiere und sichere deine Gruppen, Beiträge und Antworten schnell und einfach!.
         /// </summary>
         public static string LoginSubtitle {

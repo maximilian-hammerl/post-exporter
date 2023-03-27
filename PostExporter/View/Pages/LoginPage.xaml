@@ -157,9 +157,20 @@
                                    Margin="9 18 3 3" />
                         <TextBox x:Name="UsernameTextBox" Margin="3" Padding="3" FontSize="14" />
 
+                        <CheckBox x:Name="RememberUsernameCheckBox" Margin="3" VerticalAlignment="Center"
+                                  FontSize="14" IsThreeState="False" Checked="RememberUsernameCheckBox_OnChecked"
+                                  Unchecked="RememberUsernameCheckBox_OnUnchecked">
+                            <TextBlock Text="{x:Static l:Resources.LoginRememberUsername}" TextWrapping="Wrap" />
+                        </CheckBox>
+
                         <TextBlock Text="{x:Static l:Resources.LoginPassword}" Style="{StaticResource TextTextBlock}"
                                    Margin="9 18 3 3" />
                         <PasswordBox x:Name="PasswordBox" Margin="3" Padding="3" FontSize="14" />
+
+                        <CheckBox x:Name="RememberPasswordCheckBox" Margin="3" VerticalAlignment="Center"
+                                  FontSize="14" IsThreeState="False">
+                            <TextBlock Text="{x:Static l:Resources.LoginRememberPassword}" TextWrapping="Wrap" />
+                        </CheckBox>
                     </StackPanel>
 
                 </StackPanel>
