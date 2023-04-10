@@ -20,19 +20,12 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Get current version
-      id: get-version
-      run: echo "::set-output name=version::$(cat VERSION)"
-
-    - name: Increment minor version
-      id: increment-version
-      run: echo "::set-output name=new-version::$(dotnet build /p:Version=1.0.0 /p:VersionSuffix=.${{ github.run_number }} --version-suffix "alpha" | grep -oP '(?<=<Version>)[^<]+')"
-
-    - name: Update version file
-      run: echo "${{ steps.increment-version.outputs.new-version }}" > VERSION
+    - name: Get VersionPrefix value
+      id: get-version-prefix
+      run: |
+        version_prefix=$(dotnet build /p:VersionPrefix /nologo | grep -m 1 'VersionPrefix:' | awk '{print $2}')
+        major_minor_version=$(echo $version_prefix | grep -oE '^[0-9]+\.[0-9]+')
+        echo "::set-output name=major-minor-version::$major_minor_version"
 
     - name: Get commit messages
       id: commits
@@ -44,8 +37,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ steps.increment-version.outputs.new-version }}
-        release_name: Release ${{ steps.increment-version.outputs.new-version }}
+        tag_name: v${{ steps.get-version-prefix.outputs.major-minor-version }}
+        release_name: Release ${{ steps.get-version-prefix.outputs.major-minor-version }}
         body: ${{ steps.commits.outputs.commits }}
         draft: true
         prerelease: false
