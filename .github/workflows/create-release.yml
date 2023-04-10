@@ -43,7 +43,7 @@ jobs:
         tag_name: v${{ steps.increment-version.outputs.new-version }}
         release_name: Release ${{ steps.increment-version.outputs.new-version }}
         body: ${{ steps.commits.outputs.commits }}
-        draft: false
+        draft: true
         prerelease: false
 
     - name: Upload executable
