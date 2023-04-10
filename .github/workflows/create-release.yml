@@ -27,6 +27,9 @@ jobs:
           $major_minor_version = $match.Matches.groups[0].value
           echo "major-minor-version=$major_minor_version" >> $env:GITHUB_OUTPUT
 
+      - name: Another test
+        run: git show-ref --tags --verify -- "refs/tags/v${{ steps.get-version.outputs.major-minor-version }}"
+
       - name: Check if tag already exists
         id: tagged
         shell: bash
