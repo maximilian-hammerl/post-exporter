@@ -41,7 +41,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ steps.increment-version.outputs.new-version }}
-        release_name: Release v${{ steps.increment-version.outputs.new-version }}
+        release_name: Release ${{ steps.increment-version.outputs.new-version }}
         body: ${{ steps.commits.outputs.commits }}
         draft: false
         prerelease: false
