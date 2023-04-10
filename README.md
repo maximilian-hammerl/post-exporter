@@ -12,11 +12,11 @@
 
 ## Screenshots
 
-| Page                              | Screenshot                                                                           |
-|-----------------------------------|--------------------------------------------------------------------------------------|
-| Login Page                        | <img alt="[Post Exporter Login Page" width="60%" src="screenshots/page-login.png">   |
-| Groups and Threads Selecting Page | <img alt="[Post Exporter Select Page" width="60%" src="screenshots/page-select.png"> |
-| Exporting Page                    | <img alt="[Post Exporter Export Page" width="60%" src="screenshots/page-export.png"> |
+|                              Page |                                     Screenshot                                      |
+|----------------------------------:|:-----------------------------------------------------------------------------------:|
+|                        Login Page |  <img alt="Post Exporter Login Page" width="60%" src="screenshots/page-login.png">  |
+| Groups and Threads Selecting Page | <img alt="Post Exporter Select Page" width="60%" src="screenshots/page-select.png"> |
+|                    Exporting Page | <img alt="Post Exporter Export Page" width="60%" src="screenshots/page-export.png"> |
 
 ## Dependencies
 
