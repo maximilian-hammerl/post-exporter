@@ -1,4 +1,6 @@
-# Post Exporter
+<p align="center">
+  <img alt="Post Exporter Logo" width="80%" src="PostExporter/Resources/splash-screen-logo.png">
+</p>
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/post-exporter)](https://choosealicense.com/licenses/mit/)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/releases)
@@ -7,6 +9,14 @@
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/pulls)
 
 .NET 7.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
+
+## Screenshots
+
+| Page                              | Screenshot                                                                           |
+|-----------------------------------|--------------------------------------------------------------------------------------|
+| Login Page                        | <img alt="[Post Exporter Login Page" width="60%" src="screenshots/page-login.png">   |
+| Groups and Threads Selecting Page | <img alt="[Post Exporter Select Page" width="60%" src="screenshots/page-select.png"> |
+| Exporting Page                    | <img alt="[Post Exporter Export Page" width="60%" src="screenshots/page-Export.png"> |
 
 ## Dependencies
 
