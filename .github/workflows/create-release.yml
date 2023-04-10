@@ -26,11 +26,19 @@ jobs:
 
       - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
 
+      - name: Get VersionPrefix value
+        id: get-version-prefix
+        run: |
+          $version_prefix = ([xml](Get-Content -Path PostExporter.csproj)).Project.PropertyGroup.VersionPrefix
+          $match = select-string "^[0-9]+\.[0-9]+" -inputobject $version_prefix
+          $major_minor_version = $match.Matches.groups[0].value
+          echo "major-minor-version=$major_minor_version" >> $env:GITHUB_OUTPUT
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          name: "Test Release"
-          tag_name: "test_tag_name"
+          name: "Release ${{ steps.get-version-prefix.outputs.major-minor-version }}"
+          tag_name: "v${{ steps.get-version-prefix.outputs.major-minor-version }}"
           body: "Test Body Text"
           draft: true
           prerelease: false
