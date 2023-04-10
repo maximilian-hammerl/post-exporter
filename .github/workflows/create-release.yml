@@ -36,6 +36,17 @@ jobs:
         if: steps.tagged.outputs.already-tagged == 0
         with:
           dotnet-version: '7.0.x'
+        
+      - name: Test 1
+        if: steps.tagged.outputs.already-tagged == 0
+        run: echo "0"
+      
+      - name: Test 2
+        if: steps.tagged.outputs.already-tagged == 1
+        run: echo "1"
+        
+      - name: Test 3
+        run: echo "${{ steps.tagged.outputs.already-tagged }}"
 
       - run: dotnet restore
         if: steps.tagged.outputs.already-tagged == 0
