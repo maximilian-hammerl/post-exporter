@@ -35,11 +35,23 @@ jobs:
           echo "major-minor-version=$major_minor_version" >> $env:GITHUB_OUTPUT
 
       - name: Create tag
-        run: |
-          git tag -a "v${{ steps.get-version-prefix.outputs.major-minor-version }}" -m "Release ${{ steps.get-version-prefix.outputs.major-minor-version }}"
-          git push origin "v${{ steps.get-version-prefix.outputs.major-minor-version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const createTagResponse = await github.git.createTag({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag: 'v${{ steps.get-version-prefix.outputs.major-minor-version }}',
+              message: 'Release ${{ steps.get-version-prefix.outputs.major-minor-version }}',
+              object: context.sha,
+              type: 'commit'
+            });
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.get-version-prefix.outputs.major-minor-version }}',
+              sha: createTagResponse.data.object.sha
+            });
 
       - name: Create release
         uses: softprops/action-gh-release@v1
