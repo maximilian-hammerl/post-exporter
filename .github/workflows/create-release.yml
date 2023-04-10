@@ -16,33 +16,23 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '7.0.x'
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '7.0.x'
 
-    - run: dotnet restore
+      - run: dotnet restore
 
-    - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
+      - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
 
-    - name: Get VersionPrefix value
-      id: get-version-prefix
-      run: |
-        $version_prefix = ([xml](Get-Content -Path PostExporter.csproj)).Project.PropertyGroup.VersionPrefix
-        $match = select-string "^[0-9]+\.[0-9]+" -inputobject $version_prefix
-        $major_minor_version = $match.Matches.groups[0].value
-        echo "major-minor-version=$major_minor_version" >> "$GITHUB_OUTPUT"
-
-    - name: Create release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        name: "Release ${{ steps.get-version-prefix.outputs.major-minor-version }}"
-        tag_name: "v${{ steps.get-version-prefix.outputs.major-minor-version }}"
-        generate_release_notes: true
-        draft: true
-        prerelease: false
-        files: ./PostExporter/bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe
-        fail_on_unmatched_files: true
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Test Release"
+          tag_name: "test_tag_name"
+          body: "Test Body Text"
+          draft: true
+          prerelease: false
+          files: ./PostExporter/bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe
+          fail_on_unmatched_files: true
