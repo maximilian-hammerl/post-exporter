@@ -1,0 +1,53 @@
+name: "Create Release"
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Get current version
+      id: get-version
+      run: echo "::set-output name=version::$(cat VERSION)"
+
+    - name: Increment minor version
+      id: increment-version
+      run: echo "::set-output name=new-version::$(dotnet build /p:Version=1.0.0 /p:VersionSuffix=.${{ github.run_number }} --version-suffix "alpha" | grep -oP '(?<=<Version>)[^<]+')"
+
+    - name: Update version file
+      run: echo "${{ steps.increment-version.outputs.new-version }}" > VERSION
+
+    - name: Get commit messages
+      id: commits
+      run: echo "::set-output name=commits::$(git log --pretty=format:'%s')"
+
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.increment-version.outputs.new-version }}
+        release_name: Release ${{ steps.increment-version.outputs.new-version }}
+        body: ${{ steps.commits.outputs.commits }}
+        draft: true
+        prerelease: false
+
+    - name: Upload executable
+      uses: actions/upload-artifact@v3
+      with:
+        name: PostExporter
+        path: ./bin/Release/PostExporter.exe
