@@ -38,7 +38,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const createTagResponse = await github.git.createTag({
+            const createTagResponse = await github.rest.git.createTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag: 'v${{ steps.get-version-prefix.outputs.major-minor-version }}',
