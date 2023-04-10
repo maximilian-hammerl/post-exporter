@@ -23,7 +23,7 @@ jobs:
     - name: Get VersionPrefix value
       id: get-version-prefix
       run: |
-        version_prefix=$(bash -c "dotnet build /p:VersionPrefix /nologo | grep -m 1 'VersionPrefix:' | awk '{print $2}'")
+        version_prefix=$(bash -c "dotnet build /p:VersionPrefix /nologo | grep -m 1 `"VersionPrefix:"` | awk '{print $2}'")
         major_minor_version=$(echo $version_prefix | grep -oE '^[0-9]+\.[0-9]+')
         echo "::set-output name=major-minor-version::$major_minor_version"
 
