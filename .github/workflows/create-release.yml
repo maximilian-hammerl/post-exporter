@@ -22,7 +22,7 @@ jobs:
 
     - run: dotnet restore
 
-    - run: dotnet build --configuration Release --no-restore
+    - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
 
     - name: Get VersionPrefix value
       id: get-version-prefix
@@ -52,4 +52,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: PostExporter
-        path: ./bin/Release/net7.0-windows/PostExporter.exe
+        path: ./bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe

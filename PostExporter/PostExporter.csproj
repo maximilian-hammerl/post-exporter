@@ -2,7 +2,13 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
+        <RuntimeIdentifier>win-x64</RuntimeIdentifier>
         <TargetFramework>net7.0-windows</TargetFramework>
+        <PublishSingleFile>true</PublishSingleFile>
+        <SelfContained>true</SelfContained>
+        <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+        <PublishReadyToRun>true</PublishReadyToRun>
+        <PublishTrimmed>false</PublishTrimmed>
         <!-- https://github.com/dotnet/wpf/issues/7282#issuecomment-1423636074 -->
         <PublishReadyToRunComposite>false</PublishReadyToRunComposite>
         <Nullable>enable</Nullable>
