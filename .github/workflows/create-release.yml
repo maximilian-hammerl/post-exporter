@@ -20,17 +20,21 @@ jobs:
       with:
         dotnet-version: '7.0.x'
 
+    - run: dotnet restore
+
+    - run: dotnet build --configuration Release --no-restore
+
     - name: Get VersionPrefix value
       id: get-version-prefix
       run: |
         $version_prefix = ([xml](Get-Content -Path PostExporter.csproj)).Project.PropertyGroup.VersionPrefix
         $match = select-string "^[0-9]+\.[0-9]+" -inputobject $version_prefix
         $major_minor_version = $match.Matches.groups[0].value
-        echo "::set-output name=major-minor-version::$major_minor_version"
+        echo "major-minor-version=$major_minor_version" >> $GITHUB_OUTPUT
 
     - name: Get commit messages
       id: commits
-      run: echo "::set-output name=commits::$(git log --pretty=format:'%s')"
+      run: echo "commits=$(git log --pretty=format:'%s')" >> $GITHUB_OUTPUT
 
     - name: Create release
       id: create_release
@@ -48,4 +52,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: PostExporter
-        path: ./bin/Release/PostExporter.exe
+        path: ./bin/Release/net7.0-windows/PostExporter.exe
