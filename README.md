@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Post Exporter Logo" width="80%" src="PostExporter/Resources/splash-screen-logo.png">
+  <img alt="Post Exporter Logo" width="60%" src="PostExporter/Resources/splash-screen-logo.png">
 </p>
 
 [![GitHub](https://img.shields.io/github/license/maximilian-hammerl/post-exporter)](https://choosealicense.com/licenses/mit/)
@@ -16,7 +16,7 @@
 |-----------------------------------|--------------------------------------------------------------------------------------|
 | Login Page                        | <img alt="[Post Exporter Login Page" width="60%" src="screenshots/page-login.png">   |
 | Groups and Threads Selecting Page | <img alt="[Post Exporter Select Page" width="60%" src="screenshots/page-select.png"> |
-| Exporting Page                    | <img alt="[Post Exporter Export Page" width="60%" src="screenshots/page-Export.png"> |
+| Exporting Page                    | <img alt="[Post Exporter Export Page" width="60%" src="screenshots/page-export.png"> |
 
 ## Dependencies
 
