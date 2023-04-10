@@ -71,7 +71,7 @@ jobs:
         with:
           name: "Release ${{ steps.get-version.outputs.major-minor-version }}"
           tag_name: "v${{ steps.get-version.outputs.major-minor-version }}"
-          body: $(git show --no-patch --format=%s)
+          generate_release_notes: true
           draft: true
           prerelease: false
           files: ./PostExporter/bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe
