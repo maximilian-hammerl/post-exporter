@@ -34,6 +34,13 @@ jobs:
           $major_minor_version = $match.Matches.groups[0].value
           echo "major-minor-version=$major_minor_version" >> $env:GITHUB_OUTPUT
 
+      - name: Create tag
+        run: |
+          git tag -a "v${{ steps.get-version-prefix.outputs.major-minor-version }}" -m "Release ${{ steps.get-version-prefix.outputs.major-minor-version }}"
+          git push origin "v${{ steps.get-version-prefix.outputs.major-minor-version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
