@@ -16,49 +16,60 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '7.0.x'
-
-      - run: dotnet restore
-
-      - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
-
-      - name: Get VersionPrefix value
-        id: get-version-prefix
+      - name: Get version
+        id: get-version
         run: |
           $version_prefix = ([xml](Get-Content -Path PostExporter.csproj)).Project.PropertyGroup.VersionPrefix
           $match = select-string "^[0-9]+\.[0-9]+" -inputobject $version_prefix
           $major_minor_version = $match.Matches.groups[0].value
           echo "major-minor-version=$major_minor_version" >> $env:GITHUB_OUTPUT
+          
+      - name: Check if tag already exists
+        id: tagged
+        shell: bash
+        run: git show-ref --tags --verify --quiet -- "refs/tags/v${{ steps.get-version.outputs.major-minor-version }}" && (echo "already-tagged=1" >> $GITHUB_OUTPUT) || (echo "already-tagged=0" >> $GITHUB_OUTPUT)
+      
+      - uses: actions/checkout@v3
+        if: steps.tagged.outputs.already-tagged == 0
+
+      - uses: actions/setup-dotnet@v3
+        if: steps.tagged.outputs.already-tagged == 0
+        with:
+          dotnet-version: '7.0.x'
+
+      - run: dotnet restore
+        if: steps.tagged.outputs.already-tagged == 0
+
+      - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
+        if: steps.tagged.outputs.already-tagged == 0
 
       - name: Create tag
+        if: steps.tagged.outputs.already-tagged == 0
         uses: actions/github-script@v6
         with:
           script: |
             const createTagResponse = await github.rest.git.createTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag: 'v${{ steps.get-version-prefix.outputs.major-minor-version }}',
-              message: 'Release ${{ steps.get-version-prefix.outputs.major-minor-version }}',
+              tag: 'v${{ steps.get-version.outputs.major-minor-version }}',
+              message: 'Release ${{ steps.get-version.outputs.major-minor-version }}',
               object: context.sha,
               type: 'commit'
             });
             await github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/v${{ steps.get-version-prefix.outputs.major-minor-version }}',
+              ref: 'refs/tags/v${{ steps.get-version.outputs.major-minor-version }}',
               sha: createTagResponse.data.object.sha
             });
 
       - name: Create release
+        if: steps.tagged.outputs.already-tagged == 0
         uses: softprops/action-gh-release@v1
         with:
-          name: "Release ${{ steps.get-version-prefix.outputs.major-minor-version }}"
-          tag_name: "v${{ steps.get-version-prefix.outputs.major-minor-version }}"
-          body: "Test Body Text"
+          name: "Release ${{ steps.get-version.outputs.major-minor-version }}"
+          tag_name: "v${{ steps.get-version.outputs.major-minor-version }}"
+          body: $(git show --no-patch --format=%s)
           draft: true
           prerelease: false
           files: ./PostExporter/bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe
