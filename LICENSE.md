@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2022 Maximilian Hammerl
+Copyright (c) 2022 - present Maximilian Hammerl (https://hammerl.dev)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
