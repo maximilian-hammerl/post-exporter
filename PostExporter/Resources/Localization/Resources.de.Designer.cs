@@ -808,9 +808,9 @@ namespace PostExporter.Resources.Localization {
         
         /// <summary>
         ///   Looks up a localized string similar to MIT-Lizenz
-        ///Copyright (c) 2022 Maximilian Hammerl
+        ///Copyright (c) 2022 - heute Maximilian Hammerl (https://hammerl.dev)
         ///
-        ///Jedem, der eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die „Software“) erhält, wird hiermit kostenlos die Erlaubnis erteilt, ohne Einschränkung mit der Software zu handeln, einschließlich und ohne Einschränkung der Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software, und Personen, denen die Software zur Verfügung gestellt wird, dies unte [rest of string was truncated]&quot;;.
+        ///Jedem, der eine Kopie dieser Software und der zugehörigen Dokumentationsdateien (die „Software“) erhält, wird hiermit kostenlos die Erlaubnis erteilt, ohne Einschränkung mit der Software zu handeln, einschließlich und ohne Einschränkung der Rechte zur Nutzung, zum Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software, und Personen, denen die Software zur Verf [rest of string was truncated]&quot;;.
         /// </summary>
         public static string LicenseText {
             get {
