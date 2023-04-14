@@ -21,18 +21,7 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
     /// <returns>Visible or Collapsed</returns>
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        var bValue = false;
-        if (value is bool)
-        {
-            bValue = (bool)value;
-        }
-        else if (value is bool?)
-        {
-            var tmp = (bool?)value;
-            bValue = tmp.HasValue ? tmp.Value : false;
-        }
-
-        return bValue ? Visibility.Collapsed : Visibility.Visible;
+        return value is true ? Visibility.Collapsed : Visibility.Visible;
     }
 
     /// <summary>
@@ -45,9 +34,9 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
     /// <returns></returns>
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (value is Visibility)
+        if (value is Visibility visibility)
         {
-            return (Visibility)value == Visibility.Collapsed;
+            return visibility == Visibility.Collapsed;
         }
 
         return false;
