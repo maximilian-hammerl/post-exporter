@@ -219,7 +219,7 @@ public static class Scraper
                 throw new NotSupportedException("Row without text nodes");
             }
 
-            var head = HttpUtility.HtmlDecode(infoNode.InnerText.Trim());
+            var head = HttpUtility.HtmlDecode(infoNode.InnerText).Trim();
             var (author, postedAt) = GetUserAndDateTime(head);
 
             posts.Add(new Post(author, postedAt, textNodes, thread));
@@ -281,7 +281,7 @@ public static class Scraper
                 continue;
             }
 
-            var title = HttpUtility.HtmlDecode(titleNode.InnerText);
+            var title = HttpUtility.HtmlDecode(titleNode.InnerText).Trim();
             var path = titleNode.Attributes["href"].Value;
 
             var detailsNode = threadRow.SelectSingleNode("./td[1]/span[@class='small']");
@@ -294,7 +294,7 @@ public static class Scraper
                 continue;
             }
 
-            var details = HttpUtility.HtmlDecode(detailsNode.InnerText.Trim());
+            var details = HttpUtility.HtmlDecode(detailsNode.InnerText).Trim();
             var (author, postedAt) = GetUserAndDateTime(details);
 
             var id = GetThreadIdFromPath(path);
@@ -405,7 +405,7 @@ public static class Scraper
                 continue;
             }
 
-            var title = HttpUtility.HtmlDecode(titleNode.InnerText);
+            var title = HttpUtility.HtmlDecode(titleNode.InnerText).Trim();
             var pathWithQuery = titleNode.Attributes["href"].Value;
 
             var founderNode = tableNode.SelectSingleNode("./tr[3]/td[2]/a");
@@ -418,7 +418,7 @@ public static class Scraper
                 continue;
             }
 
-            var founder = HttpUtility.HtmlDecode(founderNode.InnerText);
+            var founder = HttpUtility.HtmlDecode(founderNode.InnerText).Trim();
 
             var foundedAtNode = tableNode.SelectSingleNode("./tr[4]/td[2]");
 
