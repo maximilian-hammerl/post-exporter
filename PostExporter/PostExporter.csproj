@@ -26,7 +26,7 @@
         <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" />
         <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.4.2" />
         <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
-        <PackageReference Include="Sentry" Version="3.35.0" />
+        <PackageReference Include="Sentry" Version="3.35.1" />
     </ItemGroup>
 
     <ItemGroup>
