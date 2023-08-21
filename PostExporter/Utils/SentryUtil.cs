@@ -49,7 +49,7 @@ public static class SentryUtil
     {
         if (CollectDataAccepted && !string.IsNullOrEmpty(message))
         {
-            SentrySdk.CaptureMessage(message);
+            SentrySdk.CaptureMessage($"{message} (base URL: {Scraper.BaseUrl}");
         }
     }
 
@@ -58,7 +58,7 @@ public static class SentryUtil
     {
         if (CollectDataAccepted)
         {
-            SentrySdk.AddBreadcrumb(message, category, type, data, level);
+            SentrySdk.AddBreadcrumb($"{message} (base URL: {Scraper.BaseUrl}", category, type, data, level);
         }
     }
 
