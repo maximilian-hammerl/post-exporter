@@ -74,5 +74,5 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: false
-          files: ./PostExporter/bin/Release/net7.0-windows/win-x64/publish/PostExporter.exe
+          files: ./PostExporter/bin/Release/net8.0-windows/win-x64/publish/PostExporter.exe
           fail_on_unmatched_files: true
