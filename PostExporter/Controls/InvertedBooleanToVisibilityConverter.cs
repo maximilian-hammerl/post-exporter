@@ -19,7 +19,7 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
     /// <param name="parameter">null</param>
     /// <param name="culture">null</param>
     /// <returns>Visible or Collapsed</returns>
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         return value is true ? Visibility.Collapsed : Visibility.Visible;
     }
@@ -32,7 +32,7 @@ public sealed class InvertedBooleanToVisibilityConverter : IValueConverter
     /// <param name="parameter"></param>
     /// <param name="culture"></param>
     /// <returns></returns>
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is Visibility visibility)
         {
