@@ -22,7 +22,7 @@
         <PackageReference Include="HtmlAgilityPack" Version="1.11.54" />
         <PackageReference Include="HtmlToOpenXml.dll" Version="2.3.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.4.2" />
+        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.4.5" />
         <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
         <PackageReference Include="Sentry" Version="3.41.0" />
     </ItemGroup>
