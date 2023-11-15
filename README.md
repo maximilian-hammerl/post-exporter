@@ -8,7 +8,7 @@
 [![GitHub issues](https://img.shields.io/github/issues-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/pulls)
 
-.NET 7.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
+.NET 8.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
 ## Screenshots
 
@@ -42,5 +42,5 @@ ready_to_run="true"
 runtime="win-x64"
 self_contained="true"
 target_folder="$PROJECT_DIR$/PATH/TO/TARGET_FOLDER"
-target_framework="net7.0-windows"
+target_framework="net8.0-windows"
 ```
