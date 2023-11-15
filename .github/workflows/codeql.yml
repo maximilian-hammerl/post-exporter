@@ -28,9 +28,14 @@ jobs:
       with:
         languages: ${{ matrix.language }}
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
 
+    - run: dotnet restore
+    
+    - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
+    
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
       with:
