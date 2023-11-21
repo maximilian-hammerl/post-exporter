@@ -13,7 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="140" />
+            <RowDefinition Height="80" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -217,48 +217,6 @@
         <Border x:Name="GroupButtonsContent" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 0 3 0"
                 CornerRadius="0 0 0 5" Style="{StaticResource BorderStyle}">
             <StackPanel Style="{StaticResource StackPanelStyle}">
-
-                <Button Click="SelectAllGroups_OnClick" Width="200"
-                        Style="{StaticResource IconButtonStyle}">
-
-                    <Grid Width="190">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="4*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Plus"
-                               Style="{StaticResource IconImageStyle}" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectSelectGroups}"
-                                   HorizontalAlignment="Center" />
-                    </Grid>
-                </Button>
-
-                <Button Click="UnselectAllGroups_OnClick" Width="200"
-                        Style="{StaticResource IconButtonStyle}">
-
-                    <Grid Width="190">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="4*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Image Grid.Row="0" Grid.Column="0" fa:FontAwesome.Icon="Solid_Minus"
-                               Style="{StaticResource IconImageStyle}" />
-
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{x:Static l:Resources.SelectUnselectGroups}"
-                                   HorizontalAlignment="Center" />
-                    </Grid>
-                </Button>
 
                 <Button Click="SelectAllGroupsThreads_OnClick" Width="300"
                         Style="{StaticResource IconButtonStyle}">

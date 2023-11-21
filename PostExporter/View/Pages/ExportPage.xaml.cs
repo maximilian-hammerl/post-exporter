@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using JetBrains.Annotations;
-using Ookii.Dialogs.Wpf;
+using Microsoft.Win32;
 using PostExporter.Export;
 using PostExporter.Utils;
 using PostExporter.View.Dialogs;
@@ -134,19 +134,21 @@ public partial class ExportPage : Page
     {
         while (true)
         {
-            var browserDialog = new VistaFolderBrowserDialog();
-            browserDialog.ShowDialog();
+            var folderDialog = new OpenFolderDialog
+            {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments)
+            };
 
-            var path = browserDialog.SelectedPath;
-
-            if (string.IsNullOrEmpty(path))
+            if (folderDialog.ShowDialog() != true)
             {
                 return;
             }
 
+            var folderName = folderDialog.FolderName;
+
             try
             {
-                if (Directory.GetFiles(path, "*", SearchOption.AllDirectories).Length > 0)
+                if (Directory.GetFiles(folderName, "*", SearchOption.AllDirectories).Length > 0)
                 {
                     if (!DialogUtil.ShowQuestion(PostExporter.Resources.Localization.Resources
                             .ExportFolderContainsFilesQuestion))
@@ -161,8 +163,8 @@ public partial class ExportPage : Page
                 return;
             }
 
-            ExportConfiguration.DirectoryPath = path;
-            UpdateDirectoryPath(path);
+            ExportConfiguration.DirectoryPath = folderName;
+            UpdateDirectoryPath(folderName);
             break;
         }
     }
