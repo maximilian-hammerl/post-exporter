@@ -38,7 +38,7 @@ jobs:
 
     - run: dotnet restore
     
-    - run: dotnet publish PostExporter.csproj --configuration Release --no-restore
+    - run: dotnet build PostExporter.csproj --configuration Release --no-restore
     
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
