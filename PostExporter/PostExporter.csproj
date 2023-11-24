@@ -23,7 +23,7 @@
         <PackageReference Include="HtmlToOpenXml.dll" Version="2.3.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
         <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.4.5" />
-        <PackageReference Include="Sentry" Version="3.41.1" />
+        <PackageReference Include="Sentry" Version="3.41.2" />
     </ItemGroup>
 
     <ItemGroup>
