@@ -78,7 +78,7 @@ public static class SentryUtil
 
             SentrySdk.ConfigureScope(scope =>
             {
-                scope.User = new User
+                scope.User = new SentryUser
                 {
                     Username = username,
                     Other = otherData
