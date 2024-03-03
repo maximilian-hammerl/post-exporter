@@ -126,8 +126,6 @@ public partial class SelectPage : Page
             "SelectPage",
             level: BreadcrumbLevel.Info
         );
-        
-        CredentialUtil.DeleteCredential();
 
         NavigationService.Navigate(new LoginPage());
     }

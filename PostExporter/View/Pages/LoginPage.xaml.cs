@@ -15,8 +15,10 @@ public partial class LoginPage : Page
     public LoginPage()
     {
         InitializeComponent();
-        
+
         VersionTextBlock.Text = $"Version {Util.GetCurrentVersionAsString()}";
+        PasswordBox.Visibility = Visibility.Visible;
+        UnmaskPasswordButton.Visibility = Visibility.Visible;
 
         var credential = CredentialUtil.ReadCredential();
 
@@ -89,7 +91,10 @@ public partial class LoginPage : Page
             return;
         }
 
-        var password = PasswordBox.Password;
+        var password = PasswordBox.Visibility == Visibility.Visible
+            ? PasswordBox.Password
+            : PasswordTextBox.Text;
+
         if (string.IsNullOrWhiteSpace(password))
         {
             ToggleLoginButtonLoading(false);
@@ -202,6 +207,28 @@ public partial class LoginPage : Page
     {
         RememberPasswordCheckBox.IsEnabled = false;
         RememberPasswordCheckBox.IsChecked = false;
+    }
+
+    private void UnmaskPasswordButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        PasswordBox.Visibility = Visibility.Hidden;
+        UnmaskPasswordButton.Visibility = Visibility.Hidden;
+
+        PasswordTextBox.Visibility = Visibility.Visible;
+        MaskPasswordButton.Visibility = Visibility.Visible;
+
+        PasswordTextBox.Text = PasswordBox.Password;
+    }
+
+    private void MaskPasswordButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        PasswordBox.Visibility = Visibility.Visible;
+        UnmaskPasswordButton.Visibility = Visibility.Visible;
+
+        PasswordTextBox.Visibility = Visibility.Hidden;
+        MaskPasswordButton.Visibility = Visibility.Hidden;
+
+        PasswordBox.Password = PasswordTextBox.Text;
     }
 
     private void BackButton_OnClick(object sender, RoutedEventArgs e)
