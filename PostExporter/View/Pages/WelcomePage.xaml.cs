@@ -112,7 +112,7 @@ public partial class WelcomePage : Page
         }
 
         SentryUtil.HandleBreadcrumb(
-            $"Continuing with current version",
+            "Continuing with current version",
             "WelcomePage",
             level: BreadcrumbLevel.Info
         );

@@ -64,14 +64,15 @@
 
             <TextBox x:Name="NewReleaseDownloadUrl" Background="Transparent" BorderThickness="0" IsReadOnly="True"
                      TextWrapping="Wrap" Margin="6" FontSize="14" />
-            
+
             <TextBlock Margin="6" Style="{StaticResource TextTextBlock}">
                 <Run Text="{x:Static l:Resources.NewReleaseMoreInfo1}" />
-                
+
                 <Hyperlink NavigateUri="https://github.com/maximilian-hammerl/post-exporter/releases"
                            RequestNavigate="Hyperlink_OnRequestNavigate">
                     <Run Text="{x:Static l:Resources.NewReleaseMoreInfo2}" />
-                </Hyperlink>.
+                </Hyperlink>
+                .
             </TextBlock>
         </StackPanel>
 

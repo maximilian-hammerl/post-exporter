@@ -17,12 +17,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.1" />
-        <PackageReference Include="FontAwesome6.Svg" Version="2.5.1" />
-        <PackageReference Include="HtmlAgilityPack" Version="1.11.59" />
-        <PackageReference Include="HtmlToOpenXml.dll" Version="2.4.2" />
-        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.6.0" />
+        <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.1"/>
+        <PackageReference Include="FontAwesome6.Svg" Version="2.5.1"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.59"/>
+        <PackageReference Include="HtmlToOpenXml.dll" Version="2.4.2"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
+        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.6.0"/>
         <PackageReference Include="Sentry" Version="4.1.2"/>
     </ItemGroup>
 
@@ -51,17 +51,17 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Resources\splash-screen-logo.png" />
-        <SplashScreen Include="Resources\splash-screen-logo.png" />
-        <None Remove="Resources\icon.ico" />
+        <None Remove="Resources\splash-screen-logo.png"/>
+        <SplashScreen Include="Resources\splash-screen-logo.png"/>
+        <None Remove="Resources\icon.ico"/>
         <Resource Include="Resources\icon.ico">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
-        <None Remove="Resources\Images\flag-german.png" />
+        <None Remove="Resources\Images\flag-german.png"/>
         <Resource Include="Resources\Images\flag-german.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
-        <None Remove="Resources\Images\flag-united-kingdom.png" />
+        <None Remove="Resources\Images\flag-united-kingdom.png"/>
         <Resource Include="Resources\Images\flag-united-kingdom.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>

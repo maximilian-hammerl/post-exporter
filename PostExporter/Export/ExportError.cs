@@ -8,7 +8,7 @@ public enum ExportError
     DirectoryAccess,
     ImageDownload,
     WordImageExport,
-    Unrecognized,
+    Unrecognized
 }
 
 public static class ExportErrorExtensions

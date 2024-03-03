@@ -36,7 +36,7 @@
             <TextBlock x:Name="UsernameTextBlock" Margin="6" FontSize="14" />
 
             <TextBox x:Name="UsernameTextBox" Margin="6" FontSize="14" />
-            
+
             <TextBlock x:Name="EmailTextBlock" Margin="6" FontSize="14" />
 
             <TextBox x:Name="EmailTextBox" Margin="6" FontSize="14" />

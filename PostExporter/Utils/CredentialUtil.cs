@@ -8,7 +8,7 @@ public static class CredentialUtil
     public static void UpdateCredential(string baseUrl, string username, string? password)
     {
         CredentialManager.WriteCredential(
-            applicationName: Util.GetAppName(),
+            Util.GetAppName(),
             comment: baseUrl,
             userName: username,
             secret: password ?? "",
@@ -17,7 +17,7 @@ public static class CredentialUtil
 
     public static (string BaseUrl, string Username, string? Password)? ReadCredential()
     {
-        var credential = CredentialManager.ReadCredential(applicationName: Util.GetAppName());
+        var credential = CredentialManager.ReadCredential(Util.GetAppName());
 
         if (credential is null)
         {
@@ -35,12 +35,12 @@ public static class CredentialUtil
     {
         if (HasCredential())
         {
-            CredentialManager.DeleteCredential(applicationName: Util.GetAppName());
+            CredentialManager.DeleteCredential(Util.GetAppName());
         }
     }
 
     private static bool HasCredential()
     {
-        return CredentialManager.ReadCredential(applicationName: Util.GetAppName()) is not null;
+        return CredentialManager.ReadCredential(Util.GetAppName()) is not null;
     }
 }

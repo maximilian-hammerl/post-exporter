@@ -114,10 +114,10 @@
                                         <ColumnDefinition Width="35" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0"  Style="{StaticResource TextTextBlock}">
-                                        <TextBlock Text="{Binding Path=Group.Title}"/>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource TextTextBlock}">
+                                        <TextBlock Text="{Binding Path=Group.Title}" />
                                         <TextBlock FontWeight="Bold">   |   </TextBlock>
-                                        <TextBlock Text="{Binding Path=Title}"/>
+                                        <TextBlock Text="{Binding Path=Title}" />
                                     </TextBlock>
 
                                     <Button Grid.Column="1" Tag="{Binding Path=Url}" Click="UrlButton_OnClick"
@@ -238,7 +238,7 @@
                         <CheckBox x:Name="IncludePostNumberCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludePostNumber}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
-                        
+
                         <CheckBox x:Name="IncludePostAuthorCheckBox"
                                   Content="{x:Static l:Resources.OptionIncludePostAuthor}" IsThreeState="False"
                                   Style="{StaticResource PrimaryCheckBoxStyle}" />
