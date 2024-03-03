@@ -25,7 +25,6 @@
 - [Open XML SDK](https://github.com/OfficeDev/Open-XML-SDK): Generating Word documents
 - [Html2OpenXml](https://github.com/onizet/html2openxml): Converting HTML to OpenXml components for Word documents
 - [JetBrains Code Annotation Attributes](https://www.jetbrains.com/help/resharper/Code_Analysis__Code_Annotations.html)
-- [Ookii Dialogs Wpf](https://github.com/ookii-dialogs/ookii-dialogs-wpf): Dialogs for WPF
 - [Sentry](https://sentry.io/for/csharp/): Error and performance monitoring
 
 ## Publish
