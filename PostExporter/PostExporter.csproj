@@ -19,7 +19,7 @@
     <ItemGroup>
         <PackageReference Include="DocumentFormat.OpenXml" Version="3.1.0"/>
         <PackageReference Include="FontAwesome6.Svg" Version="2.5.1"/>
-        <PackageReference Include="HtmlAgilityPack" Version="1.11.63"/>
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.64"/>
         <PackageReference Include="HtmlToOpenXml.dll" Version="3.0.1"/>
         <PackageReference Include="JetBrains.Annotations" Version="2024.2.0"/>
         <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.6.0"/>
