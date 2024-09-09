@@ -22,14 +22,14 @@ namespace PostExporter.Export;
 
 public static class Exporter
 {
-    private static readonly HashSet<string> SingleParagraphTags = new()
-    {
+    private static readonly HashSet<string> SingleParagraphTags =
+    [
         "a", "abbr", "acronym", "b", "bdi", "bdo", "big", "cite", "code", "data", "del", "dfn", "em", "i", "ins", "kbd",
         "label", "mark", "q", "s", "samp", "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr"
-    };
+    ];
 
-    private static readonly HashSet<int> GroupIdsWithSameTitle = new();
-    private static readonly HashSet<(int GroupId, int ThreadId)> GroupIdThreadIdsWithSameTitle = new();
+    private static readonly HashSet<int> GroupIdsWithSameTitle = [];
+    private static readonly HashSet<(int GroupId, int ThreadId)> GroupIdThreadIdsWithSameTitle = [];
 
     public static async Task<ConcurrentDictionary<ExportError, ConcurrentBag<Thread>>> ExportThreads(
         ReadOnlyCollection<Thread> threads, StringBuilder textHeadTemplate, StringBuilder textBodyTemplate,

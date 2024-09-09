@@ -121,7 +121,7 @@ public static class Scraper
     private static bool TryCreateUri(string uriString, out Uri? uri)
     {
         // Relative URI
-        if (uriString.StartsWith("/"))
+        if (uriString.StartsWith('/'))
         {
             uriString = $"{BaseUrl}{uriString}";
         }
@@ -245,7 +245,7 @@ public static class Scraper
         if (threadsPath == null)
         {
             SentryUtil.HandleMessage($"No threads path for group URL \"{group.Url}\"");
-            return (new List<Thread>(), false);
+            return ([], false);
         }
 
         return await GetThreads(group, $"{BaseUrl}{threadsPath}");
@@ -374,7 +374,7 @@ public static class Scraper
         {
             SentryUtil.HandleMessage(
                 $"Could not find group table nodes in \"{doc.DocumentNode.SelectSingleNode("//div[@id='tab-pane-1']")?.InnerHtml}\"");
-            return (new List<Group>(), false);
+            return ([], false);
         }
 
         // Remove header row
