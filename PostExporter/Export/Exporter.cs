@@ -242,7 +242,7 @@ public static class Exporter
                     var mainPart = wordDocument.AddMainDocumentPart();
 
                     var converter = new HtmlConverter(mainPart);
-                    converter.ParseHtml(stringBuilder.ToString());
+                    await converter.ParseHtml(stringBuilder.ToString(), cancellationToken);
 
                     break;
                 }
