@@ -37,7 +37,7 @@ jobs:
       - uses: actions/setup-dotnet@v3
         if: steps.tagged.outputs.tag-already-exists == 0
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '9.x'
 
       - run: dotnet restore
         if: steps.tagged.outputs.tag-already-exists == 0
@@ -74,5 +74,5 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: false
-          files: ./PostExporter/bin/Release/net8.0-windows/win-x64/publish/PostExporter.exe
+          files: ./PostExporter/bin/Release/net9.0-windows/win-x64/publish/PostExporter.exe
           fail_on_unmatched_files: true
