@@ -20,7 +20,7 @@ public partial class ExportResultDialog : Window
     {
         InitializeComponent();
 
-        ExportResults = new ObservableCollection<ExportResult>();
+        ExportResults = [];
 
         var successfulThreads = new List<Thread>(threads);
 

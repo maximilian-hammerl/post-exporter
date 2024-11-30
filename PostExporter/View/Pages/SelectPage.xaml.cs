@@ -22,10 +22,10 @@ public partial class SelectPage : Page
     {
         InitializeComponent();
 
-        SelectableGroups = new ObservableCollection<SelectableGroup>();
+        SelectableGroups = [];
         GroupItems.DataContext = SelectableGroups;
 
-        SelectableThreads = new ObservableCollection<SelectableThread>();
+        SelectableThreads = [];
         ThreadItems.DataContext = SelectableThreads;
 
         foreach (var group in groups)
@@ -348,7 +348,7 @@ public partial class SelectPage : Page
                 return _selectableThreads;
             }
 
-            _selectableThreads = new List<SelectableThread>();
+            _selectableThreads = [];
 
             var (threads, loadedAllThreadsSuccessfully) = await Scraper.GetThreads(Group);
 

@@ -42,7 +42,7 @@ public static class Exporter
 
         foreach (var exportError in Enum.GetValues<ExportError>())
         {
-            failedExports[exportError] = new ConcurrentBag<Thread>();
+            failedExports[exportError] = [];
         }
 
         await Task.WhenAll(threads.Select(async thread =>
@@ -115,7 +115,7 @@ public static class Exporter
             }
             else
             {
-                groupIdsByGroupTitles[sanitizedGroupTitle] = new HashSet<int> { groupId };
+                groupIdsByGroupTitles[sanitizedGroupTitle] = [groupId];
             }
 
             if (threadIdsByGroupIdThreadTitles.TryGetValue((groupId, sanitizedThreadTitle), out var threadIds))
@@ -124,7 +124,7 @@ public static class Exporter
             }
             else
             {
-                threadIdsByGroupIdThreadTitles[(groupId, sanitizedThreadTitle)] = new HashSet<int> { threadId };
+                threadIdsByGroupIdThreadTitles[(groupId, sanitizedThreadTitle)] = [threadId];
             }
         }
 
@@ -242,7 +242,7 @@ public static class Exporter
                     var mainPart = wordDocument.AddMainDocumentPart();
 
                     var converter = new HtmlConverter(mainPart);
-                    await converter.ParseHtml(stringBuilder.ToString(), cancellationToken);
+                    await converter.ParseBody(stringBuilder.ToString(), cancellationToken);
 
                     break;
                 }

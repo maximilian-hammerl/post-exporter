@@ -31,7 +31,7 @@ public partial class ExportPage : Page
     {
         InitializeComponent();
 
-        SelectedThreads = new ObservableCollection<Thread>();
+        SelectedThreads = [];
         foreach (var thread in threads)
         {
             SelectedThreads.Add(thread);
@@ -41,7 +41,7 @@ public partial class ExportPage : Page
 
         _threads = threads;
 
-        SelectableFileFormats = new ObservableCollection<SelectableFileFormat>();
+        SelectableFileFormats = [];
         foreach (var fileFormat in Enum.GetValues<FileFormat>())
         {
             SelectableFileFormats.Add(new SelectableFileFormat(fileFormat,
@@ -364,8 +364,8 @@ public partial class ExportPage : Page
     private static bool ValidateTemplate(StringBuilder headTemplate, StringBuilder bodyTemplate,
         out List<string> missingPlaceholders, out List<string> unusedPlaceholders)
     {
-        missingPlaceholders = new List<string>();
-        unusedPlaceholders = new List<string>();
+        missingPlaceholders = [];
+        unusedPlaceholders = [];
 
         var headString = headTemplate.ToString();
         var bodyString = bodyTemplate.ToString();
