@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: git show-ref --tags --verify --quiet -- "refs/tags/v${{ steps.get-version.outputs.major-minor-version }}" && (echo "tag-already-exists=1" >> $GITHUB_OUTPUT) || (echo "tag-already-exists=0" >> $GITHUB_OUTPUT)
 
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         if: steps.tagged.outputs.tag-already-exists == 0
         with:
           dotnet-version: '9.x'
