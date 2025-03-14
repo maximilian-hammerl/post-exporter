@@ -97,8 +97,12 @@ public static class SentryUtil
 
             if (feedback != null && !string.IsNullOrWhiteSpace(feedback.Value.Response))
             {
-                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response,
-                    feedback.Value.Username);
+                SentrySdk.CaptureFeedback(
+                    feedback.Value.Response,
+                    contactEmail: feedback.Value.Email,
+                    name: feedback.Value.Username,
+                    associatedEventId: sentryId
+                );
             }
         }
         else
@@ -116,8 +120,12 @@ public static class SentryUtil
             if (feedback != null && !string.IsNullOrWhiteSpace(feedback.Value.Response))
             {
                 var sentryId = SentrySdk.CaptureMessage($"New feedback from {source}");
-                SentrySdk.CaptureUserFeedback(sentryId, feedback.Value.Email, feedback.Value.Response,
-                    feedback.Value.Username);
+                SentrySdk.CaptureFeedback(
+                    feedback.Value.Response,
+                    contactEmail: feedback.Value.Email,
+                    name: feedback.Value.Username,
+                    associatedEventId: sentryId
+                );
             }
         }
         else
