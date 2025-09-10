@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.8" />
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.9" />
         <None Remove="Resources\splash-screen-logo.png" />
         <SplashScreen Include="Resources\splash-screen-logo.png" />
         <None Remove="Resources\icon.ico" />
