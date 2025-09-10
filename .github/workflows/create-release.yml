@@ -16,7 +16,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # To fetch all tags for git show-ref
           fetch-depth: 0
@@ -34,7 +34,7 @@ jobs:
         shell: bash
         run: git show-ref --tags --verify --quiet -- "refs/tags/v${{ steps.get-version.outputs.major-minor-version }}" && (echo "tag-already-exists=1" >> $GITHUB_OUTPUT) || (echo "tag-already-exists=0" >> $GITHUB_OUTPUT)
 
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         if: steps.tagged.outputs.tag-already-exists == 0
         with:
           dotnet-version: '10.x'
@@ -47,7 +47,7 @@ jobs:
 
       - name: Create tag
         if: steps.tagged.outputs.tag-already-exists == 0
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const createTagResponse = await github.rest.git.createTag({
