@@ -19,11 +19,11 @@
     <ItemGroup>
         <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
         <PackageReference Include="FontAwesome6.Svg" Version="2.5.1" />
-        <PackageReference Include="HtmlAgilityPack" Version="1.12.2" />
+        <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
         <PackageReference Include="HtmlToOpenXml.dll" Version="3.2.7" />
         <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
-        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.5" />
-        <PackageReference Include="Sentry" Version="5.14.1" />
+        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.6" />
+        <PackageReference Include="Sentry" Version="5.16.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.8" />
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="9.0.10" />
         <None Remove="Resources\splash-screen-logo.png" />
         <SplashScreen Include="Resources\splash-screen-logo.png" />
         <None Remove="Resources\icon.ico" />
