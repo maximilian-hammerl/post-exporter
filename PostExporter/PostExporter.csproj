@@ -3,7 +3,7 @@
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-        <TargetFramework>net9.0-windows</TargetFramework>
+        <TargetFramework>net10.0-windows</TargetFramework>
         <PublishSingleFile>true</PublishSingleFile>
         <SelfContained>true</SelfContained>
         <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
@@ -11,7 +11,7 @@
         <PublishTrimmed>false</PublishTrimmed>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
-        <VersionPrefix>2.19.0.0</VersionPrefix>
+        <VersionPrefix>2.20.0.0</VersionPrefix>
         <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
         <LangVersion>default</LangVersion>
     </PropertyGroup>

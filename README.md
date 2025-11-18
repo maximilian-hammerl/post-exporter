@@ -7,7 +7,7 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/maximilian-hammerl/post-exporter)](https://github.com/maximilian-hammerl/post-exporter/search?l=c%23)
 ![GitHub Downloads](https://img.shields.io/github/downloads/maximilian-hammerl/post-exporter/total)
 
-.NET 9.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
+.NET 10.0 [WPF](https://learn.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf) application to export groups, threads and posts of [Yooco](https://www.yooco.de) forums to various file formats
 
 ## Screenshots
 
@@ -40,5 +40,5 @@ ready_to_run="true"
 runtime="win-x64"
 self_contained="true"
 target_folder="$PROJECT_DIR$/PATH/TO/TARGET_FOLDER"
-target_framework="net9.0-windows"
+target_framework="net10.0-windows"
 ```
