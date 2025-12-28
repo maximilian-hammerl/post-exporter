@@ -22,8 +22,8 @@
         <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
         <PackageReference Include="HtmlToOpenXml.dll" Version="3.2.8" />
         <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
-        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.12" />
-        <PackageReference Include="Sentry" Version="5.16.2" />
+        <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.15" />
+        <PackageReference Include="Sentry" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.0" />
+      <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.1" />
         <None Remove="Resources\splash-screen-logo.png" />
         <SplashScreen Include="Resources\splash-screen-logo.png" />
         <None Remove="Resources\icon.ico" />
