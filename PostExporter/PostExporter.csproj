@@ -11,7 +11,7 @@
         <PublishTrimmed>false</PublishTrimmed>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
-        <VersionPrefix>2.21.0.0</VersionPrefix>
+        <VersionPrefix>2.22.0.0</VersionPrefix>
         <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
         <LangVersion>default</LangVersion>
     </PropertyGroup>
