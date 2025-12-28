@@ -21,7 +21,7 @@
         <PackageReference Include="FontAwesome6.Svg" Version="2.5.1" />
         <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
         <PackageReference Include="HtmlToOpenXml.dll" Version="3.2.8" />
-        <PackageReference Include="JetBrains.Annotations" Version="2025.2.2" />
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
         <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.15" />
         <PackageReference Include="Sentry" Version="6.0.0" />
     </ItemGroup>
