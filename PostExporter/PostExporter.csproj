@@ -20,7 +20,7 @@
         <PackageReference Include="DocumentFormat.OpenXml" Version="3.4.1" />
         <PackageReference Include="FontAwesome6.Svg" Version="2.5.1" />
         <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
-        <PackageReference Include="HtmlToOpenXml.dll" Version="3.3.0" />
+        <PackageReference Include="HtmlToOpenXml.dll" Version="3.3.1" />
         <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" />
         <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.17" />
         <PackageReference Include="Sentry" Version="6.0.0" />
