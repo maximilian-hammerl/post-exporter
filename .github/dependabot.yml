@@ -5,8 +5,20 @@ updates:
     directory: "/PostExporter"
     schedule:
       interval: "daily"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "patch"
+          - "minor"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "patch"
+          - "minor"
